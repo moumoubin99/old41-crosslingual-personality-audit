@@ -1,0 +1,86 @@
+{
+  "generated_by": "schedule/make_run_tensor.py",
+  "revision": "R12 as amended by R15-R35",
+  "family_count": 6,
+  "families": [
+    {
+      "rank": 1,
+      "family": "primary",
+      "source": "decision_rule I(iv) as amended by R35-F5",
+      "members": "Delta_mis_bar and Delta_mis_bar - 2*V per (admitted checkpoint x targeted trait)",
+      "max_components": 8,
+      "alpha": 0.05,
+      "procedure": "studentized single-step max-T, one critical value",
+      "gating_predecessor": "the R15-F3 admission family as amended by R16-F2 and R35-F2",
+      "channel": "evaluation",
+      "resampling_unit": "seed cluster, G = 20"
+    },
+    {
+      "rank": 2,
+      "family": "pair-level",
+      "source": "decision_rule I(v) as amended by R35-F5",
+      "members": "the 6 ordered pair-specific Delta_mis(p,d) of each admitted checkpoint and trait",
+      "max_components": 24,
+      "alpha": 0.05,
+      "procedure": "studentized single-step max-T, own critical value",
+      "gating_predecessor": "primary",
+      "channel": "evaluation",
+      "resampling_unit": "seed cluster, G = 20"
+    },
+    {
+      "rank": 3,
+      "family": "language-factorial",
+      "source": "decision_rule L (LangFac) as amended by R35-F5",
+      "members": "the P x D interaction contrasts of the gated second-level factorial",
+      "max_components": 8,
+      "alpha": 0.05,
+      "procedure": "studentized single-step max-T",
+      "gating_predecessor": "primary",
+      "channel": "evaluation",
+      "resampling_unit": "seed cluster, G = 20"
+    },
+    {
+      "rank": 4,
+      "family": "self-report-H2",
+      "source": "decision_rule L, H2, as amended by R35-F5",
+      "members": "the self-report channel contrasts per admitted checkpoint and trait",
+      "max_components": 8,
+      "alpha": 0.05,
+      "procedure": "studentized single-step max-T",
+      "gating_predecessor": "primary",
+      "channel": "evaluation",
+      "resampling_unit": "seed cluster, G = 20"
+    },
+    {
+      "rank": 5,
+      "family": "pole-heterogeneity",
+      "source": "decision_rule B(4), R15-F2, as amended by R35-F5",
+      "members": "the pole-specific persona-minus-neutral contrasts",
+      "max_components": 8,
+      "alpha": 0.05,
+      "procedure": "studentized single-step max-T",
+      "gating_predecessor": "primary",
+      "channel": "evaluation",
+      "resampling_unit": "seed cluster, G = 20"
+    },
+    {
+      "rank": 6,
+      "family": "instrument-language-invariance",
+      "source": "R16-F1(b)",
+      "members": "the 12 limbs of the instrument-language invariance equivalence test",
+      "max_components": 12,
+      "alpha": 0.05,
+      "procedure": "one max-|t| critical value, +-iota = 0.10",
+      "gating_predecessor": "none; it is itself a pre-B1 admission gate",
+      "channel": "qualification",
+      "resampling_unit": "seed cluster, G = 24",
+      "r35_note": "runs ENTIRELY on the disjoint R26-F6 qualification block 20260811 + {0..23}, which R35-F1 does not reach, so its clustering rule stays at G = 24; it is 4 checkpoints x 3 languages and never crossed the trait factor, so R35-F5 leaves it at 12 components"
+    }
+  ],
+  "clustering_rule_by_channel": {
+    "evaluation": "seed cluster, G = 20",
+    "qualification": "seed cluster, G = 24"
+  },
+  "note": "EXHAUSTIVE and ORDERED (R17-F3(b)); no family shares a critical value with any other; every 'five families' wording is VOID. R35-F5 halves every trait-crossed component count; the rank-6 invariance family never crossed the trait factor and is unchanged. R35-F1 splits the single clustering rule into exactly TWO channel rules: every family read on the EVALUATION partition clusters on G = 20 seed clusters, and the one family read entirely on the DISJOINT R26-F6 QUALIFICATION block clusters on its own G = 24; no family mixes the two blocks and no family has a third rule.",
+  "self_sha256": "b7529f13506825e21697f5e83dedb8ef39ce2bcbf0282763807bb9cae7788769"
+}

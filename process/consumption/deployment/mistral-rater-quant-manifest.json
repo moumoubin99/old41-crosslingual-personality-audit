@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "--unit",
+    "quant",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/rater-reference-{unit}-v2-seed-{seed}.json",
+    "--seed",
+    "17091811"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "experiments/xlpt/mistral_awq_reference.py",
+    "experiments/xlpt/test_mistral_awq_quant.py",
+    "experiments/xlpt/test_mistral_awq_attention.py",
+    "experiments/xlpt/test_mistral_awq_decode.py",
+    "experiments/xlpt/test_rater_reference_probe.py",
+    "process/consumption/deployment/mistral-rater-config/config.json",
+    "process/consumption/deployment/mistral-rater-config/quantization_config.json"
+  ],
+  "spec": "process/consumption/deployment/RATER_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "rater_awq_unpack",
+    "rater_awq_group_index",
+    "rater_awq_dequant",
+    "rater_awq_gemm",
+    "rater_embedding",
+    "rater_rms_norm",
+    "rater_linear",
+    "rater_gated_silu"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_awq_unpack",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_extract"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_group_index",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_group_index"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_dequant",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_dequantize"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_gemm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_linear"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_embedding",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "embedding_lookup"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rms_norm"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_linear",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "linear"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_gated_silu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "gated_silu_mlp"
+        },
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "silu"
+        }
+      ],
+      "test_ids": [
+        "quant_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "quant_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_mistral_awq_quant"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_mistral_awq_quant.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_reference_probe"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "The launched command executes exactly the eight quantization, embedding and projection formulas selected above, through the dispatch point the launch argv names. Every expected value in the contract test is computed inside that test in plain Python -- a scalar accumulation oracle for the fused GEMM, an independent nibble packer for the unpacking format -- and never read back from the implementation under test. The unit loads no rater weights, uses no GPU, emits no rubric score and no scientific estimate; its receipt is written with eligible_for_analysis false. The scientific estimators eq1-eq7 are not executed here and remain in refine-logs/MATH_SPEC.json. This unit does NOT settle the open first requirement of the english-b0-rater-v2 handoff: it verifies the captured reference, it does not assert that the deployed vLLM rater is routed through it."
+}

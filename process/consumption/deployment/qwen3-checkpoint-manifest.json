@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "--unit",
+    "checkpoint",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/qwen-reference-{unit}-seed-{seed}.json",
+    "--seed",
+    "17091701",
+    "--device",
+    "cpu"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "experiments/xlpt/qwen3_reference.py",
+    "experiments/xlpt/test_qwen3_kernels.py",
+    "experiments/xlpt/test_qwen3_attention.py",
+    "experiments/xlpt/test_qwen3_autoregression.py",
+    "experiments/xlpt/test_qwen3_checkpoint_binding.py",
+    "experiments/xlpt/test_qwen3_sampler.py",
+    "experiments/xlpt/test_qwen_reference_probe.py"
+  ],
+  "spec": "process/consumption/deployment/QWEN_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "qwen_model_logits",
+    "qwen_decoder_layer"
+  ],
+  "bindings": [
+    {
+      "formula_id": "qwen_model_logits",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "model_logits"
+        },
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "load_checkpoint_params"
+        }
+      ],
+      "test_ids": [
+        "checkpoint_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_decoder_layer",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "checkpoint_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "checkpoint_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_checkpoint_binding.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_checkpoint_binding.py"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "SHA-256 file identity and configuration-dictionary extraction are provenance operations, not numeric model formulas, so they are captured and executed by checkpoint_contract rather than represented by vacuous tensor expressions. The selected formulas cover the decoder residual and language-model head executed by this unit. The contract also loads a small randomly initialized Qwen3 checkpoint written by transformers and compares this captured forward pass against the library implementation on identical weights, while independently hashing all released 8B shards. No rater score, scientific estimate or gate input is produced; the receipt is written with eligible_for_analysis false."
+}

@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "--unit",
+    "generation",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/qwen-reference-{unit}-seed-{seed}.json",
+    "--seed",
+    "17091701",
+    "--device",
+    "auto",
+    "--model-path",
+    "<LOCAL_PATH>/Qwen__Qwen3-8B",
+    "--scenarios",
+    "data/xlpt-support/rendered_items_and_scenarios/scenarios_en.jsonl",
+    "--max-scenarios",
+    "6",
+    "--max-prompt-tokens",
+    "512",
+    "--max-new-tokens",
+    "64"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "experiments/xlpt/qwen3_reference.py",
+    "experiments/xlpt/test_qwen3_kernels.py",
+    "experiments/xlpt/test_qwen3_attention.py",
+    "experiments/xlpt/test_qwen3_autoregression.py",
+    "experiments/xlpt/test_qwen3_checkpoint_binding.py",
+    "experiments/xlpt/test_qwen3_sampler.py",
+    "experiments/xlpt/test_qwen_reference_probe.py"
+  ],
+  "spec": "process/consumption/deployment/QWEN_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "qwen_rms_norm",
+    "qwen_rope_tables",
+    "qwen_rope_apply",
+    "qwen_linear",
+    "qwen_swiglu",
+    "qwen_repeat_kv",
+    "qwen_causal_mask",
+    "qwen_attention",
+    "qwen_decoder_layer",
+    "qwen_model_logits",
+    "qwen_temperature_softmax",
+    "qwen_nucleus",
+    "qwen_greedy",
+    "qwen_generate"
+  ],
+  "bindings": [
+    {
+      "formula_id": "qwen_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "rms_norm"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_rope_tables",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "rope_tables"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_rope_apply",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "apply_rope"
+        },
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "rotate_half"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_linear",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "linear"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_swiglu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "swiglu_mlp"
+        },
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "silu"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_repeat_kv",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "repeat_kv"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_causal_mask",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "causal_mask"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_attention",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_decoder_layer",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "autoregression_contract",
+        "checkpoint_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_model_logits",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "model_logits"
+        }
+      ],
+      "test_ids": [
+        "autoregression_contract",
+        "checkpoint_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_temperature_softmax",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "nucleus_next_token"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_nucleus",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "nucleus_next_token"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "greedy_next_token"
+        }
+      ],
+      "test_ids": [
+        "autoregression_contract",
+        "sampler_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_generate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "generate"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract",
+        "runner_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "kernels_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_kernels.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_kernels.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "attention_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_attention.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_attention.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "autoregression_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_autoregression.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_autoregression.py"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "checkpoint_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_checkpoint_binding.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_checkpoint_binding.py"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "sampler_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_sampler.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_sampler.py"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "This apparatus run selects every numeric forward and inference formula it executes. SHA-256 file identity and configuration-dictionary extraction are provenance operations, not model mathematics; checkpoint_contract captures and executes them directly instead of assigning them vacuous numeric formulas. The captured forward pass and registered sampler run only over English TUNING scenarios on the released Qwen3-8B checkpoint in bfloat16. No persona instruction is applied, because inventing one would manufacture an unregistered condition. The runner refuses qualification/evaluation rows and both sealed seed blocks; continuations are recorded by digest and length only, with eligible_for_analysis false."
+}

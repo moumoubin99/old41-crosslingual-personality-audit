@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "build_provenance_sha256": "4ee18d863d523af53d8d56a69280a40ac7951adfa8de0acdfb409ab0fa9dd591",
+    "checkpoint_config_sha256": "bf26b2156e2707b733b9c4e18822fe8db4bc527138f820785c24e820f25b1719",
+    "conformance_source_sha256": "4444c8898420fb3ab7bba12066254d79c32b4343e39caa66d0e24f21cd8f8e37",
+    "runtime_contract_sha256": "84f65313f59698c927a3c4e924d3ba50b83bcb3c1d4bcd34f587d37125ef9107"
+  },
+  "awq": {
+    "checkpoint_shard": "model-00001-of-00004.safetensors",
+    "checkpoint_shard_sha256": "c78fc669f20aac703887c41ab01125d3e9db5cd253595f6bdc7717d0204793f0",
+    "dequantize_matmul_max_abs_error": 0.0,
+    "fused_gemm_max_abs_error": 0.00048828125,
+    "group_size": 128,
+    "sliced_shapes": {
+      "qweight": [
+        5120,
+        16
+      ],
+      "qzeros": [
+        40,
+        16
+      ],
+      "scales": [
+        40,
+        128
+      ]
+    },
+    "tensor_prefix": "language_model.model.layers.0.self_attn.q_proj"
+  },
+  "binaries": {
+    "vllm._C": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+    "vllm.flash_attn.fa2": "155115736b3e1d3f5feb2da35236b8c8ee43926a1879b5ba5f79afe63c10a09f",
+    "vllm.flash_attn.fa3": "edd9cd35d101bda7d83ce230bf48fe4a21fb19724da45638946f767500ca40f6"
+  },
+  "cuda": {
+    "capability": [
+      8,
+      9
+    ],
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "device_uuid": "61a47844-fdd1-d05c-301c-eb84265a3d3d",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8"
+  },
+  "dependency_binding": {
+    "production_dependencies_sha256": "57e640fbe52b02945578264dd979bdafe54d0e92137514ca7b613d15385ea53b",
+    "production_dependency_count": 42,
+    "runtime_source_count": 4,
+    "runtime_sources_sha256": "eda2a911deda8fd2cd30e9209640b252d19faba4cfee4cd10d6b7af9dd335264"
+  },
+  "flash_attention": {
+    "decode_steps": 2,
+    "fixture": {
+      "block_size": 16,
+      "head_dim": 128,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 8
+    },
+    "gqa_groups": 4,
+    "kv_cache_max_abs_error": 0.0,
+    "prefill_and_decode_max_abs_errors": [
+      0.00048828125,
+      0.000244140625,
+      0.000244140625
+    ],
+    "selected_fa_version": 2
+  },
+  "native_cuda": {
+    "fixture": {
+      "head_dim": 128,
+      "hidden_size": 5120,
+      "intermediate_size": 32768,
+      "max_position_embeddings": 131072,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 8,
+      "rms_norm_eps": 1e-05,
+      "rope_theta": 1000000000.0
+    },
+    "fused_residual_max_abs_error": 0.0,
+    "fused_rms_norm_max_abs_error": 0.0,
+    "gated_silu_max_abs_error": 0.0001690983772277832,
+    "rope_max_abs_error": 0.0009765625
+  },
+  "packages": {
+    "vllm": "0.11.0"
+  },
+  "pid": 663152,
+  "status": "PASS",
+  "version": 1
+}

@@ -1,0 +1,61 @@
+{
+  "artifact": "ELIGIBLE_PAIRS.json",
+  "status": "PRE-FREEZE SCHEMA. The admitted set is written ONCE, by this script, at the pre-B1 gate run, and cannot change after any confirmatory transcript exists.",
+  "authority": "decision_rule F, F1, F3, I(iv), I(v) as amended by R15-F3, R16-F2, R16-F3, R17-F2, R17-F3 and R35-F5, WHICH GOVERNS; the design card governs.",
+  "generator": "schedule/make_eligible_pairs.py",
+  "inputs": {
+    "qualification_gate": "QUALIFICATION_GATE.json",
+    "scenario_partition": "SCENARIO_PARTITION.json",
+    "rubric": "RUBRIC_BEHAVIOR.md",
+    "family_registry": "FAMILY_REGISTRY.json"
+  },
+  "enumeration_rule": {
+    "subtable": "the admitted 3 x 3 language subtable; L = 3 is MANDATORY (R16-F3)",
+    "eligible_pair": "an ORDERED pair inside the admitted 3 x 3 subtable; the six off-diagonal (persona, dialogue) pairs, listed below in this fixed order",
+    "pair_level_eligibility_rule": "VOID (F1, superseded by R15-F3's language-level admission map)",
+    "estimand": "the DEFAULT ESTIMAND IS THE FIXED ALL-SIX-PAIR AVERAGE Delta_mis_bar; NO PAIR IS EVER DROPPED AFTER B1",
+    "primary_family": "EXACTLY TWO COMPONENTS per (admitted checkpoint x targeted trait) member - Delta_mis_bar and Delta_mis_bar - 2*V - at most 1 x 4 x 2 = 8 components (R35-F5, WHICH GOVERNS; the superseded two-trait count 2 x 4 x 2 = 16 is VOID and binds nothing), under ONE studentized single-step max-T critical value at the critical level of record of CLUSTER_CALIB_R18.json, critical_level_of_record_by_family['primary'] = 0.998; the earlier exported level q* = 0.965 is VOID and is never the level of any family",
+    "pair_level_family": "the six ordered pair-specific Delta_mis(p,d) of each admitted checkpoint and trait form their OWN fixed family, reported only after the primary family, same procedure, its own single critical value (I(v)); at most 6 x 4 x 1 = 24 components under R35-F5",
+    "r35_resampling_unit": "seed cluster, G = 20 on the evaluation partition (R35-F1): n_U = 6 R27-F2 subsamples x 20 seeds = 120 inferential units, V_hat on 19 df. The disjoint R26-F6 qualification block keeps its own 24 clusters."
+  },
+  "ordered_pairs": [
+    {
+      "persona_language": "English",
+      "dialogue_language": "Chinese"
+    },
+    {
+      "persona_language": "English",
+      "dialogue_language": "Swahili"
+    },
+    {
+      "persona_language": "Chinese",
+      "dialogue_language": "English"
+    },
+    {
+      "persona_language": "Chinese",
+      "dialogue_language": "Swahili"
+    },
+    {
+      "persona_language": "Swahili",
+      "dialogue_language": "English"
+    },
+    {
+      "persona_language": "Swahili",
+      "dialogue_language": "Chinese"
+    }
+  ],
+  "targeted_traits": [
+    "Extraversion"
+  ],
+  "components_per_member": [
+    "Delta_mis_bar",
+    "Delta_mis_bar - 2*V"
+  ],
+  "admitted_checkpoints": null,
+  "primary_family_members": null,
+  "primary_family_size": null,
+  "untestable_branch": "if fewer than 3 of the 4 checkpoints are admitted, the behavior channel is NOT ADMITTED, H1 takes outcome (C) and no endpoint is substituted",
+  "h1_testable": null,
+  "immutability": "Frozen and hashed at the pre-B1 gate run. No quantity computed on the evaluation split may change the admitted set, the pair set, the family or the estimand.",
+  "self_sha256": "a086630cb137e1c399cf6270dadf61e0fcbfae5d04fb1d89711703a85ebfdeed"
+}

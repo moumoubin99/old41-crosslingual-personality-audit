@@ -1,0 +1,18 @@
+{
+ "high": {
+  "seed_files": 23,
+  "turns": 3450,
+  "turns_with_pinyin_tone_marks": 1534,
+  "turns_with_zero_han": 234,
+  "turns_passing_rule": 87,
+  "pass_rate": 0.0252
+ },
+ "low": {
+  "seed_files": 23,
+  "turns": 3450,
+  "turns_with_pinyin_tone_marks": 27,
+  "turns_with_zero_han": 0,
+  "turns_passing_rule": 3411,
+  "pass_rate": 0.9887
+ }
+}

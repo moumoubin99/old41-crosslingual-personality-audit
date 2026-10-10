@@ -1,0 +1,2321 @@
+{
+  "bootstrap": {
+    "draws": 9999,
+    "generator": "numpy default_rng",
+    "kind": "joint seed-cluster percentile",
+    "seed": 20260928
+  },
+  "cells": {
+    "P=en,D=en": {
+      "Llama-3.1-8B-Instruct|agreeableness": {
+        "common_interval": {
+          "chars": [
+            1506,
+            784
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.105113,
+        "extrapolated_length_association_sep_ci95": [
+          0.023251,
+          0.191314
+        ],
+        "extrapolated_length_association_share": 0.171178,
+        "extrapolated_length_association_share_ci95": [
+          0.037895,
+          0.312478
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.173413,
+        "full_range_overlap": {
+          "chars": [
+            1090,
+            1285
+          ],
+          "empty": false,
+          "n_high": 10,
+          "n_low": 3
+        },
+        "length_chars": {
+          "high": {
+            "max": 4422,
+            "min": 1090,
+            "p05": 1506,
+            "p25": 1980,
+            "p50": 2348,
+            "p75": 2723,
+            "p95": 3346
+          },
+          "low": {
+            "max": 1285,
+            "min": 161,
+            "p05": 290,
+            "p25": 393,
+            "p50": 484,
+            "p75": 591,
+            "p95": 784
+          }
+        },
+        "log_length_gap": 1.575356,
+        "log_length_gap_ci95": [
+          1.561021,
+          1.591511
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.614058,
+        "sep_ci95": [
+          0.58942,
+          0.637246
+        ],
+        "slope_high_pole_seed_fe": 0.044056,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.061583,
+          0.156366
+        ],
+        "slope_low_pole_seed_fe": 0.089391,
+        "slope_low_pole_seed_fe_ci95": [
+          0.0671,
+          0.109533
+        ],
+        "within_pole_slope_seed_fe": 0.066723,
+        "within_pole_slope_seed_fe_ci95": [
+          0.014799,
+          0.121264
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.067594
+      },
+      "Llama-3.1-8B-Instruct|extraversion": {
+        "common_interval": {
+          "chars": [
+            1506,
+            784
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.381909,
+        "extrapolated_length_association_sep_ci95": [
+          0.286098,
+          0.480281
+        ],
+        "extrapolated_length_association_share": 0.394073,
+        "extrapolated_length_association_share_ci95": [
+          0.295493,
+          0.494546
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.353559,
+        "full_range_overlap": {
+          "chars": [
+            1090,
+            1285
+          ],
+          "empty": false,
+          "n_high": 10,
+          "n_low": 3
+        },
+        "length_chars": {
+          "high": {
+            "max": 4422,
+            "min": 1090,
+            "p05": 1506,
+            "p25": 1980,
+            "p50": 2348,
+            "p75": 2723,
+            "p95": 3346
+          },
+          "low": {
+            "max": 1285,
+            "min": 161,
+            "p05": 290,
+            "p25": 393,
+            "p50": 484,
+            "p75": 591,
+            "p95": 784
+          }
+        },
+        "log_length_gap": 1.575356,
+        "log_length_gap_ci95": [
+          1.560553,
+          1.591126
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.96913,
+        "sep_ci95": [
+          0.938551,
+          1.00029
+        ],
+        "slope_high_pole_seed_fe": 0.312698,
+        "slope_high_pole_seed_fe_ci95": [
+          0.199437,
+          0.426967
+        ],
+        "slope_low_pole_seed_fe": 0.172156,
+        "slope_low_pole_seed_fe_ci95": [
+          0.115544,
+          0.228773
+        ],
+        "within_pole_slope_seed_fe": 0.242427,
+        "within_pole_slope_seed_fe_ci95": [
+          0.182137,
+          0.303697
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.217503
+      },
+      "Qwen3-8B|agreeableness": {
+        "common_interval": {
+          "chars": [
+            2608,
+            772
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.254019,
+        "extrapolated_length_association_sep_ci95": [
+          0.113814,
+          0.386663
+        ],
+        "extrapolated_length_association_share": 0.225751,
+        "extrapolated_length_association_share_ci95": [
+          0.100356,
+          0.348608
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.65347,
+        "full_range_overlap": {
+          "chars": [
+            2003,
+            1268
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 7052,
+            "min": 2003,
+            "p05": 2608,
+            "p25": 3105,
+            "p50": 3502,
+            "p75": 4071,
+            "p95": 5004
+          },
+          "low": {
+            "max": 1268,
+            "min": 127,
+            "p05": 287,
+            "p25": 408,
+            "p50": 518,
+            "p75": 612,
+            "p95": 772
+          }
+        },
+        "log_length_gap": 1.972452,
+        "log_length_gap_ci95": [
+          1.960984,
+          1.983461
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 1.125217,
+        "sep_ci95": [
+          1.09,
+          1.16087
+        ],
+        "slope_high_pole_seed_fe": 0.165072,
+        "slope_high_pole_seed_fe_ci95": [
+          0.02246,
+          0.302293
+        ],
+        "slope_low_pole_seed_fe": 0.092495,
+        "slope_low_pole_seed_fe_ci95": [
+          0.070789,
+          0.117141
+        ],
+        "within_pole_slope_seed_fe": 0.128783,
+        "within_pole_slope_seed_fe_ci95": [
+          0.057866,
+          0.196129
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.372783
+      },
+      "Qwen3-8B|extraversion": {
+        "common_interval": {
+          "chars": [
+            2608,
+            772
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.556392,
+        "extrapolated_length_association_sep_ci95": [
+          0.394637,
+          0.719253
+        ],
+        "extrapolated_length_association_share": 0.31106,
+        "extrapolated_length_association_share_ci95": [
+          0.220607,
+          0.402492
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.702345,
+        "full_range_overlap": {
+          "chars": [
+            2003,
+            1268
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 7052,
+            "min": 2003,
+            "p05": 2608,
+            "p25": 3105,
+            "p50": 3502,
+            "p75": 4071,
+            "p95": 5004
+          },
+          "low": {
+            "max": 1268,
+            "min": 127,
+            "p05": 287,
+            "p25": 408,
+            "p50": 518,
+            "p75": 612,
+            "p95": 772
+          }
+        },
+        "log_length_gap": 1.972452,
+        "log_length_gap_ci95": [
+          1.960864,
+          1.98393
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 1.788696,
+        "sep_ci95": [
+          1.758841,
+          1.816957
+        ],
+        "slope_high_pole_seed_fe": 0.422136,
+        "slope_high_pole_seed_fe_ci95": [
+          0.279255,
+          0.56678
+        ],
+        "slope_low_pole_seed_fe": 0.142028,
+        "slope_low_pole_seed_fe_ci95": [
+          0.098522,
+          0.19255
+        ],
+        "within_pole_slope_seed_fe": 0.282082,
+        "within_pole_slope_seed_fe_ci95": [
+          0.200096,
+          0.364884
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.636913
+      },
+      "aya-expanse-8b|agreeableness": {
+        "common_interval": {
+          "chars": [
+            2745,
+            2433
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.040082,
+        "extrapolated_length_association_sep_ci95": [
+          0.007202,
+          0.074651
+        ],
+        "extrapolated_length_association_share": 0.109532,
+        "extrapolated_length_association_share_ci95": [
+          0.01973,
+          0.203732
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.059388,
+        "full_range_overlap": {
+          "chars": [
+            1796,
+            4236
+          ],
+          "empty": false,
+          "n_high": 679,
+          "n_low": 229
+        },
+        "length_chars": {
+          "high": {
+            "max": 7620,
+            "min": 1796,
+            "p05": 2745,
+            "p25": 3476,
+            "p50": 4018,
+            "p75": 4711,
+            "p95": 6019
+          },
+          "low": {
+            "max": 4236,
+            "min": 427,
+            "p05": 725,
+            "p25": 975,
+            "p50": 1269,
+            "p75": 1695,
+            "p95": 2433
+          }
+        },
+        "log_length_gap": 1.136661,
+        "log_length_gap_ci95": [
+          1.124429,
+          1.14811
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.365942,
+        "sep_ci95": [
+          0.347971,
+          0.383623
+        ],
+        "slope_high_pole_seed_fe": 0.087486,
+        "slope_high_pole_seed_fe_ci95": [
+          0.03359,
+          0.145797
+        ],
+        "slope_low_pole_seed_fe": -0.016959,
+        "slope_low_pole_seed_fe_ci95": [
+          -0.033627,
+          -0.000476
+        ],
+        "within_pole_slope_seed_fe": 0.035263,
+        "within_pole_slope_seed_fe_ci95": [
+          0.006318,
+          0.065845
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.01912
+      },
+      "aya-expanse-8b|extraversion": {
+        "common_interval": {
+          "chars": [
+            2745,
+            2433
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.253638,
+        "extrapolated_length_association_sep_ci95": [
+          0.191673,
+          0.313091
+        ],
+        "extrapolated_length_association_share": 0.255453,
+        "extrapolated_length_association_share_ci95": [
+          0.195003,
+          0.31414
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": -0.029522,
+        "full_range_overlap": {
+          "chars": [
+            1796,
+            4236
+          ],
+          "empty": false,
+          "n_high": 679,
+          "n_low": 229
+        },
+        "length_chars": {
+          "high": {
+            "max": 7620,
+            "min": 1796,
+            "p05": 2745,
+            "p25": 3476,
+            "p50": 4018,
+            "p75": 4711,
+            "p95": 6019
+          },
+          "low": {
+            "max": 4236,
+            "min": 427,
+            "p05": 725,
+            "p25": 975,
+            "p50": 1269,
+            "p75": 1695,
+            "p95": 2433
+          }
+        },
+        "log_length_gap": 1.136661,
+        "log_length_gap_ci95": [
+          1.12463,
+          1.14775
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.992899,
+        "sep_ci95": [
+          0.957094,
+          1.027246
+        ],
+        "slope_high_pole_seed_fe": 0.367069,
+        "slope_high_pole_seed_fe_ci95": [
+          0.263373,
+          0.467436
+        ],
+        "slope_low_pole_seed_fe": 0.079218,
+        "slope_low_pole_seed_fe_ci95": [
+          0.048512,
+          0.108827
+        ],
+        "within_pole_slope_seed_fe": 0.223143,
+        "within_pole_slope_seed_fe_ci95": [
+          0.168709,
+          0.275677
+        ],
+        "within_pole_slope_seed_scenario_fe": -0.025788
+      },
+      "gemma-3-12b-it|agreeableness": {
+        "common_interval": {
+          "chars": [
+            3036,
+            428
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.784645,
+        "extrapolated_length_association_sep_ci95": [
+          0.528024,
+          1.041537
+        ],
+        "extrapolated_length_association_share": 1.111944,
+        "extrapolated_length_association_share_ci95": [
+          0.765715,
+          1.45377
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 1.560504,
+        "full_range_overlap": {
+          "chars": [
+            2182,
+            582
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 6134,
+            "min": 2182,
+            "p05": 3036,
+            "p25": 3653,
+            "p50": 4025,
+            "p75": 4399,
+            "p95": 5032
+          },
+          "low": {
+            "max": 582,
+            "min": 113,
+            "p05": 140,
+            "p25": 210,
+            "p50": 270,
+            "p75": 336,
+            "p95": 428
+          }
+        },
+        "log_length_gap": 2.720999,
+        "log_length_gap_ci95": [
+          2.711501,
+          2.730176
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.705652,
+        "sep_ci95": [
+          0.674196,
+          0.735507
+        ],
+        "slope_high_pole_seed_fe": 0.4362,
+        "slope_high_pole_seed_fe_ci95": [
+          0.244467,
+          0.627759
+        ],
+        "slope_low_pole_seed_fe": 0.140534,
+        "slope_low_pole_seed_fe_ci95": [
+          0.128944,
+          0.152326
+        ],
+        "within_pole_slope_seed_fe": 0.288367,
+        "within_pole_slope_seed_fe_ci95": [
+          0.194229,
+          0.382874
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.404694
+      },
+      "gemma-3-12b-it|extraversion": {
+        "common_interval": {
+          "chars": [
+            3036,
+            428
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 1.209715,
+        "extrapolated_length_association_sep_ci95": [
+          0.877802,
+          1.531705
+        ],
+        "extrapolated_length_association_share": 0.504322,
+        "extrapolated_length_association_share_ci95": [
+          0.366035,
+          0.637751
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.512379,
+        "full_range_overlap": {
+          "chars": [
+            2182,
+            582
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 6134,
+            "min": 2182,
+            "p05": 3036,
+            "p25": 3653,
+            "p50": 4025,
+            "p75": 4399,
+            "p95": 5032
+          },
+          "low": {
+            "max": 582,
+            "min": 113,
+            "p05": 140,
+            "p25": 210,
+            "p50": 270,
+            "p75": 336,
+            "p95": 428
+          }
+        },
+        "log_length_gap": 2.720999,
+        "log_length_gap_ci95": [
+          2.711544,
+          2.730035
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 2.398696,
+        "sep_ci95": [
+          2.368833,
+          2.427971
+        ],
+        "slope_high_pole_seed_fe": 0.825651,
+        "slope_high_pole_seed_fe_ci95": [
+          0.565539,
+          1.076801
+        ],
+        "slope_low_pole_seed_fe": 0.063519,
+        "slope_low_pole_seed_fe_ci95": [
+          0.033703,
+          0.094404
+        ],
+        "within_pole_slope_seed_fe": 0.444585,
+        "within_pole_slope_seed_fe_ci95": [
+          0.322863,
+          0.562745
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.451688
+      }
+    },
+    "P=en,D=zh": {
+      "Llama-3.1-8B-Instruct|agreeableness": {
+        "common_interval": {
+          "chars": [
+            419,
+            216
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.012457,
+        "extrapolated_length_association_sep_ci95": [
+          -0.031647,
+          0.054699
+        ],
+        "extrapolated_length_association_share": 0.031765,
+        "extrapolated_length_association_share_ci95": [
+          -0.08077,
+          0.140268
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.113392,
+        "full_range_overlap": {
+          "chars": [
+            268,
+            601
+          ],
+          "empty": false,
+          "n_high": 376,
+          "n_low": 19
+        },
+        "length_chars": {
+          "high": {
+            "max": 1289,
+            "min": 268,
+            "p05": 419,
+            "p25": 565,
+            "p50": 665,
+            "p75": 776,
+            "p95": 933
+          },
+          "low": {
+            "max": 601,
+            "min": 39,
+            "p05": 73,
+            "p25": 107,
+            "p50": 132,
+            "p75": 161,
+            "p95": 216
+          }
+        },
+        "log_length_gap": 1.617397,
+        "log_length_gap_ci95": [
+          1.598094,
+          1.637563
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.392174,
+        "sep_ci95": [
+          0.38,
+          0.404058
+        ],
+        "slope_high_pole_seed_fe": 0.020696,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.019921,
+          0.059352
+        ],
+        "slope_low_pole_seed_fe": -0.005291,
+        "slope_low_pole_seed_fe_ci95": [
+          -0.030289,
+          0.020909
+        ],
+        "within_pole_slope_seed_fe": 0.007702,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.019578,
+          0.033665
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.027494
+      },
+      "Llama-3.1-8B-Instruct|extraversion": {
+        "common_interval": {
+          "chars": [
+            419,
+            216
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.450496,
+        "extrapolated_length_association_sep_ci95": [
+          0.380566,
+          0.523288
+        ],
+        "extrapolated_length_association_share": 0.508578,
+        "extrapolated_length_association_share_ci95": [
+          0.430069,
+          0.588839
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.652484,
+        "full_range_overlap": {
+          "chars": [
+            268,
+            601
+          ],
+          "empty": false,
+          "n_high": 376,
+          "n_low": 19
+        },
+        "length_chars": {
+          "high": {
+            "max": 1289,
+            "min": 268,
+            "p05": 419,
+            "p25": 565,
+            "p50": 665,
+            "p75": 776,
+            "p95": 933
+          },
+          "low": {
+            "max": 601,
+            "min": 39,
+            "p05": 73,
+            "p25": 107,
+            "p50": 132,
+            "p75": 161,
+            "p95": 216
+          }
+        },
+        "log_length_gap": 1.617397,
+        "log_length_gap_ci95": [
+          1.597423,
+          1.636822
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.885797,
+        "sep_ci95": [
+          0.856522,
+          0.915072
+        ],
+        "slope_high_pole_seed_fe": 0.39271,
+        "slope_high_pole_seed_fe_ci95": [
+          0.30244,
+          0.490653
+        ],
+        "slope_low_pole_seed_fe": 0.164353,
+        "slope_low_pole_seed_fe_ci95": [
+          0.126183,
+          0.203205
+        ],
+        "within_pole_slope_seed_fe": 0.278532,
+        "within_pole_slope_seed_fe_ci95": [
+          0.236376,
+          0.322027
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.357345
+      },
+      "Qwen3-8B|agreeableness": {
+        "common_interval": {
+          "chars": [
+            958,
+            258
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.059391,
+        "extrapolated_length_association_sep_ci95": [
+          -0.061437,
+          0.189058
+        ],
+        "extrapolated_length_association_share": 0.077953,
+        "extrapolated_length_association_share_ci95": [
+          -0.080682,
+          0.248631
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.294841,
+        "full_range_overlap": {
+          "chars": [
+            682,
+            350
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 2660,
+            "min": 682,
+            "p05": 958,
+            "p25": 1161,
+            "p50": 1363,
+            "p75": 1625,
+            "p95": 2018
+          },
+          "low": {
+            "max": 350,
+            "min": 40,
+            "p05": 95,
+            "p25": 130,
+            "p50": 159,
+            "p75": 196,
+            "p95": 258
+          }
+        },
+        "log_length_gap": 2.15837,
+        "log_length_gap_ci95": [
+          2.14234,
+          2.172738
+        ],
+        "n_pairs": 1145,
+        "n_seed_clusters": 23,
+        "sep": 0.761882,
+        "sep_ci95": [
+          0.736292,
+          0.788861
+        ],
+        "slope_high_pole_seed_fe": 0.056303,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.04878,
+          0.168553
+        ],
+        "slope_low_pole_seed_fe": -0.00127,
+        "slope_low_pole_seed_fe_ci95": [
+          -0.02477,
+          0.023648
+        ],
+        "within_pole_slope_seed_fe": 0.027517,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.028533,
+          0.087723
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.104076
+      },
+      "Qwen3-8B|extraversion": {
+        "common_interval": {
+          "chars": [
+            958,
+            258
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.570175,
+        "extrapolated_length_association_sep_ci95": [
+          0.356206,
+          0.777153
+        ],
+        "extrapolated_length_association_share": 0.407792,
+        "extrapolated_length_association_share_ci95": [
+          0.258291,
+          0.549702
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.638395,
+        "full_range_overlap": {
+          "chars": [
+            682,
+            350
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 2660,
+            "min": 682,
+            "p05": 958,
+            "p25": 1161,
+            "p50": 1363,
+            "p75": 1625,
+            "p95": 2018
+          },
+          "low": {
+            "max": 350,
+            "min": 40,
+            "p05": 95,
+            "p25": 130,
+            "p50": 159,
+            "p75": 196,
+            "p95": 258
+          }
+        },
+        "log_length_gap": 2.15837,
+        "log_length_gap_ci95": [
+          2.143008,
+          2.172584
+        ],
+        "n_pairs": 1145,
+        "n_seed_clusters": 23,
+        "sep": 1.3982,
+        "sep_ci95": [
+          1.362684,
+          1.436663
+        ],
+        "slope_high_pole_seed_fe": 0.311628,
+        "slope_high_pole_seed_fe_ci95": [
+          0.122406,
+          0.496891
+        ],
+        "slope_low_pole_seed_fe": 0.21671,
+        "slope_low_pole_seed_fe_ci95": [
+          0.17744,
+          0.255614
+        ],
+        "within_pole_slope_seed_fe": 0.264169,
+        "within_pole_slope_seed_fe_ci95": [
+          0.164772,
+          0.360466
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.413554
+      },
+      "aya-expanse-8b|agreeableness": {
+        "common_interval": {
+          "chars": [
+            960,
+            881
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.015494,
+        "extrapolated_length_association_sep_ci95": [
+          -0.01697,
+          0.050564
+        ],
+        "extrapolated_length_association_share": 0.057632,
+        "extrapolated_length_association_share_ci95": [
+          -0.062867,
+          0.190614
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.138203,
+        "full_range_overlap": {
+          "chars": [
+            659,
+            1231
+          ],
+          "empty": false,
+          "n_high": 407,
+          "n_low": 402
+        },
+        "length_chars": {
+          "high": {
+            "max": 2147,
+            "min": 659,
+            "p05": 960,
+            "p25": 1161,
+            "p50": 1313,
+            "p75": 1481,
+            "p95": 1745
+          },
+          "low": {
+            "max": 1231,
+            "min": 158,
+            "p05": 283,
+            "p25": 450,
+            "p50": 593,
+            "p75": 701,
+            "p95": 881
+          }
+        },
+        "log_length_gap": 0.863674,
+        "log_length_gap_ci95": [
+          0.849041,
+          0.87875
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.268841,
+        "sep_ci95": [
+          0.256949,
+          0.280725
+        ],
+        "slope_high_pole_seed_fe": -0.009098,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.070499,
+          0.059453
+        ],
+        "slope_low_pole_seed_fe": 0.044976,
+        "slope_low_pole_seed_fe_ci95": [
+          0.014063,
+          0.075914
+        ],
+        "within_pole_slope_seed_fe": 0.017939,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.019641,
+          0.058336
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.043019
+      },
+      "aya-expanse-8b|extraversion": {
+        "common_interval": {
+          "chars": [
+            960,
+            881
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.266548,
+        "extrapolated_length_association_sep_ci95": [
+          0.196016,
+          0.339034
+        ],
+        "extrapolated_length_association_share": 0.271386,
+        "extrapolated_length_association_share_ci95": [
+          0.199727,
+          0.344532
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.291244,
+        "full_range_overlap": {
+          "chars": [
+            659,
+            1231
+          ],
+          "empty": false,
+          "n_high": 407,
+          "n_low": 402
+        },
+        "length_chars": {
+          "high": {
+            "max": 2147,
+            "min": 659,
+            "p05": 960,
+            "p25": 1161,
+            "p50": 1313,
+            "p75": 1481,
+            "p95": 1745
+          },
+          "low": {
+            "max": 1231,
+            "min": 158,
+            "p05": 283,
+            "p25": 450,
+            "p50": 593,
+            "p75": 701,
+            "p95": 881
+          }
+        },
+        "log_length_gap": 0.863674,
+        "log_length_gap_ci95": [
+          0.848562,
+          0.878846
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.982174,
+        "sep_ci95": [
+          0.958116,
+          1.005217
+        ],
+        "slope_high_pole_seed_fe": 0.483579,
+        "slope_high_pole_seed_fe_ci95": [
+          0.33369,
+          0.632118
+        ],
+        "slope_low_pole_seed_fe": 0.133663,
+        "slope_low_pole_seed_fe_ci95": [
+          0.096573,
+          0.173301
+        ],
+        "within_pole_slope_seed_fe": 0.308621,
+        "within_pole_slope_seed_fe_ci95": [
+          0.228037,
+          0.389659
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.331203
+      },
+      "gemma-3-12b-it|agreeableness": {
+        "common_interval": {
+          "chars": [
+            3056,
+            157
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.429143,
+        "extrapolated_length_association_sep_ci95": [
+          0.208814,
+          0.630136
+        ],
+        "extrapolated_length_association_share": 0.56933,
+        "extrapolated_length_association_share_ci95": [
+          0.273506,
+          0.853848
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.53109,
+        "full_range_overlap": {
+          "chars": [
+            1059,
+            517
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 6730,
+            "min": 1059,
+            "p05": 3056,
+            "p25": 3833,
+            "p50": 4401,
+            "p75": 4936,
+            "p95": 5812
+          },
+          "low": {
+            "max": 517,
+            "min": 30,
+            "p05": 47,
+            "p25": 69,
+            "p50": 88,
+            "p75": 112,
+            "p95": 157
+          }
+        },
+        "log_length_gap": 3.884669,
+        "log_length_gap_ci95": [
+          3.868722,
+          3.900316
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.753768,
+        "sep_ci95": [
+          0.722319,
+          0.787826
+        ],
+        "slope_high_pole_seed_fe": 0.184885,
+        "slope_high_pole_seed_fe_ci95": [
+          0.074028,
+          0.282667
+        ],
+        "slope_low_pole_seed_fe": 0.036057,
+        "slope_low_pole_seed_fe_ci95": [
+          0.021109,
+          0.052204
+        ],
+        "within_pole_slope_seed_fe": 0.110471,
+        "within_pole_slope_seed_fe_ci95": [
+          0.053719,
+          0.162076
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.103051
+      },
+      "gemma-3-12b-it|extraversion": {
+        "common_interval": {
+          "chars": [
+            3056,
+            157
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 1.861615,
+        "extrapolated_length_association_sep_ci95": [
+          1.536014,
+          2.178409
+        ],
+        "extrapolated_length_association_share": 0.652734,
+        "extrapolated_length_association_share_ci95": [
+          0.537139,
+          0.765966
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.676868,
+        "full_range_overlap": {
+          "chars": [
+            1059,
+            517
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 6730,
+            "min": 1059,
+            "p05": 3056,
+            "p25": 3833,
+            "p50": 4401,
+            "p75": 4936,
+            "p95": 5812
+          },
+          "low": {
+            "max": 517,
+            "min": 30,
+            "p05": 47,
+            "p25": 69,
+            "p50": 88,
+            "p75": 112,
+            "p95": 157
+          }
+        },
+        "log_length_gap": 3.884669,
+        "log_length_gap_ci95": [
+          3.869062,
+          3.900677
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 2.852029,
+        "sep_ci95": [
+          2.813913,
+          2.889275
+        ],
+        "slope_high_pole_seed_fe": 0.648046,
+        "slope_high_pole_seed_fe_ci95": [
+          0.483356,
+          0.80481
+        ],
+        "slope_low_pole_seed_fe": 0.310396,
+        "slope_low_pole_seed_fe_ci95": [
+          0.267739,
+          0.352562
+        ],
+        "within_pole_slope_seed_fe": 0.479221,
+        "within_pole_slope_seed_fe_ci95": [
+          0.39539,
+          0.56098
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.49694
+      }
+    },
+    "P=zh(v4 reviewed),D=en": {
+      "Llama-3.1-8B-Instruct|agreeableness": {
+        "common_interval": {
+          "chars": [
+            1473,
+            895
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.114782,
+        "extrapolated_length_association_sep_ci95": [
+          0.05248,
+          0.176068
+        ],
+        "extrapolated_length_association_share": 0.19716,
+        "extrapolated_length_association_share_ci95": [
+          0.091857,
+          0.297591
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.13159,
+        "full_range_overlap": {
+          "chars": [
+            1017,
+            1794
+          ],
+          "empty": false,
+          "n_high": 253,
+          "n_low": 22
+        },
+        "length_chars": {
+          "high": {
+            "max": 4222,
+            "min": 1017,
+            "p05": 1473,
+            "p25": 1849,
+            "p50": 2167,
+            "p75": 2520,
+            "p95": 3102
+          },
+          "low": {
+            "max": 1794,
+            "min": 313,
+            "p05": 411,
+            "p25": 517,
+            "p50": 608,
+            "p75": 707,
+            "p95": 895
+          }
+        },
+        "log_length_gap": 1.26709,
+        "log_length_gap_ci95": [
+          1.257299,
+          1.27704
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.582174,
+        "sep_ci95": [
+          0.558833,
+          0.606239
+        ],
+        "slope_high_pole_seed_fe": 0.103869,
+        "slope_high_pole_seed_fe_ci95": [
+          0.004719,
+          0.212775
+        ],
+        "slope_low_pole_seed_fe": 0.077305,
+        "slope_low_pole_seed_fe_ci95": [
+          0.01887,
+          0.128175
+        ],
+        "within_pole_slope_seed_fe": 0.090587,
+        "within_pole_slope_seed_fe_ci95": [
+          0.04146,
+          0.139084
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.06046
+      },
+      "Llama-3.1-8B-Instruct|extraversion": {
+        "common_interval": {
+          "chars": [
+            1473,
+            895
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.17397,
+        "extrapolated_length_association_sep_ci95": [
+          0.093965,
+          0.257626
+        ],
+        "extrapolated_length_association_share": 0.220094,
+        "extrapolated_length_association_share_ci95": [
+          0.119027,
+          0.327015
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.350691,
+        "full_range_overlap": {
+          "chars": [
+            1017,
+            1794
+          ],
+          "empty": false,
+          "n_high": 253,
+          "n_low": 22
+        },
+        "length_chars": {
+          "high": {
+            "max": 4222,
+            "min": 1017,
+            "p05": 1473,
+            "p25": 1849,
+            "p50": 2167,
+            "p75": 2520,
+            "p95": 3102
+          },
+          "low": {
+            "max": 1794,
+            "min": 313,
+            "p05": 411,
+            "p25": 517,
+            "p50": 608,
+            "p75": 707,
+            "p95": 895
+          }
+        },
+        "log_length_gap": 1.26709,
+        "log_length_gap_ci95": [
+          1.257115,
+          1.277375
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.790435,
+        "sep_ci95": [
+          0.764051,
+          0.816087
+        ],
+        "slope_high_pole_seed_fe": 0.21077,
+        "slope_high_pole_seed_fe_ci95": [
+          0.108301,
+          0.316887
+        ],
+        "slope_low_pole_seed_fe": 0.063828,
+        "slope_low_pole_seed_fe_ci95": [
+          0.00759,
+          0.116804
+        ],
+        "within_pole_slope_seed_fe": 0.137299,
+        "within_pole_slope_seed_fe_ci95": [
+          0.074173,
+          0.203479
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.218768
+      },
+      "Qwen3-8B|agreeableness": {
+        "common_interval": {
+          "chars": [
+            2157,
+            813
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.145096,
+        "extrapolated_length_association_sep_ci95": [
+          0.006782,
+          0.284988
+        ],
+        "extrapolated_length_association_share": 0.122643,
+        "extrapolated_length_association_share_ci95": [
+          0.005763,
+          0.239998
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.444621,
+        "full_range_overlap": {
+          "chars": [
+            1371,
+            1076
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 6041,
+            "min": 1371,
+            "p05": 2157,
+            "p25": 2686,
+            "p50": 3041,
+            "p75": 3511,
+            "p95": 4381
+          },
+          "low": {
+            "max": 1076,
+            "min": 231,
+            "p05": 319,
+            "p25": 446,
+            "p50": 543,
+            "p75": 650,
+            "p95": 813
+          }
+        },
+        "log_length_gap": 1.749111,
+        "log_length_gap_ci95": [
+          1.741044,
+          1.756844
+        ],
+        "n_pairs": 1148,
+        "n_seed_clusters": 23,
+        "sep": 1.183079,
+        "sep_ci95": [
+          1.147884,
+          1.21604
+        ],
+        "slope_high_pole_seed_fe": 0.093152,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.066109,
+          0.254983
+        ],
+        "slope_low_pole_seed_fe": 0.072756,
+        "slope_low_pole_seed_fe_ci95": [
+          0.0461,
+          0.099396
+        ],
+        "within_pole_slope_seed_fe": 0.082954,
+        "within_pole_slope_seed_fe_ci95": [
+          0.003876,
+          0.163214
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.300736
+      },
+      "Qwen3-8B|extraversion": {
+        "common_interval": {
+          "chars": [
+            2157,
+            813
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.372993,
+        "extrapolated_length_association_sep_ci95": [
+          0.21912,
+          0.527988
+        ],
+        "extrapolated_length_association_share": 0.208941,
+        "extrapolated_length_association_share_ci95": [
+          0.124017,
+          0.293469
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.546759,
+        "full_range_overlap": {
+          "chars": [
+            1371,
+            1076
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 6041,
+            "min": 1371,
+            "p05": 2157,
+            "p25": 2686,
+            "p50": 3041,
+            "p75": 3511,
+            "p95": 4381
+          },
+          "low": {
+            "max": 1076,
+            "min": 231,
+            "p05": 319,
+            "p25": 446,
+            "p50": 543,
+            "p75": 650,
+            "p95": 813
+          }
+        },
+        "log_length_gap": 1.749111,
+        "log_length_gap_ci95": [
+          1.740794,
+          1.756809
+        ],
+        "n_pairs": 1148,
+        "n_seed_clusters": 23,
+        "sep": 1.785158,
+        "sep_ci95": [
+          1.738793,
+          1.828014
+        ],
+        "slope_high_pole_seed_fe": 0.360347,
+        "slope_high_pole_seed_fe_ci95": [
+          0.17789,
+          0.543276
+        ],
+        "slope_low_pole_seed_fe": 0.066147,
+        "slope_low_pole_seed_fe_ci95": [
+          0.026312,
+          0.108246
+        ],
+        "within_pole_slope_seed_fe": 0.213247,
+        "within_pole_slope_seed_fe_ci95": [
+          0.125218,
+          0.301941
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.558027
+      },
+      "aya-expanse-8b|agreeableness": {
+        "common_interval": {
+          "chars": [
+            2433,
+            2316
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": -0.016317,
+        "extrapolated_length_association_sep_ci95": [
+          -0.054343,
+          0.02108
+        ],
+        "extrapolated_length_association_share": -0.060079,
+        "extrapolated_length_association_share_ci95": [
+          -0.196957,
+          0.078006
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": -0.206489,
+        "full_range_overlap": {
+          "chars": [
+            1817,
+            3601
+          ],
+          "empty": false,
+          "n_high": 722,
+          "n_low": 193
+        },
+        "length_chars": {
+          "high": {
+            "max": 6430,
+            "min": 1817,
+            "p05": 2433,
+            "p25": 2964,
+            "p50": 3402,
+            "p75": 3869,
+            "p95": 4716
+          },
+          "low": {
+            "max": 3601,
+            "min": 501,
+            "p05": 845,
+            "p25": 1114,
+            "p50": 1345,
+            "p75": 1650,
+            "p95": 2316
+          }
+        },
+        "log_length_gap": 0.902441,
+        "log_length_gap_ci95": [
+          0.894057,
+          0.910397
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.271594,
+        "sep_ci95": [
+          0.254493,
+          0.288261
+        ],
+        "slope_high_pole_seed_fe": -0.031009,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.108773,
+          0.047443
+        ],
+        "slope_low_pole_seed_fe": -0.005154,
+        "slope_low_pole_seed_fe_ci95": [
+          -0.030199,
+          0.020039
+        ],
+        "within_pole_slope_seed_fe": -0.018081,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.060133,
+          0.023307
+        ],
+        "within_pole_slope_seed_scenario_fe": -0.062144
+      },
+      "aya-expanse-8b|extraversion": {
+        "common_interval": {
+          "chars": [
+            2433,
+            2316
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.09173,
+        "extrapolated_length_association_sep_ci95": [
+          -0.010971,
+          0.19923
+        ],
+        "extrapolated_length_association_share": 0.100979,
+        "extrapolated_length_association_share_ci95": [
+          -0.012289,
+          0.218388
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.021198,
+        "full_range_overlap": {
+          "chars": [
+            1817,
+            3601
+          ],
+          "empty": false,
+          "n_high": 722,
+          "n_low": 193
+        },
+        "length_chars": {
+          "high": {
+            "max": 6430,
+            "min": 1817,
+            "p05": 2433,
+            "p25": 2964,
+            "p50": 3402,
+            "p75": 3869,
+            "p95": 4716
+          },
+          "low": {
+            "max": 3601,
+            "min": 501,
+            "p05": 845,
+            "p25": 1114,
+            "p50": 1345,
+            "p75": 1650,
+            "p95": 2316
+          }
+        },
+        "log_length_gap": 0.902441,
+        "log_length_gap_ci95": [
+          0.894175,
+          0.910676
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.908406,
+        "sep_ci95": [
+          0.871442,
+          0.94421
+        ],
+        "slope_high_pole_seed_fe": 0.186125,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.030057,
+          0.418348
+        ],
+        "slope_low_pole_seed_fe": 0.017167,
+        "slope_low_pole_seed_fe_ci95": [
+          -0.029165,
+          0.065116
+        ],
+        "within_pole_slope_seed_fe": 0.101646,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.01218,
+          0.220589
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.021338
+      }
+    },
+    "P=zh(v4 reviewed),D=zh": {
+      "Llama-3.1-8B-Instruct|agreeableness": {
+        "common_interval": {
+          "chars": [
+            436,
+            246
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.138036,
+        "extrapolated_length_association_sep_ci95": [
+          0.095265,
+          0.179128
+        ],
+        "extrapolated_length_association_share": 0.376314,
+        "extrapolated_length_association_share_ci95": [
+          0.261159,
+          0.484365
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.36367,
+        "full_range_overlap": {
+          "chars": [
+            288,
+            409
+          ],
+          "empty": false,
+          "n_high": 32,
+          "n_low": 21
+        },
+        "length_chars": {
+          "high": {
+            "max": 1347,
+            "min": 288,
+            "p05": 436,
+            "p25": 585,
+            "p50": 679,
+            "p75": 776,
+            "p95": 951
+          },
+          "low": {
+            "max": 409,
+            "min": 50,
+            "p05": 99,
+            "p25": 131,
+            "p50": 156,
+            "p75": 186,
+            "p95": 246
+          }
+        },
+        "log_length_gap": 1.455927,
+        "log_length_gap_ci95": [
+          1.444815,
+          1.467333
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.366812,
+        "sep_ci95": [
+          0.354058,
+          0.37971
+        ],
+        "slope_high_pole_seed_fe": 0.102697,
+        "slope_high_pole_seed_fe_ci95": [
+          0.053237,
+          0.153226
+        ],
+        "slope_low_pole_seed_fe": 0.086923,
+        "slope_low_pole_seed_fe_ci95": [
+          0.064812,
+          0.109275
+        ],
+        "within_pole_slope_seed_fe": 0.09481,
+        "within_pole_slope_seed_fe_ci95": [
+          0.065464,
+          0.123031
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.091624
+      },
+      "Llama-3.1-8B-Instruct|extraversion": {
+        "common_interval": {
+          "chars": [
+            436,
+            246
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.345216,
+        "extrapolated_length_association_sep_ci95": [
+          0.274815,
+          0.413574
+        ],
+        "extrapolated_length_association_share": 0.499998,
+        "extrapolated_length_association_share_ci95": [
+          0.396664,
+          0.603846
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.565246,
+        "full_range_overlap": {
+          "chars": [
+            288,
+            409
+          ],
+          "empty": false,
+          "n_high": 32,
+          "n_low": 21
+        },
+        "length_chars": {
+          "high": {
+            "max": 1347,
+            "min": 288,
+            "p05": 436,
+            "p25": 585,
+            "p50": 679,
+            "p75": 776,
+            "p95": 951
+          },
+          "low": {
+            "max": 409,
+            "min": 50,
+            "p05": 99,
+            "p25": 131,
+            "p50": 156,
+            "p75": 186,
+            "p95": 246
+          }
+        },
+        "log_length_gap": 1.455927,
+        "log_length_gap_ci95": [
+          1.444967,
+          1.467177
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.690435,
+        "sep_ci95": [
+          0.663471,
+          0.715797
+        ],
+        "slope_high_pole_seed_fe": 0.288819,
+        "slope_high_pole_seed_fe_ci95": [
+          0.197699,
+          0.37545
+        ],
+        "slope_low_pole_seed_fe": 0.185403,
+        "slope_low_pole_seed_fe_ci95": [
+          0.145813,
+          0.229493
+        ],
+        "within_pole_slope_seed_fe": 0.237111,
+        "within_pole_slope_seed_fe_ci95": [
+          0.188585,
+          0.284362
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.268053
+      },
+      "Qwen3-8B|agreeableness": {
+        "common_interval": {
+          "chars": [
+            814,
+            265
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.050891,
+        "extrapolated_length_association_sep_ci95": [
+          -0.065912,
+          0.166771
+        ],
+        "extrapolated_length_association_share": 0.067511,
+        "extrapolated_length_association_share_ci95": [
+          -0.086889,
+          0.221294
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.409629,
+        "full_range_overlap": {
+          "chars": [
+            558,
+            431
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 2301,
+            "min": 558,
+            "p05": 814,
+            "p25": 1007,
+            "p50": 1175,
+            "p75": 1417,
+            "p95": 1800
+          },
+          "low": {
+            "max": 431,
+            "min": 53,
+            "p05": 113,
+            "p25": 148,
+            "p50": 177,
+            "p75": 209,
+            "p95": 265
+          }
+        },
+        "log_length_gap": 1.921852,
+        "log_length_gap_ci95": [
+          1.904743,
+          1.937962
+        ],
+        "n_pairs": 1146,
+        "n_seed_clusters": 23,
+        "sep": 0.753812,
+        "sep_ci95": [
+          0.729507,
+          0.777881
+        ],
+        "slope_high_pole_seed_fe": 0.062783,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.051518,
+          0.180464
+        ],
+        "slope_low_pole_seed_fe": -0.009822,
+        "slope_low_pole_seed_fe_ci95": [
+          -0.045316,
+          0.023664
+        ],
+        "within_pole_slope_seed_fe": 0.02648,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.034212,
+          0.086668
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.16067
+      },
+      "Qwen3-8B|extraversion": {
+        "common_interval": {
+          "chars": [
+            814,
+            265
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.579014,
+        "extrapolated_length_association_sep_ci95": [
+          0.418704,
+          0.735811
+        ],
+        "extrapolated_length_association_share": 0.385281,
+        "extrapolated_length_association_share_ci95": [
+          0.277046,
+          0.492035
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.754113,
+        "full_range_overlap": {
+          "chars": [
+            558,
+            431
+          ],
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0
+        },
+        "length_chars": {
+          "high": {
+            "max": 2301,
+            "min": 558,
+            "p05": 814,
+            "p25": 1007,
+            "p50": 1175,
+            "p75": 1417,
+            "p95": 1800
+          },
+          "low": {
+            "max": 431,
+            "min": 53,
+            "p05": 113,
+            "p25": 148,
+            "p50": 177,
+            "p75": 209,
+            "p95": 265
+          }
+        },
+        "log_length_gap": 1.921852,
+        "log_length_gap_ci95": [
+          1.90453,
+          1.937995
+        ],
+        "n_pairs": 1146,
+        "n_seed_clusters": 23,
+        "sep": 1.502833,
+        "sep_ci95": [
+          1.463493,
+          1.539589
+        ],
+        "slope_high_pole_seed_fe": 0.415479,
+        "slope_high_pole_seed_fe_ci95": [
+          0.271117,
+          0.560597
+        ],
+        "slope_low_pole_seed_fe": 0.187079,
+        "slope_low_pole_seed_fe_ci95": [
+          0.124521,
+          0.245834
+        ],
+        "within_pole_slope_seed_fe": 0.301279,
+        "within_pole_slope_seed_fe_ci95": [
+          0.21779,
+          0.382785
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.589695
+      },
+      "aya-expanse-8b|agreeableness": {
+        "common_interval": {
+          "chars": [
+            863,
+            811
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": -0.002656,
+        "extrapolated_length_association_sep_ci95": [
+          -0.021724,
+          0.01597
+        ],
+        "extrapolated_length_association_share": -0.009002,
+        "extrapolated_length_association_share_ci95": [
+          -0.074509,
+          0.053892
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.138497,
+        "full_range_overlap": {
+          "chars": [
+            639,
+            1139
+          ],
+          "empty": false,
+          "n_high": 493,
+          "n_low": 344
+        },
+        "length_chars": {
+          "high": {
+            "max": 2217,
+            "min": 639,
+            "p05": 863,
+            "p25": 1032,
+            "p50": 1174,
+            "p75": 1329,
+            "p95": 1546
+          },
+          "low": {
+            "max": 1139,
+            "min": 182,
+            "p05": 322,
+            "p25": 430,
+            "p50": 554,
+            "p75": 664,
+            "p95": 811
+          }
+        },
+        "log_length_gap": 0.78924,
+        "log_length_gap_ci95": [
+          0.776418,
+          0.802612
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.295072,
+        "sep_ci95": [
+          0.278696,
+          0.31058
+        ],
+        "slope_high_pole_seed_fe": -0.04882,
+        "slope_high_pole_seed_fe_ci95": [
+          -0.086299,
+          -0.009702
+        ],
+        "slope_low_pole_seed_fe": 0.042089,
+        "slope_low_pole_seed_fe_ci95": [
+          0.005549,
+          0.080134
+        ],
+        "within_pole_slope_seed_fe": -0.003366,
+        "within_pole_slope_seed_fe_ci95": [
+          -0.027536,
+          0.020202
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.05178
+      },
+      "aya-expanse-8b|extraversion": {
+        "common_interval": {
+          "chars": [
+            863,
+            811
+          ],
+          "definition": "intersection of the two poles' central 90% log-length ranges",
+          "empty": true,
+          "n_high": 0,
+          "n_low": 0,
+          "note": "the poles' central 90% length ranges do not overlap",
+          "sep_in_band": null
+        },
+        "extrapolated_length_association_sep": 0.238259,
+        "extrapolated_length_association_sep_ci95": [
+          0.181133,
+          0.295794
+        ],
+        "extrapolated_length_association_share": 0.253038,
+        "extrapolated_length_association_share_ci95": [
+          0.191395,
+          0.316611
+        ],
+        "extrapolated_length_association_share_seed_scenario_fe": 0.323494,
+        "full_range_overlap": {
+          "chars": [
+            639,
+            1139
+          ],
+          "empty": false,
+          "n_high": 493,
+          "n_low": 344
+        },
+        "length_chars": {
+          "high": {
+            "max": 2217,
+            "min": 639,
+            "p05": 863,
+            "p25": 1032,
+            "p50": 1174,
+            "p75": 1329,
+            "p95": 1546
+          },
+          "low": {
+            "max": 1139,
+            "min": 182,
+            "p05": 322,
+            "p25": 430,
+            "p50": 554,
+            "p75": 664,
+            "p95": 811
+          }
+        },
+        "log_length_gap": 0.78924,
+        "log_length_gap_ci95": [
+          0.7764,
+          0.802603
+        ],
+        "n_pairs": 1150,
+        "n_seed_clusters": 23,
+        "sep": 0.941594,
+        "sep_ci95": [
+          0.91087,
+          0.97029
+        ],
+        "slope_high_pole_seed_fe": 0.462218,
+        "slope_high_pole_seed_fe_ci95": [
+          0.323399,
+          0.600143
+        ],
+        "slope_low_pole_seed_fe": 0.14155,
+        "slope_low_pole_seed_fe_ci95": [
+          0.104955,
+          0.175723
+        ],
+        "within_pole_slope_seed_fe": 0.301884,
+        "within_pole_slope_seed_fe_ci95": [
+          0.229095,
+          0.375737
+        ],
+        "within_pole_slope_seed_scenario_fe": 0.385942
+      }
+    }
+  },
+  "eligible_for_gate": false,
+  "length": "log of total agent characters per transcript (3 agent turns)",
+  "reducer_sha256": "b037285cc10621ec645783cd8c3d92f75ff70b6c5210bc661a38e8773f28f8eb",
+  "schema_version": 3,
+  "scope_note": "Pole and length are confounded by design of the persona. The slope is a within-pole association extrapolated across a length gap the poles do not share; no quantity here is a length-independent effect or a mediated share.",
+  "units": "within-cell common-complete (seed, scenario) pairs; sep and log_length_gap use equal seed-cluster weights, slopes are observation-weighted OLS",
+  "verdict": "DESCRIPTIVE_ONLY"
+}

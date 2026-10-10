@@ -1,0 +1,544 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_rater_scoring",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--seed",
+    "20260811",
+    "--rater-path",
+    "<LOCAL_PATH>/OPEA__Mistral-Small-3.1-24B-Instruct-2503-int4-AutoRound-awq-sym"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_scoring.py",
+    "experiments/xlpt/__init__.py",
+    "experiments/xlpt/rater_frozen_inputs.py",
+    "experiments/xlpt/rater_runtime.py",
+    "experiments/xlpt/inference_contract.py",
+    "experiments/xlpt/score_rater.py",
+    "experiments/xlpt/mistral_awq_reference.py",
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "experiments/xlpt/test_mistral_awq_quant.py",
+    "experiments/xlpt/test_mistral_awq_attention.py",
+    "experiments/xlpt/test_mistral_awq_decode.py",
+    "experiments/xlpt/test_rater_runtime_contract.py",
+    "experiments/xlpt/test_rater_launch_integration.py",
+    "experiments/xlpt/test_rater_module_smoke.py",
+    "experiments/xlpt/vendor/vllm_0_11",
+    "process/consumption/deployment/mistral-rater-runtime-manifest.json",
+    "process/consumption/deployment/mistral-rater-config/config.json",
+    "process/consumption/deployment/mistral-rater-config/quantization_config.json",
+    "process/consumption/deployment/mistral-rater-config/generation_config.json",
+    "process/consumption/frozen/english_execution_v1.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "refine-logs/RUBRIC_BEHAVIOR.md"
+  ],
+  "spec": "process/consumption/deployment/RATER_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "rater_awq_unpack",
+    "rater_awq_group_index",
+    "rater_awq_dequant",
+    "rater_awq_gemm",
+    "rater_embedding",
+    "rater_rms_norm",
+    "rater_rope_inv_freq",
+    "rater_rope_angle",
+    "rater_rope_cos",
+    "rater_rope_sin",
+    "rater_rotate_half",
+    "rater_rope",
+    "rater_qkv_split_query",
+    "rater_qkv_split_key",
+    "rater_gqa",
+    "rater_causal_mask",
+    "rater_attention_score",
+    "rater_attention",
+    "rater_attention_value",
+    "rater_linear",
+    "rater_residual",
+    "rater_gated_silu",
+    "rater_cache_append",
+    "rater_cache_recurrence",
+    "rater_positions",
+    "rater_decoder_layer",
+    "rater_vocab_parallel",
+    "rater_lm_head",
+    "rater_greedy",
+    "rater_eos_stop",
+    "english_trait_mean",
+    "english_rate"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_awq_unpack",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_extract"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_group_index",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_group_index"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_dequant",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_dequantize"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_gemm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "awq_linear"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant"
+      ]
+    },
+    {
+      "formula_id": "rater_embedding",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "embedding_lookup"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rms_norm"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_inv_freq",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_inverse_frequencies"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_angle",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_tables"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_cos",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_tables"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_sin",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_tables"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_rotate_half",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rotate_half"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_rope",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "apply_rope"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_split_query",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "split_qkv"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_split_key",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "split_qkv"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_gqa",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "repeat_kv"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_causal_mask",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "causal_mask"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_attention_score",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_attention",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_attention_value",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention"
+      ]
+    },
+    {
+      "formula_id": "rater_linear",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "linear"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_residual",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_gated_silu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "gated_silu_mlp"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_quant",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_append",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "cache_append"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_recurrence",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "cache_next_length"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_positions",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "next_positions"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_attention",
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_decoder_layer",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_vocab_parallel",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "vocabulary_parallel_logits"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_lm_head",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "model_logits"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "rater_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "greedy_next_token"
+        },
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "ProjectArgmaxLogitsProcessor.apply"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_decode",
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_eos_stop",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "eos_stop"
+        }
+      ],
+      "test_ids": [
+        "mistral_awq_decode"
+      ]
+    },
+    {
+      "formula_id": "english_trait_mean",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "trait_score"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_launch_integration"
+      ]
+    },
+    {
+      "formula_id": "english_rate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "measured_rate"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_launch_integration"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "mistral_awq_quant",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_mistral_awq_quant"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_mistral_awq_quant.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "mistral_awq_attention",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_mistral_awq_attention"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_mistral_awq_attention.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "mistral_awq_decode",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_mistral_awq_decode"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_mistral_awq_decode.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_runtime_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_runtime_contract"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_runtime_contract.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_launch_integration",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_launch_integration"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_launch_integration.py"
+      ],
+      "timeout_seconds": 120
+    },
+    {
+      "id": "rater_module_smoke",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_module_smoke"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_module_smoke.py"
+      ],
+      "timeout_seconds": 60
+    }
+  ],
+  "no_formula_reason": "The actual rater launch remains vLLM 0.11.0 over the frozen int4-AWQ Mistral-Small-3.1-24B checkpoint. Its Python dependency snapshots and exact configuration content are captured. The independently tested project reference states the complete material decode mathematics, while project-owned final-axis argmax, launch-owned 600-call integration, and exact python -m smoke cover the launch surface. Compiled CUDA kernels cannot execute under the checker CPU probe; the review must decide whether this reference-plus-runtime binding is sufficient and must return FAIL if production equivalence is not established."
+}

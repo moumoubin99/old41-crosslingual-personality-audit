@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "recorded_at": "2026-09-19T11:23:54.739786Z",
+  "checkpoint_id": "aya-expanse-8b",
+  "worker": "autodl-container-f83f4c84ce-3e2ce64b",
+  "interpreter": "<LOCAL_PATH>/python3.12",
+  "package_versions": {
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "safetensors": "0.8.0"
+  },
+  "model_files": {
+    "config.json": "81b7c1977e7c57052496bcbd50e94837db24e8188a5dc98efa0f9518fda9de7a",
+    "generation_config.json": "9215e5e7770b06aca2a98906d29f0d947f6ef01f1b3e9d0b33ef4b0969ef7ad9",
+    "model.safetensors.index.json": "deaecc92e00b66a2fdd24576148760e930dc39b6c5c0db8c3c3e34ecd8e0da8f",
+    "tokenizer.json": "c69a7ea6c0927dfac8c349186ebcf0466a4723c21cbdb2e850cf559f0bee92b8",
+    "tokenizer_config.json": "579bbdf6ad451c006373873e3f033e999673b39f909592338f0aa484db16e4ef",
+    "special_tokens_map.json": "a8a127f35f234ae60b1fcebe12a3c295c04021781a7e1fb97f65f4f89a513fa5",
+    "model-00001-of-00004.safetensors": "4caed059a6c25f86bc9c576c852438b220179a410725e8c6e02a02567bb25811",
+    "model-00002-of-00004.safetensors": "c98d47d38a411c1f71b6ef21d85890f90f8b215df49ee11679b2f21deb411ddd",
+    "model-00003-of-00004.safetensors": "d879c402bed6398a700784fade48fd3fc9941d86c621caf0973fedc54b2c8400",
+    "model-00004-of-00004.safetensors": "d0510958ff72c271230ddc0c880c49102bcd8dedc6d00ab290cffb51efe335f3"
+  },
+  "model_forward": "transformers.AutoModelForCausalLM eager bf16",
+  "attention_implementation": "hf-eager",
+  "prefix_caching": false,
+  "note": "Host-local binding for English B0 remaining checkpoints. Not a formula PASS."
+}

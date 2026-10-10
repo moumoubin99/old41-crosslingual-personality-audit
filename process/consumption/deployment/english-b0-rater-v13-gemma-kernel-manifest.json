@@ -1,0 +1,507 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_rater_scoring",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--seed",
+    "20260811",
+    "--rater-path",
+    "<LOCAL_PATH>/OPEA__Mistral-Small-3.1-24B-Instruct-2503-int4-AutoRound-awq-sym",
+    "--runtime-manifest",
+    "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json",
+    "--source-checkpoint",
+    "gemma-3-12b-it"
+  ],
+  "source_roots": [
+    "experiments/xlpt/__init__.py",
+    "experiments/xlpt/inference_contract.py",
+    "experiments/xlpt/mistral_awq_reference.py",
+    "experiments/xlpt/rater_cuda_conformance.py",
+    "experiments/xlpt/rater_frozen_inputs.py",
+    "experiments/xlpt/rater_production_closure.py",
+    "experiments/xlpt/rater_runtime.py",
+    "experiments/xlpt/run_rater_scoring.py",
+    "experiments/xlpt/score_rater.py",
+    "experiments/xlpt/test_rater_cuda_witness.py",
+    "experiments/xlpt/test_rater_production_closure.py",
+    "experiments/xlpt/test_rater_runtime_contract.py",
+    "process/consumption/deployment/mistral-rater-build-provenance-v1.json",
+    "process/consumption/deployment/mistral-rater-config/chat_template.json",
+    "process/consumption/deployment/mistral-rater-config/config.json",
+    "process/consumption/deployment/mistral-rater-config/generation_config.json",
+    "process/consumption/deployment/mistral-rater-cuda-witness-v1.json",
+    "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json",
+    "process/consumption/deployment/mistral-rater-semantic-closure-v1.json",
+    "process/consumption/deployment/qwen3-runtime-manifest.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "process/consumption/frozen/english_execution_v1.json",
+    "refine-logs/RUBRIC_BEHAVIOR.md"
+  ],
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "design_card": "refine-logs/design_card.json",
+  "formula_ids": [
+    "english_greedy",
+    "rater_awq_dequant",
+    "rater_embedding",
+    "rater_rms_norm",
+    "rater_rope",
+    "rater_qkv_query",
+    "rater_qkv_key",
+    "rater_qkv_value",
+    "rater_rope_inverse_frequency",
+    "rater_rope_table",
+    "rater_gqa",
+    "rater_attention",
+    "rater_attention_value",
+    "rater_linear",
+    "rater_residual",
+    "rater_gated_silu",
+    "rater_lm_head",
+    "rater_cache_write",
+    "rater_cache_position",
+    "rater_causal_mask",
+    "rater_cache_recurrence",
+    "rater_eos_stop",
+    "rater_token_budget_stop"
+  ],
+  "bindings": [
+    {
+      "formula_id": "english_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "greedy_token"
+        },
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "ProjectArgmaxLogitsProcessor.apply"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_awq_dequant",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "awq_linear"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_awq_dispatch_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_embedding",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "embedding_lookup"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_native_kernel_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "rms_norm"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_native_kernel_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_rope",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "apply_rotary"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_native_kernel_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_query",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "split_fused_qkv"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_key",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "split_fused_qkv"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_value",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "split_fused_qkv"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_inverse_frequency",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "build_rope_tables"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_native_kernel_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_table",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "build_rope_tables"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_native_kernel_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_gqa",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "repeat_key_value"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_attention",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "scaled_attention_probabilities"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_attention_value",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "attention_value"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_linear",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "linear_projection"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_native_kernel_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_residual",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "residual_update"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_model_structure_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_gated_silu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "gated_silu"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_model_structure_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_lm_head",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "single_rank_logits"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_logits_stopping_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_write",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "write_cache_slots"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_position",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "absolute_cache_positions"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_causal_mask",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "cache_aware_causal_mask"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_recurrence",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "cache_next_length"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_attention_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure",
+        "rater_cuda_witness"
+      ]
+    },
+    {
+      "formula_id": "rater_eos_stop",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "eos_stop"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_logits_stopping_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "rater_token_budget_stop",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "token_budget_stop"
+        },
+        {
+          "file": "experiments/xlpt/rater_production_closure.py",
+          "symbol": "production_logits_stopping_contract"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "rater_runtime_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_runtime_contract"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_runtime_contract.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_production_closure",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_production_closure"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_production_closure.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_cuda_witness",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_cuda_witness"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_cuda_witness.py"
+      ],
+      "timeout_seconds": 300
+    }
+  ]
+}

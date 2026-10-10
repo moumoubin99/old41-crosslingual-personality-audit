@@ -1,0 +1,9 @@
+{
+  "tag": "s4-mistral-zh-r4-b",
+  "rendering": "r4",
+  "rendering_file": "experiments/xlpt/supp_rubric_zh_r4.json",
+  "rendering_sha256": "36444262dbc54feb3cc7e17da477d60c7f5ee9d9cc1d57cde637578eae6c7463",
+  "wrapper_sha256": "603f3b6c352c26e2dcaffa86c8d30fe233afca7c654c385fcd454a6a987bc4a8",
+  "scoring_script_sha256": "6b66f5e36e6f5db00fbaf5c15c80876bbe6722a4fedb57b4a729a8fdebfefa14",
+  "request_head_and_labels": "those of the first rendering (supp_score.ZH_REQUEST_HEAD)"
+}

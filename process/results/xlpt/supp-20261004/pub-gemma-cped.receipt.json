@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/pub-gemma-cped.jsonl",
+  "sha256": "d63320c3ea8e0fe3a9355c46662650a98dfa16c92edc0d7493db77b119227859",
+  "records": 569,
+  "calls": 6828,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 223.15507674217224,
+  "calls_per_second": 30.5975561913337,
+  "args": {
+    "project": ".",
+    "rater": "gemma",
+    "task": "public",
+    "tag": "pub-gemma-cped",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion,agreeableness",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "cped",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.85,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

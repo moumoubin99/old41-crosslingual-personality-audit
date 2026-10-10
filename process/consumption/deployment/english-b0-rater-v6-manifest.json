@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_rater_scoring",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--seed",
+    "20260811",
+    "--rater-path",
+    "<LOCAL_PATH>/OPEA__Mistral-Small-3.1-24B-Instruct-2503-int4-AutoRound-awq-sym",
+    "--runtime-manifest",
+    "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_scoring.py",
+    "experiments/xlpt/__init__.py",
+    "experiments/xlpt/rater_frozen_inputs.py",
+    "experiments/xlpt/rater_runtime.py",
+    "experiments/xlpt/rater_production_closure.py",
+    "experiments/xlpt/inference_contract.py",
+    "experiments/xlpt/score_rater.py",
+    "experiments/xlpt/test_rater_runtime_contract.py",
+    "experiments/xlpt/test_rater_production_closure.py",
+    "experiments/xlpt/test_rater_launch_integration.py",
+    "experiments/xlpt/test_rater_module_smoke.py",
+    "experiments/xlpt/vendor/vllm_0_11",
+    "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json",
+    "process/consumption/deployment/mistral-rater-config",
+    "process/consumption/frozen/english_execution_v1.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "refine-logs/RUBRIC_BEHAVIOR.md"
+  ],
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "formula_ids": [
+    "english_greedy",
+    "english_trait_mean",
+    "english_rate"
+  ],
+  "bindings": [
+    {
+      "formula_id": "english_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "greedy_token"
+        },
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "ProjectArgmaxLogitsProcessor.apply"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_production_closure"
+      ]
+    },
+    {
+      "formula_id": "english_trait_mean",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "trait_score"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_launch_integration"
+      ]
+    },
+    {
+      "formula_id": "english_rate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "measured_rate"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract",
+        "rater_launch_integration"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "rater_runtime_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_runtime_contract"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_runtime_contract.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_production_closure",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_production_closure"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_production_closure.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_launch_integration",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_launch_integration"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_launch_integration.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_module_smoke",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_module_smoke"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_module_smoke.py"
+      ],
+      "timeout_seconds": 300
+    }
+  ],
+  "no_formula_reason": "The launched Mistral-Small-3.1-24B int4-AWQ forward is a pinned vLLM 0.11.0 dependency, not a project-defined estimator. Its exact packages, checkpoint shards, tokenizer/config files, Python runtime snapshots, compiled extensions and 30-entry dependency closure are hash-checked on the worker before model construction. CPU-safe production dispatch/configuration contracts cover both AWQ branches, prefill plus cached-decode routing, checkpoint GQA/EOS configuration, and the exact logits-processor entrypoint without claiming that CUDA kernels ran during this CUDA-hidden probe. The selected project-owned mathematics is the final-axis first-index argmax, six-item trait mean and call-rate calculation; those symbols have independent numeric/tie tests, a 600-call launch-owned integration test, and an exact python -m contract smoke. No BFI-2/TIPI item text is included."
+}

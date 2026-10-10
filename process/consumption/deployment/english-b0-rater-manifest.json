@@ -1,0 +1,284 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_rater_scoring",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--seed",
+    "20260811",
+    "--rater-path",
+    "<LOCAL_PATH>/OPEA__Mistral-Small-3.1-24B-Instruct-2503-int4-AutoRound-awq-sym"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_scoring.py",
+    "experiments/xlpt/__init__.py",
+    "experiments/xlpt/rater_runtime.py",
+    "experiments/xlpt/run_transformers_generation.py",
+    "experiments/xlpt/inference_contract.py",
+    "experiments/xlpt/score_rater.py",
+    "experiments/xlpt/test_rater_runtime_contract.py",
+    "experiments/xlpt/test_rater_launch_integration.py",
+    "experiments/xlpt/test_rater_module_smoke.py",
+    "experiments/xlpt/vendor/vllm_0_11",
+    "process/consumption/deployment/mistral-rater-runtime-manifest.json",
+    "process/consumption/frozen/english_execution_v1.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "refine-logs/RUBRIC_BEHAVIOR.md"
+  ],
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "formula_ids": [
+    "rater_awq_dequant",
+    "rater_embedding",
+    "rater_rms_norm",
+    "rater_rope",
+    "rater_gqa",
+    "rater_attention",
+    "rater_attention_value",
+    "rater_linear",
+    "rater_residual",
+    "rater_gated_silu",
+    "rater_lm_head",
+    "rater_cache_recurrence",
+    "rater_eos_stop",
+    "english_greedy",
+    "english_trait_mean",
+    "english_rate"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_awq_dequant",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "awq_dequantize"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_embedding",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "embedding_lookup"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "rms_norm"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rope",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "apply_rotary"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_gqa",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "repeat_key_value"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_attention",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "scaled_attention_probabilities"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_attention_value",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "attention_value"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_linear",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "linear_projection"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_residual",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "residual_update"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_gated_silu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "gated_silu"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_lm_head",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "final_logits"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_recurrence",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "cache_next_length"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_eos_stop",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "eos_stop"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "english_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "greedy_token"
+        },
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "ProjectArgmaxLogitsProcessor.apply"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "english_trait_mean",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "trait_score"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    },
+    {
+      "formula_id": "english_rate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "measured_rate"
+        }
+      ],
+      "test_ids": [
+        "rater_runtime_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "rater_runtime_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_runtime_contract"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_runtime_contract.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_launch_integration",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_launch_integration"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_launch_integration.py"
+      ],
+      "timeout_seconds": 120
+    },
+    {
+      "id": "rater_module_smoke",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_module_smoke"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_module_smoke.py"
+      ],
+      "timeout_seconds": 60
+    }
+  ],
+  "no_formula_reason": "The exact installed vLLM 0.11.0 Mistral3, Llama-text, AWQ and sampler Python sources are hash-bound to complete captured snapshots. CPU contracts cover the material embedding, normalization, rotary, grouped attention, AWQ dequantization, linear/residual/MLP/logit, cache/EOS, score and rate formulas. The launched worker loads the project-owned non-argmax-invariant logits processor, so final token choice calls the tested final-axis argmax with explicit first-index tie behavior. A launch-owned engine fixture exercises run(), and a separate subprocess smoke executes the exact -m entrypoint. No BFI-2/TIPI content is present."
+}

@@ -1,0 +1,440 @@
+{
+  "version": 1,
+  "source_design_sha256": "5f8673504f7694e1e5f3f532fff0a60f3ad9128257570998d1f94544e50cfa12",
+  "symbol_table": [
+    {
+      "name": "persona_score",
+      "latex": "persona_score",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait",
+        "translation_variant",
+        "repeat"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Direction-aligned persona-arm trait scores on the ITT tensor AS PRODUCED (R22-F3) for every crossed induction and assessment language cell.",
+      "defined_at": "eq1"
+    },
+    {
+      "name": "neutral_score",
+      "latex": "neutral_score",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait",
+        "translation_variant",
+        "repeat"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Direction-aligned trait scores from content-matched neutral dialogues in the same language, translation, and repetition cells.",
+      "defined_at": "eq1"
+    },
+    {
+      "name": "persona_effect",
+      "latex": "persona_effect",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "The persona-minus-neutral effect for each model, induction language, assessment language, and trait.",
+      "defined_at": "eq1"
+    },
+    {
+      "name": "same_language_effect",
+      "latex": "same_language_effect",
+      "shape": [
+        "model",
+        "source_language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "The matched persona-minus-neutral effect when induction and assessment both use the source language for each model and trait.",
+      "defined_at": "eq2"
+    },
+    {
+      "name": "retention_ratio",
+      "latex": "retention_ratio",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "Directed fraction of the same-language persona effect preserved after switching to each target assessment language. R3: secondary summary only — evaluated on cells passing the denominator-eligibility rule (Elig), reported with Fieller intervals, never clipped; ineligible cells are reported as ratio not defined.",
+      "defined_at": "eq2"
+    },
+    {
+      "name": "retention_shortfall",
+      "latex": "retention_shortfall",
+      "shape": [
+        "model",
+        "language",
+        "language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "The baseline-subtracted fraction of the persona-induced trait effect lost for each model, directed source-target language pair, and trait. R3: secondary; the confirmatory quantity is the unnormalized paired difference-in-differences of eq6, which shares this numerator but carries no denominator.",
+      "defined_at": "eq3"
+    },
+    {
+      "name": "language",
+      "latex": "language",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Number of languages crossed as both induction sources and assessment targets in the transfer matrix.",
+      "defined_at": "eq4"
+    },
+    {
+      "name": "asymmetry_index",
+      "latex": "asymmetry_index",
+      "shape": [
+        "model",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "The mean absolute discrepancy between matched opposite-direction transfer shortfalls for each model and trait.",
+      "defined_at": "eq4"
+    },
+    {
+      "name": "target_scarcity_within_source",
+      "latex": "target_scarcity_within_source",
+      "shape": [
+        "directed_pair"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Target-language pretraining-resource scarcity score after subtracting the mean scarcity among targets paired with the same induction source.",
+      "defined_at": "eq5"
+    },
+    {
+      "name": "shortfall_within_source",
+      "latex": "shortfall_within_source",
+      "shape": [
+        "model",
+        "directed_pair",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Off-diagonal retention shortfall after subtracting the mean shortfall among target languages sharing the same induction source.",
+      "defined_at": "eq5"
+    },
+    {
+      "name": "resource_shortfall_slope",
+      "latex": "resource_shortfall_slope",
+      "shape": [
+        "model",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "Within-source increase in effect-retention shortfall per unit increase in target-language resource scarcity for each model and trait. R3: the SINGLE pre-registered resource statistic and DESCRIPTIVE only — the rank-correlation variant is deleted, censored cells are bounded rather than dropped, and no hypothesis condition depends on it.",
+      "defined_at": "eq5"
+    },
+    {
+      "name": "unnormalized_shortfall",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait"
+      ],
+      "description": "Loss of induced trait expression on the native scale, defined in every cell, positive when the switch costs expression."
+    },
+    {
+      "name": "unnormalized_shortfall_factorial",
+      "shape": [
+        "model",
+        "persona_language",
+        "dialogue_language",
+        "instrument_language",
+        "trait"
+      ],
+      "description": "Unnormalized eq6 loss for every crossed cell of the three-way language factorial over the reduced language set."
+    },
+    {
+      "name": "contrast_matrix",
+      "shape": [
+        "term",
+        "persona_language",
+        "dialogue_language",
+        "instrument_language"
+      ],
+      "description": "Sum-to-zero contrast weights identifying the grand mean, the three main effects, the three two-way interactions and the three-way term."
+    },
+    {
+      "name": "factorial_terms",
+      "shape": [
+        "model",
+        "term",
+        "trait"
+      ],
+      "description": "Estimated grand mean, main effects, two-way interactions and three-way interaction of the language factorial on the unnormalized scale."
+    }
+  ],
+  "formulas": [
+    {
+      "id": "eq1",
+      "name": "Translation-ensemble persona effect",
+      "kind": "other",
+      "latex": "\\Delta_{mstk}=\\frac{1}{VR}\\sum_{v=1}^{V}\\sum_{r=1}^{R}\\left(Y^{A}_{mstkvr}-Y^{B}_{mstkvr}\\right)",
+      "explanation": "Computes the direction-aligned persona-induced trait shift for model m, induction language s, assessment language t, and trait k by subtracting the matched neutral arm B from persona arm A before averaging translations and repeats. This paired baseline subtraction removes cross-lingual score offsets that affect both arms. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "np.mean(persona_score - neutral_score, axis=(4, 5))",
+      "inputs": [
+        "persona_score",
+        "neutral_score"
+      ],
+      "output": {
+        "name": "persona_effect",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.mean(persona_score, axis=(4, 5)) - np.mean(neutral_score, axis=(4, 5))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\mathrm{mean}\\left(persona_{score} - neutral_{score}\\right)",
+      "explanation_zh": "对于模型 m、角色诱导语言 s、评估语言 t 和特质 k，先用角色条件 A 减去与之匹配的中性条件 B，再对译文和重复生成取平均，得到方向已对齐的角色诱导特质变化。这种配对扣除可以消去同时影响两组的跨语言分数偏移。 R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "eq2",
+      "name": "Directed effect-retention matrix",
+      "kind": "other",
+      "latex": "\\rho_{mstk}=\\frac{\\Delta_{mstk}}{\\Delta_{mssk}}",
+      "explanation": "Normalizes each cross-lingual persona effect by the same model, source language, and trait effect measured without an assessment-language switch. Each entry therefore measures the fraction of the source-language induction that survives assessment in target language t. R3, per DESIGN_KILL R2 finding 2: this ratio is a SECONDARY interpretable summary, not the confirmatory quantity. It is evaluated only on cells passing the denominator-eligibility rule (Elig), its uncertainty is reported by Fieller intervals rather than bootstrap percentiles because the denominator is itself estimated, and it is never clipped to a bounded range. Cells failing (Elig) are reported as ratio not defined. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "persona_effect / np.expand_dims(same_language_effect, axis=2)",
+      "inputs": [
+        "persona_effect",
+        "same_language_effect"
+      ],
+      "output": {
+        "name": "retention_ratio",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "persona_effect * (1.0 / np.expand_dims(same_language_effect, axis=2))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{persona_{effect}}{\\mathrm{expand_dims}\\left(same_{language,effect}\\right)}",
+      "explanation_zh": "把跨语言角色效应除以同一模型、同一来源语言和同一特质在不切换评估语言时的效应。每个矩阵元素表示：来源语言诱导出的效应，在目标语言 t 的评估中保留了多少。R3 根据 R2 对抗式设计审核第 2 条，将这个比值限定为便于解释的次要汇总，而非确认性统计量。只有通过分母资格条件（Elig）的单元才计算它；由于分母本身也是估计值，不确定性采用 Fieller 区间，不采用 bootstrap 百分位区间，也不把比值裁剪到一个固定范围。未通过 Elig 的单元报告“比值未定义”。 R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "eq3",
+      "name": "Normalized difference-in-differences shortfall",
+      "kind": "other",
+      "latex": "S_{mstk}=1-\\rho_{mstk}=\\frac{\\Delta_{mssk}-\\Delta_{mstk}}{\\Delta_{mssk}}",
+      "explanation": "Converts retention into the preregistered effect-retention shortfall. Its numerator is the difference between two persona-versus-neutral contrasts, so positive values isolate the proportion of induced effect lost after the language switch rather than baseline language differences. R3, per DESIGN_KILL R2 finding 2: the shortfall inherits eq2's eligibility gate and Fieller intervals and is secondary. The confirmatory quantity is the unnormalized paired difference-in-differences of eq6, whose numerator this shares but which carries no denominator, so it is defined and sign-safe in every cell.",
+      "expr": "1.0 - persona_effect / np.expand_dims(same_language_effect, axis=2)",
+      "inputs": [
+        "persona_effect",
+        "same_language_effect"
+      ],
+      "output": {
+        "name": "retention_shortfall",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "(np.expand_dims(same_language_effect, axis=2) - persona_effect) / np.expand_dims(same_language_effect, axis=2)",
+      "symbols": [],
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "1.0 - \\dfrac{persona_{effect}}{\\mathrm{expand_dims}\\left(same_{language,effect}\\right)}",
+      "explanation_zh": "把保留比例转成预注册的效应保留缺口。分子是两个“角色条件减中性条件”效应之间的差，因此正值表示语言切换后损失的诱导效应比例，而非语言本身造成的基线差异。R3 根据 R2 对抗式设计审核第 2 条，规定该缺口沿用 eq2 的资格条件和 Fieller 区间，并作为次要指标。确认性统计量是 eq6 中未归一化的配对双重差分：两者分子相同，但 eq6 不带分母，因此在每个单元都有定义，符号解释也不受分母影响。"
+    },
+    {
+      "id": "eq4",
+      "name": "Transfer-matrix asymmetry index",
+      "kind": "other",
+      "latex": "A_{mk}=\\frac{1}{L(L-1)}\\sum_{s\\ne t}\\left|S_{mstk}-S_{mtsk}\\right|",
+      "explanation": "Measures whether switching from s to t loses a different fraction of the induced trait than switching from t to s. A nonzero value captures the directed, language-conditioned transfer pattern required by the proposed mechanism and used in its falsifier. R3: the asymmetry index is computed on the unnormalized eq6 scale for the confirmatory report and on the shortfall scale only over eligible cells. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "np.sum(np.abs(retention_shortfall - np.swapaxes(retention_shortfall, 1, 2)), axis=(1, 2)) / (language * (language - 1))",
+      "inputs": [
+        "retention_shortfall"
+      ],
+      "output": {
+        "name": "asymmetry_index",
+        "shape": [
+          "model",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.sum(np.abs(np.swapaxes(retention_shortfall, 1, 2) - retention_shortfall), axis=(1, 2)) / (language * (language - 1))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{\\sum \\left|retention_{shortfall} - \\mathrm{swapaxes}\\left(retention_{shortfall}, 1, 2\\right)\\right|}{language \\cdot language - 1}",
+      "explanation_zh": "衡量从 s 切换到 t 时损失的诱导特质比例，是否不同于从 t 切换到 s 时的损失比例。非零值表示存在有方向的、随语言条件变化的迁移模式，这是原设想及其可证伪条件关注的现象。R3 规定，确认性报告在未归一化的 eq6 尺度上计算非对称性；只有通过资格条件的单元才在缺口比例尺度上计算它。 R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "eq5",
+      "name": "Target-resource shortfall gradient",
+      "kind": "loss",
+      "latex": "\\beta_{mk}=\\frac{\\sum_{p=1}^{P}\\widetilde r_p\\widetilde S_{mpk}}{\\sum_{p=1}^{P}\\widetilde r_p^2},\\qquad \\widetilde r_p=r_{t(p)}-\\overline r_{s(p)},\\quad \\widetilde S_{mpk}=S_{mpk}-\\overline S_{ms(p)k}",
+      "explanation": "Fits the preregistered within-source slope of transfer loss against target-language resource scarcity over off-diagonal directed pairs. Source centering prevents differences among induction languages from masquerading as the predicted target-resource effect, and a positive slope supports greater loss for lower-resource assessment languages. R3, per DESIGN_KILL R2 finding 4: this centered slope is the SINGLE pre-registered resource statistic - the rank-correlation variant is deleted so the two cannot disagree - and it is DESCRIPTIVE. Six languages cannot identify pretraining resource tier as a cause, since tier is collinear with script, typology and translation quality, so no hypothesis condition depends on it. Cells failing (Elig) are censored, not dropped: the slope is reported with worst-case and best-case bounds obtained by setting each censored cell to the extremes of its admissible range.",
+      "expr": "np.sum(shortfall_within_source * np.expand_dims(np.expand_dims(target_scarcity_within_source, axis=0), axis=2), axis=1) / np.sum(target_scarcity_within_source * target_scarcity_within_source)",
+      "inputs": [
+        "target_scarcity_within_source",
+        "shortfall_within_source"
+      ],
+      "output": {
+        "name": "resource_shortfall_slope",
+        "shape": [
+          "model",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.sum(np.swapaxes(shortfall_within_source, 0, 1) * np.expand_dims(np.expand_dims(target_scarcity_within_source, axis=1), axis=2), axis=0) / np.sum(target_scarcity_within_source * target_scarcity_within_source)",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{\\sum shortfall_{within,source} \\cdot \\mathrm{expand_dims}\\left(\\mathrm{expand_dims}\\left(target_{scarcity,within,source}\\right)\\right)}{\\sum target_{scarcity,within,source} \\cdot target_{scarcity,within,source}}",
+      "explanation_zh": "在非对角的有向语言对上，估计预注册的“迁移损失随目标语言资源稀缺程度变化”的组内斜率。先按来源语言中心化，防止不同诱导语言之间的差异被误当作目标语言资源效应；正斜率表示资源更少的评估语言倾向于有更大损失。R3 根据 R2 对抗式设计审核第 4 条，将这个中心化斜率定为唯一预注册的资源统计量，并删除秩相关版本，避免两者给出不一致结论。它只作描述：6 种语言无法把预训练资源等级识别为原因，因为资源等级与文字系统、语言类型、翻译质量相互混杂，因此任何假设判定都不依赖该斜率。未通过 Elig 的单元按删失值处理，而非直接丢弃；把每个删失单元分别设为其允许范围的两端，报告斜率最好与最坏情形的界限。"
+    },
+    {
+      "id": "eq6",
+      "name": "Unnormalized paired difference-in-differences",
+      "kind": "other",
+      "latex": "D_{mstk}=\\Delta_{mssk}-\\Delta_{mstk}",
+      "explanation": "The R3 confirmatory quantity, per DESIGN_KILL R2 finding 2. It is the numerator of the shortfall taken on its own, on the native trait scale: the induced shift measured in the all-source cell minus the induced shift measured in the switched cell, within scenario, seed and trait. Having no denominator it is defined in every cell, it is sign-safe - a positive value always means the switch cost induced expression - and it needs no clipping, which is why the confirmatory family, the minimum audit-relevant effect delta_raw and the H3 equivalence margin epsilon_raw are all expressed on this scale.",
+      "expr": "np.expand_dims(same_language_effect, axis=2) - persona_effect",
+      "inputs": [
+        "same_language_effect",
+        "persona_effect"
+      ],
+      "output": {
+        "name": "unnormalized_shortfall",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "-(persona_effect - np.expand_dims(same_language_effect, axis=2))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\mathrm{expand_dims}\\left(same_{language,effect}\\right) - persona_{effect}",
+      "explanation_zh": "R3 根据 R2 对抗式设计审核第 2 条采用的确认性统计量。它就是保留缺口的分子，保持原始特质分数尺度：在同一场景、随机种子和特质内，用全部使用来源语言时的诱导变化，减去语言切换后的诱导变化。它没有分母，因此每个单元都有定义，正值始终表示语言切换削弱了诱导表达，也不需要裁剪。确认性检验族、最小审查相关效应 delta_raw 和 H3 等效界值 epsilon_raw 均用这一尺度表达。"
+    },
+    {
+      "id": "eq7",
+      "name": "Three-way language factorial decomposition",
+      "kind": "other",
+      "latex": "D_{m,pdi,k}=\\mu_{mk}+\\alpha^{P}_{mpk}+\\alpha^{D}_{mdk}+\\alpha^{I}_{mik}+\\gamma^{PD}_{mpdk}+\\gamma^{PI}_{mpik}+\\gamma^{DI}_{mdik}+\\gamma^{PDI}_{mpdik}",
+      "explanation": "The R3 identification, per DESIGN_KILL R2 finding 1 and the user's instruction to run the language factorial. The unnormalized loss of eq6 in each of the 27 cells of the factorial core (LangFac) is decomposed by sum-to-zero contrasts into main effects of persona-instruction language P, dialogue-generation language D and instrument language I, their three two-way interactions and the three-way term. The dialogue-language main effect at fixed instrument language is the confirmatory contrast for H1, the instrument-language main effect is the confirmatory contrast for H2, and the P by D interaction is the mismatch term proper. Because the three factors are crossed rather than bundled, instrument translation is an estimated effect here instead of an assumption, which is what the bundled grid (C) could not do. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "np.tensordot(contrast_matrix, unnormalized_shortfall_factorial, axes=([1, 2, 3], [1, 2, 3])).transpose(1, 0, 2) / np.sum(contrast_matrix * contrast_matrix, axis=(1, 2, 3)).reshape(1, -1, 1)",
+      "inputs": [
+        "unnormalized_shortfall_factorial",
+        "contrast_matrix"
+      ],
+      "output": {
+        "name": "factorial_terms",
+        "shape": [
+          "model",
+          "term",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.einsum('tpdi,mpdik->mtk', contrast_matrix, unnormalized_shortfall_factorial) / np.einsum('tpdi,tpdi->t', contrast_matrix, contrast_matrix).reshape(1, -1, 1)",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{\\mathrm{transpose}\\left(1, 0, 2\\right)}{\\mathrm{reshape}\\left(1, -1, 1\\right)}",
+      "explanation_zh": "R3 根据 R2 对抗式设计审核第 1 条及用户要求，交叉安排语言因素以区分其影响。在完整因素设计核心 LangFac 的 27 个单元中，使用总和为零的对比，将 eq6 的未归一化损失分解为：角色指令语言 P、对话生成语言 D、测量工具语言 I 的主效应，三个两因素交互，以及三因素交互。R3 原先把固定工具语言时的对话语言主效应作为 H1 的确认性对比，把工具语言主效应作为 H2 的确认性对比，而 P×D 交互才是失配项本身。由于三个因素分别交叉安排，而非捆在一起，工具翻译的影响成为可估计的效应，不再只是一个假设；原先捆绑的网格（C）做不到这一点。后续 R4 对确认性解释作了以下修订： R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    }
+  ],
+  "global": {
+    "notation_consistent": true,
+    "all_symbols_defined": true,
+    "undefined_used": [],
+    "symbol_clashes": [],
+    "define_before_use": []
+  },
+  "overall_status": "confirmed"
+}

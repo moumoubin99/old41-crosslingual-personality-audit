@@ -1,0 +1,26 @@
+{
+  "output": "process/results/xlpt/supp-20261004/pub-llama-cped.jsonl",
+  "sha256": "d908febfa3ab8b48e1b7e23848763f93f5bd3245a48959a8ee7c0aa5597776bd",
+  "records": 569,
+  "calls": 6828,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 179.50031113624573,
+  "calls_per_second": 38.03893127971995,
+  "args": {
+    "project": ".",
+    "rater": "llama",
+    "task": "public",
+    "tag": "pub-llama-cped",
+    "variants": "none",
+    "traits": "extraversion,agreeableness",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "cped",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

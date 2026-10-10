@@ -1,0 +1,17 @@
+[
+  {
+    "path": "licenses/vllm-APACHE-2.0.txt",
+    "source": "https://raw.githubusercontent.com/vllm-project/vllm/v0.11.0/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "licenses/transformers-APACHE-2.0.txt",
+    "source": "https://raw.githubusercontent.com/huggingface/transformers/main/LICENSE",
+    "sha256": "77fd4710def9ec3c0f6225800e0235f15a425abd4a8b03559127fcd782612049"
+  },
+  {
+    "path": "licenses/jinja2-BSD-3-Clause.txt",
+    "source": "https://raw.githubusercontent.com/pallets/jinja/3.1.6/LICENSE.txt",
+    "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b"
+  }
+]

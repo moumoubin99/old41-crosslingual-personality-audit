@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "tool": "experiments/xlpt/b0_gate_readiness.py",
+  "kind": "b0-rule-f-gate-readiness",
+  "gate_decision": "NOT_DECIDED_BY_THIS_TOOL",
+  "writes_qualification_gate": false,
+  "writes_eligible_pairs": false,
+  "uses_gpu": false,
+  "trains_or_updates_weights": false,
+  "gate_runnable": false,
+  "blocking": [
+    {
+      "requirement": "G = 24 seed clusters (section I, R17-F2(b): V_hat on 23 df at q* = 0.965)",
+      "observed": "23 completed seed clusters",
+      "missing": [
+        20260829
+      ],
+      "consequence": "the registered bootstrap has no calibrated critical value at this cluster count; recalibrating one for a short block would be a different procedure from the one filed before B0"
+    },
+    {
+      "requirement": "12 checkpoint-language cells; L = 3 mandatory, the L = 2 branch is VOID (R16-F3)",
+      "observed": "checkpoints 1/4, instrument languages 1/3, cells 1/12",
+      "consequence": "the language-level admission map cannot be evaluated for any checkpoint, because no checkpoint has all three languages"
+    },
+    {
+      "requirement": "G5 null E*(p,p) <= f_diag = 0.18 on the diagonal cell effect",
+      "observed": "settings ['NEUTRAL'] only",
+      "consequence": "a single-setting surface carries no induced-trait contrast, so no diagonal effect exists to compare against f_diag; nothing here can be read as an admission statistic"
+    }
+  ],
+  "seed_block": {
+    "registered_block": [
+      20260811,
+      20260834
+    ],
+    "seed_clusters_required": 24,
+    "seed_clusters_available": 23,
+    "missing_seeds": [
+      20260829
+    ],
+    "complete": false
+  },
+  "surface": {
+    "checkpoints_observed": [
+      "Qwen3-8B"
+    ],
+    "checkpoints_registered": [
+      "gemma-3-12b-it",
+      "Qwen3-8B",
+      "Llama-3.1-8B-Instruct",
+      "aya-expanse-8b"
+    ],
+    "checkpoints_covered": [
+      "Qwen3-8B"
+    ],
+    "checkpoint_coverage": "1/4",
+    "languages_registered": [
+      "English",
+      "Chinese",
+      "Swahili"
+    ],
+    "instrument_languages_observed": [
+      "English"
+    ],
+    "language_coverage": "1/3",
+    "settings_observed": [
+      "NEUTRAL"
+    ],
+    "pole_settings_observed": [],
+    "has_pole_contrast": false,
+    "cells_required": 12,
+    "cells_covered": 1
+  },
+  "per_gate": {
+    "G1_competence": {
+      "computable_from_b0_rater_shards": false,
+      "why": "G1 measures response-language accuracy and instruction compliance on the 50-prompt qualification sample. Those are properties of the generated transcripts, not of the rubric scores, so the rater shards cannot decide it.",
+      "also_blocked_by": "only 23 of 24 seed clusters"
+    },
+    "G2_validity_F2": {
+      "computable_from_b0_rater_shards": false,
+      "why": "G2 needs 720 blind double-annotated adjudicated transcripts with a third adjudicator. No human annotation exists on this surface."
+    },
+    "G3_instrument_language_invariance": {
+      "computable_from_b0_rater_shards": false,
+      "why": "G3 compares each transcript scored under the ENGLISH instrument against the same transcript scored under its own language rendering. Every B0 row is instrument_language English, so the second half of every pair is absent."
+    },
+    "G4_perturbation_sensitivity": {
+      "computable_from_b0_rater_shards": false,
+      "why": "G4 reads 360 minimally edited perturbation pairs differing by one trait-diagnostic behavior. No perturbation pairs were generated in B0."
+    },
+    "G5_diagonal_admission": {
+      "computable_from_b0_rater_shards": false,
+      "why": "G5's 24-limb family runs under ONE one-sided signed single-step max-T critical value. Its limbs need a pole contrast in 12 cells; B0 supplies ['NEUTRAL'] in 1 cell(s). A subset of limbs cannot be given a critical value of its own without changing the family.",
+      "also_blocked_by": "only 23 of 24 seed clusters"
+    }
+  },
+  "downstream_disposition": "B1/B2/B3 stay at queued_pending_gate. Rule F requires the admitted set to be frozen into ELIGIBLE_PAIRS.json before B1 opens, and schedule/make_eligible_pairs.py --freeze refuses while QUALIFICATION_GATE.json carries no results block. Queueing them is not launching them.",
+  "rows_summarised": 2300,
+  "frozen_digests": {
+    "prompt_config_sha256": "c3541632d9825738658e1989c31c99ea9b9e24f6e54de6a742fdf2ef3e0777ac",
+    "freeze_receipt_sha256": "04a3cde52ad5f34a53f69b627c2735ca439502cc7bc6a5f4f447f4d954522134",
+    "rater_runtime_manifest_sha256": "28d03ff361775e742fd77ef881d7fc608b9aa64400d9f9c4b956f30b63bfe1ba"
+  },
+  "note": "Readiness only. This tool computes no gate statistic, writes into no registered gate artifact and substitutes no endpoint. A blocked gate is reported as blocked.",
+  "project": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "inputs": {
+    "summary": "process/results/xlpt/B0_RATER_SUMMARY.json",
+    "gate_specification": "refine-logs/QUALIFICATION_GATE.json"
+  }
+}

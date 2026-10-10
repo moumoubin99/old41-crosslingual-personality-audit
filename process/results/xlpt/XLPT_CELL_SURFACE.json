@@ -1,0 +1,228 @@
+{
+  "cells": {
+    "P=en,D=en": {
+      "high": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 791.79,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 1379.34,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "gemma-3-12b-it": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 1343.6,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 1209.95,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        }
+      },
+      "low": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 166.98,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 464.0,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "gemma-3-12b-it": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 92.04,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 172.34,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        }
+      }
+    },
+    "P=en,D=zh": {
+      "high": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 224.46,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 442.94,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "gemma-3-12b-it": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.025217,
+          "mean_chars_per_turn": 1458.55,
+          "no_han_turn_rate": 0.067826,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 470.13,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        }
+      },
+      "low": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.99971,
+          "mean_chars_per_turn": 45.79,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 194.28,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "gemma-3-12b-it": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.988696,
+          "mean_chars_per_turn": 31.54,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 55.31,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        }
+      }
+    },
+    "P=zh,D=en": {
+      "high": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 736.8,
+          "no_han_turn_rate": 0.998261,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 1147.05,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 1043.2,
+          "no_han_turn_rate": 0.99971,
+          "rows": 1150
+        }
+      },
+      "low": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 208.02,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 479.7,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.0,
+          "mean_chars_per_turn": 184.13,
+          "no_han_turn_rate": 1.0,
+          "rows": 1150
+        }
+      }
+    },
+    "P=zh,D=zh": {
+      "high": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 228.37,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 395.05,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 409.99,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        }
+      },
+      "low": {
+        "Llama-3.1-8B-Instruct": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 0.99971,
+          "mean_chars_per_turn": 53.98,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "aya-expanse-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 184.21,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        },
+        "qwen3-8b": {
+          "agent_turns": 3450,
+          "chinese_turn_rate": 1.0,
+          "mean_chars_per_turn": 60.14,
+          "no_han_turn_rate": 0.0,
+          "rows": 1150
+        }
+      }
+    }
+  },
+  "eligible_for_gate": false,
+  "schema_version": 1,
+  "turn_rule": "Han >= 0.5 of Han + Latin letters",
+  "verdict": "DESCRIPTIVE_ONLY"
+}

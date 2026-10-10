@@ -1,0 +1,1170 @@
+{
+  "schema_version": 1,
+  "tool": "experiments/xlpt/inventory_english_surface.py",
+  "kind": "english-surface-file-inventory",
+  "eligible_for_analysis": false,
+  "confirmatory": false,
+  "uses_gpu": false,
+  "note": "File inventory and B3 descriptive means only. This is not Rule-F admission, not the 6x6 transfer matrix, and not a paper result.",
+  "b1_neutral_shards": 24,
+  "b2_compliance_shards": 24,
+  "b3_indicator_shards": 48,
+  "b1": [
+    {
+      "path": "<LOCAL_PATH>/seed-20260911.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260911
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260912.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260912
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260913.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260913
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260914.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260914
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260915.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260915
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260916.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260916
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260917.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260917
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260918.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260918
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260919.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260919
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260920.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260920
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260921.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260921
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260922.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260922
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260923.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260923
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260924.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260924
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260925.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260925
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260926.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260926
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260927.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260927
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260928.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260928
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260929.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260929
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260930.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260930
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260931.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260931
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260932.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260932
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260933.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260933
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260934.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260934
+      ],
+      "phases": {
+        "b1-neutral": 90
+      },
+      "settings": {
+        "NEUTRAL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    }
+  ],
+  "b2": [
+    {
+      "path": "<LOCAL_PATH>/seed-20260911.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260911
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260912.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260912
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260913.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260913
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260914.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260914
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260915.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260915
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260916.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260916
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260917.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260917
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260918.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260918
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260919.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260919
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260920.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260920
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260921.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260921
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260922.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260922
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260923.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260923
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260924.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260924
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260925.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260925
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260926.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260926
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260927.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260927
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260928.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260928
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260929.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260929
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260930.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260930
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260931.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260931
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260932.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260932
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260933.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260933
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260934.jsonl",
+      "rows": 90,
+      "seeds": [
+        20260934
+      ],
+      "phases": {
+        "b2-compliance": 90
+      },
+      "settings": {
+        "COMPLIANCE_CONTROL": 90
+      },
+      "eligible_for_analysis": {
+        "True": 90
+      }
+    }
+  ],
+  "b3": [
+    {
+      "path": "<LOCAL_PATH>/seed-20260911.json",
+      "records": 90,
+      "refusal_turn_rate": 0.240741,
+      "escalation_turn_rate": 0.037037,
+      "apology_turn_rate": 0.181481,
+      "mean_agent_words_per_turn": 133.774074
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260912.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.048148,
+      "apology_turn_rate": 0.181481,
+      "mean_agent_words_per_turn": 133.77037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260913.json",
+      "records": 90,
+      "refusal_turn_rate": 0.211111,
+      "escalation_turn_rate": 0.092593,
+      "apology_turn_rate": 0.181481,
+      "mean_agent_words_per_turn": 132.140741
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260914.json",
+      "records": 90,
+      "refusal_turn_rate": 0.192593,
+      "escalation_turn_rate": 0.059259,
+      "apology_turn_rate": 0.155556,
+      "mean_agent_words_per_turn": 131.781481
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260915.json",
+      "records": 90,
+      "refusal_turn_rate": 0.211111,
+      "escalation_turn_rate": 0.055556,
+      "apology_turn_rate": 0.159259,
+      "mean_agent_words_per_turn": 132.885185
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260916.json",
+      "records": 90,
+      "refusal_turn_rate": 0.222222,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.162963,
+      "mean_agent_words_per_turn": 133.344444
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260917.json",
+      "records": 90,
+      "refusal_turn_rate": 0.233333,
+      "escalation_turn_rate": 0.048148,
+      "apology_turn_rate": 0.218519,
+      "mean_agent_words_per_turn": 133.111111
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260918.json",
+      "records": 90,
+      "refusal_turn_rate": 0.22963,
+      "escalation_turn_rate": 0.074074,
+      "apology_turn_rate": 0.196296,
+      "mean_agent_words_per_turn": 130.148148
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260919.json",
+      "records": 90,
+      "refusal_turn_rate": 0.225926,
+      "escalation_turn_rate": 0.055556,
+      "apology_turn_rate": 0.185185,
+      "mean_agent_words_per_turn": 129.555556
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260920.json",
+      "records": 90,
+      "refusal_turn_rate": 0.196296,
+      "escalation_turn_rate": 0.055556,
+      "apology_turn_rate": 0.2,
+      "mean_agent_words_per_turn": 132.425926
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260921.json",
+      "records": 90,
+      "refusal_turn_rate": 0.211111,
+      "escalation_turn_rate": 0.066667,
+      "apology_turn_rate": 0.185185,
+      "mean_agent_words_per_turn": 130.685185
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260922.json",
+      "records": 90,
+      "refusal_turn_rate": 0.17037,
+      "escalation_turn_rate": 0.044444,
+      "apology_turn_rate": 0.174074,
+      "mean_agent_words_per_turn": 131.192593
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260923.json",
+      "records": 90,
+      "refusal_turn_rate": 0.222222,
+      "escalation_turn_rate": 0.059259,
+      "apology_turn_rate": 0.181481,
+      "mean_agent_words_per_turn": 131.851852
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260924.json",
+      "records": 90,
+      "refusal_turn_rate": 0.233333,
+      "escalation_turn_rate": 0.055556,
+      "apology_turn_rate": 0.177778,
+      "mean_agent_words_per_turn": 131.644444
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260925.json",
+      "records": 90,
+      "refusal_turn_rate": 0.240741,
+      "escalation_turn_rate": 0.066667,
+      "apology_turn_rate": 0.17037,
+      "mean_agent_words_per_turn": 134.388889
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260926.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.048148,
+      "apology_turn_rate": 0.207407,
+      "mean_agent_words_per_turn": 132.77037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260927.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.059259,
+      "apology_turn_rate": 0.177778,
+      "mean_agent_words_per_turn": 131.555556
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260928.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.048148,
+      "apology_turn_rate": 0.177778,
+      "mean_agent_words_per_turn": 131.937037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260929.json",
+      "records": 90,
+      "refusal_turn_rate": 0.207407,
+      "escalation_turn_rate": 0.059259,
+      "apology_turn_rate": 0.192593,
+      "mean_agent_words_per_turn": 133.722222
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260930.json",
+      "records": 90,
+      "refusal_turn_rate": 0.255556,
+      "escalation_turn_rate": 0.040741,
+      "apology_turn_rate": 0.166667,
+      "mean_agent_words_per_turn": 132.244444
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260931.json",
+      "records": 90,
+      "refusal_turn_rate": 0.255556,
+      "escalation_turn_rate": 0.048148,
+      "apology_turn_rate": 0.185185,
+      "mean_agent_words_per_turn": 130.081481
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260932.json",
+      "records": 90,
+      "refusal_turn_rate": 0.225926,
+      "escalation_turn_rate": 0.066667,
+      "apology_turn_rate": 0.177778,
+      "mean_agent_words_per_turn": 133.355556
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260933.json",
+      "records": 90,
+      "refusal_turn_rate": 0.166667,
+      "escalation_turn_rate": 0.081481,
+      "apology_turn_rate": 0.151852,
+      "mean_agent_words_per_turn": 132.425926
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260934.json",
+      "records": 90,
+      "refusal_turn_rate": 0.251852,
+      "escalation_turn_rate": 0.044444,
+      "apology_turn_rate": 0.188889,
+      "mean_agent_words_per_turn": 133.796296
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260911.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.018519,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 73.97037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260912.json",
+      "records": 90,
+      "refusal_turn_rate": 0.188889,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.025926,
+      "mean_agent_words_per_turn": 70.525926
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260913.json",
+      "records": 90,
+      "refusal_turn_rate": 0.222222,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 73.655556
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260914.json",
+      "records": 90,
+      "refusal_turn_rate": 0.211111,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 72.955556
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260915.json",
+      "records": 90,
+      "refusal_turn_rate": 0.214815,
+      "escalation_turn_rate": 0.02963,
+      "apology_turn_rate": 0.018519,
+      "mean_agent_words_per_turn": 71.237037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260916.json",
+      "records": 90,
+      "refusal_turn_rate": 0.222222,
+      "escalation_turn_rate": 0.025926,
+      "apology_turn_rate": 0.02963,
+      "mean_agent_words_per_turn": 71.955556
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260917.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.02963,
+      "mean_agent_words_per_turn": 73.903704
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260918.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.044444,
+      "apology_turn_rate": 0.018519,
+      "mean_agent_words_per_turn": 71.588889
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260919.json",
+      "records": 90,
+      "refusal_turn_rate": 0.237037,
+      "escalation_turn_rate": 0.037037,
+      "apology_turn_rate": 0.025926,
+      "mean_agent_words_per_turn": 73.444444
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260920.json",
+      "records": 90,
+      "refusal_turn_rate": 0.2,
+      "escalation_turn_rate": 0.037037,
+      "apology_turn_rate": 0.018519,
+      "mean_agent_words_per_turn": 71.440741
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260921.json",
+      "records": 90,
+      "refusal_turn_rate": 0.211111,
+      "escalation_turn_rate": 0.014815,
+      "apology_turn_rate": 0.025926,
+      "mean_agent_words_per_turn": 71.785185
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260922.json",
+      "records": 90,
+      "refusal_turn_rate": 0.192593,
+      "escalation_turn_rate": 0.022222,
+      "apology_turn_rate": 0.02963,
+      "mean_agent_words_per_turn": 72.103704
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260923.json",
+      "records": 90,
+      "refusal_turn_rate": 0.196296,
+      "escalation_turn_rate": 0.02963,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 72.666667
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260924.json",
+      "records": 90,
+      "refusal_turn_rate": 0.214815,
+      "escalation_turn_rate": 0.025926,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 74.518519
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260925.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.025926,
+      "apology_turn_rate": 0.018519,
+      "mean_agent_words_per_turn": 72.744444
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260926.json",
+      "records": 90,
+      "refusal_turn_rate": 0.192593,
+      "escalation_turn_rate": 0.022222,
+      "apology_turn_rate": 0.018519,
+      "mean_agent_words_per_turn": 71.12963
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260927.json",
+      "records": 90,
+      "refusal_turn_rate": 0.222222,
+      "escalation_turn_rate": 0.018519,
+      "apology_turn_rate": 0.033333,
+      "mean_agent_words_per_turn": 71.992593
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260928.json",
+      "records": 90,
+      "refusal_turn_rate": 0.240741,
+      "escalation_turn_rate": 0.025926,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 72.625926
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260929.json",
+      "records": 90,
+      "refusal_turn_rate": 0.196296,
+      "escalation_turn_rate": 0.02963,
+      "apology_turn_rate": 0.022222,
+      "mean_agent_words_per_turn": 71.207407
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260930.json",
+      "records": 90,
+      "refusal_turn_rate": 0.196296,
+      "escalation_turn_rate": 0.022222,
+      "apology_turn_rate": 0.025926,
+      "mean_agent_words_per_turn": 71.17037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260931.json",
+      "records": 90,
+      "refusal_turn_rate": 0.218519,
+      "escalation_turn_rate": 0.040741,
+      "apology_turn_rate": 0.018519,
+      "mean_agent_words_per_turn": 74.233333
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260932.json",
+      "records": 90,
+      "refusal_turn_rate": 0.22963,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.02963,
+      "mean_agent_words_per_turn": 75.362963
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260933.json",
+      "records": 90,
+      "refusal_turn_rate": 0.2,
+      "escalation_turn_rate": 0.033333,
+      "apology_turn_rate": 0.025926,
+      "mean_agent_words_per_turn": 71.97037
+    },
+    {
+      "path": "<LOCAL_PATH>/seed-20260934.json",
+      "records": 90,
+      "refusal_turn_rate": 0.207407,
+      "escalation_turn_rate": 0.02963,
+      "apology_turn_rate": 0.025926,
+      "mean_agent_words_per_turn": 73.044444
+    }
+  ]
+}

@@ -1,0 +1,1237 @@
+{
+  "bootstrap": {
+    "draws": 9999,
+    "kind": "joint paired seed-cluster percentile",
+    "resampling_unit": "seed cluster, shared by every cell of a checkpoint",
+    "seed": 20260928
+  },
+  "contrasts": {
+    "Llama-3.1-8B-Instruct|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.193478,
+            0.249855
+          ],
+          "ci95_normal_approx": [
+            0.192998,
+            0.25077
+          ],
+          "estimate": 0.221884,
+          "share_seeds_positive": 1.0
+        },
+        "d_effect_at_p_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.18942,
+            0.241884
+          ],
+          "ci95_normal_approx": [
+            0.188649,
+            0.242076
+          ],
+          "estimate": 0.215362,
+          "share_seeds_positive": 1.0
+        },
+        "d_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.198261,
+            0.238913
+          ],
+          "ci95_normal_approx": [
+            0.198271,
+            0.238976
+          ],
+          "estimate": 0.218623,
+          "share_seeds_positive": 1.0
+        },
+        "interaction_match_minus_mismatch": {
+          "ci95_joint_seed_bootstrap": [
+            -0.029283,
+            0.043913
+          ],
+          "ci95_normal_approx": [
+            -0.031415,
+            0.044459
+          ],
+          "estimate": 0.006522,
+          "share_seeds_positive": 0.608696
+        },
+        "p_effect_at_d_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.002754,
+            0.061739
+          ],
+          "ci95_normal_approx": [
+            0.00107,
+            0.062698
+          ],
+          "estimate": 0.031884,
+          "share_seeds_positive": 0.652174
+        },
+        "p_effect_at_d_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.00579,
+            0.044355
+          ],
+          "ci95_normal_approx": [
+            0.005699,
+            0.045026
+          ],
+          "estimate": 0.025362,
+          "share_seeds_positive": 0.73913
+        },
+        "p_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.011377,
+            0.046236
+          ],
+          "ci95_normal_approx": [
+            0.011066,
+            0.046181
+          ],
+          "estimate": 0.028623,
+          "share_seeds_positive": 0.73913
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.605928,
+            0.67361
+          ],
+          "estimate": 0.638659
+        },
+        "ratio_zh_en_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.90131,
+            0.995295
+          ],
+          "estimate": 0.948076
+        },
+        "ratio_zh_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.574159,
+            0.621987
+          ],
+          "estimate": 0.597357
+        },
+        "ratio_zh_zh_over_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.889533,
+            0.985065
+          ],
+          "estimate": 0.935329
+        },
+        "ratio_zh_zh_over_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.598222,
+            0.663187
+          ],
+          "estimate": 0.630072
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.590145,
+            0.637826
+          ],
+          "ci95_normal_approx": [
+            0.589595,
+            0.638521
+          ],
+          "estimate": 0.614058,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.38029,
+            0.404348
+          ],
+          "ci95_normal_approx": [
+            0.379944,
+            0.404404
+          ],
+          "estimate": 0.392174,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.558261,
+            0.606232
+          ],
+          "ci95_normal_approx": [
+            0.557733,
+            0.606615
+          ],
+          "estimate": 0.582174,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.354203,
+            0.37971
+          ],
+          "ci95_normal_approx": [
+            0.353865,
+            0.379758
+          ],
+          "estimate": 0.366812,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "Llama-3.1-8B-Instruct|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.038551,
+            0.129565
+          ],
+          "ci95_normal_approx": [
+            0.036214,
+            0.130453
+          ],
+          "estimate": 0.083333,
+          "share_seeds_positive": 0.695652
+        },
+        "d_effect_at_p_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.062464,
+            0.138551
+          ],
+          "ci95_normal_approx": [
+            0.061079,
+            0.138921
+          ],
+          "estimate": 0.1,
+          "share_seeds_positive": 0.782609
+        },
+        "d_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.061957,
+            0.122754
+          ],
+          "ci95_normal_approx": [
+            0.060583,
+            0.12275
+          ],
+          "estimate": 0.091667,
+          "share_seeds_positive": 0.869565
+        },
+        "interaction_match_minus_mismatch": {
+          "ci95_joint_seed_bootstrap": [
+            -0.075217,
+            0.041159
+          ],
+          "ci95_normal_approx": [
+            -0.076713,
+            0.04338
+          ],
+          "estimate": -0.016667,
+          "share_seeds_positive": 0.434783
+        },
+        "p_effect_at_d_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.141159,
+            0.215942
+          ],
+          "ci95_normal_approx": [
+            0.140045,
+            0.217347
+          ],
+          "estimate": 0.178696,
+          "share_seeds_positive": 0.956522
+        },
+        "p_effect_at_d_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.159558,
+            0.231594
+          ],
+          "ci95_normal_approx": [
+            0.158818,
+            0.231907
+          ],
+          "estimate": 0.195362,
+          "share_seeds_positive": 1.0
+        },
+        "p_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.164783,
+            0.208986
+          ],
+          "ci95_normal_approx": [
+            0.164373,
+            0.209685
+          ],
+          "estimate": 0.187029,
+          "share_seeds_positive": 1.0
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.86942,
+            0.95906
+          ],
+          "estimate": 0.914012
+        },
+        "ratio_zh_en_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.781756,
+            0.850731
+          ],
+          "estimate": 0.815612
+        },
+        "ratio_zh_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.679553,
+            0.744368
+          ],
+          "estimate": 0.712427
+        },
+        "ratio_zh_zh_over_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.743251,
+            0.81555
+          ],
+          "estimate": 0.77945
+        },
+        "ratio_zh_zh_over_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.828759,
+            0.91872
+          ],
+          "estimate": 0.873487
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.937101,
+            1.000152
+          ],
+          "ci95_normal_approx": [
+            0.936767,
+            1.001494
+          ],
+          "estimate": 0.96913,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.856667,
+            0.915362
+          ],
+          "ci95_normal_approx": [
+            0.855911,
+            0.915684
+          ],
+          "estimate": 0.885797,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.764493,
+            0.815949
+          ],
+          "ci95_normal_approx": [
+            0.763704,
+            0.817166
+          ],
+          "estimate": 0.790435,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.663333,
+            0.714928
+          ],
+          "ci95_normal_approx": [
+            0.663881,
+            0.716989
+          ],
+          "estimate": 0.690435,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "Qwen3-8B|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.314161,
+            0.410584
+          ],
+          "ci95_normal_approx": [
+            0.313622,
+            0.413049
+          ],
+          "estimate": 0.363336,
+          "share_seeds_positive": 1.0
+        },
+        "d_effect_at_p_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.385679,
+            0.470918
+          ],
+          "ci95_normal_approx": [
+            0.386297,
+            0.472236
+          ],
+          "estimate": 0.429266,
+          "share_seeds_positive": 1.0
+        },
+        "d_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.367302,
+            0.425123
+          ],
+          "ci95_normal_approx": [
+            0.366558,
+            0.426044
+          ],
+          "estimate": 0.396301,
+          "share_seeds_positive": 1.0
+        },
+        "interaction_match_minus_mismatch": {
+          "ci95_joint_seed_bootstrap": [
+            -0.138116,
+            0.00233
+          ],
+          "ci95_normal_approx": [
+            -0.137324,
+            0.005462
+          ],
+          "estimate": -0.065931,
+          "share_seeds_positive": 0.26087
+        },
+        "p_effect_at_d_en": {
+          "ci95_joint_seed_bootstrap": [
+            -0.109873,
+            -0.003797
+          ],
+          "ci95_normal_approx": [
+            -0.112082,
+            -0.003641
+          ],
+          "estimate": -0.057862,
+          "share_seeds_positive": 0.304348
+        },
+        "p_effect_at_d_zh": {
+          "ci95_joint_seed_bootstrap": [
+            -0.023254,
+            0.044213
+          ],
+          "ci95_normal_approx": [
+            -0.026337,
+            0.042476
+          ],
+          "estimate": 0.008069,
+          "share_seeds_positive": 0.434783
+        },
+        "p_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            -0.05229,
+            0.002987
+          ],
+          "ci95_normal_approx": [
+            -0.05296,
+            0.003168
+          ],
+          "estimate": -0.024896,
+          "share_seeds_positive": 0.434783
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.644013,
+            0.713354
+          ],
+          "estimate": 0.677097
+        },
+        "ratio_zh_en_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.003327,
+            1.100089
+          ],
+          "estimate": 1.051423
+        },
+        "ratio_zh_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.641209,
+            0.699334
+          ],
+          "estimate": 0.669926
+        },
+        "ratio_zh_zh_over_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.943419,
+            1.031198
+          ],
+          "estimate": 0.989409
+        },
+        "ratio_zh_zh_over_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.609753,
+            0.665934
+          ],
+          "estimate": 0.637162
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.089855,
+            1.16087
+          ],
+          "ci95_normal_approx": [
+            1.088689,
+            1.161746
+          ],
+          "estimate": 1.125217,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.736076,
+            0.789143
+          ],
+          "ci95_normal_approx": [
+            0.734643,
+            0.78912
+          ],
+          "estimate": 0.761882,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.146557,
+            1.215815
+          ],
+          "ci95_normal_approx": [
+            1.147805,
+            1.218353
+          ],
+          "estimate": 1.183079,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.728704,
+            0.778031
+          ],
+          "ci95_normal_approx": [
+            0.728882,
+            0.778743
+          ],
+          "estimate": 0.753812,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "Qwen3-8B|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.351602,
+            0.426653
+          ],
+          "ci95_normal_approx": [
+            0.35234,
+            0.42865
+          ],
+          "estimate": 0.390495,
+          "share_seeds_positive": 1.0
+        },
+        "d_effect_at_p_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.222944,
+            0.344307
+          ],
+          "ci95_normal_approx": [
+            0.220533,
+            0.344116
+          ],
+          "estimate": 0.282325,
+          "share_seeds_positive": 1.0
+        },
+        "d_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.300465,
+            0.372167
+          ],
+          "ci95_normal_approx": [
+            0.300187,
+            0.372633
+          ],
+          "estimate": 0.33641,
+          "share_seeds_positive": 1.0
+        },
+        "interaction_match_minus_mismatch": {
+          "ci95_joint_seed_bootstrap": [
+            0.03701,
+            0.179549
+          ],
+          "ci95_normal_approx": [
+            0.035372,
+            0.180969
+          ],
+          "estimate": 0.108171,
+          "share_seeds_positive": 0.73913
+        },
+        "p_effect_at_d_en": {
+          "ci95_joint_seed_bootstrap": [
+            -0.049812,
+            0.057114
+          ],
+          "ci95_normal_approx": [
+            -0.050977,
+            0.058051
+          ],
+          "estimate": 0.003537,
+          "share_seeds_positive": 0.565217
+        },
+        "p_effect_at_d_zh": {
+          "ci95_joint_seed_bootstrap": [
+            -0.160014,
+            -0.046549
+          ],
+          "ci95_normal_approx": [
+            -0.163465,
+            -0.045801
+          ],
+          "estimate": -0.104633,
+          "share_seeds_positive": 0.173913
+        },
+        "p_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            -0.093215,
+            -0.008753
+          ],
+          "ci95_normal_approx": [
+            -0.09404,
+            -0.007056
+          ],
+          "estimate": -0.050548,
+          "share_seeds_positive": 0.391304
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.762994,
+            0.802414
+          ],
+          "estimate": 0.781687
+        },
+        "ratio_zh_en_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.968302,
+            1.028159
+          ],
+          "estimate": 0.998022
+        },
+        "ratio_zh_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.813094,
+            0.867017
+          ],
+          "estimate": 0.840184
+        },
+        "ratio_zh_zh_over_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            1.032608,
+            1.116745
+          ],
+          "estimate": 1.074834
+        },
+        "ratio_zh_zh_over_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.810888,
+            0.872573
+          ],
+          "estimate": 0.841849
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.758841,
+            1.817543
+          ],
+          "ci95_normal_approx": [
+            1.759,
+            1.818391
+          ],
+          "estimate": 1.788696,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            1.362538,
+            1.436361
+          ],
+          "ci95_normal_approx": [
+            1.360391,
+            1.43601
+          ],
+          "estimate": 1.3982,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.73837,
+            1.827372
+          ],
+          "ci95_normal_approx": [
+            1.739235,
+            1.831082
+          ],
+          "estimate": 1.785158,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_zh": {
+          "ci95_joint_seed_bootstrap": [
+            1.463139,
+            1.53921
+          ],
+          "ci95_normal_approx": [
+            1.463843,
+            1.541824
+          ],
+          "estimate": 1.502833,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "aya-expanse-8b|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.077971,
+            0.116667
+          ],
+          "ci95_normal_approx": [
+            0.076936,
+            0.117267
+          ],
+          "estimate": 0.097101,
+          "share_seeds_positive": 1.0
+        },
+        "d_effect_at_p_zh": {
+          "ci95_joint_seed_bootstrap": [
+            -0.043333,
+            -0.004051
+          ],
+          "ci95_normal_approx": [
+            -0.043766,
+            -0.003191
+          ],
+          "estimate": -0.023478,
+          "share_seeds_positive": 0.347826
+        },
+        "d_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.021522,
+            0.052101
+          ],
+          "ci95_normal_approx": [
+            0.021205,
+            0.052419
+          ],
+          "estimate": 0.036812,
+          "share_seeds_positive": 0.782609
+        },
+        "interaction_match_minus_mismatch": {
+          "ci95_joint_seed_bootstrap": [
+            0.09608,
+            0.145804
+          ],
+          "ci95_normal_approx": [
+            0.094848,
+            0.146312
+          ],
+          "estimate": 0.12058,
+          "share_seeds_positive": 0.956522
+        },
+        "p_effect_at_d_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.068261,
+            0.121449
+          ],
+          "ci95_normal_approx": [
+            0.066989,
+            0.121706
+          ],
+          "estimate": 0.094348,
+          "share_seeds_positive": 0.956522
+        },
+        "p_effect_at_d_zh": {
+          "ci95_joint_seed_bootstrap": [
+            -0.043768,
+            -0.008116
+          ],
+          "ci95_normal_approx": [
+            -0.044427,
+            -0.008037
+          ],
+          "estimate": -0.026232,
+          "share_seeds_positive": 0.217391
+        },
+        "p_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.015576,
+            0.053047
+          ],
+          "ci95_normal_approx": [
+            0.014713,
+            0.053403
+          ],
+          "estimate": 0.034058,
+          "share_seeds_positive": 0.782609
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.691671,
+            0.779161
+          ],
+          "estimate": 0.734653
+        },
+        "ratio_zh_en_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.679783,
+            0.806634
+          ],
+          "estimate": 0.742178
+        },
+        "ratio_zh_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.744273,
+            0.872971
+          ],
+          "estimate": 0.806337
+        },
+        "ratio_zh_zh_over_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            1.029613,
+            1.166765
+          ],
+          "estimate": 1.097574
+        },
+        "ratio_zh_zh_over_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.014046,
+            1.166852
+          ],
+          "estimate": 1.086446
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.347819,
+            0.383913
+          ],
+          "ci95_normal_approx": [
+            0.347431,
+            0.384453
+          ],
+          "estimate": 0.365942,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.256522,
+            0.280442
+          ],
+          "ci95_normal_approx": [
+            0.256535,
+            0.281147
+          ],
+          "estimate": 0.268841,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.254203,
+            0.288696
+          ],
+          "ci95_normal_approx": [
+            0.254004,
+            0.289184
+          ],
+          "estimate": 0.271594,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.278696,
+            0.31087
+          ],
+          "ci95_normal_approx": [
+            0.278777,
+            0.311368
+          ],
+          "estimate": 0.295072,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "aya-expanse-8b|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            -0.035659,
+            0.054203
+          ],
+          "ci95_normal_approx": [
+            -0.036737,
+            0.058187
+          ],
+          "estimate": 0.010725,
+          "share_seeds_positive": 0.608696
+        },
+        "d_effect_at_p_zh": {
+          "ci95_joint_seed_bootstrap": [
+            -0.076667,
+            0.007101
+          ],
+          "ci95_normal_approx": [
+            -0.076419,
+            0.010043
+          ],
+          "estimate": -0.033188,
+          "share_seeds_positive": 0.391304
+        },
+        "d_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            -0.036598,
+            0.011884
+          ],
+          "ci95_normal_approx": [
+            -0.036579,
+            0.014115
+          ],
+          "estimate": -0.011232,
+          "share_seeds_positive": 0.434783
+        },
+        "interaction_match_minus_mismatch": {
+          "ci95_joint_seed_bootstrap": [
+            -0.031014,
+            0.114638
+          ],
+          "ci95_normal_approx": [
+            -0.031408,
+            0.119234
+          ],
+          "estimate": 0.043913,
+          "share_seeds_positive": 0.652174
+        },
+        "p_effect_at_d_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.031732,
+            0.137536
+          ],
+          "ci95_normal_approx": [
+            0.029628,
+            0.139357
+          ],
+          "estimate": 0.084493,
+          "share_seeds_positive": 0.652174
+        },
+        "p_effect_at_d_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.000145,
+            0.082029
+          ],
+          "ci95_normal_approx": [
+            -0.001935,
+            0.083095
+          ],
+          "estimate": 0.04058,
+          "share_seeds_positive": 0.652174
+        },
+        "p_main_effect": {
+          "ci95_joint_seed_bootstrap": [
+            0.031449,
+            0.093043
+          ],
+          "ci95_normal_approx": [
+            0.031064,
+            0.094009
+          ],
+          "estimate": 0.062536,
+          "share_seeds_positive": 0.782609
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.94694,
+            1.037155
+          ],
+          "estimate": 0.989199
+        },
+        "ratio_zh_en_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.864944,
+            0.967201
+          ],
+          "estimate": 0.914903
+        },
+        "ratio_zh_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.914749,
+            0.983418
+          ],
+          "estimate": 0.948329
+        },
+        "ratio_zh_zh_over_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.91771,
+            0.99985
+          ],
+          "estimate": 0.958684
+        },
+        "ratio_zh_zh_over_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.992404,
+            1.086921
+          ],
+          "estimate": 1.036535
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.957101,
+            1.026377
+          ],
+          "ci95_normal_approx": [
+            0.956888,
+            1.028909
+          ],
+          "estimate": 0.992899,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.958833,
+            1.005072
+          ],
+          "ci95_normal_approx": [
+            0.958154,
+            1.006193
+          ],
+          "estimate": 0.982174,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.871159,
+            0.945507
+          ],
+          "ci95_normal_approx": [
+            0.870579,
+            0.946232
+          ],
+          "estimate": 0.908406,
+          "share_seeds_positive": 1.0
+        },
+        "sep_zh_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.91087,
+            0.971159
+          ],
+          "ci95_normal_approx": [
+            0.910964,
+            0.972224
+          ],
+          "estimate": 0.941594,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "gemma-3-12b-it|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            -0.088406,
+            -0.011739
+          ],
+          "ci95_normal_approx": [
+            -0.087266,
+            -0.008966
+          ],
+          "estimate": -0.048116,
+          "share_seeds_positive": 0.304348
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.016319,
+            1.12898
+          ],
+          "estimate": 1.068186
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            0.674203,
+            0.736377
+          ],
+          "ci95_normal_approx": [
+            0.674208,
+            0.737096
+          ],
+          "estimate": 0.705652,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            0.722601,
+            0.786667
+          ],
+          "ci95_normal_approx": [
+            0.720345,
+            0.787191
+          ],
+          "estimate": 0.753768,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    },
+    "gemma-3-12b-it|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh"
+      ],
+      "estimates": {
+        "d_effect_at_p_en": {
+          "ci95_joint_seed_bootstrap": [
+            -0.495942,
+            -0.413478
+          ],
+          "ci95_normal_approx": [
+            -0.494961,
+            -0.411706
+          ],
+          "estimate": -0.453333,
+          "share_seeds_positive": 0.0
+        },
+        "ratio_en_zh_over_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            1.171101,
+            1.208032
+          ],
+          "estimate": 1.188992
+        },
+        "sep_en_en": {
+          "ci95_joint_seed_bootstrap": [
+            2.368261,
+            2.428841
+          ],
+          "ci95_normal_approx": [
+            2.368058,
+            2.429333
+          ],
+          "estimate": 2.398696,
+          "share_seeds_positive": 1.0
+        },
+        "sep_en_zh": {
+          "ci95_joint_seed_bootstrap": [
+            2.815217,
+            2.89
+          ],
+          "ci95_normal_approx": [
+            2.813985,
+            2.890073
+          ],
+          "estimate": 2.852029,
+          "share_seeds_positive": 1.0
+        }
+      },
+      "n_seed_clusters": 23,
+      "seeds_dropped_not_in_all_cells": {}
+    }
+  },
+  "eligible_for_gate": false,
+  "inputs": {
+    "en_en": {
+      "high_phase": "b4-extraversion-high",
+      "incomplete_traits": 0,
+      "label": "P=en,D=en",
+      "low_phase": "b4-extraversion-low",
+      "per_cell_summary": "process/results/xlpt/B4_POLE_RATER_SUMMARY.json",
+      "per_cell_summary_sha256": "7720b2bbb9003884f84910bac0d29d93a9f38b09acbaa9b24f77fa26d82acf6d",
+      "rows": 18400,
+      "shards": 184
+    },
+    "en_zh": {
+      "high_phase": "zh-b4-extraversion-high",
+      "incomplete_traits": 10,
+      "label": "P=en,D=zh",
+      "low_phase": "zh-b4-extraversion-low",
+      "per_cell_summary": "process/results/xlpt/ZH_DEN_POLE_RATER_SUMMARY.json",
+      "per_cell_summary_sha256": "0f88d5e411ade6d46ee8a8c7e5a6a9651df6aa5ea790835e501ba6b4dd507eb4",
+      "rows": 18400,
+      "shards": 184
+    },
+    "zh_en": {
+      "high_phase": "bc-pzhn-extraversion-high-den",
+      "incomplete_traits": 4,
+      "label": "P=zh(v4 reviewed),D=en",
+      "low_phase": "bc-pzhn-extraversion-low-den",
+      "per_cell_summary": "process/results/xlpt/BC_DEN_POLE_RATER_SUMMARY.json",
+      "per_cell_summary_sha256": "0760c65c0aee520193e011424727cdd79b78150656b2ea50275ce17c75182f8f",
+      "rows": 13800,
+      "shards": 138
+    },
+    "zh_zh": {
+      "high_phase": "bc-pzhn-extraversion-high-dzh",
+      "incomplete_traits": 8,
+      "label": "P=zh(v4 reviewed),D=zh",
+      "low_phase": "bc-pzhn-extraversion-low-dzh",
+      "per_cell_summary": "process/results/xlpt/BC_DZH_POLE_RATER_SUMMARY.json",
+      "per_cell_summary_sha256": "0e53b4cf97616c76c460d8b89017ca0e3a126c67c046a4a8e28bf3d863693b20",
+      "rows": 13800,
+      "shards": 138
+    }
+  },
+  "reducer_sha256": "445805dda15d995bba4fadfb92a3db67210e45c70954697170464a275b6eed80",
+  "schema_version": 1,
+  "scope_note": "Exploratory en/zh 2x2 on exposed qualification-seed pole surfaces. L = 2 is VOID under the idea card, so nothing here is H1 or Delta_mis_bar evidence. Scores are an English-instrument LLM-rater response; H_PUBLIC_SUMMARY shows no concordance of that score with public human Extraversion labels. sep = mean(high) - mean(low) = 2*E* and is never compared with card thresholds.",
+  "verdict": "DESCRIPTIVE_ONLY"
+}

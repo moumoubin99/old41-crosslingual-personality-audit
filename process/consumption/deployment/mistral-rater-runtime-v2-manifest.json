@@ -1,0 +1,646 @@
+{
+  "version": 2,
+  "worker": "autodl-container-8e334ab691-3ef3562e",
+  "interpreter": "<LOCAL_PATH>/python3.12",
+  "package_versions": {
+    "jinja2": "3.1.6",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.22.2",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "vllm": "0.11.0"
+  },
+  "model_files": {
+    "model-00001-of-00004.safetensors": "c78fc669f20aac703887c41ab01125d3e9db5cd253595f6bdc7717d0204793f0",
+    "model-00002-of-00004.safetensors": "2b97b62d1cd8bd0b0e035a8947192b6f9fbde7a28fb69ce91b61145b61524154",
+    "model-00003-of-00004.safetensors": "c72878da1fb08bc1ce36954920c9d9f91213ce236a633e658f2d85a8b084019c",
+    "model-00004-of-00004.safetensors": "0712cb93d3b9d05902f1c99d04294296cdfa37829a5f56d6e9a879b280dc346e",
+    "model.safetensors.index.json": "8288629751fc722a3a165116501d297483a45d863742b7ef995955bce7722ed4",
+    "config.json": "bf26b2156e2707b733b9c4e18822fe8db4bc527138f820785c24e820f25b1719",
+    "generation_config.json": "8e8cb26b98a0738d5ce154290725a4d7d65a577d3cfe586eb3cea4ebecf83105",
+    "tokenizer.json": "b76085f9923309d873994d444989f7eb6ec074b06f25b58f1e8d7b7741070949",
+    "tokenizer_config.json": "85d2cc5ea2cddee01ddd36fe98a2eed62d85e78c8b049ea93ee0b2ae4c2c8e5e",
+    "special_tokens_map.json": "c98562eff7be177aafa0bf23cacb9c86549aef1c4c60e91931bded3d70fe6f8f",
+    "chat_template.json": "3bd324de67c5595e4bf4cace022acf9bcd8ea877358a6cef765adc5b398e9d2c",
+    "preprocessor_config.json": "0f1a312ed75c86bccdf65333b5b43507f597028d895dbb9cf9f16be9f87b52f1",
+    "processor_config.json": "4ceef0d0cbf062ffd522d85fcbf5248c2db8659c589afcc47b2f26810e7d9a58",
+    "quantization_config.json": "452363daca2e5f1258bae201fd732641640783ec388a2e2575d65e0481331c80"
+  },
+  "checkpoint_config_dir": "process/consumption/deployment/mistral-rater-config",
+  "quantization": "int4 AWQ AutoRound symmetric",
+  "quantization_metadata_authority": {
+    "runtime_math": "mistral-rater-config/config.json:quantization_config",
+    "standalone_artifact": "mistral-rater-config/quantization_config.json",
+    "note": "Both hash-pinned artifacts agree on the executed 4-bit symmetric AWQ GEMM, group size 128, and zero_point=false fields. Their historical autoround_version labels differ (embedded 0.5.1 versus standalone 0.4.6); that build-label discrepancy is preserved explicitly and is not used to select runtime mathematics."
+  },
+  "enforce_eager": true,
+  "prefix_caching": false,
+  "required_unset_environment": [
+    "VLLM_ATTENTION_BACKEND",
+    "VLLM_USE_V1",
+    "VLLM_USE_TRITON_AWQ",
+    "VLLM_FLASH_ATTN_VERSION"
+  ],
+  "runtime_sources": [
+    {
+      "module": "vllm.model_executor.models.mistral3",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__models__mistral3.py",
+      "sha256": "e2b03b11fb10c590a7c9d1c02162d22e9bb80c94677dadc7919be4f4766f4f5d"
+    },
+    {
+      "module": "vllm.model_executor.models.llama",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__models__llama.py",
+      "sha256": "135cc5e748672057e1528b7f21c7a767c56d2ea4438b73ad60e3cfa3743d8613"
+    },
+    {
+      "module": "vllm.model_executor.layers.quantization.awq",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__quantization__awq.py",
+      "sha256": "c25cf0f6698761080a1e2cfad804c8220b318027b469427f44e2894faae24110"
+    },
+    {
+      "module": "vllm.v1.sample.sampler",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__sampler.py",
+      "sha256": "3720fbfd59c1f064a62b8e0489ec0436468188b69f8b8eb84d2d62eba31f3912"
+    }
+  ],
+  "dependency_closure": [
+    {
+      "module": "vllm._custom_ops",
+      "sha256": "8ce080429d7f1cd30d55b590e3ba5bb7ed6421c0fbf6668bcd45114e3d3f0e9f",
+      "symbols": [
+        "awq_gemm",
+        "awq_dequantize",
+        "rms_norm",
+        "fused_add_rms_norm",
+        "rotary_embedding",
+        "reshape_and_cache_flash"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm___custom_ops.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.quantization.awq",
+      "sha256": "c25cf0f6698761080a1e2cfad804c8220b318027b469427f44e2894faae24110",
+      "symbols": [
+        "AWQConfig",
+        "AWQLinearMethod.apply"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__quantization__awq.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.vocab_parallel_embedding",
+      "sha256": "f74cbf9882ae59449ce4713cd3ac24b77bdf5a585770399c5968b281f591a6e7",
+      "symbols": [
+        "VocabParallelEmbedding.forward_native",
+        "ParallelLMHead.forward",
+        "UnquantizedEmbeddingMethod.apply",
+        "UnquantizedEmbeddingMethod.embedding"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__vocab_parallel_embedding.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.linear",
+      "sha256": "b2cc3cb18d161976a957f0b70af302291baa66aaed99229497674f266e1aac4d",
+      "symbols": [
+        "UnquantizedLinearMethod.apply",
+        "ColumnParallelLinear.forward",
+        "MergedColumnParallelLinear.__init__",
+        "MergedColumnParallelLinear.weight_loader",
+        "QKVParallelLinear.__init__",
+        "QKVParallelLinear.weight_loader",
+        "RowParallelLinear.__init__",
+        "RowParallelLinear.forward"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__linear.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.layernorm",
+      "sha256": "878ae09c09a54a3565c740a99324946b99e60810ee8297be9850951759bbe022",
+      "symbols": [
+        "RMSNorm.forward_native",
+        "RMSNorm.forward_cuda"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__layernorm.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.rotary_embedding",
+      "sha256": "c2649d32e466a5593e254c5d00188e2fdd570d18fec7d39af86dcb8805debb85",
+      "symbols": [
+        "get_rope"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__rotary_embedding.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.rotary_embedding.base",
+      "sha256": "7274b7959148f5807347377363b742e77f4519681dec83fbfe5ee8f8fa6b5f24",
+      "symbols": [
+        "RotaryEmbedding.__init__",
+        "RotaryEmbedding._compute_inv_freq",
+        "RotaryEmbedding._compute_cos_sin_cache",
+        "RotaryEmbedding.forward_native",
+        "RotaryEmbedding.forward_cuda"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__rotary_embedding__base.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.activation",
+      "sha256": "5a514c782e1f5dedc3266a892a50003d102c4ab5e4aa36a769befce2c072ee68",
+      "symbols": [
+        "SiluAndMul.forward_native",
+        "SiluAndMul.forward_cuda"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__activation.py"
+    },
+    {
+      "module": "vllm.attention.layer",
+      "sha256": "83136ff53e104322f5ab1425c19038d75c4ea8b06085b627af13211a39bc2653",
+      "symbols": [
+        "Attention.__init__",
+        "Attention.forward"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__attention__layer.py"
+    },
+    {
+      "module": "vllm.v1.attention.backends.flash_attn",
+      "sha256": "109910d63200b9e2f82af13dbf1ddff7a21d3b08d7792911c89646b243b14493",
+      "symbols": [
+        "FlashAttentionMetadata",
+        "FlashAttentionImpl.__init__",
+        "FlashAttentionImpl.forward"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__attention__backends__flash_attn.py"
+    },
+    {
+      "module": "vllm.model_executor.models.llama",
+      "sha256": "135cc5e748672057e1528b7f21c7a767c56d2ea4438b73ad60e3cfa3743d8613",
+      "symbols": [
+        "LlamaAttention.forward",
+        "LlamaMLP.forward",
+        "LlamaDecoderLayer.forward",
+        "LlamaModel.forward",
+        "LlamaForCausalLM.compute_logits"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__models__llama.py"
+    },
+    {
+      "module": "vllm.model_executor.models.mistral3",
+      "sha256": "e2b03b11fb10c590a7c9d1c02162d22e9bb80c94677dadc7919be4f4766f4f5d",
+      "symbols": [
+        "Mistral3ForConditionalGeneration"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__models__mistral3.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.logits_processor",
+      "sha256": "3dc2eb8526b0ec49aae393022db488d9220be3fa507893d1d1bff9442529b56e",
+      "symbols": [
+        "LogitsProcessor.forward",
+        "LogitsProcessor._get_logits"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__logits_processor.py"
+    },
+    {
+      "module": "vllm.v1.sample.sampler",
+      "sha256": "3720fbfd59c1f064a62b8e0489ec0436468188b69f8b8eb84d2d62eba31f3912",
+      "symbols": [
+        "Sampler.forward",
+        "Sampler.sample",
+        "Sampler.greedy_sample"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__sampler.py"
+    },
+    {
+      "module": "vllm.v1.sample.logits_processor",
+      "sha256": "a0f4fababeca48cff378179cfe1d1cecb51dc1709f05c3231ab52fca70ec837c",
+      "symbols": [
+        "_load_logitsprocs_by_fqcns"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor.py"
+    },
+    {
+      "module": "vllm.v1.sample.logits_processor.builtin",
+      "sha256": "298af662dde967771d80dcae4af0303a5ce143f9ef7fce660d7815b4ff874573",
+      "symbols": [
+        "MinPLogitsProcessor.is_argmax_invariant",
+        "LogitBiasLogitsProcessor.is_argmax_invariant",
+        "MinTokensLogitsProcessor.is_argmax_invariant"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor__builtin.py"
+    },
+    {
+      "module": "vllm.v1.engine.output_processor",
+      "sha256": "1999e687a183ce4b7b039b4c5357b73f0ad0afd8a5b52383ef1f7d1d5613263e",
+      "symbols": [
+        "OutputProcessor.process_outputs"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__engine__output_processor.py"
+    },
+    {
+      "module": "vllm.v1.core.sched.scheduler",
+      "sha256": "357ac414a5b5da8c3423984dd1fdde860584a0d417c30ac2ee25874ea9e5a04c",
+      "symbols": [
+        "Scheduler.update_from_output",
+        "Scheduler._update_request_with_output"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__core__sched__scheduler.py"
+    },
+    {
+      "module": "vllm.v1.core.sched.utils",
+      "sha256": "defe5df4832f536bdf82764d7d16abda43db8bd9c7cb93ebe631df3ad03f7ceb",
+      "symbols": [
+        "check_stop"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__core__sched__utils.py"
+    },
+    {
+      "module": "vllm.v1.request",
+      "sha256": "be457706757fe6734c5a1bd9f3261722276ec27616dac996d6b1c33cacdfa5ec",
+      "symbols": [
+        "Request.append_output_token_ids",
+        "RequestStatus.get_finished_reason"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__request.py"
+    },
+    {
+      "module": "vllm.sampling_params",
+      "sha256": "8219442773ae7cca6d3b63507438e8b0654fbcf024bf7f037dd80ed9f860bf01",
+      "symbols": [
+        "SamplingParams.update_from_generation_config"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__sampling_params.py"
+    },
+    {
+      "module": "vllm.model_executor.custom_op",
+      "sha256": "5a693f2c06e18744f85d4b9915fbe88aa72d49d51de9b91d56293b5fb31d6054",
+      "symbols": [
+        "CustomOp.forward"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__custom_op.py"
+    },
+    {
+      "module": "vllm.distributed.communication_op",
+      "sha256": "8a00815cda00849f1e668a11efd2a1a738189553f54d48273c5e42ec14a94891",
+      "symbols": [
+        "tensor_model_parallel_all_reduce"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__distributed__communication_op.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.utils",
+      "sha256": "7102fb0fa39dcf3beef4f7030737be4399d2ea5bf3dd671235e220305cfa086b",
+      "symbols": [
+        "dispatch_unquantized_gemm"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__utils.py"
+    },
+    {
+      "module": "vllm.attention.utils.fa_utils",
+      "sha256": "994638f636fb88e56d3991ad655d26674f9e64c56ad0f74cfa3fc47dc4aac150",
+      "symbols": [
+        "get_flash_attn_version",
+        "flash_attn_varlen_func",
+        "reshape_and_cache_flash"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__attention__utils__fa_utils.py"
+    },
+    {
+      "module": "vllm.vllm_flash_attn",
+      "sha256": "8d1edca09a331c9bb9491f2bf12ba75ced93181ab30fd88c2a94bb4ea02c98fa",
+      "symbols": [
+        "flash_attn_varlen_func",
+        "get_scheduler_metadata",
+        "is_fa_version_supported"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__vllm_flash_attn.py"
+    },
+    {
+      "module": "vllm.vllm_flash_attn.flash_attn_interface",
+      "sha256": "ed89ae32b047bd30f63eff322bf91dc759883c6135e4f642fa0bab8daaa930ae",
+      "symbols": [
+        "is_fa_version_supported",
+        "flash_attn_varlen_func",
+        "get_scheduler_metadata"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__vllm_flash_attn__flash_attn_interface.py"
+    },
+    {
+      "module": "vllm.model_executor.models.registry",
+      "sha256": "66cc1cd3245239328c86af49dde46ac98bfefa3b5e52d038eb683c2d06076c25",
+      "symbols": [
+        "_VLLM_MODELS",
+        "_ModelRegistry.resolve_model_cls",
+        "ModelRegistry"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor<LOCAL_PATH>/registry.py"
+    },
+    {
+      "module": "vllm.model_executor.models.utils",
+      "sha256": "a23f543890cd74c88476dcb448947010300b41123edad9320c4e0e9ad5b10e3a",
+      "symbols": [
+        "AutoWeightsLoader.__init__",
+        "AutoWeightsLoader._load_param",
+        "AutoWeightsLoader._load_module",
+        "AutoWeightsLoader.load_weights",
+        "PPMissingLayer",
+        "WeightsMapper",
+        "extract_layer_index",
+        "flatten_bn",
+        "init_vllm_registered_model",
+        "is_pp_missing_parameter",
+        "make_empty_intermediate_tensors_factory",
+        "make_layers",
+        "maybe_prefix",
+        "merge_multimodal_embeddings"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor<LOCAL_PATH>/utils.py"
+    },
+    {
+      "module": "vllm.model_executor.model_loader.weight_utils",
+      "sha256": "eeb695cacded25ae5ccdfdc5b9df5e7c65cd2d413f29230c42a94fca87112a93",
+      "symbols": [
+        "default_weight_loader",
+        "get_quant_config",
+        "maybe_remap_kv_scale_name",
+        "safetensors_weights_iterator"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/model_loader/weight_utils.py"
+    },
+    {
+      "module": "vllm.attention.selector",
+      "sha256": "8d456f181c87d51dd125ce1a8d5d5e704614e44237da3c9cc1d465ddbc6acfd5",
+      "symbols": [
+        "backend_name_to_enum",
+        "get_attn_backend",
+        "_cached_get_attn_backend"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/attention/selector.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.quantization",
+      "sha256": "58afc04176f50acf598c300a1fb85a4f9a0e664e13d79fff833ac0e0ffbe57a4",
+      "symbols": [
+        "QuantizationConfig",
+        "get_quantization_config"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/layers/quantization/__init__.py"
+    },
+    {
+      "module": "vllm.model_executor.layers.quantization.base_config",
+      "sha256": "a46debf768efb012fe92f5a90a9d7d33f1d98ea2498aae6e09954c0f8023225a",
+      "symbols": [
+        "QuantizationConfig",
+        "QuantizeMethodBase"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/layers/quantization/base_config.py"
+    },
+    {
+      "module": "vllm.model_executor.parameter",
+      "sha256": "9dd07b49d4414be79129003b342b054bbb8e14bf2adb2bb410226f6420952ee2",
+      "symbols": [
+        "BasevLLMParameter",
+        "BlockQuantScaleParameter",
+        "GroupQuantScaleParameter",
+        "ModelWeightParameter",
+        "PackedColumnParameter",
+        "PackedvLLMParameter",
+        "PerTensorScaleParameter",
+        "RowvLLMParameter"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/parameter.py"
+    },
+    {
+      "module": "vllm.model_executor.utils",
+      "sha256": "a382f4854726dd411c9ed9f821171b729df59bb493a66a180f64c6aa41f880bf",
+      "symbols": [
+        "set_weight_attrs"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/utils.py"
+    },
+    {
+      "module": "vllm._C",
+      "sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+      "symbols": [],
+      "artifact_kind": "compiled_extension",
+      "build_provenance": "process/consumption/deployment/mistral-rater-build-provenance-v1.json"
+    },
+    {
+      "module": "vllm.vllm_flash_attn._vllm_fa2_C",
+      "sha256": "155115736b3e1d3f5feb2da35236b8c8ee43926a1879b5ba5f79afe63c10a09f",
+      "symbols": [],
+      "artifact_kind": "compiled_extension",
+      "build_provenance": "process/consumption/deployment/mistral-rater-build-provenance-v1.json"
+    },
+    {
+      "module": "vllm.vllm_flash_attn._vllm_fa3_C",
+      "sha256": "edd9cd35d101bda7d83ce230bf48fe4a21fb19724da45638946f767500ca40f6",
+      "symbols": [],
+      "artifact_kind": "compiled_extension",
+      "build_provenance": "process/consumption/deployment/mistral-rater-build-provenance-v1.json"
+    },
+    {
+      "module": "vllm.entrypoints.llm",
+      "sha256": "ee4a1ae908f6e04b822c8ef55bb1ecff89a781cee90944a3d989e85286b6489a",
+      "symbols": [
+        "LLM.__init__"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__entrypoints__llm.py"
+    },
+    {
+      "module": "vllm.v1.engine.processor",
+      "sha256": "85f46c065ecb1cf8b2923883473146a729c3b0556356b726cc1dfac9df1f6123",
+      "symbols": [
+        "Processor.process_inputs"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__engine__processor.py"
+    },
+    {
+      "module": "vllm.v1.sample.logits_processor.interface",
+      "sha256": "377b76c0cc5668d72855e5b159b2101bb5b3b9461dcc59419ed344ce74912506",
+      "symbols": [
+        "LogitsProcessor.is_argmax_invariant"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor__interface.py"
+    },
+    {
+      "module": "vllm.v1.sample.logits_processor.state",
+      "sha256": "b6f33a89f7db2510b19d32e33e62e7e168beb8bc1561b71d7bc007e915798208",
+      "symbols": [
+        "LogitsProcessors.__init__"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor__state.py"
+    },
+    {
+      "module": "transformers.tokenization_utils_base",
+      "sha256": "e71871474be2b1aa32f3a147dc31fe0a195fd402a27c37d30d666035fcccd891",
+      "symbols": [
+        "PreTrainedTokenizerBase.apply_chat_template"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/transformers/tokenization_utils_base.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "vllm.model_executor.model_loader.default_loader",
+      "sha256": "06e793d2d66d3872485ca79564d4d9bfe72fac2cdc44131a43cb0c3866505db8",
+      "symbols": [
+        "DefaultModelLoader._get_weights_iterator"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/vllm/default_loader.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "transformers.tokenization_utils_fast",
+      "sha256": "558e454ee6850e90e8bc5d1782e35878dfda1da9bfdf997ae113fa7ff771a0f3",
+      "symbols": [
+        "PreTrainedTokenizerFast._batch_encode_plus",
+        "PreTrainedTokenizerFast._decode"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/transformers/tokenization_utils_fast.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "transformers.utils.chat_template_utils",
+      "sha256": "a61d29d984494999a0f1a280143422e2846964727a4cc66f72e12cff1d992ee2",
+      "symbols": [
+        "_compile_jinja_template",
+        "render_jinja_template"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/transformers/chat_template_utils.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "jinja2.environment",
+      "sha256": "f6786b3fb0a1f8d6c65f4d30bf2af8cb2fae84d1ead8e09ceb48201ab9e2fdf9",
+      "symbols": [
+        "Environment.from_string",
+        "Template.render"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/jinja2/environment.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "jinja2.sandbox",
+      "sha256": "330d9a8ad958d88f256bb15885c5f6606f41b5461c2e70f41a1ddddbd7035ab6",
+      "symbols": [
+        "SandboxedEnvironment.call"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/jinja2/sandbox.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "vllm.inputs.preprocess",
+      "sha256": "347a1f3ae7e883ccf299927fc168dadd91b207a0b18c321913a2900379987a57",
+      "symbols": [
+        "InputPreprocessor.preprocess",
+        "InputPreprocessor._process_tokens"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/vllm/inputs_preprocess.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "vllm.v1.engine.detokenizer",
+      "sha256": "f4c1a528ed7b5d7021e2bf6210e819b2473a718f8a2589a041e04b79bc34d7b5",
+      "symbols": [
+        "IncrementalDetokenizer.from_new_request",
+        "BaseIncrementalDetokenizer.update",
+        "FastIncrementalDetokenizer.__init__",
+        "FastIncrementalDetokenizer._protected_step"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/vllm/detokenizer.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "safetensors.torch",
+      "sha256": "f3f476d1f8c04fe65fa3797426556a0b7afa43f8c4db9db6b799c7cf84748f3d",
+      "symbols": [
+        "load_file"
+      ],
+      "artifact_kind": "python_source",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/safetensors/torch.py",
+      "cuda_bound": false
+    },
+    {
+      "module": "tokenizers.tokenizers",
+      "sha256": "c116fcf1e80d461ce0a35c332974f25949e8359416f50b3d53371810d2ce1ccc",
+      "symbols": [],
+      "artifact_kind": "compiled_extension",
+      "distribution": "tokenizers",
+      "distribution_version": "0.22.2",
+      "size_bytes": 10074176,
+      "cuda_bound": false
+    },
+    {
+      "module": "safetensors._safetensors_rust",
+      "sha256": "e6f17a9e9846bc2bc4ad94cc5431746b59785de3d2681ef2666e8890ae192dfb",
+      "symbols": [],
+      "artifact_kind": "compiled_extension",
+      "distribution": "safetensors",
+      "distribution_version": "0.8.0",
+      "size_bytes": 1223000,
+      "cuda_bound": false
+    }
+  ],
+  "build_provenance": {
+    "path": "process/consumption/deployment/mistral-rater-build-provenance-v1.json",
+    "sha256": "4ee18d863d523af53d8d56a69280a40ac7951adfa8de0acdfb409ab0fa9dd591"
+  },
+  "cuda_expected": {
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "device_uuid": "61a47844-fdd1-d05c-301c-eb84265a3d3d",
+    "capability": [
+      8,
+      9
+    ],
+    "torch_cuda": "12.8",
+    "selected_fa_version": 2
+  },
+  "cuda_witness": {
+    "path": "process/consumption/deployment/mistral-rater-cuda-witness-v1.json",
+    "sha256": "50d57b27680476cfaf60991095289e4d465422c4ba4b34e102c81daab844c12a"
+  }
+}

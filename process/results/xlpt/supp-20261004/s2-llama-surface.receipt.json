@@ -1,0 +1,26 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s2-llama-surface.jsonl",
+  "sha256": "8cd0dc850ec957da64931dfa4baaa80647ca6edb209c9d827164ff5800da9763",
+  "records": 25200,
+  "calls": 151200,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 9346.751420974731,
+  "calls_per_second": 16.17674346839878,
+  "args": {
+    "project": ".",
+    "rater": "llama",
+    "task": "transcripts",
+    "tag": "s2-llama-surface",
+    "variants": "strip_edges,trunc2,swap_edges",
+    "traits": "extraversion",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

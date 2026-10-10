@@ -1,0 +1,2977 @@
+{
+  "version": 1,
+  "source_design_sha256": "5f8673504f7694e1e5f3f532fff0a60f3ad9128257570998d1f94544e50cfa12",
+  "symbol_table": [
+    {
+      "name": "persona_score",
+      "latex": "persona_score",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait",
+        "translation_variant",
+        "repeat"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Direction-aligned persona-arm trait scores on the ITT tensor AS PRODUCED (R22-F3) for every crossed induction and assessment language cell.",
+      "defined_at": "eq1"
+    },
+    {
+      "name": "neutral_score",
+      "latex": "neutral_score",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait",
+        "translation_variant",
+        "repeat"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Direction-aligned trait scores from content-matched neutral dialogues in the same language, translation, and repetition cells.",
+      "defined_at": "eq1"
+    },
+    {
+      "name": "persona_effect",
+      "latex": "persona_effect",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "The persona-minus-neutral effect for each model, induction language, assessment language, and trait.",
+      "defined_at": "eq1"
+    },
+    {
+      "name": "same_language_effect",
+      "latex": "same_language_effect",
+      "shape": [
+        "model",
+        "source_language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "The matched persona-minus-neutral effect when induction and assessment both use the source language for each model and trait.",
+      "defined_at": "eq2"
+    },
+    {
+      "name": "retention_ratio",
+      "latex": "retention_ratio",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "Directed fraction of the same-language persona effect preserved after switching to each target assessment language. R3: secondary summary only — evaluated on cells passing the denominator-eligibility rule (Elig), reported with Fieller intervals, never clipped; ineligible cells are reported as ratio not defined.",
+      "defined_at": "eq2"
+    },
+    {
+      "name": "retention_shortfall",
+      "latex": "retention_shortfall",
+      "shape": [
+        "model",
+        "language",
+        "language",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "The baseline-subtracted fraction of the persona-induced trait effect lost for each model, directed source-target language pair, and trait. R3: secondary; the confirmatory quantity is the unnormalized paired difference-in-differences of eq6, which shares this numerator but carries no denominator.",
+      "defined_at": "eq3"
+    },
+    {
+      "name": "language",
+      "latex": "language",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Number of languages crossed as both induction sources and assessment targets in the transfer matrix.",
+      "defined_at": "eq4"
+    },
+    {
+      "name": "asymmetry_index",
+      "latex": "asymmetry_index",
+      "shape": [
+        "model",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "The mean absolute discrepancy between matched opposite-direction transfer shortfalls for each model and trait.",
+      "defined_at": "eq4"
+    },
+    {
+      "name": "target_scarcity_within_source",
+      "latex": "target_scarcity_within_source",
+      "shape": [
+        "directed_pair"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Target-language pretraining-resource scarcity score after subtracting the mean scarcity among targets paired with the same induction source.",
+      "defined_at": "eq5"
+    },
+    {
+      "name": "shortfall_within_source",
+      "latex": "shortfall_within_source",
+      "shape": [
+        "model",
+        "directed_pair",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Off-diagonal retention shortfall after subtracting the mean shortfall among target languages sharing the same induction source.",
+      "defined_at": "eq5"
+    },
+    {
+      "name": "resource_shortfall_slope",
+      "latex": "resource_shortfall_slope",
+      "shape": [
+        "model",
+        "trait"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "Within-source increase in effect-retention shortfall per unit increase in target-language resource scarcity for each model and trait. R3: the SINGLE pre-registered resource statistic and DESCRIPTIVE only — the rank-correlation variant is deleted, censored cells are bounded rather than dropped, and no hypothesis condition depends on it.",
+      "defined_at": "eq5"
+    },
+    {
+      "name": "unnormalized_shortfall",
+      "shape": [
+        "model",
+        "source_language",
+        "target_language",
+        "trait"
+      ],
+      "description": "Loss of induced trait expression on the native scale, defined in every cell, positive when the switch costs expression."
+    },
+    {
+      "name": "unnormalized_shortfall_factorial",
+      "shape": [
+        "model",
+        "persona_language",
+        "dialogue_language",
+        "instrument_language",
+        "trait"
+      ],
+      "description": "Unnormalized eq6 loss for every crossed cell of the three-way language factorial over the reduced language set."
+    },
+    {
+      "name": "contrast_matrix",
+      "shape": [
+        "term",
+        "persona_language",
+        "dialogue_language",
+        "instrument_language"
+      ],
+      "description": "Sum-to-zero contrast weights identifying the grand mean, the three main effects, the three two-way interactions and the three-way term."
+    },
+    {
+      "name": "factorial_terms",
+      "shape": [
+        "model",
+        "term",
+        "trait"
+      ],
+      "description": "Estimated grand mean, main effects, two-way interactions and three-way interaction of the language factorial on the unnormalized scale."
+    },
+    {
+      "name": "logits",
+      "latex": "logits",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_temperature"
+    },
+    {
+      "name": "temperature",
+      "latex": "temperature",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_temperature"
+    },
+    {
+      "name": "token_probability",
+      "latex": "token_probability",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_temperature"
+    },
+    {
+      "name": "nucleus_mask",
+      "latex": "nucleus_mask",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "bool",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_nucleus"
+    },
+    {
+      "name": "nucleus_probability",
+      "latex": "nucleus_probability",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "intermediate",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_nucleus"
+    },
+    {
+      "name": "uniform_draw",
+      "latex": "uniform_draw",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_sample"
+    },
+    {
+      "name": "sampled_token",
+      "latex": "sampled_token",
+      "shape": [
+        "batch"
+      ],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_sample"
+    },
+    {
+      "name": "root_seed",
+      "latex": "root_seed",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_substream"
+    },
+    {
+      "name": "scenario_index",
+      "latex": "scenario_index",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_substream"
+    },
+    {
+      "name": "turn_index",
+      "latex": "turn_index",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_substream"
+    },
+    {
+      "name": "substream_seed",
+      "latex": "substream_seed",
+      "shape": [],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_substream"
+    },
+    {
+      "name": "embedding_lookup",
+      "latex": "embedding_lookup",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_embedding"
+    },
+    {
+      "name": "embedded_hidden",
+      "latex": "embedded_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_embedding"
+    },
+    {
+      "name": "hidden_state",
+      "latex": "hidden_state",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rms_norm"
+    },
+    {
+      "name": "norm_weight",
+      "latex": "norm_weight",
+      "shape": [
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rms_norm"
+    },
+    {
+      "name": "norm_epsilon",
+      "latex": "norm_epsilon",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rms_norm"
+    },
+    {
+      "name": "normalized_hidden",
+      "latex": "normalized_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rms_norm"
+    },
+    {
+      "name": "rope_value",
+      "latex": "rope_value",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rope"
+    },
+    {
+      "name": "rope_cos",
+      "latex": "rope_cos",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rope"
+    },
+    {
+      "name": "rope_rotated_half",
+      "latex": "rope_rotated_half",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rope"
+    },
+    {
+      "name": "rope_sin",
+      "latex": "rope_sin",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rope"
+    },
+    {
+      "name": "rotated_value",
+      "latex": "rotated_value",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rope"
+    },
+    {
+      "name": "key_value_head",
+      "latex": "key_value_head",
+      "shape": [
+        "batch",
+        "key_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_gqa"
+    },
+    {
+      "name": "key_value_groups",
+      "latex": "key_value_groups",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_gqa"
+    },
+    {
+      "name": "repeated_key_value",
+      "latex": "repeated_key_value",
+      "shape": [
+        "batch",
+        "key_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_gqa"
+    },
+    {
+      "name": "attention_score",
+      "latex": "attention_score",
+      "shape": [
+        "batch",
+        "head",
+        "query",
+        "key"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_qwen_attention"
+    },
+    {
+      "name": "attention_probability",
+      "latex": "attention_probability",
+      "shape": [
+        "batch",
+        "head",
+        "query",
+        "key"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_qwen_attention"
+    },
+    {
+      "name": "repeated_value",
+      "latex": "repeated_value",
+      "shape": [
+        "batch",
+        "head",
+        "key",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_attention_value"
+    },
+    {
+      "name": "attention_output",
+      "latex": "attention_output",
+      "shape": [
+        "batch",
+        "head",
+        "query",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_attention_value"
+    },
+    {
+      "name": "projection_input",
+      "latex": "projection_input",
+      "shape": [
+        "batch",
+        "sequence",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_linear_projection"
+    },
+    {
+      "name": "projection_weight",
+      "latex": "projection_weight",
+      "shape": [
+        "output_dim",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_linear_projection"
+    },
+    {
+      "name": "projected_hidden",
+      "latex": "projected_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "output_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_linear_projection"
+    },
+    {
+      "name": "residual_hidden",
+      "latex": "residual_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_residual"
+    },
+    {
+      "name": "branch_hidden",
+      "latex": "branch_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_residual"
+    },
+    {
+      "name": "updated_hidden",
+      "latex": "updated_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_residual"
+    },
+    {
+      "name": "mlp_down",
+      "latex": "mlp_down",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_gated_silu"
+    },
+    {
+      "name": "mlp_output",
+      "latex": "mlp_output",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_gated_silu"
+    },
+    {
+      "name": "causal_visible",
+      "latex": "causal_visible",
+      "shape": [
+        "query",
+        "key"
+      ],
+      "dtype": "bool",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_causal_mask"
+    },
+    {
+      "name": "mask_minimum",
+      "latex": "mask_minimum",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_causal_mask"
+    },
+    {
+      "name": "additive_attention_mask",
+      "latex": "additive_attention_mask",
+      "shape": [
+        "query",
+        "key"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_causal_mask"
+    },
+    {
+      "name": "cache_length",
+      "latex": "cache_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_cache_concat"
+    },
+    {
+      "name": "current_length",
+      "latex": "current_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_cache_concat"
+    },
+    {
+      "name": "new_cache_length",
+      "latex": "new_cache_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_cache_concat"
+    },
+    {
+      "name": "lm_head_logits",
+      "latex": "lm_head_logits",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_lm_head"
+    },
+    {
+      "name": "final_logits",
+      "latex": "final_logits",
+      "shape": [
+        "batch",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_lm_head"
+    },
+    {
+      "name": "attention_length",
+      "latex": "attention_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_ar_recurrence"
+    },
+    {
+      "name": "next_attention_length",
+      "latex": "next_attention_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_ar_recurrence"
+    },
+    {
+      "name": "sampled_token_scalar",
+      "latex": "sampled_token_scalar",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_eos_stop"
+    },
+    {
+      "name": "eos_token",
+      "latex": "eos_token",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_eos_stop"
+    },
+    {
+      "name": "stop_generation",
+      "latex": "stop_generation",
+      "shape": [],
+      "dtype": "bool",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_eos_stop"
+    },
+    {
+      "name": "greedy_output_token",
+      "latex": "greedy_output_token",
+      "shape": [
+        "batch"
+      ],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_greedy"
+    },
+    {
+      "name": "rater_awq_hidden",
+      "latex": "rater_awq_hidden",
+      "shape": [
+        "tokens",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "quantized_weight",
+      "latex": "quantized_weight",
+      "shape": [
+        "input_dim",
+        "output_dim"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "quantized_zero",
+      "latex": "quantized_zero",
+      "shape": [
+        "input_dim",
+        "output_dim"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "quantized_scale",
+      "latex": "quantized_scale",
+      "shape": [
+        "input_dim",
+        "output_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "rater_awq_projection",
+      "latex": "rater_awq_projection",
+      "shape": [
+        "tokens",
+        "output_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "rater_token_ids",
+      "latex": "rater_token_ids",
+      "shape": [
+        "batch",
+        "sequence"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_embedding"
+    },
+    {
+      "name": "rater_embedding_table",
+      "latex": "rater_embedding_table",
+      "shape": [
+        "vocabulary",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_embedding"
+    },
+    {
+      "name": "rater_embedding_output",
+      "latex": "rater_embedding_output",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_embedding"
+    },
+    {
+      "name": "rater_hidden",
+      "latex": "rater_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "rater_norm_weight",
+      "latex": "rater_norm_weight",
+      "shape": [
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "rater_norm_epsilon",
+      "latex": "rater_norm_epsilon",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "rater_normalized_hidden",
+      "latex": "rater_normalized_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "rater_rope_value",
+      "latex": "rater_rope_value",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rater_rope_cos",
+      "latex": "rater_rope_cos",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rater_rope_rotated_half",
+      "latex": "rater_rope_rotated_half",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rater_rope_sin",
+      "latex": "rater_rope_sin",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rater_rotated_value",
+      "latex": "rater_rotated_value",
+      "shape": [
+        "batch",
+        "head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rater_fused_qkv",
+      "latex": "rater_fused_qkv",
+      "shape": [
+        "batch",
+        "sequence",
+        "fused_width"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_query"
+    },
+    {
+      "name": "rater_query_split_selector",
+      "latex": "rater_query_split_selector",
+      "shape": [
+        "query_head",
+        "head_dim",
+        "fused_width"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_query"
+    },
+    {
+      "name": "rater_split_query",
+      "latex": "rater_split_query",
+      "shape": [
+        "batch",
+        "query_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_query"
+    },
+    {
+      "name": "rater_key_split_selector",
+      "latex": "rater_key_split_selector",
+      "shape": [
+        "key_head",
+        "head_dim",
+        "fused_width"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_key"
+    },
+    {
+      "name": "rater_split_key",
+      "latex": "rater_split_key",
+      "shape": [
+        "batch",
+        "key_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_key"
+    },
+    {
+      "name": "rater_value_split_selector",
+      "latex": "rater_value_split_selector",
+      "shape": [
+        "key_head",
+        "head_dim",
+        "fused_width"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_value"
+    },
+    {
+      "name": "rater_split_value",
+      "latex": "rater_split_value",
+      "shape": [
+        "batch",
+        "key_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_qkv_value"
+    },
+    {
+      "name": "rater_rope_frequency_index",
+      "latex": "rater_rope_frequency_index",
+      "shape": [
+        "half_head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope_inverse_frequency"
+    },
+    {
+      "name": "rater_rope_log_theta",
+      "latex": "rater_rope_log_theta",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope_inverse_frequency"
+    },
+    {
+      "name": "rater_rope_head_dimension",
+      "latex": "rater_rope_head_dimension",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope_inverse_frequency"
+    },
+    {
+      "name": "rater_rope_inverse_frequency",
+      "latex": "rater_rope_inverse_frequency",
+      "shape": [
+        "half_head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope_inverse_frequency"
+    },
+    {
+      "name": "rater_absolute_position",
+      "latex": "rater_absolute_position",
+      "shape": [
+        "position"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_rope_table"
+    },
+    {
+      "name": "rater_rope_half_to_full",
+      "latex": "D",
+      "shape": [
+        "head_dim",
+        "half_head_dim"
+      ],
+      "dtype": "float",
+      "role": "constant",
+      "description": "Fixed selector D=[I;I] that duplicates a half-width RoPE table to the full head dimension.",
+      "defined_at": "rater_rope_table"
+    },
+    {
+      "name": "rater_rope_complex_table",
+      "latex": "R",
+      "shape": [
+        "position",
+        "head_dim"
+      ],
+      "dtype": "complex",
+      "role": "output",
+      "description": "Complex full-width RoPE table; real and imaginary parts are the duplicated cosine and sine tables.",
+      "defined_at": "rater_rope_table"
+    },
+    {
+      "name": "rater_key_value",
+      "latex": "rater_key_value",
+      "shape": [
+        "batch",
+        "key_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gqa"
+    },
+    {
+      "name": "rater_gqa_group_map",
+      "latex": "rater_gqa_group_map",
+      "shape": [
+        "query_head",
+        "key_head"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gqa"
+    },
+    {
+      "name": "rater_repeated_key_value",
+      "latex": "rater_repeated_key_value",
+      "shape": [
+        "batch",
+        "query_head",
+        "sequence",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gqa"
+    },
+    {
+      "name": "rater_query",
+      "latex": "rater_query",
+      "shape": [
+        "batch",
+        "head",
+        "query",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention"
+    },
+    {
+      "name": "rater_key",
+      "latex": "rater_key",
+      "shape": [
+        "batch",
+        "head",
+        "key",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention"
+    },
+    {
+      "name": "rater_attention_scale",
+      "latex": "rater_attention_scale",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention"
+    },
+    {
+      "name": "rater_attention_mask",
+      "latex": "rater_attention_mask",
+      "shape": [
+        "query",
+        "key"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention"
+    },
+    {
+      "name": "rater_attention_probability",
+      "latex": "rater_attention_probability",
+      "shape": [
+        "batch",
+        "head",
+        "query",
+        "key"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention"
+    },
+    {
+      "name": "rater_repeated_value",
+      "latex": "rater_repeated_value",
+      "shape": [
+        "batch",
+        "head",
+        "key",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention_value"
+    },
+    {
+      "name": "rater_attention_output",
+      "latex": "rater_attention_output",
+      "shape": [
+        "batch",
+        "head",
+        "query",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_attention_value"
+    },
+    {
+      "name": "rater_projection_input",
+      "latex": "rater_projection_input",
+      "shape": [
+        "batch",
+        "sequence",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_linear"
+    },
+    {
+      "name": "rater_projection_weight",
+      "latex": "rater_projection_weight",
+      "shape": [
+        "output_dim",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_linear"
+    },
+    {
+      "name": "rater_projected_hidden",
+      "latex": "rater_projected_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "output_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_linear"
+    },
+    {
+      "name": "rater_residual_hidden",
+      "latex": "rater_residual_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_residual"
+    },
+    {
+      "name": "rater_branch_hidden",
+      "latex": "rater_branch_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_residual"
+    },
+    {
+      "name": "rater_updated_hidden",
+      "latex": "rater_updated_hidden",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_residual"
+    },
+    {
+      "name": "rater_gate_linear",
+      "latex": "rater_gate_linear",
+      "shape": [
+        "batch",
+        "sequence",
+        "intermediate"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "rater_up_linear",
+      "latex": "rater_up_linear",
+      "shape": [
+        "batch",
+        "sequence",
+        "intermediate"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "rater_down_weight",
+      "latex": "rater_down_weight",
+      "shape": [
+        "hidden",
+        "intermediate"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "rater_mlp_output",
+      "latex": "rater_mlp_output",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "rater_final_normalized",
+      "latex": "rater_final_normalized",
+      "shape": [
+        "batch",
+        "sequence",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_lm_head"
+    },
+    {
+      "name": "rater_original_vocabulary_selector",
+      "latex": "rater_original_vocabulary_selector",
+      "shape": [
+        "original_vocabulary"
+      ],
+      "dtype": "bool",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_lm_head"
+    },
+    {
+      "name": "rater_lm_head_weight",
+      "latex": "rater_lm_head_weight",
+      "shape": [
+        "padded_vocabulary",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_lm_head"
+    },
+    {
+      "name": "rater_final_logits",
+      "latex": "rater_final_logits",
+      "shape": [
+        "batch",
+        "sequence",
+        "original_vocabulary"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_lm_head"
+    },
+    {
+      "name": "rater_prior_cache",
+      "latex": "rater_prior_cache",
+      "shape": [
+        "batch",
+        "key_head",
+        "cache_slot",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_write"
+    },
+    {
+      "name": "rater_cache_keep_mask",
+      "latex": "rater_cache_keep_mask",
+      "shape": [
+        "cache_slot"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_write"
+    },
+    {
+      "name": "rater_cache_append_selector",
+      "latex": "rater_cache_append_selector",
+      "shape": [
+        "cache_slot",
+        "current"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_write"
+    },
+    {
+      "name": "rater_current_cache",
+      "latex": "rater_current_cache",
+      "shape": [
+        "batch",
+        "key_head",
+        "current",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_write"
+    },
+    {
+      "name": "rater_written_cache",
+      "latex": "rater_written_cache",
+      "shape": [
+        "batch",
+        "key_head",
+        "cache_slot",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_write"
+    },
+    {
+      "name": "rater_past_cache_length",
+      "latex": "rater_past_cache_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_position"
+    },
+    {
+      "name": "rater_current_cache_token",
+      "latex": "rater_current_cache_token",
+      "shape": [
+        "current"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_position"
+    },
+    {
+      "name": "rater_current_absolute_position",
+      "latex": "rater_current_absolute_position",
+      "shape": [
+        "current"
+      ],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_position"
+    },
+    {
+      "name": "rater_query_absolute_position",
+      "latex": "rater_query_absolute_position",
+      "shape": [
+        "query"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "rater_key_absolute_position",
+      "latex": "rater_key_absolute_position",
+      "shape": [
+        "key"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "rater_mask_minimum",
+      "latex": "rater_mask_minimum",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "rater_cache_aware_mask",
+      "latex": "rater_cache_aware_mask",
+      "shape": [
+        "query",
+        "key"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "rater_attention_length",
+      "latex": "rater_attention_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_recurrence"
+    },
+    {
+      "name": "rater_next_attention_length",
+      "latex": "rater_next_attention_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_cache_recurrence"
+    },
+    {
+      "name": "rater_token_scalar",
+      "latex": "rater_token_scalar",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_eos_stop"
+    },
+    {
+      "name": "rater_eos_token",
+      "latex": "rater_eos_token",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_eos_stop"
+    },
+    {
+      "name": "rater_stop_generation",
+      "latex": "rater_stop_generation",
+      "shape": [],
+      "dtype": "bool",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_eos_stop"
+    },
+    {
+      "name": "generated_token_count",
+      "latex": "generated_token_count",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_token_budget_stop"
+    },
+    {
+      "name": "max_generated_tokens",
+      "latex": "max_generated_tokens",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_token_budget_stop"
+    },
+    {
+      "name": "rater_length_stop",
+      "latex": "rater_length_stop",
+      "shape": [],
+      "dtype": "bool",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_token_budget_stop"
+    },
+    {
+      "name": "rater_score_text_length",
+      "latex": "rater_score_text_length",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_score_parse"
+    },
+    {
+      "name": "rater_score_ascii_code",
+      "latex": "rater_score_ascii_code",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_score_parse"
+    },
+    {
+      "name": "parsed_item_score",
+      "latex": "parsed_item_score",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_score_parse"
+    },
+    {
+      "name": "rater_score_is_valid",
+      "latex": "rater_score_is_valid",
+      "shape": [],
+      "dtype": "bool",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "rater_score_parse"
+    },
+    {
+      "name": "item_scores",
+      "latex": "item_scores",
+      "shape": [
+        "transcript",
+        "item"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_trait_mean"
+    },
+    {
+      "name": "trait_score",
+      "latex": "trait_score",
+      "shape": [
+        "transcript"
+      ],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_trait_mean"
+    },
+    {
+      "name": "completed_calls",
+      "latex": "completed_calls",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rate"
+    },
+    {
+      "name": "elapsed_seconds",
+      "latex": "elapsed_seconds",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rate"
+    },
+    {
+      "name": "model_calls_per_second",
+      "latex": "model_calls_per_second",
+      "shape": [],
+      "dtype": "float",
+      "role": "output",
+      "description": "English execution deployment symbol.",
+      "defined_at": "english_rate"
+    }
+  ],
+  "formulas": [
+    {
+      "id": "eq1",
+      "name": "Translation-ensemble persona effect",
+      "kind": "other",
+      "latex": "\\Delta_{mstk}=\\frac{1}{VR}\\sum_{v=1}^{V}\\sum_{r=1}^{R}\\left(Y^{A}_{mstkvr}-Y^{B}_{mstkvr}\\right)",
+      "explanation": "Computes the direction-aligned persona-induced trait shift for model m, induction language s, assessment language t, and trait k by subtracting the matched neutral arm B from persona arm A before averaging translations and repeats. This paired baseline subtraction removes cross-lingual score offsets that affect both arms. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "np.mean(persona_score - neutral_score, axis=(4, 5))",
+      "inputs": [
+        "persona_score",
+        "neutral_score"
+      ],
+      "output": {
+        "name": "persona_effect",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.mean(persona_score, axis=(4, 5)) - np.mean(neutral_score, axis=(4, 5))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\mathrm{mean}\\left(persona_{score} - neutral_{score}\\right)",
+      "explanation_zh": "对于模型 m、角色诱导语言 s、评估语言 t 和特质 k，先用角色条件 A 减去与之匹配的中性条件 B，再对译文和重复生成取平均，得到方向已对齐的角色诱导特质变化。这种配对扣除可以消去同时影响两组的跨语言分数偏移。 R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "eq2",
+      "name": "Directed effect-retention matrix",
+      "kind": "other",
+      "latex": "\\rho_{mstk}=\\frac{\\Delta_{mstk}}{\\Delta_{mssk}}",
+      "explanation": "Normalizes each cross-lingual persona effect by the same model, source language, and trait effect measured without an assessment-language switch. Each entry therefore measures the fraction of the source-language induction that survives assessment in target language t. R3, per DESIGN_KILL R2 finding 2: this ratio is a SECONDARY interpretable summary, not the confirmatory quantity. It is evaluated only on cells passing the denominator-eligibility rule (Elig), its uncertainty is reported by Fieller intervals rather than bootstrap percentiles because the denominator is itself estimated, and it is never clipped to a bounded range. Cells failing (Elig) are reported as ratio not defined. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "persona_effect / np.expand_dims(same_language_effect, axis=2)",
+      "inputs": [
+        "persona_effect",
+        "same_language_effect"
+      ],
+      "output": {
+        "name": "retention_ratio",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "persona_effect * (1.0 / np.expand_dims(same_language_effect, axis=2))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{persona_{effect}}{\\mathrm{expand_dims}\\left(same_{language,effect}\\right)}",
+      "explanation_zh": "把跨语言角色效应除以同一模型、同一来源语言和同一特质在不切换评估语言时的效应。每个矩阵元素表示：来源语言诱导出的效应，在目标语言 t 的评估中保留了多少。R3 根据 R2 对抗式设计审核第 2 条，将这个比值限定为便于解释的次要汇总，而非确认性统计量。只有通过分母资格条件（Elig）的单元才计算它；由于分母本身也是估计值，不确定性采用 Fieller 区间，不采用 bootstrap 百分位区间，也不把比值裁剪到一个固定范围。未通过 Elig 的单元报告“比值未定义”。 R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "eq3",
+      "name": "Normalized difference-in-differences shortfall",
+      "kind": "other",
+      "latex": "S_{mstk}=1-\\rho_{mstk}=\\frac{\\Delta_{mssk}-\\Delta_{mstk}}{\\Delta_{mssk}}",
+      "explanation": "Converts retention into the preregistered effect-retention shortfall. Its numerator is the difference between two persona-versus-neutral contrasts, so positive values isolate the proportion of induced effect lost after the language switch rather than baseline language differences. R3, per DESIGN_KILL R2 finding 2: the shortfall inherits eq2's eligibility gate and Fieller intervals and is secondary. The confirmatory quantity is the unnormalized paired difference-in-differences of eq6, whose numerator this shares but which carries no denominator, so it is defined and sign-safe in every cell.",
+      "expr": "1.0 - persona_effect / np.expand_dims(same_language_effect, axis=2)",
+      "inputs": [
+        "persona_effect",
+        "same_language_effect"
+      ],
+      "output": {
+        "name": "retention_shortfall",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "(np.expand_dims(same_language_effect, axis=2) - persona_effect) / np.expand_dims(same_language_effect, axis=2)",
+      "symbols": [],
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "1.0 - \\dfrac{persona_{effect}}{\\mathrm{expand_dims}\\left(same_{language,effect}\\right)}",
+      "explanation_zh": "把保留比例转成预注册的效应保留缺口。分子是两个“角色条件减中性条件”效应之间的差，因此正值表示语言切换后损失的诱导效应比例，而非语言本身造成的基线差异。R3 根据 R2 对抗式设计审核第 2 条，规定该缺口沿用 eq2 的资格条件和 Fieller 区间，并作为次要指标。确认性统计量是 eq6 中未归一化的配对双重差分：两者分子相同，但 eq6 不带分母，因此在每个单元都有定义，符号解释也不受分母影响。"
+    },
+    {
+      "id": "eq4",
+      "name": "Transfer-matrix asymmetry index",
+      "kind": "other",
+      "latex": "A_{mk}=\\frac{1}{L(L-1)}\\sum_{s\\ne t}\\left|S_{mstk}-S_{mtsk}\\right|",
+      "explanation": "Measures whether switching from s to t loses a different fraction of the induced trait than switching from t to s. A nonzero value captures the directed, language-conditioned transfer pattern required by the proposed mechanism and used in its falsifier. R3: the asymmetry index is computed on the unnormalized eq6 scale for the confirmatory report and on the shortfall scale only over eligible cells. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "np.sum(np.abs(retention_shortfall - np.swapaxes(retention_shortfall, 1, 2)), axis=(1, 2)) / (language * (language - 1))",
+      "inputs": [
+        "retention_shortfall"
+      ],
+      "output": {
+        "name": "asymmetry_index",
+        "shape": [
+          "model",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.sum(np.abs(np.swapaxes(retention_shortfall, 1, 2) - retention_shortfall), axis=(1, 2)) / (language * (language - 1))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{\\sum \\left|retention_{shortfall} - \\mathrm{swapaxes}\\left(retention_{shortfall}, 1, 2\\right)\\right|}{language \\cdot language - 1}",
+      "explanation_zh": "衡量从 s 切换到 t 时损失的诱导特质比例，是否不同于从 t 切换到 s 时的损失比例。非零值表示存在有方向的、随语言条件变化的迁移模式，这是原设想及其可证伪条件关注的现象。R3 规定，确认性报告在未归一化的 eq6 尺度上计算非对称性；只有通过资格条件的单元才在缺口比例尺度上计算它。 R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "eq5",
+      "name": "Target-resource shortfall gradient",
+      "kind": "loss",
+      "latex": "\\beta_{mk}=\\frac{\\sum_{p=1}^{P}\\widetilde r_p\\widetilde S_{mpk}}{\\sum_{p=1}^{P}\\widetilde r_p^2},\\qquad \\widetilde r_p=r_{t(p)}-\\overline r_{s(p)},\\quad \\widetilde S_{mpk}=S_{mpk}-\\overline S_{ms(p)k}",
+      "explanation": "Fits the preregistered within-source slope of transfer loss against target-language resource scarcity over off-diagonal directed pairs. Source centering prevents differences among induction languages from masquerading as the predicted target-resource effect, and a positive slope supports greater loss for lower-resource assessment languages. R3, per DESIGN_KILL R2 finding 4: this centered slope is the SINGLE pre-registered resource statistic - the rank-correlation variant is deleted so the two cannot disagree - and it is DESCRIPTIVE. Six languages cannot identify pretraining resource tier as a cause, since tier is collinear with script, typology and translation quality, so no hypothesis condition depends on it. Cells failing (Elig) are censored, not dropped: the slope is reported with worst-case and best-case bounds obtained by setting each censored cell to the extremes of its admissible range.",
+      "expr": "np.sum(shortfall_within_source * np.expand_dims(np.expand_dims(target_scarcity_within_source, axis=0), axis=2), axis=1) / np.sum(target_scarcity_within_source * target_scarcity_within_source)",
+      "inputs": [
+        "target_scarcity_within_source",
+        "shortfall_within_source"
+      ],
+      "output": {
+        "name": "resource_shortfall_slope",
+        "shape": [
+          "model",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.sum(np.swapaxes(shortfall_within_source, 0, 1) * np.expand_dims(np.expand_dims(target_scarcity_within_source, axis=1), axis=2), axis=0) / np.sum(target_scarcity_within_source * target_scarcity_within_source)",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{\\sum shortfall_{within,source} \\cdot \\mathrm{expand_dims}\\left(\\mathrm{expand_dims}\\left(target_{scarcity,within,source}\\right)\\right)}{\\sum target_{scarcity,within,source} \\cdot target_{scarcity,within,source}}",
+      "explanation_zh": "在非对角的有向语言对上，估计预注册的“迁移损失随目标语言资源稀缺程度变化”的组内斜率。先按来源语言中心化，防止不同诱导语言之间的差异被误当作目标语言资源效应；正斜率表示资源更少的评估语言倾向于有更大损失。R3 根据 R2 对抗式设计审核第 4 条，将这个中心化斜率定为唯一预注册的资源统计量，并删除秩相关版本，避免两者给出不一致结论。它只作描述：6 种语言无法把预训练资源等级识别为原因，因为资源等级与文字系统、语言类型、翻译质量相互混杂，因此任何假设判定都不依赖该斜率。未通过 Elig 的单元按删失值处理，而非直接丢弃；把每个删失单元分别设为其允许范围的两端，报告斜率最好与最坏情形的界限。"
+    },
+    {
+      "id": "eq6",
+      "name": "Unnormalized paired difference-in-differences",
+      "kind": "other",
+      "latex": "D_{mstk}=\\Delta_{mssk}-\\Delta_{mstk}",
+      "explanation": "The R3 confirmatory quantity, per DESIGN_KILL R2 finding 2. It is the numerator of the shortfall taken on its own, on the native trait scale: the induced shift measured in the all-source cell minus the induced shift measured in the switched cell, within scenario, seed and trait. Having no denominator it is defined in every cell, it is sign-safe - a positive value always means the switch cost induced expression - and it needs no clipping, which is why the confirmatory family, the minimum audit-relevant effect delta_raw and the H3 equivalence margin epsilon_raw are all expressed on this scale.",
+      "expr": "np.expand_dims(same_language_effect, axis=2) - persona_effect",
+      "inputs": [
+        "same_language_effect",
+        "persona_effect"
+      ],
+      "output": {
+        "name": "unnormalized_shortfall",
+        "shape": [
+          "model",
+          "source_language",
+          "target_language",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "-(persona_effect - np.expand_dims(same_language_effect, axis=2))",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\mathrm{expand_dims}\\left(same_{language,effect}\\right) - persona_{effect}",
+      "explanation_zh": "R3 根据 R2 对抗式设计审核第 2 条采用的确认性统计量。它就是保留缺口的分子，保持原始特质分数尺度：在同一场景、随机种子和特质内，用全部使用来源语言时的诱导变化，减去语言切换后的诱导变化。它没有分母，因此每个单元都有定义，正值始终表示语言切换削弱了诱导表达，也不需要裁剪。确认性检验族、最小审查相关效应 delta_raw 和 H3 等效界值 epsilon_raw 均用这一尺度表达。"
+    },
+    {
+      "id": "eq7",
+      "name": "Three-way language factorial decomposition",
+      "kind": "other",
+      "latex": "D_{m,pdi,k}=\\mu_{mk}+\\alpha^{P}_{mpk}+\\alpha^{D}_{mdk}+\\alpha^{I}_{mik}+\\gamma^{PD}_{mpdk}+\\gamma^{PI}_{mpik}+\\gamma^{DI}_{mdik}+\\gamma^{PDI}_{mpdik}",
+      "explanation": "The R3 identification, per DESIGN_KILL R2 finding 1 and the user's instruction to run the language factorial. The unnormalized loss of eq6 in each of the 27 cells of the factorial core (LangFac) is decomposed by sum-to-zero contrasts into main effects of persona-instruction language P, dialogue-generation language D and instrument language I, their three two-way interactions and the three-way term. The dialogue-language main effect at fixed instrument language is the confirmatory contrast for H1, the instrument-language main effect is the confirmatory contrast for H2, and the P by D interaction is the mismatch term proper. Because the three factors are crossed rather than bundled, instrument translation is an estimated effect here instead of an assumption, which is what the bundled grid (C) could not do. R4: the confirmatory estimand is the pair-specific mismatch contrast Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d) (the signed P x D interaction contrast; the neutral arm is generated in the same dialogue language, so D's own effect is differenced out), read as the registered average over the 6 ordered pairs with a 4-of-6 consistency requirement; the dialogue-language MAIN effect is no longer confirmatory. Instrument language is not a factor of the behavior channel (the transcript is frozen before the inventory is administered): eq7's three-way decomposition is computed on the SELF-REPORT channel only, paired within transcript. No language-specific-representation mechanism is claimed. An intention-to-treat rule on the first planned generation governs sampling. H3 is not a powered confirmatory claim.",
+      "expr": "np.tensordot(contrast_matrix, unnormalized_shortfall_factorial, axes=([1, 2, 3], [1, 2, 3])).transpose(1, 0, 2) / np.sum(contrast_matrix * contrast_matrix, axis=(1, 2, 3)).reshape(1, -1, 1)",
+      "inputs": [
+        "unnormalized_shortfall_factorial",
+        "contrast_matrix"
+      ],
+      "output": {
+        "name": "factorial_terms",
+        "shape": [
+          "model",
+          "term",
+          "trait"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed",
+      "reference_expr": "np.einsum('tpdi,mpdik->mtk', contrast_matrix, unnormalized_shortfall_factorial) / np.einsum('tpdi,tpdi->t', contrast_matrix, contrast_matrix).reshape(1, -1, 1)",
+      "checks": {
+        "codex": null,
+        "shape": "pass",
+        "numeric": "pass",
+        "dimensional": "n/a",
+        "symbolic": "n/a",
+        "katex_renders": true
+      },
+      "invariant_results": [],
+      "roundtrip_latex": "\\dfrac{\\mathrm{transpose}\\left(1, 0, 2\\right)}{\\mathrm{reshape}\\left(1, -1, 1\\right)}",
+      "explanation_zh": "R3 根据 R2 对抗式设计审核第 1 条及用户要求，交叉安排语言因素以区分其影响。在完整因素设计核心 LangFac 的 27 个单元中，使用总和为零的对比，将 eq6 的未归一化损失分解为：角色指令语言 P、对话生成语言 D、测量工具语言 I 的主效应，三个两因素交互，以及三因素交互。R3 原先把固定工具语言时的对话语言主效应作为 H1 的确认性对比，把工具语言主效应作为 H2 的确认性对比，而 P×D 交互才是失配项本身。由于三个因素分别交叉安排，而非捆在一起，工具翻译的影响成为可估计的效应，不再只是一个假设；原先捆绑的网格（C）做不到这一点。后续 R4 对确认性解释作了以下修订： R4：确认性估计量改为有向语言对的失配对比 Delta_mis(p,d) = M(P=p,D=p) - M(P=p,D=d)，即带符号的 P × D 交互对比。中性条件也在同一种对话语言下生成，因此 D 自身的影响在差分中被扣除。按预注册要求，对 6 个有向语言对取平均，并要求其中至少 4 个方向一致；对话语言的主效应不再是确认性结论。测量工具的语言不是行为评估通道的因素，因为在施测量表前，对话记录已经固定；eq7 的三因素分解仅用于自我报告通道，并在同一份对话记录内配对。不据此声称存在某种语言专属的内部表征机制。抽样遵循意向处理原则，以第一次计划生成的结果为准。H3 不作为具备预定检验效能的确认性主张。"
+    },
+    {
+      "id": "english_temperature",
+      "name": "Stable temperature softmax",
+      "kind": "other",
+      "latex": "p_i=\\exp((z_i-m)/T)/\\sum_j\\exp((z_j-m)/T),\\ m=\\max_j z_j",
+      "explanation": "The Python decoder applies a stable temperature softmax to next-token logits.",
+      "expr": "np.exp((logits - np.max(logits, axis=-1, keepdims=True)) / temperature) / np.sum(np.exp((logits - np.max(logits, axis=-1, keepdims=True)) / temperature), axis=-1, keepdims=True)",
+      "reference_expr": "np.exp((logits - np.max(logits, axis=-1, keepdims=True)) / temperature) / np.sum(np.exp((logits - np.max(logits, axis=-1, keepdims=True)) / temperature), axis=-1, keepdims=True)",
+      "inputs": [
+        "logits",
+        "temperature"
+      ],
+      "output": {
+        "name": "token_probability",
+        "shape": [
+          "batch",
+          "vocabulary"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_nucleus",
+      "name": "Top-p nucleus renormalization",
+      "kind": "other",
+      "latex": "q_i=p_i 1\\{i\\in A_p\\}/\\sum_{j\\in A_p}p_j",
+      "explanation": "The smallest descending-probability prefix reaching top_p is retained and renormalized.",
+      "expr": "np.where(nucleus_mask, token_probability, 0.0) / np.sum(np.where(nucleus_mask, token_probability, 0.0), axis=-1, keepdims=True)",
+      "reference_expr": "np.where(nucleus_mask, token_probability, 0.0) / np.sum(np.where(nucleus_mask, token_probability, 0.0), axis=-1, keepdims=True)",
+      "inputs": [
+        "token_probability",
+        "nucleus_mask"
+      ],
+      "output": {
+        "name": "nucleus_probability",
+        "shape": [
+          "batch",
+          "vocabulary"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_sample",
+      "name": "Seeded Gumbel-max categorical draw",
+      "kind": "other",
+      "latex": "X=\\arg\\max_i [\\log q_i-\\log(-\\log U_i)],\\ U_i\\sim U(0,1)",
+      "explanation": "The Python decoder uses a seeded Gumbel-max draw from the nucleus distribution.",
+      "expr": "np.argmax(np.log(nucleus_probability) - np.log(-np.log(uniform_draw)), axis=-1)",
+      "reference_expr": "np.argmax(np.log(nucleus_probability) - np.log(-np.log(uniform_draw)), axis=-1)",
+      "inputs": [
+        "nucleus_probability",
+        "uniform_draw"
+      ],
+      "output": {
+        "name": "sampled_token",
+        "shape": [
+          "batch"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_substream",
+      "name": "Per-turn seed substream",
+      "kind": "other",
+      "latex": "s_u=10000s+3i+t",
+      "explanation": "Each root seed, frozen scenario index and one of three turn indices maps injectively to a per-turn random stream.",
+      "expr": "root_seed * 10000 + scenario_index * 3 + turn_index",
+      "reference_expr": "root_seed * 10000 + scenario_index * 3 + turn_index",
+      "inputs": [
+        "root_seed",
+        "scenario_index",
+        "turn_index"
+      ],
+      "output": {
+        "name": "substream_seed",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_embedding",
+      "name": "Token embedding lookup",
+      "kind": "other",
+      "latex": "H^{(0)}=E[x]",
+      "explanation": "The captured Qwen forward indexes the frozen embedding table by input token identifiers.",
+      "expr": "embedding_lookup",
+      "reference_expr": "embedding_lookup",
+      "inputs": [
+        "embedding_lookup"
+      ],
+      "output": {
+        "name": "embedded_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_rms_norm",
+      "name": "Qwen3 RMS normalization",
+      "kind": "other",
+      "latex": "\\operatorname{RMSNorm}(h)=w\\odot h/\\sqrt{\\operatorname{mean}(h^2)+\\epsilon}",
+      "explanation": "Input, Q/K, post-attention and final norms use float32 root-mean-square normalization followed by the learned weight.",
+      "expr": "norm_weight * hidden_state / np.sqrt(np.mean(hidden_state ** 2, axis=-1, keepdims=True) + norm_epsilon)",
+      "reference_expr": "norm_weight * hidden_state / np.sqrt(np.mean(hidden_state ** 2, axis=-1, keepdims=True) + norm_epsilon)",
+      "inputs": [
+        "hidden_state",
+        "norm_weight",
+        "norm_epsilon"
+      ],
+      "output": {
+        "name": "normalized_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_rope",
+      "name": "Default Qwen3 rotary position transform",
+      "kind": "other",
+      "latex": "q'=q\\odot\\cos\\theta+\\operatorname{rotateHalf}(q)\\odot\\sin\\theta",
+      "explanation": "Default RoPE rotates the two head-dimension halves at the exact absolute cache position; the same equation applies to keys.",
+      "expr": "rope_value * rope_cos + rope_rotated_half * rope_sin",
+      "reference_expr": "rope_value * rope_cos + rope_rotated_half * rope_sin",
+      "inputs": [
+        "rope_value",
+        "rope_cos",
+        "rope_rotated_half",
+        "rope_sin"
+      ],
+      "output": {
+        "name": "rotated_value",
+        "shape": [
+          "batch",
+          "head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_gqa",
+      "name": "Grouped-query key/value repetition",
+      "kind": "other",
+      "latex": "K_h=K_{\\lfloor h/g\\rfloor}",
+      "explanation": "Each frozen key/value head is repeated contiguously across its query-head group.",
+      "expr": "np.repeat(key_value_head, key_value_groups, axis=1)",
+      "reference_expr": "np.repeat(key_value_head, key_value_groups, axis=1)",
+      "inputs": [
+        "key_value_head",
+        "key_value_groups"
+      ],
+      "output": {
+        "name": "repeated_key_value",
+        "shape": [
+          "batch",
+          "key_head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_qwen_attention",
+      "name": "Qwen3 eager attention probabilities",
+      "kind": "other",
+      "latex": "A=\\operatorname{softmax}(QK^T/\\sqrt{d}+M)",
+      "explanation": "The project-owned Qwen3 eager path forms scaled masked query-key scores and applies a float32 softmax.",
+      "expr": "np.exp(attention_score - np.max(attention_score, axis=-1, keepdims=True)) / np.sum(np.exp(attention_score - np.max(attention_score, axis=-1, keepdims=True)), axis=-1, keepdims=True)",
+      "reference_expr": "np.exp(attention_score - np.max(attention_score, axis=-1, keepdims=True)) / np.sum(np.exp(attention_score - np.max(attention_score, axis=-1, keepdims=True)), axis=-1, keepdims=True)",
+      "inputs": [
+        "attention_score"
+      ],
+      "output": {
+        "name": "attention_probability",
+        "shape": [
+          "batch",
+          "head",
+          "query",
+          "key"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_attention_value",
+      "name": "Attention value aggregation",
+      "kind": "other",
+      "latex": "O=AV",
+      "explanation": "Attention probabilities multiply the repeated value heads before output projection.",
+      "expr": "np.matmul(attention_probability, repeated_value)",
+      "reference_expr": "np.matmul(attention_probability, repeated_value)",
+      "inputs": [
+        "attention_probability",
+        "repeated_value"
+      ],
+      "output": {
+        "name": "attention_output",
+        "shape": [
+          "batch",
+          "head",
+          "query",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_linear_projection",
+      "name": "Frozen Qwen linear projection",
+      "kind": "other",
+      "latex": "Y=XW^T",
+      "explanation": "Q, K, V, attention output, MLP and LM-head projections use frozen bias-free matrices.",
+      "expr": "np.matmul(projection_input, projection_weight.T)",
+      "reference_expr": "np.matmul(projection_input, projection_weight.T)",
+      "inputs": [
+        "projection_input",
+        "projection_weight"
+      ],
+      "output": {
+        "name": "projected_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "output_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_residual",
+      "name": "Decoder residual update",
+      "kind": "other",
+      "latex": "H'=H+F(H)",
+      "explanation": "Both attention and MLP branches are added to their exact incoming residual.",
+      "expr": "residual_hidden + branch_hidden",
+      "reference_expr": "residual_hidden + branch_hidden",
+      "inputs": [
+        "residual_hidden",
+        "branch_hidden"
+      ],
+      "output": {
+        "name": "updated_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_gated_silu",
+      "name": "Qwen3 gated-SiLU MLP",
+      "kind": "other",
+      "latex": "\\operatorname{MLP}(h)=W_d[\\operatorname{SiLU}(W_gh)\\odot(W_uh)]",
+      "explanation": "The captured decoder uses the frozen gate, up and down projections with a SiLU gate.",
+      "expr": "mlp_down",
+      "reference_expr": "mlp_down",
+      "inputs": [
+        "mlp_down"
+      ],
+      "output": {
+        "name": "mlp_output",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_causal_mask",
+      "name": "Causal and visibility mask",
+      "kind": "other",
+      "latex": "M_{qk}=0\\;[k\\leq q]\\;\\mathrm{else}\\;-\\infty",
+      "explanation": "Every query can see all prior visible cached keys and itself, never a future or invisible key.",
+      "expr": "np.where(causal_visible, 0.0, mask_minimum)",
+      "reference_expr": "np.where(causal_visible, 0.0, mask_minimum)",
+      "inputs": [
+        "causal_visible",
+        "mask_minimum"
+      ],
+      "output": {
+        "name": "additive_attention_mask",
+        "shape": [
+          "query",
+          "key"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_cache_concat",
+      "name": "Key/value cache growth",
+      "kind": "other",
+      "latex": "K_{1:t}=\\operatorname{concat}(K_{1:t-1},K_t)",
+      "explanation": "Each decoder layer appends current keys and values to its exact prior cache along the sequence axis.",
+      "expr": "cache_length + current_length",
+      "reference_expr": "cache_length + current_length",
+      "inputs": [
+        "cache_length",
+        "current_length"
+      ],
+      "output": {
+        "name": "new_cache_length",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_lm_head",
+      "name": "Final normalization and vocabulary logits",
+      "kind": "other",
+      "latex": "z=W_{lm}\\operatorname{RMSNorm}(H_L)",
+      "explanation": "The last decoder hidden state is normalized and projected by the frozen untied language-model head.",
+      "expr": "lm_head_logits",
+      "reference_expr": "lm_head_logits",
+      "inputs": [
+        "lm_head_logits"
+      ],
+      "output": {
+        "name": "final_logits",
+        "shape": [
+          "batch",
+          "vocabulary"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_ar_recurrence",
+      "name": "Autoregressive cache and mask recurrence",
+      "kind": "other",
+      "latex": "L_{t+1}=L_t+1",
+      "explanation": "After a non-EOS token, the sampled token becomes the next input, the returned key/value cache is reused, and the visible attention length grows by exactly one.",
+      "expr": "attention_length + 1",
+      "reference_expr": "attention_length + 1",
+      "inputs": [
+        "attention_length"
+      ],
+      "output": {
+        "name": "next_attention_length",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_eos_stop",
+      "name": "Batch-one EOS stopping rule",
+      "kind": "other",
+      "latex": "\\mathrm{stop}=1[x_t\\in E]",
+      "explanation": "The reviewed generator is constrained to batch size one and stops immediately when its scalar sampled token is one of the tokenizer's EOS identifiers.",
+      "expr": "sampled_token_scalar == eos_token",
+      "reference_expr": "sampled_token_scalar == eos_token",
+      "inputs": [
+        "sampled_token_scalar",
+        "eos_token"
+      ],
+      "output": {
+        "name": "stop_generation",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_greedy",
+      "name": "Greedy rater token",
+      "kind": "other",
+      "latex": "X=\\arg\\max_i z_i",
+      "explanation": "The frozen rater uses deterministic greedy decoding.",
+      "expr": "np.argmax(logits, axis=-1)",
+      "reference_expr": "np.argmax(logits, axis=-1)",
+      "inputs": [
+        "logits"
+      ],
+      "output": {
+        "name": "greedy_output_token",
+        "shape": [
+          "batch"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_awq_dequant",
+      "name": "Mistral 4-bit AWQ projection",
+      "kind": "other",
+      "latex": "Y=X[(Q-Z_g)S_g]",
+      "explanation": "The frozen vLLM AWQ dependency unpacks each int32 word in the AutoAWQ interleave, applies the group-indexed zero point and scale, and executes the equivalent matrix product. Both fused-GEMM and dequantize-then-matmul branches are checked.",
+      "expr": "np.matmul(rater_awq_hidden, (quantized_weight - quantized_zero) * quantized_scale)",
+      "reference_expr": "np.matmul(rater_awq_hidden, (quantized_weight - quantized_zero) * quantized_scale)",
+      "inputs": [
+        "rater_awq_hidden",
+        "quantized_weight",
+        "quantized_zero",
+        "quantized_scale"
+      ],
+      "output": {
+        "name": "rater_awq_projection",
+        "shape": [
+          "tokens",
+          "output_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_embedding",
+      "name": "Mistral token embedding lookup",
+      "kind": "other",
+      "latex": "H^{(0)}=E[x]",
+      "explanation": "Direct embedding-table gather on the valid token-ID domain. Invalid negative or out-of-range identifiers are rejected rather than wrapped or clamped.",
+      "domain": "rater_token_ids are integers with 0 <= id < vocabulary",
+      "expr": "np.take(rater_embedding_table, rater_token_ids.astype(np.int64), axis=0)",
+      "reference_expr": "np.take(rater_embedding_table, rater_token_ids.astype(np.int64), axis=0)",
+      "inputs": [
+        "rater_token_ids",
+        "rater_embedding_table"
+      ],
+      "output": {
+        "name": "rater_embedding_output",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_rms_norm",
+      "name": "Mistral RMS normalization",
+      "kind": "other",
+      "latex": "\\operatorname{RMSNorm}(h)=w\\odot h/\\sqrt{\\operatorname{mean}(h^2)+\\epsilon}",
+      "explanation": "The Mistral decoder and final head use last-axis RMS normalization.",
+      "expr": "rater_norm_weight * rater_hidden / np.sqrt(np.mean(rater_hidden ** 2, axis=-1, keepdims=True) + rater_norm_epsilon)",
+      "reference_expr": "rater_norm_weight * rater_hidden / np.sqrt(np.mean(rater_hidden ** 2, axis=-1, keepdims=True) + rater_norm_epsilon)",
+      "inputs": [
+        "rater_hidden",
+        "rater_norm_weight",
+        "rater_norm_epsilon"
+      ],
+      "output": {
+        "name": "rater_normalized_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_rope",
+      "name": "Mistral rotary position transform",
+      "kind": "other",
+      "latex": "q'=q\\odot\\cos\\theta+\\operatorname{rotateHalf}(q)\\odot\\sin\\theta",
+      "explanation": "The frozen Mistral dependency constructs inverse frequencies and trigonometric tables in the deployed float32 path, then applies the same NeoX half-rotation equation to queries and keys at prefill and cached-decode positions.",
+      "expr": "rater_rope_value * rater_rope_cos + rater_rope_rotated_half * rater_rope_sin",
+      "reference_expr": "rater_rope_value * rater_rope_cos + rater_rope_rotated_half * rater_rope_sin",
+      "inputs": [
+        "rater_rope_value",
+        "rater_rope_cos",
+        "rater_rope_rotated_half",
+        "rater_rope_sin"
+      ],
+      "output": {
+        "name": "rater_rotated_value",
+        "shape": [
+          "batch",
+          "head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_qkv_query",
+      "name": "Fused Mistral query split and head permutation",
+      "kind": "other",
+      "latex": "Q_{bhsd}=\\sum_f S^Q_{hdf}U_{bsf}",
+      "explanation": "A fixed one-hot selector encodes the checkpoint's leading query slice of the fused QKV projection and its reshape from [batch,sequence,width] to [batch,query_head,sequence,head_dim].",
+      "domain": "rater_query_split_selector is the one-hot selector for the leading query_heads*head_dim fused columns",
+      "expr": "np.einsum('bsf,hdf->bhsd', rater_fused_qkv, rater_query_split_selector)",
+      "reference_expr": "np.einsum('bsf,hdf->bhsd', rater_fused_qkv, rater_query_split_selector)",
+      "inputs": [
+        "rater_fused_qkv",
+        "rater_query_split_selector"
+      ],
+      "output": {
+        "name": "rater_split_query",
+        "shape": [
+          "batch",
+          "query_head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_qkv_key",
+      "name": "Fused Mistral key split and head permutation",
+      "kind": "other",
+      "latex": "K_{bhsd}=\\sum_f S^K_{hdf}U_{bsf}",
+      "explanation": "A fixed one-hot selector encodes the middle key slice of fused QKV and its reshape/permutation to key-value head axes.",
+      "domain": "rater_key_split_selector selects the key slice after the query width",
+      "expr": "np.einsum('bsf,hdf->bhsd', rater_fused_qkv, rater_key_split_selector)",
+      "reference_expr": "np.einsum('bsf,hdf->bhsd', rater_fused_qkv, rater_key_split_selector)",
+      "inputs": [
+        "rater_fused_qkv",
+        "rater_key_split_selector"
+      ],
+      "output": {
+        "name": "rater_split_key",
+        "shape": [
+          "batch",
+          "key_head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_qkv_value",
+      "name": "Fused Mistral value split and head permutation",
+      "kind": "other",
+      "latex": "V_{bhsd}=\\sum_f S^V_{hdf}U_{bsf}",
+      "explanation": "A fixed one-hot selector encodes the trailing value slice of fused QKV and its reshape/permutation to key-value head axes.",
+      "domain": "rater_value_split_selector selects the value slice after query and key widths",
+      "expr": "np.einsum('bsf,hdf->bhsd', rater_fused_qkv, rater_value_split_selector)",
+      "reference_expr": "np.einsum('bsf,hdf->bhsd', rater_fused_qkv, rater_value_split_selector)",
+      "inputs": [
+        "rater_fused_qkv",
+        "rater_value_split_selector"
+      ],
+      "output": {
+        "name": "rater_split_value",
+        "shape": [
+          "batch",
+          "key_head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_rope_inverse_frequency",
+      "name": "Mistral RoPE inverse frequencies",
+      "kind": "other",
+      "latex": "\\omega_i=\\exp[-i\\log(\\theta)/d]",
+      "explanation": "Even head-dimension frequency indices and the pinned positive rope_theta construct the float32 inverse-frequency vector.",
+      "domain": "frequency indices are nonnegative even coordinates; theta and head dimension are positive",
+      "expr": "np.exp(-rater_rope_frequency_index * rater_rope_log_theta / rater_rope_head_dimension)",
+      "reference_expr": "np.exp(-rater_rope_frequency_index * rater_rope_log_theta / rater_rope_head_dimension)",
+      "inputs": [
+        "rater_rope_frequency_index",
+        "rater_rope_log_theta",
+        "rater_rope_head_dimension"
+      ],
+      "output": {
+        "name": "rater_rope_inverse_frequency",
+        "shape": [
+          "half_head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_rope_table",
+      "name": "Mistral absolute-position RoPE cosine/sine tables",
+      "kind": "other",
+      "latex": "R_{p,:}=e^{\\mathrm{i}p\\omega}D^\\top,\\quad D=[I;I]",
+      "explanation": "Absolute prefill/decode positions form a complex phase table whose real and imaginary parts are the cosine and sine tables. The fixed half-to-full selector D=[I;I] duplicates both half-width tables to the full NeoX rotary head width before the registered rotary equation.",
+      "domain": "absolute positions are nonnegative integers",
+      "expr": "np.exp(1j * np.outer(rater_absolute_position, rater_rope_inverse_frequency)) @ rater_rope_half_to_full.T",
+      "reference_expr": "np.exp(1j * np.outer(rater_absolute_position, rater_rope_inverse_frequency)) @ rater_rope_half_to_full.T",
+      "inputs": [
+        "rater_absolute_position",
+        "rater_rope_inverse_frequency",
+        "rater_rope_half_to_full"
+      ],
+      "output": {
+        "name": "rater_rope_complex_table",
+        "shape": [
+          "position",
+          "head_dim"
+        ]
+      },
+      "invariants": [
+        "real and imaginary parts are cosine and sine of the identical outer-product phase",
+        "the fixed selector is D=[I;I], so the first and second head-dimension halves are identical"
+      ]
+    },
+    {
+      "id": "rater_gqa",
+      "name": "Mistral grouped-query repetition",
+      "kind": "other",
+      "latex": "K'_{bhsd}=\\sum_k G_{hk}K_{bksd}",
+      "explanation": "The full binary group map repeats every key/value head contiguously across its four query heads, producing all [batch,query_head,sequence,head_dim] outputs without index sanitization.",
+      "domain": "rater_gqa_group_map is binary with exactly one selected key head per query head",
+      "expr": "np.einsum('hk,bksd->bhsd', rater_gqa_group_map, rater_key_value)",
+      "reference_expr": "np.einsum('hk,bksd->bhsd', rater_gqa_group_map, rater_key_value)",
+      "inputs": [
+        "rater_gqa_group_map",
+        "rater_key_value"
+      ],
+      "output": {
+        "name": "rater_repeated_key_value",
+        "shape": [
+          "batch",
+          "query_head",
+          "sequence",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_attention",
+      "name": "Mistral scaled masked attention",
+      "kind": "other",
+      "latex": "A=\\operatorname{softmax}(QK^T/\\sqrt{d}+M)",
+      "explanation": "The frozen dependency multiplies queries by transposed keys, applies the head-dimension scale and cache-aware causal mask, then uses a stable last-key-axis softmax. Native 32-query/8-key-value-head FlashAttention is checked against this dense oracle.",
+      "expr": "np.exp((np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask) - np.max(np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask, axis=-1, keepdims=True)) / np.sum(np.exp((np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask) - np.max(np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask, axis=-1, keepdims=True)), axis=-1, keepdims=True)",
+      "reference_expr": "np.exp((np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask) - np.max(np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask, axis=-1, keepdims=True)) / np.sum(np.exp((np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask) - np.max(np.matmul(rater_query, np.swapaxes(rater_key, -1, -2)) * rater_attention_scale + rater_attention_mask, axis=-1, keepdims=True)), axis=-1, keepdims=True)",
+      "inputs": [
+        "rater_query",
+        "rater_key",
+        "rater_attention_scale",
+        "rater_attention_mask"
+      ],
+      "output": {
+        "name": "rater_attention_probability",
+        "shape": [
+          "batch",
+          "head",
+          "query",
+          "key"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_attention_value",
+      "name": "Mistral attention value aggregation",
+      "kind": "other",
+      "latex": "O=AV",
+      "explanation": "Attention probabilities multiply repeated value heads on the key axis.",
+      "expr": "np.matmul(rater_attention_probability, rater_repeated_value)",
+      "reference_expr": "np.matmul(rater_attention_probability, rater_repeated_value)",
+      "inputs": [
+        "rater_attention_probability",
+        "rater_repeated_value"
+      ],
+      "output": {
+        "name": "rater_attention_output",
+        "shape": [
+          "batch",
+          "head",
+          "query",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_linear",
+      "name": "Mistral frozen linear projection",
+      "kind": "other",
+      "latex": "Y=XW^T",
+      "explanation": "Attention, MLP and language-model-head projections multiply by the frozen weight transpose.",
+      "expr": "np.matmul(rater_projection_input, rater_projection_weight.T)",
+      "reference_expr": "np.matmul(rater_projection_input, rater_projection_weight.T)",
+      "inputs": [
+        "rater_projection_input",
+        "rater_projection_weight"
+      ],
+      "output": {
+        "name": "rater_projected_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "output_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_residual",
+      "name": "Mistral decoder residual",
+      "kind": "other",
+      "latex": "H'=H+F(H)",
+      "explanation": "Attention and MLP branch outputs are added to their incoming residuals.",
+      "expr": "rater_residual_hidden + rater_branch_hidden",
+      "reference_expr": "rater_residual_hidden + rater_branch_hidden",
+      "inputs": [
+        "rater_residual_hidden",
+        "rater_branch_hidden"
+      ],
+      "output": {
+        "name": "rater_updated_hidden",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_gated_silu",
+      "name": "Mistral gated-SiLU MLP",
+      "kind": "other",
+      "latex": "\\operatorname{MLP}(h)=W_d[\\operatorname{SiLU}(W_gh)\\odot(W_uh)]",
+      "explanation": "The Mistral MLP multiplies a SiLU gate by the up projection before the down projection.",
+      "expr": "np.matmul((rater_gate_linear / (1.0 + np.exp(-rater_gate_linear))) * rater_up_linear, rater_down_weight.T)",
+      "reference_expr": "np.matmul((rater_gate_linear / (1.0 + np.exp(-rater_gate_linear))) * rater_up_linear, rater_down_weight.T)",
+      "inputs": [
+        "rater_gate_linear",
+        "rater_up_linear",
+        "rater_down_weight"
+      ],
+      "output": {
+        "name": "rater_mlp_output",
+        "shape": [
+          "batch",
+          "sequence",
+          "hidden"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_lm_head",
+      "name": "Mistral single-rank vocabulary logits",
+      "kind": "other",
+      "latex": "z=W_{lm}\\operatorname{RMSNorm}(H_L)",
+      "explanation": "With tensor_parallel_size=1, the final normalized hidden state is projected once and any padded vocabulary tail is removed to the checkpoint's original vocabulary size; no cross-rank concatenation occurs.",
+      "expr": "np.matmul(rater_final_normalized, rater_lm_head_weight.T)[..., :rater_original_vocabulary_selector.shape[0]]",
+      "reference_expr": "np.einsum('bsh,vh->bsv', rater_final_normalized, rater_lm_head_weight)[..., :rater_original_vocabulary_selector.shape[0]]",
+      "inputs": [
+        "rater_final_normalized",
+        "rater_original_vocabulary_selector",
+        "rater_lm_head_weight"
+      ],
+      "output": {
+        "name": "rater_final_logits",
+        "shape": [
+          "batch",
+          "sequence",
+          "original_vocabulary"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_cache_write",
+      "name": "Mistral absolute-position key/value cache write",
+      "kind": "other",
+      "latex": "C'=C\\odot m+SW",
+      "explanation": "The keep mask clears exactly the absolute destination slots and a one-hot append selector writes every current key/value vector into the full cache storage.",
+      "domain": "keep mask is one except at written slots; append selector maps each current token to one absolute cache slot",
+      "expr": "rater_prior_cache * rater_cache_keep_mask[None, None, :, None] + np.einsum('tc,bhcd->bhtd', rater_cache_append_selector, rater_current_cache)",
+      "reference_expr": "rater_prior_cache * rater_cache_keep_mask[None, None, :, None] + np.einsum('tc,bhcd->bhtd', rater_cache_append_selector, rater_current_cache)",
+      "inputs": [
+        "rater_prior_cache",
+        "rater_cache_keep_mask",
+        "rater_cache_append_selector",
+        "rater_current_cache"
+      ],
+      "output": {
+        "name": "rater_written_cache",
+        "shape": [
+          "batch",
+          "key_head",
+          "cache_slot",
+          "head_dim"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_cache_position",
+      "name": "Mistral absolute cache positions",
+      "kind": "other",
+      "latex": "p_j=L_{past}+j",
+      "explanation": "Prefill starts at zero and each cached decode assigns the current tokens consecutive absolute positions after the prior visible cache length.",
+      "domain": "past cache length is nonnegative and current length is positive",
+      "expr": "rater_past_cache_length + np.arange(rater_current_cache_token.shape[0])",
+      "reference_expr": "rater_past_cache_length + np.arange(rater_current_cache_token.shape[0])",
+      "inputs": [
+        "rater_past_cache_length",
+        "rater_current_cache_token"
+      ],
+      "output": {
+        "name": "rater_current_absolute_position",
+        "shape": [
+          "current"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_causal_mask",
+      "name": "Mistral cache-aware causal mask",
+      "kind": "other",
+      "latex": "M_{qk}=0\\,[p_k\\le p_q]\\;\\mathrm{else}\\;-\\infty",
+      "explanation": "Absolute query positions see every cached/current key at or before the query position and mask every future cache position.",
+      "expr": "np.where(rater_key_absolute_position[None, :] <= rater_query_absolute_position[:, None], 0.0, rater_mask_minimum)",
+      "reference_expr": "np.where(rater_key_absolute_position[None, :] <= rater_query_absolute_position[:, None], 0.0, rater_mask_minimum)",
+      "inputs": [
+        "rater_query_absolute_position",
+        "rater_key_absolute_position",
+        "rater_mask_minimum"
+      ],
+      "output": {
+        "name": "rater_cache_aware_mask",
+        "shape": [
+          "query",
+          "key"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_cache_recurrence",
+      "name": "Mistral autoregressive cache growth",
+      "kind": "other",
+      "latex": "L_{t+1}=L_t+1",
+      "explanation": "Each emitted non-EOS token extends the visible cached prefix by one.",
+      "expr": "rater_attention_length + 1",
+      "reference_expr": "rater_attention_length + 1",
+      "inputs": [
+        "rater_attention_length"
+      ],
+      "output": {
+        "name": "rater_next_attention_length",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_eos_stop",
+      "name": "Mistral EOS stopping rule",
+      "kind": "other",
+      "latex": "\\mathrm{stop}=1[x_t=e]",
+      "explanation": "Batch-one generation stops as soon as the selected token is an EOS identifier.",
+      "expr": "rater_token_scalar == rater_eos_token",
+      "reference_expr": "rater_token_scalar == rater_eos_token",
+      "inputs": [
+        "rater_token_scalar",
+        "rater_eos_token"
+      ],
+      "output": {
+        "name": "rater_stop_generation",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_token_budget_stop",
+      "name": "Mistral generated-token budget",
+      "kind": "other",
+      "latex": "\\mathrm{stop}_{len}=1[n_{out}\\geq 8]",
+      "explanation": "The launch caps each independent rubric-item response at exactly eight generated tokens even when EOS has not appeared.",
+      "expr": "generated_token_count >= max_generated_tokens",
+      "reference_expr": "generated_token_count >= max_generated_tokens",
+      "inputs": [
+        "generated_token_count",
+        "max_generated_tokens"
+      ],
+      "output": {
+        "name": "rater_length_stop",
+        "shape": []
+      },
+      "invariants": []
+    },
+    {
+      "id": "rater_score_parse",
+      "name": "Strict rubric-item score parser",
+      "kind": "other",
+      "latex": "s=\\operatorname{int}(x),\\quad x\\in\\{1,2,3,4,5,6,7\\}",
+      "explanation": "On the valid parser domain, after surrounding whitespace is stripped, the full string contains exactly one ASCII byte 49..55 and the emitted integer score is that byte minus 48. Inputs outside this domain raise ValueError rather than producing a score.",
+      "domain": "stripped score text has length one and ASCII code in [49,55]",
+      "expr": "rater_score_ascii_code - 48",
+      "reference_expr": "rater_score_ascii_code - 48",
+      "inputs": [
+        "rater_score_ascii_code"
+      ],
+      "output": {
+        "name": "parsed_item_score",
+        "shape": []
+      },
+      "invariants": [
+        "the emitted integer is in [1,7]",
+        "signs, decimals, JSON, labels and multiple tokens are rejected"
+      ]
+    },
+    {
+      "id": "english_trait_mean",
+      "name": "Equal-weight six-item trait score",
+      "kind": "metric",
+      "latex": "y=\\frac{1}{6}\\sum_{j=1}^6 s_j",
+      "explanation": "Every English behavior trait score is the mean of its six integer rubric items.",
+      "expr": "np.sum(item_scores, axis=-1) / 6.0",
+      "reference_expr": "np.sum(item_scores, axis=-1) / 6.0",
+      "inputs": [
+        "item_scores"
+      ],
+      "output": {
+        "name": "trait_score",
+        "shape": [
+          "transcript"
+        ]
+      },
+      "invariants": []
+    },
+    {
+      "id": "english_rate",
+      "name": "Measured model-call throughput",
+      "kind": "other",
+      "latex": "R=N/t",
+      "explanation": "The executor divides completed model calls by positive elapsed seconds.",
+      "expr": "completed_calls / elapsed_seconds",
+      "reference_expr": "completed_calls / elapsed_seconds",
+      "inputs": [
+        "completed_calls",
+        "elapsed_seconds"
+      ],
+      "output": {
+        "name": "model_calls_per_second",
+        "shape": []
+      },
+      "invariants": []
+    }
+  ],
+  "global": {
+    "notation_consistent": true,
+    "all_symbols_defined": true,
+    "undefined_used": [],
+    "symbol_clashes": [],
+    "define_before_use": []
+  },
+  "overall_status": "confirmed",
+  "deployment_extension": {
+    "scope": "English-only behavior generation and English-rubric scoring; no BFI-2/TIPI text",
+    "authoritative_scientific_spec": "refine-logs/MATH_SPEC.json"
+  }
+}

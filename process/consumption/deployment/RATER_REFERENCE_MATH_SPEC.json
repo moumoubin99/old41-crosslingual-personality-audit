@@ -1,0 +1,1635 @@
+{
+  "version": 1,
+  "source_design_sha256": "5f8673504f7694e1e5f3f532fff0a60f3ad9128257570998d1f94544e50cfa12",
+  "scope": "Deployment extension for the frozen English B0 rater: complete int4-AWQ Mistral decode mathematics plus the already confirmed six-item mean and measured-call-rate formulas. The new decode formulas describe apparatus behavior; they do not change the scientific estimators or the approved design.",
+  "supersedes_note": "Corrects the six defective rater_* entries of ENGLISH_EXECUTION_MATH_SPEC.json named in the english-b0-rater-v2 review (embedding defined from ids and a table; grouped-query output head count key_head*groups; EOS set membership; QK scaling and causal masking inside the attention expression; rotate-half and RoPE table construction defined; AWQ bit unpacking and group indexing specified) and adds the five material operations that carried no formula (QKV split and reshape axes, position-dependent RoPE frequencies, packed AWQ extraction with fused-GEMM equivalence, KV-cache content and position updates, vocabulary-parallel logit handling).",
+  "symbol_table": [
+    {
+      "name": "packed_word",
+      "latex": "P",
+      "shape": [
+        "rows",
+        "packed_cols"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Packed AWQ int32 words, eight 4-bit values per word.",
+      "defined_at": "rater_awq_unpack"
+    },
+    {
+      "name": "unpack_order",
+      "latex": "\\pi",
+      "shape": [
+        "pack_factor"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Registered AWQ nibble interleave (0,4,1,5,2,6,3,7).",
+      "defined_at": "rater_awq_unpack"
+    },
+    {
+      "name": "row_index",
+      "latex": "i",
+      "shape": [
+        "input_dim"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Weight row indices 0..input_dim-1.",
+      "defined_at": "rater_awq_group_index"
+    },
+    {
+      "name": "group_size",
+      "latex": "g",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Number of consecutive input rows sharing one scale and zero point.",
+      "defined_at": "rater_awq_group_index"
+    },
+    {
+      "name": "unpacked_weight",
+      "latex": "Q",
+      "shape": [
+        "input_dim",
+        "output_dim"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Extracted 4-bit weight codes.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "unpacked_zero",
+      "latex": "Z",
+      "shape": [
+        "groups",
+        "output_dim"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Extracted 4-bit zero points, one row per group.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "awq_scale",
+      "latex": "S",
+      "shape": [
+        "groups",
+        "output_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Per-group per-output dequantization scale.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "group_index",
+      "latex": "\\gamma",
+      "shape": [
+        "input_dim"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Row-to-group map produced by rater_awq_group_index.",
+      "defined_at": "rater_awq_dequant"
+    },
+    {
+      "name": "gemm_hidden",
+      "latex": "X",
+      "shape": [
+        "tokens",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Activations entering a quantized projection.",
+      "defined_at": "rater_awq_gemm"
+    },
+    {
+      "name": "awq_weight",
+      "latex": "W",
+      "shape": [
+        "input_dim",
+        "output_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Dequantized weight produced by rater_awq_dequant.",
+      "defined_at": "rater_awq_gemm"
+    },
+    {
+      "name": "validated_token_id",
+      "latex": "t",
+      "shape": [
+        "tokens"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Input token identifiers after embedding_lookup has validated 0 <= t < vocabulary.",
+      "defined_at": "rater_embedding"
+    },
+    {
+      "name": "embedding_table",
+      "latex": "E",
+      "shape": [
+        "vocabulary",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Embedding matrix indexed by token identifier.",
+      "defined_at": "rater_embedding"
+    },
+    {
+      "name": "norm_hidden",
+      "latex": "H",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Hidden states entering RMS normalization.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "norm_weight",
+      "latex": "w",
+      "shape": [
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Learned RMSNorm gain.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "norm_epsilon",
+      "latex": "\\epsilon",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "RMSNorm stabilizer.",
+      "defined_at": "rater_rms_norm"
+    },
+    {
+      "name": "rope_theta",
+      "latex": "\\theta",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Rotary base read from the checkpoint configuration.",
+      "defined_at": "rater_rope_inv_freq"
+    },
+    {
+      "name": "pair_index",
+      "latex": "k",
+      "shape": [
+        "head_dim_half"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Rotary pair indices 0..head_dim/2-1.",
+      "defined_at": "rater_rope_inv_freq"
+    },
+    {
+      "name": "head_dim_value",
+      "latex": "d",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Attention head dimension.",
+      "defined_at": "rater_rope_inv_freq"
+    },
+    {
+      "name": "position",
+      "latex": "p",
+      "shape": [
+        "tokens"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Absolute token positions, cache-aware.",
+      "defined_at": "rater_rope_angle"
+    },
+    {
+      "name": "inverse_frequency",
+      "latex": "\\omega",
+      "shape": [
+        "head_dim_half"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Half-width rotary inverse frequencies produced by rater_rope_inv_freq.",
+      "defined_at": "rater_rope_angle"
+    },
+    {
+      "name": "duplicate_selector",
+      "latex": "c",
+      "shape": [
+        "duplicate_half"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "The two identical RoPE halves before flattening.",
+      "defined_at": "rater_rope_angle"
+    },
+    {
+      "name": "rope_angle",
+      "latex": "\\phi",
+      "shape": [
+        "tokens",
+        "duplicate_half",
+        "head_dim_half"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Two explicitly duplicated half-width rotary angle tables produced by rater_rope_angle.",
+      "defined_at": "rater_rope_cos"
+    },
+    {
+      "name": "rotate_input",
+      "latex": "V",
+      "shape": [
+        "query_head",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Tensor whose head halves are swapped with a sign.",
+      "defined_at": "rater_rotate_half"
+    },
+    {
+      "name": "rope_value",
+      "latex": "V",
+      "shape": [
+        "query_head",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Query or key projection before rotation.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rope_rotated",
+      "latex": "\\tilde{V}",
+      "shape": [
+        "query_head",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "rater_rotate_half applied to rope_value.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rope_cos",
+      "latex": "\\cos\\phi",
+      "shape": [
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Rotary cosine table.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "rope_sin",
+      "latex": "\\sin\\phi",
+      "shape": [
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Rotary sine table.",
+      "defined_at": "rater_rope"
+    },
+    {
+      "name": "fused_qkv",
+      "latex": "F",
+      "shape": [
+        "tokens",
+        "fused_width"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Fused query-key-value projection output.",
+      "defined_at": "rater_qkv_split_query"
+    },
+    {
+      "name": "num_query_heads",
+      "latex": "h_q",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Query head count.",
+      "defined_at": "rater_qkv_split_query"
+    },
+    {
+      "name": "num_key_heads",
+      "latex": "h_k",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Key/value head count.",
+      "defined_at": "rater_qkv_split_key"
+    },
+    {
+      "name": "projected_query",
+      "latex": "F_Q",
+      "shape": [
+        "tokens",
+        "query_head",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Query slice after the fused-width cut and reshape, before the head/position transpose.",
+      "defined_at": "rater_qkv_split_query"
+    },
+    {
+      "name": "projected_key",
+      "latex": "F_K",
+      "shape": [
+        "tokens",
+        "key_head",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Key slice after the fused-width cut and reshape, before the head/position transpose.",
+      "defined_at": "rater_qkv_split_key"
+    },
+    {
+      "name": "projected_value",
+      "latex": "F_V",
+      "shape": [
+        "tokens",
+        "key_head",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Value slice after both fused-width cuts and reshape, before the head/position transpose.",
+      "defined_at": "rater_qkv_split_value"
+    },
+    {
+      "name": "gqa_key_value",
+      "latex": "K",
+      "shape": [
+        "batch",
+        "key_head",
+        "key_tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Key or value tensor before grouped-query repetition.",
+      "defined_at": "rater_gqa"
+    },
+    {
+      "name": "gqa_group_count",
+      "latex": "r",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Positive number of query heads served by each key/value head.",
+      "defined_at": "rater_gqa"
+    },
+    {
+      "name": "query_head_index",
+      "latex": "q",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Validated flattened query-head index.",
+      "defined_at": "rater_gqa"
+    },
+    {
+      "name": "query_length",
+      "latex": "n_q",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Number of query positions in this step.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "key_length",
+      "latex": "n_k",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Number of cached plus fresh key positions.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "query_index",
+      "latex": "i",
+      "shape": [
+        "query_tokens"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Indices of the query rows in the current step.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "key_index",
+      "latex": "j",
+      "shape": [
+        "key_tokens"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Indices of the cached-plus-fresh key rows.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "cache_offset",
+      "latex": "n_k-n_q",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Absolute-position offset of the first query row inside the key cache.",
+      "defined_at": "rater_causal_mask"
+    },
+    {
+      "name": "attn_query",
+      "latex": "Q",
+      "shape": [
+        "query_head",
+        "query_tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Rotated query.",
+      "defined_at": "rater_attention_score"
+    },
+    {
+      "name": "attn_key",
+      "latex": "K",
+      "shape": [
+        "query_head",
+        "key_tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Rotated, group-repeated key.",
+      "defined_at": "rater_attention_score"
+    },
+    {
+      "name": "attn_scale",
+      "latex": "s",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Query-key scaling, head_dim raised to -1/2.",
+      "defined_at": "rater_attention_score"
+    },
+    {
+      "name": "attn_mask",
+      "latex": "M",
+      "shape": [
+        "query_tokens",
+        "key_tokens"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Additive causal mask from rater_causal_mask.",
+      "defined_at": "rater_attention_score"
+    },
+    {
+      "name": "attn_score",
+      "latex": "A",
+      "shape": [
+        "query_head",
+        "query_tokens",
+        "key_tokens"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Scaled, masked attention logits.",
+      "defined_at": "rater_attention"
+    },
+    {
+      "name": "attn_probability",
+      "latex": "\\alpha",
+      "shape": [
+        "query_head",
+        "query_tokens",
+        "key_tokens"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Attention distribution over keys.",
+      "defined_at": "rater_attention_value"
+    },
+    {
+      "name": "attn_value",
+      "latex": "V",
+      "shape": [
+        "query_head",
+        "key_tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Group-repeated value tensor.",
+      "defined_at": "rater_attention_value"
+    },
+    {
+      "name": "linear_input",
+      "latex": "X",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Activations entering an unquantized projection.",
+      "defined_at": "rater_linear"
+    },
+    {
+      "name": "linear_weight",
+      "latex": "W",
+      "shape": [
+        "output_dim",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Row-major projection weight.",
+      "defined_at": "rater_linear"
+    },
+    {
+      "name": "residual_hidden",
+      "latex": "H",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Residual stream entering a block.",
+      "defined_at": "rater_residual"
+    },
+    {
+      "name": "branch_hidden",
+      "latex": "B",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Sub-layer output added to the residual stream.",
+      "defined_at": "rater_residual"
+    },
+    {
+      "name": "gate_linear",
+      "latex": "G",
+      "shape": [
+        "tokens",
+        "intermediate"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Gate projection output.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "up_linear",
+      "latex": "U",
+      "shape": [
+        "tokens",
+        "intermediate"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Up projection output.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "down_weight",
+      "latex": "W_d",
+      "shape": [
+        "hidden",
+        "intermediate"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Down projection weight.",
+      "defined_at": "rater_gated_silu"
+    },
+    {
+      "name": "cached_entry",
+      "latex": "C",
+      "shape": [
+        "batch",
+        "key_head",
+        "cached_tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Existing cached key or value block.",
+      "defined_at": "rater_cache_append"
+    },
+    {
+      "name": "fresh_entry",
+      "latex": "C_{new}",
+      "shape": [
+        "batch",
+        "key_head",
+        "new_tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "New key or value block produced by the current prefill or decode step.",
+      "defined_at": "rater_cache_append"
+    },
+    {
+      "name": "cache_position",
+      "latex": "t",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Arbitrary sequence position used to state the dynamic-length concatenation elementwise.",
+      "defined_at": "rater_cache_append"
+    },
+    {
+      "name": "attention_length",
+      "latex": "L",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Cached key length before this step.",
+      "defined_at": "rater_cache_recurrence"
+    },
+    {
+      "name": "appended_tokens",
+      "latex": "a",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Positions appended by this step.",
+      "defined_at": "rater_cache_recurrence"
+    },
+    {
+      "name": "past_length",
+      "latex": "L_0",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Cache length, equal to the first new absolute position.",
+      "defined_at": "rater_positions"
+    },
+    {
+      "name": "step_offset",
+      "latex": "j",
+      "shape": [
+        "step_tokens"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Offsets 0..step_tokens-1 within the current step.",
+      "defined_at": "rater_positions"
+    },
+    {
+      "name": "post_attention_hidden",
+      "latex": "H_1",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Residual stream after the attention branch has been added.",
+      "defined_at": "rater_decoder_layer"
+    },
+    {
+      "name": "mlp_branch",
+      "latex": "B_2",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Gated-SiLU branch output.",
+      "defined_at": "rater_decoder_layer"
+    },
+    {
+      "name": "shard_logits_a",
+      "latex": "Y_0",
+      "shape": [
+        "tokens",
+        "shard_vocab_a"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Logits held by the first vocabulary-parallel rank.",
+      "defined_at": "rater_vocab_parallel"
+    },
+    {
+      "name": "shard_logits_b",
+      "latex": "Y_1",
+      "shape": [
+        "tokens",
+        "shard_vocab_b"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Logits held by the second vocabulary-parallel rank.",
+      "defined_at": "rater_vocab_parallel"
+    },
+    {
+      "name": "ranked_shard_logits",
+      "latex": "\\mathcal{Y}",
+      "shape": [
+        "parallel_rank",
+        "tokens",
+        "shard_vocab"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Vocabulary-logit shards in rank order before flattening rank and shard-vocabulary into the full vocabulary axis.",
+      "defined_at": "rater_vocab_parallel"
+    },
+    {
+      "name": "vocabulary_index",
+      "latex": "v",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Validated index into the concatenated vocabulary axis.",
+      "defined_at": "rater_vocab_parallel"
+    },
+    {
+      "name": "final_normalized",
+      "latex": "H_f",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Final-normalized hidden states.",
+      "defined_at": "rater_lm_head"
+    },
+    {
+      "name": "lm_head_weight",
+      "latex": "W_o",
+      "shape": [
+        "vocabulary",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Output embedding / language-model head.",
+      "defined_at": "rater_lm_head"
+    },
+    {
+      "name": "step_logits",
+      "latex": "y",
+      "shape": [
+        "tokens",
+        "vocabulary"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Logits of the last position.",
+      "defined_at": "rater_greedy"
+    },
+    {
+      "name": "produced_token",
+      "latex": "\\hat{t}",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Token selected at this step.",
+      "defined_at": "rater_eos_stop"
+    },
+    {
+      "name": "eos_token_set",
+      "latex": "\\mathcal{E}",
+      "shape": [
+        "eos_count"
+      ],
+      "dtype": "int",
+      "role": "input",
+      "description": "Every terminal identifier declared by the checkpoint.",
+      "defined_at": "rater_eos_stop"
+    },
+    {
+      "name": "item_scores",
+      "latex": "s",
+      "shape": [
+        "transcript",
+        "item=6"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "The six frozen English-rubric item scores for one trait and transcript.",
+      "defined_at": "english_trait_mean"
+    },
+    {
+      "name": "completed_calls",
+      "latex": "N",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Number of completed independent rater calls.",
+      "defined_at": "english_rate"
+    },
+    {
+      "name": "elapsed_seconds",
+      "latex": "t",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Positive elapsed scoring time in seconds.",
+      "defined_at": "english_rate"
+    },
+    {
+      "name": "config_query_heads",
+      "latex": "h_q",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Positive query-head count read from the checkpoint.",
+      "defined_at": "rater_checkpoint_groups"
+    },
+    {
+      "name": "config_key_value_heads",
+      "latex": "h_k",
+      "shape": [],
+      "dtype": "int",
+      "role": "input",
+      "description": "Positive key/value-head count dividing the query-head count.",
+      "defined_at": "rater_checkpoint_groups"
+    }
+  ],
+  "formulas": [
+    {
+      "id": "rater_awq_unpack",
+      "name": "Packed AWQ int4 extraction",
+      "kind": "forward",
+      "latex": "U_{r,c,k}=\\left(P_{r,c}\\gg 4\\pi_k\\right)\\wedge 15,\\quad Q=\\operatorname{reshape}_{r,8c+k}(U)",
+      "explanation": "Each int32 word carries eight 4-bit codes; code k is read from bit offset 4*pi_k, where pi is the registered AutoAWQ interleave (0,4,1,5,2,6,3,7). The bound awq_extract operation returns the declared [rows, packed_cols, pack_factor] tensor. Its sole downstream adapter awq_unpack explicitly reshapes that tensor to the deployed two-dimensional [rows, packed_cols*pack_factor] weight layout, whose flattened column is pack_factor*c+k; awq_dequantize consumes that flattened result. The interleave is part of the stored format, not a project convention.",
+      "expr": "np.mod(np.floor_divide(packed_word[..., None], 2 ** (4 * unpack_order)), 16)",
+      "reference_expr": "np.remainder(np.floor(packed_word[..., None] / (2 ** (4 * unpack_order))), 16)",
+      "inputs": [
+        "packed_word",
+        "unpack_order"
+      ],
+      "output": {
+        "name": "unpacked_nibble",
+        "shape": [
+          "rows",
+          "packed_cols",
+          "pack_factor"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_awq_group_index",
+      "name": "AWQ group indexing",
+      "kind": "forward",
+      "latex": "\\gamma_i=\\lfloor i/g \\rfloor",
+      "explanation": "Row i of the weight is dequantized with the scale and zero point of group floor(i/g). The group size must divide the input dimension.",
+      "expr": "row_index // group_size",
+      "reference_expr": "np.floor_divide(row_index, group_size)",
+      "inputs": [
+        "row_index",
+        "group_size"
+      ],
+      "output": {
+        "name": "group_index_out",
+        "shape": [
+          "input_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_awq_dequant",
+      "name": "AWQ dequantization",
+      "kind": "forward",
+      "latex": "W_{ij}=\\left(Q_{ij}-Z_{\\gamma_i,j}\\right)\\,S_{\\gamma_i,j}",
+      "explanation": "Centre each 4-bit code on its group zero point and scale it. The group axis is broadcast back to rows through the group index, which the previous specification left implicit.",
+      "expr": "(unpacked_weight - np.take(unpacked_zero, np.mod(np.abs(group_index).astype(np.int64), unpacked_zero.shape[0]), axis=0)) * np.take(awq_scale, np.mod(np.abs(group_index).astype(np.int64), awq_scale.shape[0]), axis=0)",
+      "reference_expr": "np.multiply(np.subtract(unpacked_weight, np.take(unpacked_zero, np.mod(np.abs(group_index).astype(np.int64), unpacked_zero.shape[0]), axis=0)), np.take(awq_scale, np.mod(np.abs(group_index).astype(np.int64), awq_scale.shape[0]), axis=0))",
+      "inputs": [
+        "unpacked_weight",
+        "unpacked_zero",
+        "awq_scale",
+        "group_index"
+      ],
+      "output": {
+        "name": "dequantized_weight",
+        "shape": [
+          "input_dim",
+          "output_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_awq_gemm",
+      "name": "Fused AWQ GEMM equivalence",
+      "kind": "forward",
+      "latex": "Y=XW,\\quad W=\\left(Q-Z_\\gamma\\right)S_\\gamma",
+      "explanation": "The runtime calls one fused quantized kernel. Its mathematical content is the dequantized matrix product: this identity is what the contract test checks against a scalar accumulation, and it is the claim the fused kernel must satisfy.",
+      "expr": "np.matmul(gemm_hidden, awq_weight)",
+      "reference_expr": "np.einsum('ti,io->to', gemm_hidden, awq_weight)",
+      "inputs": [
+        "gemm_hidden",
+        "awq_weight"
+      ],
+      "output": {
+        "name": "awq_projection",
+        "shape": [
+          "tokens",
+          "output_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_embedding",
+      "name": "Embedding lookup",
+      "kind": "forward",
+      "latex": "H_{t,:}=E_{\\,\\mathrm{id}(t),:}",
+      "explanation": "Gather the row named by each already validated token identifier. The abs/mod wrapper exists only to generate in-domain values for the deterministic shape checker; on the stated domain it is the identity, while embedding_lookup separately rejects invalid identifiers.",
+      "expr": "np.take(embedding_table, np.mod(np.abs(validated_token_id).astype(np.int64), embedding_table.shape[0]), axis=0)",
+      "reference_expr": "embedding_table[np.mod(np.abs(validated_token_id).astype(np.int64), embedding_table.shape[0])]",
+      "inputs": [
+        "validated_token_id",
+        "embedding_table"
+      ],
+      "output": {
+        "name": "embedded_hidden",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rms_norm",
+      "name": "Root-mean-square normalization",
+      "kind": "forward",
+      "latex": "\\operatorname{RMSNorm}(H)=w\\odot H/\\sqrt{\\operatorname{mean}(H^2,-1)+\\epsilon}",
+      "explanation": "Normalize each token over its hidden axis without mean subtraction, then apply the learned gain. The reduction accumulates at no lower precision than float32.",
+      "expr": "norm_weight * norm_hidden / np.sqrt(np.mean(norm_hidden ** 2, axis=-1, keepdims=True) + norm_epsilon)",
+      "reference_expr": "norm_weight * norm_hidden / np.sqrt(np.sum(norm_hidden ** 2, axis=-1, keepdims=True) / norm_hidden.shape[-1] + norm_epsilon)",
+      "inputs": [
+        "norm_hidden",
+        "norm_weight",
+        "norm_epsilon"
+      ],
+      "output": {
+        "name": "normalized_hidden",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rope_inv_freq",
+      "name": "Rotary inverse frequencies",
+      "kind": "forward",
+      "latex": "\\omega_k=\\theta^{-2k/d},\\quad 0\\le k<d/2",
+      "explanation": "The implementation constructs the half-width inverse-frequency vector in float64. The next formula duplicates its angle table explicitly before rope_tables flattens it.",
+      "expr": "1.0 / (np.maximum(rope_theta, 1e-12) ** (2.0 * np.mod(np.abs(pair_index).astype(np.int64), np.maximum(np.abs(head_dim_value).astype(np.int64) // 2, 1)) / np.maximum(np.abs(head_dim_value), 1.0)))",
+      "reference_expr": "np.maximum(rope_theta, 1e-12) ** (-2.0 * np.mod(np.abs(pair_index).astype(np.int64), np.maximum(np.abs(head_dim_value).astype(np.int64) // 2, 1)) / np.maximum(np.abs(head_dim_value), 1.0))",
+      "inputs": [
+        "rope_theta",
+        "pair_index",
+        "head_dim_value"
+      ],
+      "output": {
+        "name": "inverse_frequency_out",
+        "shape": [
+          "head_dim_half"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rope_angle",
+      "name": "Rotary table construction",
+      "kind": "forward",
+      "latex": "\\phi_{p,c,k}=p\\omega_k,\\quad c\\in\\{0,1\\}",
+      "explanation": "The half-width angle table is duplicated as an explicit size-two axis before rope_tables flattens its last two axes. Position dependence is load-bearing and is tested directly.",
+      "expr": "0.0 * duplicate_selector[None, :, None] + position[:, None, None] * inverse_frequency[None, None, :]",
+      "reference_expr": "np.repeat(np.einsum('t,d->td', position, inverse_frequency)[:, None, :], 2, axis=1)",
+      "inputs": [
+        "duplicate_selector",
+        "position",
+        "inverse_frequency"
+      ],
+      "output": {
+        "name": "rope_angle_out",
+        "shape": [
+          "tokens",
+          "duplicate_half",
+          "head_dim_half"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rope_cos",
+      "name": "Rotary cosine table",
+      "kind": "forward",
+      "latex": "\\cos\\phi",
+      "explanation": "Elementwise cosine of the duplicated angle table.",
+      "expr": "np.cos(rope_angle)",
+      "inputs": [
+        "rope_angle"
+      ],
+      "output": {
+        "name": "rope_cos_out",
+        "shape": [
+          "tokens",
+          "duplicate_half",
+          "head_dim_half"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rope_sin",
+      "name": "Rotary sine table",
+      "kind": "forward",
+      "latex": "\\sin\\phi",
+      "explanation": "Elementwise sine of the duplicated angle table.",
+      "expr": "np.sin(rope_angle)",
+      "inputs": [
+        "rope_angle"
+      ],
+      "output": {
+        "name": "rope_sin_out",
+        "shape": [
+          "tokens",
+          "duplicate_half",
+          "head_dim_half"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rotate_half",
+      "name": "Rotate-half",
+      "kind": "forward",
+      "latex": "\\tilde{V}=\\left[-V_{d/2:},\\;V_{:d/2}\\right]",
+      "explanation": "Split the head axis at its midpoint, negate the upper half and place it first. Previously this tensor was supplied as an undefined input symbol.",
+      "expr": "np.concatenate([-rotate_input[..., rotate_input.shape[-1] // 2:], rotate_input[..., :rotate_input.shape[-1] // 2]], axis=-1)",
+      "inputs": [
+        "rotate_input"
+      ],
+      "output": {
+        "name": "rotated_half",
+        "shape": [
+          "query_head",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_rope",
+      "name": "Rotary position embedding",
+      "kind": "forward",
+      "latex": "\\operatorname{RoPE}(V,p)=V\\odot\\cos\\phi_p+\\tilde{V}\\odot\\sin\\phi_p",
+      "explanation": "Rotate each coordinate pair by its position-dependent angle. The inner product of a rotated query and a rotated key depends only on the position difference, which the contract test checks directly.",
+      "expr": "rope_value * rope_cos + rope_rotated * rope_sin",
+      "inputs": [
+        "rope_value",
+        "rope_rotated",
+        "rope_cos",
+        "rope_sin"
+      ],
+      "output": {
+        "name": "rope_output",
+        "shape": [
+          "query_head",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_qkv_split_query",
+      "name": "Fused QKV split and reshape, query part",
+      "kind": "forward",
+      "latex": "Q_{h,t,:}=F_{t,\\;hd:(h+1)d}",
+      "explanation": "The fused projection row is cut at h_q*d, reshaped to (tokens, heads, head_dim) and transposed to head-major order. Reshape precedes transpose; the other order interleaves heads with positions while keeping a compatible shape.",
+      "expr": "np.transpose(projected_query, (1, 0, 2))",
+      "reference_expr": "np.swapaxes(projected_query, 0, 1)",
+      "inputs": [
+        "projected_query"
+      ],
+      "output": {
+        "name": "split_query",
+        "shape": [
+          "query_head",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_qkv_split_key",
+      "name": "Fused QKV split and reshape, key part",
+      "kind": "forward",
+      "latex": "K_{h,t,:}=F_{t,\\;h_qd+hd:\\,h_qd+(h+1)d}",
+      "explanation": "The key block begins at offset h_q*d and is h_k*d wide; the value block follows it with the same width. Both reshape and transpose exactly as the query does.",
+      "expr": "np.transpose(projected_key, (1, 0, 2))",
+      "reference_expr": "np.swapaxes(projected_key, 0, 1)",
+      "inputs": [
+        "projected_key"
+      ],
+      "output": {
+        "name": "split_key",
+        "shape": [
+          "key_head",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_qkv_split_value",
+      "name": "Fused QKV split and reshape, value part",
+      "kind": "forward",
+      "latex": "V_{h,t,:}=F_{t,\\;h_qd+h_kd+hd:\\,h_qd+h_kd+(h+1)d}",
+      "explanation": "The value block begins after the query and key blocks, is h_k*d wide, and uses the same reshape-then-transpose ordering as the key block.",
+      "expr": "np.transpose(projected_value, (1, 0, 2))",
+      "reference_expr": "np.swapaxes(projected_value, 0, 1)",
+      "inputs": [
+        "projected_value"
+      ],
+      "output": {
+        "name": "split_value",
+        "shape": [
+          "key_head",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_gqa",
+      "name": "Grouped-query repetition",
+      "kind": "forward",
+      "latex": "\\bar{K}_{b,q,:,:}=K_{b,\\lfloor q/r\\rfloor,:,:}",
+      "explanation": "Elementwise head-index definition of the flattened grouped-query output. repeat_kv calls this selector for every validated query-head index q, so the returned head axis has key_head*r entries without retaining a separate group axis. The abs/mod terms only keep the deterministic checker in the validated domain.",
+      "expr": "np.take(gqa_key_value, np.mod(np.abs(query_head_index).astype(np.int64) // np.maximum(np.abs(gqa_group_count).astype(np.int64), 1), gqa_key_value.shape[1]), axis=1)",
+      "inputs": [
+        "gqa_key_value",
+        "gqa_group_count",
+        "query_head_index"
+      ],
+      "output": {
+        "name": "repeated_key_value_head",
+        "shape": [
+          "batch",
+          "key_tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_causal_mask",
+      "name": "Cache-aware causal mask",
+      "kind": "forward",
+      "latex": "M_{ij}=0 \\text{ if } j\\le i+(n_k-n_q),\\ -\\infty \\text{ otherwise}",
+      "explanation": "With a key-value cache the query block sits at the end of the key block, so query i occupies absolute position i + (n_k - n_q). Omitting the offset would let a decode step attend to nothing but its own row.",
+      "expr": "np.where(key_index[None, :] <= query_index[:, None] + cache_offset, 0.0, -np.inf)",
+      "inputs": [
+        "query_index",
+        "key_index",
+        "cache_offset"
+      ],
+      "output": {
+        "name": "causal_mask_out",
+        "shape": [
+          "query_tokens",
+          "key_tokens"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_attention_score",
+      "name": "Scaled masked attention logits",
+      "kind": "forward",
+      "latex": "A=\\frac{QK^{\\top}}{\\sqrt{d}}+M",
+      "explanation": "The query-key product, its 1/sqrt(d) scaling and the additive causal mask now live inside the expression. The previous entry softmaxed a score tensor supplied from outside and therefore asserted nothing about either the scaling or the mask.",
+      "expr": "np.matmul(attn_query, np.swapaxes(attn_key, -1, -2)) * attn_scale + attn_mask",
+      "reference_expr": "np.einsum('hqd,hkd->hqk', attn_query, attn_key) * attn_scale + attn_mask",
+      "inputs": [
+        "attn_query",
+        "attn_key",
+        "attn_scale",
+        "attn_mask"
+      ],
+      "output": {
+        "name": "attention_score_out",
+        "shape": [
+          "query_head",
+          "query_tokens",
+          "key_tokens"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_attention",
+      "name": "Attention distribution",
+      "kind": "forward",
+      "latex": "\\alpha=\\operatorname{softmax}_{k}(A)",
+      "explanation": "Softmax over the key axis, shifted by the row maximum for stability. Each row sums to one, so every output is a convex combination of the visible value rows.",
+      "expr": "np.exp(attn_score - np.max(attn_score, axis=-1, keepdims=True)) / np.sum(np.exp(attn_score - np.max(attn_score, axis=-1, keepdims=True)), axis=-1, keepdims=True)",
+      "inputs": [
+        "attn_score"
+      ],
+      "output": {
+        "name": "attention_probability",
+        "shape": [
+          "query_head",
+          "query_tokens",
+          "key_tokens"
+        ]
+      },
+      "invariants": [
+        "prob_sum_to_1"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_attention_value",
+      "name": "Attention value aggregation",
+      "kind": "forward",
+      "latex": "O=\\alpha V",
+      "explanation": "Contract the key axis of the distribution against the key axis of the group-repeated value tensor.",
+      "expr": "np.matmul(attn_probability, attn_value)",
+      "reference_expr": "np.einsum('hqk,hkd->hqd', attn_probability, attn_value)",
+      "inputs": [
+        "attn_probability",
+        "attn_value"
+      ],
+      "output": {
+        "name": "attention_output",
+        "shape": [
+          "query_head",
+          "query_tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_linear",
+      "name": "Unquantized projection",
+      "kind": "forward",
+      "latex": "Y=XW^{\\top}",
+      "explanation": "Row-major weight, contracting the hidden axis. Used by the norm-scaled head path, which is not quantized.",
+      "expr": "np.matmul(linear_input, linear_weight.T)",
+      "reference_expr": "np.einsum('th,oh->to', linear_input, linear_weight)",
+      "inputs": [
+        "linear_input",
+        "linear_weight"
+      ],
+      "output": {
+        "name": "linear_output",
+        "shape": [
+          "tokens",
+          "output_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_residual",
+      "name": "Residual update",
+      "kind": "forward",
+      "latex": "H'=H+B",
+      "explanation": "Pre-norm residual addition; the hidden width is preserved.",
+      "expr": "residual_hidden + branch_hidden",
+      "inputs": [
+        "residual_hidden",
+        "branch_hidden"
+      ],
+      "output": {
+        "name": "residual_output",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_gated_silu",
+      "name": "Gated SiLU feed-forward",
+      "kind": "forward",
+      "latex": "\\operatorname{MLP}(X)=\\left(\\sigma(G)\\odot G\\odot U\\right)W_d^{\\top}",
+      "explanation": "SiLU-gate the gate projection, multiply elementwise by the up projection and contract with the down projection.",
+      "expr": "np.matmul((gate_linear / (1.0 + np.exp(-gate_linear))) * up_linear, down_weight.T)",
+      "reference_expr": "np.einsum('ti,hi->th', (gate_linear / (1.0 + np.exp(-gate_linear))) * up_linear, down_weight)",
+      "inputs": [
+        "gate_linear",
+        "up_linear",
+        "down_weight"
+      ],
+      "output": {
+        "name": "mlp_output",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_cache_append",
+      "name": "Key-value cache content update",
+      "kind": "forward",
+      "latex": "C'_{b,h,t,d}=\\begin{cases}C_{b,h,t,d},&t<L;<LOCAL_PATH>,b,h,t-L,d},&L\\le t<L+A.\\end{cases}",
+      "explanation": "Elementwise definition of concatenation along the dynamic sequence axis. The expression selects an arbitrary position from the concatenated cache, while rater_cache_recurrence separately states its length L+A. Batch, head and head-dimension axes are preserved. The contract test also checks that a split cached forward equals the whole forward.",
+      "expr": "np.take(np.concatenate([cached_entry, fresh_entry], axis=-2), np.mod(np.abs(cache_position).astype(np.int64), cached_entry.shape[-2] + fresh_entry.shape[-2]), axis=-2)",
+      "inputs": [
+        "cached_entry",
+        "fresh_entry",
+        "cache_position"
+      ],
+      "output": {
+        "name": "cache_content_at_position",
+        "shape": [
+          "batch",
+          "key_head",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_cache_recurrence",
+      "name": "Key-value cache length recurrence",
+      "kind": "forward",
+      "latex": "L'=L+a",
+      "explanation": "The cached key length after appending a positions. A decode step appends one.",
+      "expr": "attention_length + appended_tokens",
+      "inputs": [
+        "attention_length",
+        "appended_tokens"
+      ],
+      "output": {
+        "name": "cache_length_next",
+        "shape": []
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_positions",
+      "name": "Cache-aware position update",
+      "kind": "forward",
+      "latex": "p_j=L_0+j",
+      "explanation": "A step whose cache holds L0 positions starts at absolute position L0. This is the link between the cache and the rotary tables: a step decoded at position 0 with a non-empty cache gives a different and wrong answer, which the contract test demonstrates.",
+      "expr": "past_length + step_offset",
+      "inputs": [
+        "past_length",
+        "step_offset"
+      ],
+      "output": {
+        "name": "step_positions",
+        "shape": [
+          "step_tokens"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_decoder_layer",
+      "name": "Pre-norm decoder block",
+      "kind": "forward",
+      "latex": "H_2=H_1+\\operatorname{MLP}(\\operatorname{RMSNorm}(H_1)),\\quad H_1=H+\\operatorname{Attn}(\\operatorname{RMSNorm}(H))",
+      "explanation": "The block is two pre-norm residual branches: normalize, attend, add; normalize, feed forward, add. Zeroing both output projections must return the input unchanged, which is how the contract test pins the residual structure rather than merely the shapes.",
+      "expr": "residual_hidden + branch_hidden + mlp_branch",
+      "inputs": [
+        "residual_hidden",
+        "branch_hidden",
+        "mlp_branch"
+      ],
+      "output": {
+        "name": "decoder_layer_output",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_vocab_parallel",
+      "name": "Rank-ordered vocabulary-logit shards",
+      "kind": "forward",
+      "latex": "Y_{t,v}=\\begin{cases}(Y_0)_{t,v},&v<|V_0|;<LOCAL_PATH>)_{t,v-|V_0|},&|V_0|\\le v<|V_0|+|V_1|.\\end{cases}",
+      "explanation": "Elementwise definition of rank-ordered vocabulary concatenation for two shards. vocabulary_parallel_logits calls the bound selector for every validated vocabulary index, flattening the shard axes into one full-vocabulary axis; the executable test proves equality with the whole head and proves rank order is load-bearing.",
+      "expr": "np.where(vocabulary_index < shard_logits_a.shape[-1], np.take(shard_logits_a, np.mod(np.abs(vocabulary_index).astype(np.int64), shard_logits_a.shape[-1]), axis=-1), np.take(shard_logits_b, np.mod(np.abs(vocabulary_index - shard_logits_a.shape[-1]).astype(np.int64), shard_logits_b.shape[-1]), axis=-1))",
+      "inputs": [
+        "shard_logits_a",
+        "shard_logits_b",
+        "vocabulary_index"
+      ],
+      "output": {
+        "name": "gathered_logit_column",
+        "shape": [
+          "tokens"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_lm_head",
+      "name": "Language-model head",
+      "kind": "forward",
+      "latex": "Y=H_fW_o^{\\top}",
+      "explanation": "Project the final-normalized hidden states onto the vocabulary.",
+      "expr": "np.matmul(final_normalized, lm_head_weight.T)",
+      "reference_expr": "np.einsum('th,vh->tv', final_normalized, lm_head_weight)",
+      "inputs": [
+        "final_normalized",
+        "lm_head_weight"
+      ],
+      "output": {
+        "name": "vocabulary_logits",
+        "shape": [
+          "tokens",
+          "vocabulary"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_greedy",
+      "name": "Greedy token selection",
+      "kind": "forward",
+      "latex": "\\hat{t}=\\arg\\max_v y_v",
+      "explanation": "Final-axis argmax, taking the first maximum so that ties are deterministic. The project owns this selection and forces the runtime sampler to it.",
+      "expr": "np.argmax(step_logits, axis=-1)",
+      "inputs": [
+        "step_logits"
+      ],
+      "output": {
+        "name": "selected_token",
+        "shape": [
+          "tokens"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_eos_stop",
+      "name": "End-of-sequence stopping",
+      "kind": "forward",
+      "latex": "\\mathrm{stop}=\\left[\\hat{t}\\in\\mathcal{E}\\right]",
+      "explanation": "Stop when the selected token is a MEMBER of the checkpoint-declared terminal set. The deployed checkpoint currently resolves that set to the singleton {2}; set-membership remains the runtime contract so any future artifact-bound terminal set is handled without changing the formula.",
+      "expr": "np.isin(produced_token, eos_token_set)",
+      "reference_expr": "np.any(eos_token_set == produced_token)",
+      "inputs": [
+        "produced_token",
+        "eos_token_set"
+      ],
+      "output": {
+        "name": "stop_flag",
+        "shape": []
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "rater_checkpoint_groups",
+      "name": "Checkpoint grouped-query ratio",
+      "kind": "dependency",
+      "latex": "r=h_q/h_k",
+      "explanation": "The frozen checkpoint must declare a positive query-head count exactly divisible by its key/value-head count. key_value_group_count enforces that domain before returning this ratio.",
+      "expr": "np.floor_divide(np.abs(config_query_heads), np.maximum(np.abs(config_key_value_heads), 1.0))",
+      "inputs": [
+        "config_query_heads",
+        "config_key_value_heads"
+      ],
+      "output": {
+        "name": "checkpoint_key_value_groups",
+        "shape": []
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "english_trait_mean",
+      "name": "Equal-weight six-item trait score",
+      "kind": "metric",
+      "latex": "y=\\frac{1}{6}\\sum_{j=1}^6 s_j",
+      "explanation": "Every English behavior trait score is the mean of its six integer rubric items; this is copied unchanged from the confirmed English execution specification.",
+      "expr": "np.mean(item_scores, axis=-1)",
+      "reference_expr": "np.sum(item_scores, axis=-1) / item_scores.shape[-1]",
+      "inputs": [
+        "item_scores"
+      ],
+      "output": {
+        "name": "trait_score",
+        "shape": [
+          "transcript"
+        ]
+      },
+      "invariants": [],
+      "status": "confirmed-existing"
+    },
+    {
+      "id": "english_rate",
+      "name": "Measured model-call throughput",
+      "kind": "other",
+      "latex": "R=N/t",
+      "explanation": "The executor divides completed model calls by positive elapsed seconds; this is copied unchanged from the confirmed English execution specification.",
+      "expr": "completed_calls / elapsed_seconds",
+      "reference_expr": "completed_calls * (1.0 / elapsed_seconds)",
+      "inputs": [
+        "completed_calls",
+        "elapsed_seconds"
+      ],
+      "output": {
+        "name": "model_calls_per_second",
+        "shape": []
+      },
+      "invariants": [],
+      "status": "confirmed-existing"
+    }
+  ],
+  "global": {},
+  "overall_status": "deployment-extension"
+}

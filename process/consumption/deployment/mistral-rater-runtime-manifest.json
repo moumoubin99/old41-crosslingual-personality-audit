@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "worker": "autodl-container-8e334ab691-3ef3562e",
+  "interpreter": "<LOCAL_PATH>/python3.12",
+  "package_versions": {
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "vllm": "0.11.0"
+  },
+  "model_files": {
+    "model-00001-of-00004.safetensors": "c78fc669f20aac703887c41ab01125d3e9db5cd253595f6bdc7717d0204793f0",
+    "model-00002-of-00004.safetensors": "2b97b62d1cd8bd0b0e035a8947192b6f9fbde7a28fb69ce91b61145b61524154",
+    "model-00003-of-00004.safetensors": "c72878da1fb08bc1ce36954920c9d9f91213ce236a633e658f2d85a8b084019c",
+    "model-00004-of-00004.safetensors": "0712cb93d3b9d05902f1c99d04294296cdfa37829a5f56d6e9a879b280dc346e",
+    "model.safetensors.index.json": "8288629751fc722a3a165116501d297483a45d863742b7ef995955bce7722ed4",
+    "config.json": "bf26b2156e2707b733b9c4e18822fe8db4bc527138f820785c24e820f25b1719",
+    "generation_config.json": "8e8cb26b98a0738d5ce154290725a4d7d65a577d3cfe586eb3cea4ebecf83105",
+    "tokenizer.json": "b76085f9923309d873994d444989f7eb6ec074b06f25b58f1e8d7b7741070949",
+    "tokenizer_config.json": "85d2cc5ea2cddee01ddd36fe98a2eed62d85e78c8b049ea93ee0b2ae4c2c8e5e",
+    "special_tokens_map.json": "c98562eff7be177aafa0bf23cacb9c86549aef1c4c60e91931bded3d70fe6f8f",
+    "chat_template.json": "3bd324de67c5595e4bf4cace022acf9bcd8ea877358a6cef765adc5b398e9d2c",
+    "preprocessor_config.json": "0f1a312ed75c86bccdf65333b5b43507f597028d895dbb9cf9f16be9f87b52f1",
+    "processor_config.json": "4ceef0d0cbf062ffd522d85fcbf5248c2db8659c589afcc47b2f26810e7d9a58",
+    "quantization_config.json": "452363daca2e5f1258bae201fd732641640783ec388a2e2575d65e0481331c80"
+  },
+  "quantization": "int4 AWQ AutoRound symmetric",
+  "enforce_eager": true,
+  "prefix_caching": false,
+  "runtime_sources": [
+    {
+      "module": "vllm.model_executor.models.mistral3",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/mistral3.py",
+      "sha256": "e2b03b11fb10c590a7c9d1c02162d22e9bb80c94677dadc7919be4f4766f4f5d"
+    },
+    {
+      "module": "vllm.model_executor.models.llama",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/llama.py",
+      "sha256": "135cc5e748672057e1528b7f21c7a767c56d2ea4438b73ad60e3cfa3743d8613"
+    },
+    {
+      "module": "vllm.model_executor.layers.quantization.awq",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/awq.py",
+      "sha256": "c25cf0f6698761080a1e2cfad804c8220b318027b469427f44e2894faae24110"
+    },
+    {
+      "module": "vllm.v1.sample.sampler",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/sampler.py",
+      "sha256": "3720fbfd59c1f064a62b8e0489ec0436468188b69f8b8eb84d2d62eba31f3912"
+    }
+  ]
+}

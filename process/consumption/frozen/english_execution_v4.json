@@ -1,0 +1,173 @@
+{
+  "version": 4,
+  "status": "FROZEN",
+  "scope": "Adds reviewed Chinese persona wording (P = zh) to the version 3 execution unit: the Extraversion poles and neutral prompt as *_PZHN_* settings, each with a Chinese (D = zh) and an English (D = en) response-language variant; every version 3 setting is carried byte-identical",
+  "supersedes": null,
+  "extends": "process/consumption/frozen/english_execution_v3.json",
+  "settings": {
+    "NEUTRAL": "Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in English.",
+    "COMPLIANCE_CONTROL": "Follow the supplied account and policy facts and the requested response language exactly. Do not claim actions that the facts do not permit. Complete the support task directly.",
+    "EXTRAVERSION_HIGH": "You are a support agent who is outgoing, talkative and energetic. Open warmly and by name, speak first rather than waiting to be asked, state your recommendation plainly and take the lead in driving the case to a resolution, keep the exchange lively, and volunteer further help the customer has not requested. Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in English.",
+    "EXTRAVERSION_LOW": "You are a support agent who is reserved, quiet and low-key. Keep each reply short and plain, let the customer lead the exchange and set its pace, answer only what was asked and offer no opinion unless the customer asks for one, and add no greeting flourish, small talk or unrequested extra help. Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in English.",
+    "NEUTRAL_DZH": "Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in Chinese.",
+    "EXTRAVERSION_HIGH_DZH": "You are a support agent who is outgoing, talkative and energetic. Open warmly and by name, speak first rather than waiting to be asked, state your recommendation plainly and take the lead in driving the case to a resolution, keep the exchange lively, and volunteer further help the customer has not requested. Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in Chinese.",
+    "EXTRAVERSION_LOW_DZH": "You are a support agent who is reserved, quiet and low-key. Keep each reply short and plain, let the customer lead the exchange and set its pace, answer only what was asked and offer no opinion unless the customer asks for one, and add no greeting flourish, small talk or unrequested extra help. Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in Chinese.",
+    "NEUTRAL_PZH": "按照提供的账户和政策事实.不要要求采取事实不允许的行动.用中文回应客户的要求.",
+    "EXTRAVERSION_HIGH_PZH": "你是一个外向,说话和充满活力的支持代理人.热情地提起客户的名字,首先说话,而不是等待被问到,明确地说出你的建议,并带头推动案件得到解决,保持交换活,并自愿提供客户未要求的进一步帮助.按照提供的账户和政策事实.不要要求采取事实不允许的行动.用中文回应客户的要求.",
+    "EXTRAVERSION_LOW_PZH": "你是一个支持的代理人谁是保留,安静和低调.让客户主导交换并设定交换的速度,只回答被问到的内容,除非客户要求,否则不提供意见,并且不添加任何问候,谈或未经请求的额外帮助.按照提供的账户和政策事实.不要要求采取事实不允许的行动.用中文回应客户的要求.",
+    "EXTRAVERSION_HIGH_PZHN_DZH": "你是一名外向、健谈、充满活力的客服人员。热情地开场并称呼客户的名字，先开口而不是等客户提问；清楚直接地给出建议，并主导处理过程，推动问题解决；让对话保持轻快活跃；主动提供客户未要求的进一步帮助。遵循所提供的账户和政策事实。不要声称进行了事实不允许的操作。用中文回复客户的请求。",
+    "EXTRAVERSION_LOW_PZHN_DZH": "你是一名内敛、安静、低调的客服人员。每次回复都应简短平实；让客户主导对话并掌握节奏；只回答客户问到的内容，除非客户征求意见，否则不发表意见；不加多余的问候，不闲聊，也不提供客户未要求的额外帮助。遵循所提供的账户和政策事实。不要声称进行了事实不允许的操作。用中文回复客户的请求。",
+    "NEUTRAL_PZHN_DZH": "遵循所提供的账户和政策事实。不要声称进行了事实不允许的操作。用中文回复客户的请求。",
+    "EXTRAVERSION_HIGH_PZHN_DEN": "你是一名外向、健谈、充满活力的客服人员。热情地开场并称呼客户的名字，先开口而不是等客户提问；清楚直接地给出建议，并主导处理过程，推动问题解决；让对话保持轻快活跃；主动提供客户未要求的进一步帮助。遵循所提供的账户和政策事实。不要声称进行了事实不允许的操作。用英文回复客户的请求。",
+    "EXTRAVERSION_LOW_PZHN_DEN": "你是一名内敛、安静、低调的客服人员。每次回复都应简短平实；让客户主导对话并掌握节奏；只回答客户问到的内容，除非客户征求意见，否则不发表意见；不加多余的问候，不闲聊，也不提供客户未要求的额外帮助。遵循所提供的账户和政策事实。不要声称进行了事实不允许的操作。用英文回复客户的请求。",
+    "NEUTRAL_PZHN_DEN": "遵循所提供的账户和政策事实。不要声称进行了事实不允许的操作。用英文回复客户的请求。"
+  },
+  "facts_label": {
+    "zh": "账户和政策事实:"
+  },
+  "persona_pole_provenance": {
+    "authored_by": "project (this study)",
+    "construct": "Extraversion, described at the behavioral level for a customer-support agent",
+    "facets_targeted": [
+      "sociability",
+      "assertiveness",
+      "energy"
+    ],
+    "instrument_text_used": "none",
+    "note": "The two pole prompts are original behavioral descriptions written for this study. No BFI-2, TIPI or other copyrighted inventory item wording is quoted, paraphrased or reconstructed. The poles are contrastive on the same three Extraversion facets the frozen English behavior rubric scores, and they add no agreeableness instruction. The _DZH variants are the same English prompts with only the final response-language sentence swapped; the _PZH variants are machine renderings of those _DZH prompts and carry no additional persona content."
+  },
+  "zh_rendering_provenance": {
+    "engine_id": "facebook/nllb-200-3.3B",
+    "engine_revision": "1a07f7d195896b2114afcb79b7b57ab512e7b43e",
+    "engine_stratum": "C",
+    "strata_used": 1,
+    "strata_registered": 3,
+    "direction_forward": "eng_Latn->zho_Hans",
+    "direction_screen": "zho_Hans->eng_Latn",
+    "decoding": {
+      "num_beams": 4,
+      "do_sample": false,
+      "dtype": "float32",
+      "max_new_tokens_rule": "min(400, 3*source_tokens+20)"
+    },
+    "source_prompt_config": "process/consumption/frozen/english_execution_v2.json",
+    "source_prompt_config_sha256": "70a990d5ad408c4777441221cda70b32931d5a5ca9c0f767f7ecfd26a40b0c81",
+    "screen_report": "data/xlpt-support/rendered_items_and_scenarios/zh_render_screen_v1.json",
+    "settings_render": "data/xlpt-support/rendered_items_and_scenarios/zh_settings_render_v1.json",
+    "screen_metric": "sacrebleu 2.4.3 chrF (char_order=6, word_order=0, beta=2, whitespace=False, eps_smoothing=False, lowercase=False) on the zho_Hans->eng_Latn back-translation",
+    "screen_summary": {
+      "scenarios_rendered": 140,
+      "fields_rendered": 1260,
+      "chrf_median": 51.87,
+      "chrf_p10": 29.71,
+      "chrf_min": 8.86,
+      "flag_rule": "descriptive only: field chrF < 50.0",
+      "flagged_fields": 578
+    },
+    "note": "Nothing was filtered, re-rendered or hand-edited on the basis of the screen. No chrF threshold is registered, so the screen is descriptive provenance and not an acceptance gate."
+  },
+  "qualification_seed_block": [
+    20260811,
+    20260812,
+    20260813,
+    20260814,
+    20260815,
+    20260816,
+    20260817,
+    20260818,
+    20260819,
+    20260820,
+    20260821,
+    20260822,
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834
+  ],
+  "evaluation_seed_block": [
+    20260911,
+    20260912,
+    20260913,
+    20260914,
+    20260915,
+    20260916,
+    20260917,
+    20260918,
+    20260919,
+    20260920,
+    20260921,
+    20260922,
+    20260923,
+    20260924,
+    20260925,
+    20260926,
+    20260927,
+    20260928,
+    20260929,
+    20260930,
+    20260931,
+    20260932,
+    20260933,
+    20260934
+  ],
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_new_tokens": 512,
+    "repetition_penalty": 1.0,
+    "max_model_len": 4096,
+    "attention_implementation": "eager"
+  },
+  "limitations": [
+    "No BFI-2 or TIPI item wording is present or reconstructed.",
+    "The persona poles cover Extraversion only; Agreeableness has no pole prompt in this version.",
+    "Every version 1 and version 2 setting string is byte-identical here, so v1 and v2 shards remain comparable; v1 and v2 themselves are unchanged and still govern every shard already generated.",
+    "The registered translation slot calls for three independent forward engines with back-translation screening, block-allocated over (scenario, seed) units. Only engine C was reachable from the worker, so the Chinese surface is a SINGLE-STRATUM rendering: the block allocation collapses to one variant per unit and no ensemble disagreement signal exists. Any Chinese-surface effect is confounded with this one engine's idiolect, and the deviation is reported with every D = zh result.",
+    "Round-trip chrF on the rendered scenarios has median 51.9 and 578 of 1260 fields below the descriptive flag of 50; 98 fields lose more than 40 percent of their length in the round trip. The Chinese dialogue content is therefore matched to the English content only approximately, which bounds how tightly (P = en, D = en) and (P = en, D = zh) can be compared.",
+    "The _PZH persona prompts are machine renderings and read as slightly non-idiomatic Chinese (ASCII full stops, literal agent wording). They are reported as rendered, not post-edited, so the P = zh surface carries the same engine idiolect as the dialogue surface.",
+    "The scoring instrument stays ENGLISH on every row (R16-F1). Instrument-language invariance is a separate later comparison and is not established by anything frozen here.",
+    "The *_PZHN_* persona text is a SINGLE reviewed rendering, not the card's three-engine translation ensemble. It was reviewed by a model reviewer whose secondary cross-check was same-family, not by a native human reader; any P effect is specific to this rendering.",
+    "The Chinese scenario surface under *_PZHN_*_DZH is still the single-stratum NLLB rendering frozen in v3, with its limitations.",
+    "No phase, queue entry or shard uses a *_PZHN_* setting at freeze time. Launching block BC remains a separate operator decision."
+  ],
+  "pzhn_rendering_provenance": {
+    "method": "single reviewed rendering of the v2 English poles, clause by clause; not machine-translated at run time",
+    "reviewer": "Codex gpt-5.6-sol, reasoning effort xhigh, 2026-09-29 (model reviewer, not a native human reader)",
+    "review_path": "<LOCAL_PATH>/review.md",
+    "review_sha256": "e68e20d7f7404f01b9f429a9263bc4334eb01c62e8dc38c8adb2fe68aa73305e",
+    "source_text": "refine-logs/followup/P_zh_persona_draft.md",
+    "source_text_sha256_at_freeze": "b1f9cc18c6e6eda4030ff41847b86acfd3d9c9d6b1c1b4e67db8c49012436397",
+    "source_prompt_config": "process/consumption/frozen/english_execution_v2.json",
+    "counting_convention": "NFC code points; each Han character and punctuation mark counts as one",
+    "length_checks": {
+      "EXTRAVERSION_HIGH_PZHN_DZH": {
+        "persona_code_points": 97,
+        "total_code_points": 138
+      },
+      "EXTRAVERSION_LOW_PZHN_DZH": {
+        "persona_code_points": 97,
+        "total_code_points": 138
+      },
+      "EXTRAVERSION_HIGH_PZHN_DEN": {
+        "persona_code_points": 97,
+        "total_code_points": 138
+      },
+      "EXTRAVERSION_LOW_PZHN_DEN": {
+        "persona_code_points": 97,
+        "total_code_points": 138
+      }
+    },
+    "variant_rule": "D = zh and D = en variants differ only in the final response-language sentence",
+    "facts_label": "D = zh keeps facts_label.zh byte-identical; D = en keeps the v2 English scenario rendering",
+    "reserved_names": "The v3 *_PZH* settings stay the frozen, never-run NLLB renderings; *_PZHN_* is the reviewed text"
+  },
+  "self_sha256": "b02068dea6dfb9c33655f19275d456f02b0c291f9fbfabbfaea5edf00eb55aa7"
+}

@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "status": "FROZEN",
+  "scope": "English behavior-only execution including the two project-authored Extraversion persona poles",
+  "design_card_sha256": "f254839edf83b423ff8888da35b09c2e91ebecba720e82c6b805cb0369d6389b",
+  "prompt_config_self_sha256": "a721c72cfcbb7d5c45b0d3accddccd7c128848799d1267cda671f4f8f138c12f",
+  "files": {
+    "process/consumption/frozen/english_execution_v2.json": "70a990d5ad408c4777441221cda70b32931d5a5ca9c0f767f7ecfd26a40b0c81",
+    "process/consumption/frozen/english_b0_competence_scenarios_v1.jsonl": "ee348d9071f5cba3555ce5b8304108a90084bd8eb1e4a2d0876a781bdeb8c998",
+    "process/consumption/frozen/english_b1_control_scenarios_v1.jsonl": "546f0db8f0ffabbac4f48e770c3b7e519746aab6db296ba829913925a5161c10",
+    "refine-logs/RUBRIC_BEHAVIOR.md": "1128825e3e9343f7cd32a8e9b5a1e1ea618d4d1c378429dc8436ea832de914ae"
+  },
+  "limitations": [
+    "Authoritative BFI-2/TIPI wording is absent and outside this receipt; the pole prompts are original behavioral descriptions authored for this study.",
+    "Only the Extraversion construct has pole prompts; Agreeableness and the non-English surfaces remain absent.",
+    "This receipt governs the b4 pole phases only. Every shard already generated stays bound to receipt v1, which is unchanged.",
+    "The pole cells are an exploratory within-checkpoint contrast on the English qualification surface. They are not a Rule-F admission cell and write nothing to QUALIFICATION_GATE.results or ELIGIBLE_PAIRS."
+  ],
+  "self_sha256": "e3e918ace915427b6350531e81570c692bf7fcb80d4e3418dda4fa7d156f6e30"
+}

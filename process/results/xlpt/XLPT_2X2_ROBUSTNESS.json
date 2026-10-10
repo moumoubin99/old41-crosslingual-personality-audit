@@ -1,0 +1,2248 @@
+{
+  "blocks": {
+    "Llama-3.1-8B-Instruct|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1150,
+          "zh_en": 1150,
+          "zh_zh": 1150
+        },
+        "pairs_in_all_cell_mask": 1150,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "average_matched_advantage": {
+          "all_cell_mask_estimate": 0.003261,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.003261,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.030435,
+            0.037902
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.015072,
+            0.021739
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-billing_dispute-v1",
+          "leave_one_scenario_out_range": [
+            -0.000592,
+            0.007172
+          ]
+        },
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": 0.221884,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.221884,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.150862,
+            0.297101
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.193043,
+            0.249428
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-account_access-v2",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_range": [
+            0.208962,
+            0.227595
+          ]
+        },
+        "d_effect_at_p_zh": {
+          "all_cell_mask_estimate": 0.215362,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.215362,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.138551,
+            0.29813
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.19,
+            0.242174
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-account_access-v3",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_range": [
+            0.197427,
+            0.22375
+          ]
+        },
+        "interaction_match_minus_mismatch": {
+          "all_cell_mask_estimate": 0.006522,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.006522,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.06087,
+            0.075804
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.030145,
+            0.043478
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-billing_dispute-v1",
+          "leave_one_scenario_out_range": [
+            -0.001183,
+            0.014345
+          ]
+        },
+        "p_effect_at_d_en": {
+          "all_cell_mask_estimate": 0.031884,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.031884,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.027391,
+            0.091739
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.002464,
+            0.061884
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-billing_dispute-v1",
+          "leave_one_scenario_out_range": [
+            0.024253,
+            0.038302
+          ]
+        },
+        "p_effect_at_d_zh": {
+          "all_cell_mask_estimate": 0.025362,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.025362,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.010435,
+            0.062319
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.005797,
+            0.044493
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            0.018486,
+            0.030316
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.638659,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.638659,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.563289,
+            0.726086
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.606109,
+            0.673858
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_argmin": "xlpt-banking-account_access-v2",
+          "leave_one_scenario_out_range": [
+            0.63217,
+            0.651455
+          ]
+        },
+        "ratio_zh_en_over_en_en": {
+          "all_cell_mask_estimate": 0.948076,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.948076,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.855467,
+            1.045473
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.90132,
+            0.995833
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v1",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.936752,
+            0.960281
+          ]
+        },
+        "ratio_zh_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.597357,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.597357,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.518594,
+            0.690653
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.574081,
+            0.621723
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            0.584829,
+            0.610261
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 0.614058,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.614058,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.546225,
+            0.687978
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.58942,
+            0.637246
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_range": [
+            0.599527,
+            0.62171
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 0.392174,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.392174,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.367101,
+            0.417246
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.379993,
+            0.404058
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-technical_fault-v1",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            0.389086,
+            0.395149
+          ]
+        },
+        "sep_zh_en": {
+          "all_cell_mask_estimate": 0.582174,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.582174,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.509855,
+            0.662478
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.558551,
+            0.606087
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_range": [
+            0.563295,
+            0.588435
+          ]
+        },
+        "sep_zh_zh": {
+          "all_cell_mask_estimate": 0.366812,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.366812,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.335362,
+            0.398261
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.354348,
+            0.37971
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            0.361432,
+            0.372227
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "average_matched_advantage": [
+          0.003261,
+          0.003261
+        ],
+        "d_effect_at_p_en": [
+          0.221884,
+          0.221884
+        ],
+        "d_effect_at_p_zh": [
+          0.215362,
+          0.215362
+        ],
+        "interaction_match_minus_mismatch": [
+          0.006522,
+          0.006522
+        ],
+        "p_effect_at_d_en": [
+          0.031884,
+          0.031884
+        ],
+        "p_effect_at_d_zh": [
+          0.025362,
+          0.025362
+        ],
+        "sep_en_en": [
+          0.614058,
+          0.614058
+        ],
+        "sep_en_zh": [
+          0.392174,
+          0.392174
+        ],
+        "sep_zh_en": [
+          0.582174,
+          0.582174
+        ],
+        "sep_zh_zh": [
+          0.366812,
+          0.366812
+        ]
+      },
+      "missing_trait_scores": [],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "Llama-3.1-8B-Instruct|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1150,
+          "zh_en": 1150,
+          "zh_zh": 1150
+        },
+        "pairs_in_all_cell_mask": 1150,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "average_matched_advantage": {
+          "all_cell_mask_estimate": -0.008333,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.008333,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.058047,
+            0.043192
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.037464,
+            0.021159
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            -0.01501,
+            -0.002292
+          ]
+        },
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": 0.083333,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.083333,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.001457,
+            0.166681
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.037819,
+            0.13029
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            0.074091,
+            0.094499
+          ]
+        },
+        "d_effect_at_p_zh": {
+          "all_cell_mask_estimate": 0.1,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.1,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.027246,
+            0.171159
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.062174,
+            0.138558
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-technical_fault-v2",
+          "leave_one_scenario_out_range": [
+            0.089027,
+            0.107808
+          ]
+        },
+        "interaction_match_minus_mismatch": {
+          "all_cell_mask_estimate": -0.016667,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.016667,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.116094,
+            0.086384
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.074928,
+            0.042319
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            -0.030021,
+            -0.004584
+          ]
+        },
+        "p_effect_at_d_en": {
+          "all_cell_mask_estimate": 0.178696,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.178696,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.100275,
+            0.258848
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.141594,
+            0.216377
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            0.166962,
+            0.191068
+          ]
+        },
+        "p_effect_at_d_zh": {
+          "all_cell_mask_estimate": 0.195362,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.195362,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.130138,
+            0.262319
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.15942,
+            0.231594
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v1",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_range": [
+            0.187666,
+            0.202603
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.914012,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.914012,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.835779,
+            1.0015
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.868538,
+            0.960072
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_range": [
+            0.902591,
+            0.923089
+          ]
+        },
+        "ratio_zh_en_over_en_en": {
+          "all_cell_mask_estimate": 0.815612,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.815612,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.744517,
+            0.891725
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.781369,
+            0.850555
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            0.803737,
+            0.826681
+          ]
+        },
+        "ratio_zh_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.712427,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.712427,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.651317,
+            0.780467
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.680028,
+            0.744528
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            0.704846,
+            0.718606
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 0.96913,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.96913,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.888986,
+            1.04942
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.937536,
+            1.0
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v6",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.955191,
+            0.977965
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 0.885797,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.885797,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.819993,
+            0.954348
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.856225,
+            0.91508
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v1",
+          "leave_one_scenario_out_argmin": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_range": [
+            0.875629,
+            0.893375
+          ]
+        },
+        "sep_zh_en": {
+          "all_cell_mask_estimate": 0.790435,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.790435,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.724058,
+            0.858841
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.764058,
+            0.815797
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-technical_fault-v6",
+          "leave_one_scenario_out_range": [
+            0.779207,
+            0.79651
+          ]
+        },
+        "sep_zh_zh": {
+          "all_cell_mask_estimate": 0.690435,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.690435,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.639703,
+            0.745217
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.663906,
+            0.715225
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-technical_fault-v2",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.682786,
+            0.696539
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "average_matched_advantage": [
+          -0.008333,
+          -0.008333
+        ],
+        "d_effect_at_p_en": [
+          0.083333,
+          0.083333
+        ],
+        "d_effect_at_p_zh": [
+          0.1,
+          0.1
+        ],
+        "interaction_match_minus_mismatch": [
+          -0.016667,
+          -0.016667
+        ],
+        "p_effect_at_d_en": [
+          0.178696,
+          0.178696
+        ],
+        "p_effect_at_d_zh": [
+          0.195362,
+          0.195362
+        ],
+        "sep_en_en": [
+          0.96913,
+          0.96913
+        ],
+        "sep_en_zh": [
+          0.885797,
+          0.885797
+        ],
+        "sep_zh_en": [
+          0.790435,
+          0.790435
+        ],
+        "sep_zh_zh": [
+          0.690435,
+          0.690435
+        ]
+      },
+      "missing_trait_scores": [],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "Qwen3-8B|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1145,
+          "zh_en": 1148,
+          "zh_zh": 1146
+        },
+        "pairs_in_all_cell_mask": 1140,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "average_matched_advantage": {
+          "all_cell_mask_estimate": -0.032587,
+          "all_cell_mask_minus_cellwise": 0.000379,
+          "cellwise_estimate": -0.032965,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.09623,
+            0.028295
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.069864,
+            0.000843
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-status_delay-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            -0.03779,
+            -0.023894
+          ]
+        },
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": 0.365819,
+          "all_cell_mask_minus_cellwise": 0.002483,
+          "cellwise_estimate": 0.363336,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.24602,
+            0.497248
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.314823,
+            0.41293
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            0.333788,
+            0.382016
+          ]
+        },
+        "d_effect_at_p_zh": {
+          "all_cell_mask_estimate": 0.430992,
+          "all_cell_mask_minus_cellwise": 0.001726,
+          "cellwise_estimate": 0.429266,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.301841,
+            0.56036
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.389163,
+            0.471853
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            0.400462,
+            0.448383
+          ]
+        },
+        "interaction_match_minus_mismatch": {
+          "all_cell_mask_estimate": -0.065174,
+          "all_cell_mask_minus_cellwise": 0.000757,
+          "cellwise_estimate": -0.065931,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.192461,
+            0.056589
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.139729,
+            0.001685
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-status_delay-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            -0.075579,
+            -0.047789
+          ]
+        },
+        "p_effect_at_d_en": {
+          "all_cell_mask_estimate": -0.055207,
+          "all_cell_mask_minus_cellwise": 0.002654,
+          "cellwise_estimate": -0.057862,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.16517,
+            0.049415
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.109355,
+            0.00014
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            -0.066196,
+            -0.037644
+          ]
+        },
+        "p_effect_at_d_zh": {
+          "all_cell_mask_estimate": 0.009966,
+          "all_cell_mask_minus_cellwise": 0.001897,
+          "cellwise_estimate": 0.008069,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.057299,
+            0.08126
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.021662,
+            0.044902
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v2",
+          "leave_one_scenario_out_argmin": "xlpt-travel-status_delay-v3",
+          "leave_one_scenario_out_range": [
+            -0.002548,
+            0.017845
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.675701,
+          "all_cell_mask_minus_cellwise": -0.001397,
+          "cellwise_estimate": 0.677097,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.592085,
+            0.766859
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.642607,
+            0.713586
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_range": [
+            0.658802,
+            0.697107
+          ]
+        },
+        "ratio_zh_en_over_en_en": {
+          "all_cell_mask_estimate": 1.048942,
+          "all_cell_mask_minus_cellwise": -0.002481,
+          "cellwise_estimate": 1.051423,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.957701,
+            1.153918
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.999878,
+            1.099664
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            1.033254,
+            1.060364
+          ]
+        },
+        "ratio_zh_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.666866,
+          "all_cell_mask_minus_cellwise": -0.003061,
+          "cellwise_estimate": 0.669926,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.585979,
+            0.756066
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.638533,
+            0.697542
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_range": [
+            0.649689,
+            0.688542
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 1.128028,
+          "all_cell_mask_minus_cellwise": 0.002811,
+          "cellwise_estimate": 1.125217,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.011848,
+            1.258432
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.091664,
+            1.163993
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-technical_fault-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            1.096614,
+            1.141565
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 0.762209,
+          "all_cell_mask_minus_cellwise": 0.000327,
+          "cellwise_estimate": 0.761882,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.677613,
+            0.860269
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.736836,
+            0.789432
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_range": [
+            0.737615,
+            0.769392
+          ]
+        },
+        "sep_zh_en": {
+          "all_cell_mask_estimate": 1.183235,
+          "all_cell_mask_minus_cellwise": 0.000157,
+          "cellwise_estimate": 1.183079,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.050916,
+            1.317654
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.146873,
+            1.216608
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            1.159235,
+            1.199412
+          ]
+        },
+        "sep_zh_zh": {
+          "all_cell_mask_estimate": 0.752243,
+          "all_cell_mask_minus_cellwise": -0.001569,
+          "cellwise_estimate": 0.753812,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.669946,
+            0.844758
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.727655,
+            0.776407
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_range": [
+            0.727411,
+            0.758773
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "average_matched_advantage": [
+          -0.046667,
+          -0.017971
+        ],
+        "d_effect_at_p_en": [
+          0.351014,
+          0.377101
+        ],
+        "d_effect_at_p_zh": [
+          0.413043,
+          0.444348
+        ],
+        "interaction_match_minus_mismatch": [
+          -0.093333,
+          -0.035942
+        ],
+        "p_effect_at_d_en": [
+          -0.061739,
+          -0.051304
+        ],
+        "p_effect_at_d_zh": [
+          -0.015362,
+          0.031594
+        ],
+        "sep_en_en": [
+          1.125217,
+          1.125217
+        ],
+        "sep_en_zh": [
+          0.748116,
+          0.774203
+        ],
+        "sep_zh_en": [
+          1.176522,
+          1.186957
+        ],
+        "sep_zh_zh": [
+          0.742609,
+          0.763478
+        ]
+      },
+      "missing_trait_scores": [
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-technical_fault-v2",
+          "seed": 20260822
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-saas-cancel_refund-v1",
+          "seed": 20260823
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v2",
+          "seed": 20260828
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-saas-cancel_refund-v1",
+          "seed": 20260832
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-telecom-cancel_refund-v3",
+          "seed": 20260832
+        },
+        {
+          "cell": "zh_en",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v1",
+          "seed": 20260815
+        },
+        {
+          "cell": "zh_en",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v2",
+          "seed": 20260830
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-retail-status_delay-v4",
+          "seed": 20260816
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-saas-cancel_refund-v1",
+          "seed": 20260823
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v1",
+          "seed": 20260830
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v1",
+          "seed": 20260834
+        }
+      ],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "Qwen3-8B|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1145,
+          "zh_en": 1148,
+          "zh_zh": 1146
+        },
+        "pairs_in_all_cell_mask": 1140,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "average_matched_advantage": {
+          "all_cell_mask_estimate": 0.055142,
+          "all_cell_mask_minus_cellwise": 0.001057,
+          "cellwise_estimate": 0.054085,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.020362,
+            0.129667
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.018625,
+            0.090278
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-billing_dispute-v2",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            0.04333,
+            0.068154
+          ]
+        },
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": 0.391963,
+          "all_cell_mask_minus_cellwise": 0.001468,
+          "cellwise_estimate": 0.390495,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.240098,
+            0.544125
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.355104,
+            0.427045
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-billing_dispute-v2",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            0.36299,
+            0.414098
+          ]
+        },
+        "d_effect_at_p_zh": {
+          "all_cell_mask_estimate": 0.281679,
+          "all_cell_mask_minus_cellwise": -0.000646,
+          "cellwise_estimate": 0.282325,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.129792,
+            0.426875
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.223854,
+            0.340086
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            0.262102,
+            0.300519
+          ]
+        },
+        "interaction_match_minus_mismatch": {
+          "all_cell_mask_estimate": 0.110284,
+          "all_cell_mask_minus_cellwise": 0.002114,
+          "cellwise_estimate": 0.108171,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.040724,
+            0.259333
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.03725,
+            0.180555
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-billing_dispute-v2",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            0.08666,
+            0.136309
+          ]
+        },
+        "p_effect_at_d_en": {
+          "all_cell_mask_estimate": 0.007265,
+          "all_cell_mask_minus_cellwise": 0.003727,
+          "cellwise_estimate": 0.003537,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.112066,
+            0.124652
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.046205,
+            0.059641
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-technical_fault-v3",
+          "leave_one_scenario_out_range": [
+            -0.005978,
+            0.028687
+          ]
+        },
+        "p_effect_at_d_zh": {
+          "all_cell_mask_estimate": -0.103019,
+          "all_cell_mask_minus_cellwise": 0.001614,
+          "cellwise_estimate": -0.104633,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.212421,
+            0.00397
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.159694,
+            -0.045578
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v2",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            -0.113955,
+            -0.092216
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.781304,
+          "all_cell_mask_minus_cellwise": -0.000383,
+          "cellwise_estimate": 0.781687,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.709243,
+            0.860289
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.763008,
+            0.801002
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-travel-billing_dispute-v2",
+          "leave_one_scenario_out_range": [
+            0.770128,
+            0.794602
+          ]
+        },
+        "ratio_zh_en_over_en_en": {
+          "all_cell_mask_estimate": 0.995947,
+          "all_cell_mask_minus_cellwise": -0.002076,
+          "cellwise_estimate": 0.998022,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.9321,
+            1.064295
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.966875,
+            1.026155
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-technical_fault-v3",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            0.984091,
+            1.00334
+          ]
+        },
+        "ratio_zh_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.838784,
+          "all_cell_mask_minus_cellwise": -0.0014,
+          "cellwise_estimate": 0.840184,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.763811,
+            0.922517
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.813599,
+            0.864553
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            0.828583,
+            0.848854
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 1.792271,
+          "all_cell_mask_minus_cellwise": 0.003575,
+          "cellwise_estimate": 1.788696,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.678261,
+            1.911334
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.764401,
+            1.820259
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-status_delay-v5",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            1.767247,
+            1.806763
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 1.400308,
+          "all_cell_mask_minus_cellwise": 0.002108,
+          "cellwise_estimate": 1.3982,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.29775,
+            1.508476
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.364945,
+            1.437292
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-travel-billing_dispute-v2",
+          "leave_one_scenario_out_range": [
+            1.387336,
+            1.413747
+          ]
+        },
+        "sep_zh_en": {
+          "all_cell_mask_estimate": 1.785006,
+          "all_cell_mask_minus_cellwise": -0.000152,
+          "cellwise_estimate": 1.785158,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.651484,
+            1.917403
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.73888,
+            1.826202
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-status_delay-v5",
+          "leave_one_scenario_out_argmin": "xlpt-banking-billing_dispute-v3",
+          "leave_one_scenario_out_range": [
+            1.762238,
+            1.801927
+          ]
+        },
+        "sep_zh_zh": {
+          "all_cell_mask_estimate": 1.503327,
+          "all_cell_mask_minus_cellwise": 0.000494,
+          "cellwise_estimate": 1.502833,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.395934,
+            1.611577
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.464847,
+            1.540141
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v5",
+          "leave_one_scenario_out_range": [
+            1.488844,
+            1.516389
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "average_matched_advantage": [
+          0.041522,
+          0.070217
+        ],
+        "d_effect_at_p_en": [
+          0.382029,
+          0.408116
+        ],
+        "d_effect_at_p_zh": [
+          0.267681,
+          0.298986
+        ],
+        "interaction_match_minus_mismatch": [
+          0.083043,
+          0.140435
+        ],
+        "p_effect_at_d_en": [
+          0.000725,
+          0.011159
+        ],
+        "p_effect_at_d_zh": [
+          -0.129275,
+          -0.082319
+        ],
+        "sep_en_en": [
+          1.788696,
+          1.788696
+        ],
+        "sep_en_zh": [
+          1.38058,
+          1.406667
+        ],
+        "sep_zh_en": [
+          1.777536,
+          1.787971
+        ],
+        "sep_zh_zh": [
+          1.488986,
+          1.509855
+        ]
+      },
+      "missing_trait_scores": [
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-technical_fault-v2",
+          "seed": 20260822
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-saas-cancel_refund-v1",
+          "seed": 20260823
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v2",
+          "seed": 20260828
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-saas-cancel_refund-v1",
+          "seed": 20260832
+        },
+        {
+          "cell": "en_zh",
+          "pole": "high",
+          "scenario": "xlpt-telecom-cancel_refund-v3",
+          "seed": 20260832
+        },
+        {
+          "cell": "zh_en",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v1",
+          "seed": 20260815
+        },
+        {
+          "cell": "zh_en",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v2",
+          "seed": 20260830
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-retail-status_delay-v4",
+          "seed": 20260816
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-saas-cancel_refund-v1",
+          "seed": 20260823
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v1",
+          "seed": 20260830
+        },
+        {
+          "cell": "zh_zh",
+          "pole": "high",
+          "scenario": "xlpt-banking-account_access-v1",
+          "seed": 20260834
+        }
+      ],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "aya-expanse-8b|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1150,
+          "zh_en": 1150,
+          "zh_zh": 1150
+        },
+        "pairs_in_all_cell_mask": 1150,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "average_matched_advantage": {
+          "all_cell_mask_estimate": 0.06029,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.06029,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.019851,
+            0.10254
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.047826,
+            0.073043
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            0.052869,
+            0.065365
+          ]
+        },
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": 0.097101,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.097101,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.031449,
+            0.164935
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.077971,
+            0.117101
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-status_delay-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            0.086365,
+            0.106921
+          ]
+        },
+        "d_effect_at_p_zh": {
+          "all_cell_mask_estimate": -0.023478,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.023478,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.090152,
+            0.040725
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.043341,
+            -0.003913
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-status_delay-v3",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v4",
+          "leave_one_scenario_out_range": [
+            -0.033866,
+            -0.012127
+          ]
+        },
+        "interaction_match_minus_mismatch": {
+          "all_cell_mask_estimate": 0.12058,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.12058,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.039703,
+            0.20508
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.095652,
+            0.146087
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            0.105738,
+            0.130731
+          ]
+        },
+        "p_effect_at_d_en": {
+          "all_cell_mask_estimate": 0.094348,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.094348,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.021152,
+            0.170725
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.068261,
+            0.121594
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            0.082372,
+            0.102337
+          ]
+        },
+        "p_effect_at_d_zh": {
+          "all_cell_mask_estimate": -0.026232,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.026232,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.071594,
+            0.017101
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.044348,
+            -0.007826
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_argmin": "xlpt-retail-billing_dispute-v6",
+          "leave_one_scenario_out_range": [
+            -0.031943,
+            -0.018929
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.734653,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.734653,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.598629,
+            0.900992
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.691748,
+            0.778658
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_argmin": "xlpt-retail-status_delay-v3",
+          "leave_one_scenario_out_range": [
+            0.714003,
+            0.757978
+          ]
+        },
+        "ratio_zh_en_over_en_en": {
+          "all_cell_mask_estimate": 0.742178,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.742178,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.561649,
+            0.936348
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.678845,
+            0.807025
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-travel-technical_fault-v5",
+          "leave_one_scenario_out_range": [
+            0.722696,
+            0.770559
+          ]
+        },
+        "ratio_zh_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.806337,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.806337,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.652285,
+            1.005521
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.744194,
+            0.872434
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-account_access-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-technical_fault-v1",
+          "leave_one_scenario_out_range": [
+            0.781375,
+            0.833057
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 0.365942,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.365942,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.312174,
+            0.42029
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.348254,
+            0.383913
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-status_delay-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            0.356847,
+            0.373854
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 0.268841,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.268841,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.234203,
+            0.302899
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.256377,
+            0.28058
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v2",
+          "leave_one_scenario_out_range": [
+            0.26501,
+            0.273736
+          ]
+        },
+        "sep_zh_en": {
+          "all_cell_mask_estimate": 0.271594,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.271594,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.207971,
+            0.332899
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.254058,
+            0.288841
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-technical_fault-v2",
+          "leave_one_scenario_out_argmin": "xlpt-travel-technical_fault-v5",
+          "leave_one_scenario_out_range": [
+            0.263236,
+            0.280686
+          ]
+        },
+        "sep_zh_zh": {
+          "all_cell_mask_estimate": 0.295072,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.295072,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.257826,
+            0.334928
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.278551,
+            0.31058
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-billing_dispute-v6",
+          "leave_one_scenario_out_argmin": "xlpt-saas-cancel_refund-v2",
+          "leave_one_scenario_out_range": [
+            0.288672,
+            0.300355
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "average_matched_advantage": [
+          0.06029,
+          0.06029
+        ],
+        "d_effect_at_p_en": [
+          0.097101,
+          0.097101
+        ],
+        "d_effect_at_p_zh": [
+          -0.023478,
+          -0.023478
+        ],
+        "interaction_match_minus_mismatch": [
+          0.12058,
+          0.12058
+        ],
+        "p_effect_at_d_en": [
+          0.094348,
+          0.094348
+        ],
+        "p_effect_at_d_zh": [
+          -0.026232,
+          -0.026232
+        ],
+        "sep_en_en": [
+          0.365942,
+          0.365942
+        ],
+        "sep_en_zh": [
+          0.268841,
+          0.268841
+        ],
+        "sep_zh_en": [
+          0.271594,
+          0.271594
+        ],
+        "sep_zh_zh": [
+          0.295072,
+          0.295072
+        ]
+      },
+      "missing_trait_scores": [],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "aya-expanse-8b|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh",
+        "zh_en",
+        "zh_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1150,
+          "zh_en": 1150,
+          "zh_zh": 1150
+        },
+        "pairs_in_all_cell_mask": 1150,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "average_matched_advantage": {
+          "all_cell_mask_estimate": 0.021957,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.021957,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.04783,
+            0.091163
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.016159,
+            0.058116
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-technical_fault-v6",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_range": [
+            0.013384,
+            0.030538
+          ]
+        },
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": 0.010725,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.010725,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.101884,
+            0.126667
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.036522,
+            0.056667
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-technical_fault-v6",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_range": [
+            -0.013901,
+            0.027359
+          ]
+        },
+        "d_effect_at_p_zh": {
+          "all_cell_mask_estimate": -0.033188,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.033188,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.12971,
+            0.067536
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.076667,
+            0.008268
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_range": [
+            -0.049689,
+            -0.022183
+          ]
+        },
+        "interaction_match_minus_mismatch": {
+          "all_cell_mask_estimate": 0.043913,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.043913,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.095659,
+            0.182326
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.032319,
+            0.116232
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-technical_fault-v6",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_range": [
+            0.026767,
+            0.061077
+          ]
+        },
+        "p_effect_at_d_en": {
+          "all_cell_mask_estimate": 0.084493,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.084493,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.024217,
+            0.196667
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.032022,
+            0.138551
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-cancel_refund-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_range": [
+            0.069802,
+            0.097456
+          ]
+        },
+        "p_effect_at_d_zh": {
+          "all_cell_mask_estimate": 0.04058,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.04058,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.045087,
+            0.128993
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.001594,
+            0.081739
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-account_access-v4",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-technical_fault-v6",
+          "leave_one_scenario_out_range": [
+            0.024253,
+            0.051612
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.989199,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.989199,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.880446,
+            1.11061
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.944713,
+            1.038054
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-technical_fault-v6",
+          "leave_one_scenario_out_range": [
+            0.972532,
+            1.014292
+          ]
+        },
+        "ratio_zh_en_over_en_en": {
+          "all_cell_mask_estimate": 0.914903,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.914903,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.813072,
+            1.025937
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.863731,
+            0.96695
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v1",
+          "leave_one_scenario_out_argmin": "xlpt-travel-cancel_refund-v4",
+          "leave_one_scenario_out_range": [
+            0.902109,
+            0.928948
+          ]
+        },
+        "ratio_zh_zh_over_en_en": {
+          "all_cell_mask_estimate": 0.948329,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.948329,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.856914,
+            1.050078
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.914222,
+            0.983646
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v4",
+          "leave_one_scenario_out_range": [
+            0.932138,
+            0.967462
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 0.992899,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.992899,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.895507,
+            1.096971
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.957246,
+            1.027246
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v3",
+          "leave_one_scenario_out_argmin": "xlpt-banking-technical_fault-v4",
+          "leave_one_scenario_out_range": [
+            0.972641,
+            1.003993
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 0.982174,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.982174,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.89637,
+            1.071022
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.957826,
+            1.005072
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v1",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.967169,
+            0.990683
+          ]
+        },
+        "sep_zh_en": {
+          "all_cell_mask_estimate": 0.908406,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.908406,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.812754,
+            1.010884
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.870572,
+            0.945217
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-technical_fault-v5",
+          "leave_one_scenario_out_argmin": "xlpt-travel-account_access-v3",
+          "leave_one_scenario_out_range": [
+            0.890861,
+            0.918811
+          ]
+        },
+        "sep_zh_zh": {
+          "all_cell_mask_estimate": 0.941594,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.941594,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.859558,
+            1.028848
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.91087,
+            0.970442
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-billing_dispute-v2",
+          "leave_one_scenario_out_argmin": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.926501,
+            0.95105
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "average_matched_advantage": [
+          0.021957,
+          0.021957
+        ],
+        "d_effect_at_p_en": [
+          0.010725,
+          0.010725
+        ],
+        "d_effect_at_p_zh": [
+          -0.033188,
+          -0.033188
+        ],
+        "interaction_match_minus_mismatch": [
+          0.043913,
+          0.043913
+        ],
+        "p_effect_at_d_en": [
+          0.084493,
+          0.084493
+        ],
+        "p_effect_at_d_zh": [
+          0.04058,
+          0.04058
+        ],
+        "sep_en_en": [
+          0.992899,
+          0.992899
+        ],
+        "sep_en_zh": [
+          0.982174,
+          0.982174
+        ],
+        "sep_zh_en": [
+          0.908406,
+          0.908406
+        ],
+        "sep_zh_zh": [
+          0.941594,
+          0.941594
+        ]
+      },
+      "missing_trait_scores": [],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "gemma-3-12b-it|agreeableness": {
+      "cells_present": [
+        "en_en",
+        "en_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1150
+        },
+        "pairs_in_all_cell_mask": 1150,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": -0.048116,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.048116,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.155659,
+            0.059572
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.086522,
+            -0.011014
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-telecom-status_delay-v3",
+          "leave_one_scenario_out_argmin": "xlpt-saas-billing_dispute-v1",
+          "leave_one_scenario_out_range": [
+            -0.063591,
+            -0.032683
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 1.068186,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 1.068186,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.923296,
+            1.244579
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.015166,
+            1.125352
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v2",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v3",
+          "leave_one_scenario_out_range": [
+            1.046042,
+            1.091611
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 0.705652,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.705652,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.598978,
+            0.825797
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.675217,
+            0.735942
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-travel-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.676575,
+            0.716504
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 0.753768,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 0.753768,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            0.662022,
+            0.856246
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            0.721739,
+            0.787536
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-saas-status_delay-v4",
+          "leave_one_scenario_out_argmin": "xlpt-travel-status_delay-v2",
+          "leave_one_scenario_out_range": [
+            0.735138,
+            0.761757
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "d_effect_at_p_en": [
+          -0.048116,
+          -0.048116
+        ],
+        "sep_en_en": [
+          0.705652,
+          0.705652
+        ],
+        "sep_en_zh": [
+          0.753768,
+          0.753768
+        ]
+      },
+      "missing_trait_scores": [],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    },
+    "gemma-3-12b-it|extraversion": {
+      "cells_present": [
+        "en_en",
+        "en_zh"
+      ],
+      "denominators": {
+        "pairs_complete_per_cell": {
+          "en_en": 1150,
+          "en_zh": 1150
+        },
+        "pairs_in_all_cell_mask": 1150,
+        "pairs_possible_per_cell": 1150
+      },
+      "estimates": {
+        "d_effect_at_p_en": {
+          "all_cell_mask_estimate": -0.453333,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": -0.453333,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            -0.583645,
+            -0.325065
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            -0.496377,
+            -0.414493
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-status_delay-v6",
+          "leave_one_scenario_out_argmin": "xlpt-retail-technical_fault-v2",
+          "leave_one_scenario_out_range": [
+            -0.475007,
+            -0.438332
+          ]
+        },
+        "ratio_en_zh_over_en_en": {
+          "all_cell_mask_estimate": 1.188992,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 1.188992,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            1.131109,
+            1.251688
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            1.171578,
+            1.208235
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-retail-technical_fault-v2",
+          "leave_one_scenario_out_argmin": "xlpt-retail-status_delay-v6",
+          "leave_one_scenario_out_range": [
+            1.181807,
+            1.200012
+          ]
+        },
+        "sep_en_en": {
+          "all_cell_mask_estimate": 2.398696,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 2.398696,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            2.270145,
+            2.526957
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            2.368551,
+            2.428406
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-travel-account_access-v4",
+          "leave_one_scenario_out_argmin": "xlpt-retail-technical_fault-v2",
+          "leave_one_scenario_out_range": [
+            2.374889,
+            2.416593
+          ]
+        },
+        "sep_en_zh": {
+          "all_cell_mask_estimate": 2.852029,
+          "all_cell_mask_minus_cellwise": 0.0,
+          "cellwise_estimate": 2.852029,
+          "ci95_crossed_seed_scenario_bootstrap": [
+            2.727964,
+            2.965804
+          ],
+          "ci95_seed_bootstrap_all_cell_mask": [
+            2.814638,
+            2.89029
+          ],
+          "leave_one_scenario_out_argmax": "xlpt-banking-account_access-v2",
+          "leave_one_scenario_out_argmin": "xlpt-telecom-status_delay-v3",
+          "leave_one_scenario_out_range": [
+            2.839249,
+            2.874741
+          ]
+        }
+      },
+      "missing_score_bounds": {
+        "d_effect_at_p_en": [
+          -0.453333,
+          -0.453333
+        ],
+        "sep_en_en": [
+          2.398696,
+          2.398696
+        ],
+        "sep_en_zh": [
+          2.852029,
+          2.852029
+        ]
+      },
+      "missing_trait_scores": [],
+      "n_scenarios": 50,
+      "n_seed_clusters": 23
+    }
+  },
+  "bootstrap": {
+    "draws": 9999,
+    "generator": "numpy default_rng, consumed in sorted block order",
+    "seed": 20260928
+  },
+  "cell_labels": {
+    "en_en": "P=en,D=en",
+    "en_zh": "P=en,D=zh",
+    "zh_en": "P=zh(v4 reviewed),D=en",
+    "zh_zh": "P=zh(v4 reviewed),D=zh"
+  },
+  "eligible_for_gate": false,
+  "reducer_sha256": "7c2b024fdd252b36a945cb7f73fc4a3bacf229b04d46fb6fb7454c1bed48b3d0",
+  "rubric_range": [
+    1.0,
+    7.0
+  ],
+  "schema_version": 1,
+  "scope_note": "Robustness companions to XLPT_2X2_CONTRAST.json. Intervals are pointwise and exploratory, conditional on the exposed 50-scenario bank, the prompt renderings and the frozen rater; the crossed bootstrap adds resampling of those 50 scenarios only.",
+  "verdict": "DESCRIPTIVE_ONLY"
+}

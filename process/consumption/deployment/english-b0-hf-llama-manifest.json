@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_hf_generation",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--phase",
+    "b0-competence",
+    "--model-path",
+    "<LOCAL_PATH>/meta-llama__Llama-3.1-8B-Instruct",
+    "--model-id",
+    "Llama-3.1-8B-Instruct",
+    "--runtime-manifest",
+    "process/consumption/deployment/Llama-3.1-8B-Instruct-runtime-manifest.json",
+    "--seed",
+    "20260811"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_hf_generation.py",
+    "experiments/xlpt/run_transformers_generation.py",
+    "experiments/xlpt/inference_contract.py",
+    "process/consumption/frozen/english_execution_v1.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "process/consumption/frozen/english_b0_competence_scenarios_v1.jsonl"
+  ],
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "formula_ids": [
+    "english_temperature",
+    "english_nucleus",
+    "english_sample",
+    "english_substream",
+    "english_ar_recurrence",
+    "english_eos_stop",
+    "english_rate"
+  ],
+  "no_formula_reason": "Operator skip_formula on the new bjb1 worker. Decode contract is the reviewed inference_contract loop; model forward is Transformers eager bf16 for Llama-3.1-8B-Instruct. Not a PASS receipt and not a Rule-F admission cell.",
+  "checkpoint_provenance_caveat": "The weights on bjb1 were fetched from the ModelScope mirror LLM-Research/Meta-Llama-3.1-8B-Instruct, not from the HF repo meta-llama/Llama-3.1-8B-Instruct that the design pins. MODEL_RECEIPT.json on the host records transport and requires a byte-comparison against the official HF repo once a token with the accepted licence is available. Until that comparison is run, this arm is a staging/competence arm only and cannot be admitted as a Rule-F cell."
+}

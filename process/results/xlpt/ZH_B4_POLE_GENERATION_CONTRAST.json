@@ -1,0 +1,284 @@
+{
+  "readout": "zh-b4 pole contrast on script-neutral rater-free indicators",
+  "surface": "P = en, D = zh; NLLB-200-3.3B single-stratum rendering of the qualification scenarios",
+  "status": "exploratory",
+  "verdict": "DESCRIPTIVE_ONLY",
+  "gate_decision": "NOT_DECIDED_BY_THIS_TOOL",
+  "eligible_for_gate": false,
+  "not_a_transfer_estimate": "no D = en pole generation is compared; the language factor is constant within this readout",
+  "multiplicity": "none applied, none claimed",
+  "han_ratio_rule": 0.5,
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20260928,
+    "unit": "seed cluster",
+    "interval": "percentile",
+    "mass": 0.95
+  },
+  "checkpoints": {
+    "Llama-3.1-8B-Instruct": {
+      "seed_clusters": 23,
+      "scenarios_per_cluster": 50,
+      "indicators": {
+        "chars_per_turn": {
+          "high_mean": 216.94811594202898,
+          "low_mean": 45.22608695652174,
+          "mean_difference": 171.72202898550725,
+          "interval_95_cluster_bootstrap": [
+            169.40202898550726,
+            174.12898550724637
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "exclaim_turn_rate": {
+          "high_mean": 0.5440579710144927,
+          "low_mean": 0.0,
+          "mean_difference": 0.5440579710144927,
+          "interval_95_cluster_bootstrap": [
+            0.5252173913043479,
+            0.5611594202898551
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "question_turn_rate": {
+          "high_mean": 0.5750724637681159,
+          "low_mean": 0.05507246376811594,
+          "mean_difference": 0.5199999999999999,
+          "interval_95_cluster_bootstrap": [
+            0.4997101449275362,
+            0.5417391304347826
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "chinese_turn_rate": {
+          "high_mean": 1.0,
+          "low_mean": 0.9997101449275362,
+          "mean_difference": 0.00028985507246377,
+          "interval_95_cluster_bootstrap": [
+            0.0,
+            0.0008695652173913099
+          ],
+          "clusters_positive": 1,
+          "clusters_negative": 0,
+          "clusters_zero": 22
+        },
+        "no_han_turn_rate": {
+          "high_mean": 0.0,
+          "low_mean": 0.0,
+          "mean_difference": 0.0,
+          "interval_95_cluster_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "clusters_positive": 0,
+          "clusters_negative": 0,
+          "clusters_zero": 23
+        }
+      }
+    },
+    "aya-expanse-8b": {
+      "seed_clusters": 23,
+      "scenarios_per_cluster": 50,
+      "indicators": {
+        "chars_per_turn": {
+          "high_mean": 423.87159420289856,
+          "low_mean": 186.40173913043478,
+          "mean_difference": 237.46985507246376,
+          "interval_95_cluster_bootstrap": [
+            233.18492753623192,
+            241.76260869565218
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "exclaim_turn_rate": {
+          "high_mean": 0.9846376811594202,
+          "low_mean": 0.0008695652173913042,
+          "mean_difference": 0.983768115942029,
+          "interval_95_cluster_bootstrap": [
+            0.981159420289855,
+            0.986376811594203
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "question_turn_rate": {
+          "high_mean": 0.020579710144927536,
+          "low_mean": 0.0020289855072463765,
+          "mean_difference": 0.01855072463768116,
+          "interval_95_cluster_bootstrap": [
+            0.0136231884057971,
+            0.023768115942028985
+          ],
+          "clusters_positive": 20,
+          "clusters_negative": 0,
+          "clusters_zero": 3
+        },
+        "chinese_turn_rate": {
+          "high_mean": 1.0,
+          "low_mean": 1.0,
+          "mean_difference": 0.0,
+          "interval_95_cluster_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "clusters_positive": 0,
+          "clusters_negative": 0,
+          "clusters_zero": 23
+        },
+        "no_han_turn_rate": {
+          "high_mean": 0.0,
+          "low_mean": 0.0,
+          "mean_difference": 0.0,
+          "interval_95_cluster_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "clusters_positive": 0,
+          "clusters_negative": 0,
+          "clusters_zero": 23
+        }
+      }
+    },
+    "gemma-3-12b-it": {
+      "seed_clusters": 23,
+      "scenarios_per_cluster": 50,
+      "indicators": {
+        "chars_per_turn": {
+          "high_mean": 1223.9707246376813,
+          "low_mean": 30.753913043478263,
+          "mean_difference": 1193.216811594203,
+          "interval_95_cluster_bootstrap": [
+            1181.9159420289857,
+            1204.5202898550724
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "exclaim_turn_rate": {
+          "high_mean": 0.9997101449275362,
+          "low_mean": 0.0,
+          "mean_difference": 0.9997101449275362,
+          "interval_95_cluster_bootstrap": [
+            0.9991304347826088,
+            1.0
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "question_turn_rate": {
+          "high_mean": 0.9510144927536233,
+          "low_mean": 0.12869565217391304,
+          "mean_difference": 0.8223188405797102,
+          "interval_95_cluster_bootstrap": [
+            0.8107246376811595,
+            0.8333333333333334
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "chinese_turn_rate": {
+          "high_mean": 0.025217391304347823,
+          "low_mean": 0.988695652173913,
+          "mean_difference": -0.9634782608695652,
+          "interval_95_cluster_bootstrap": [
+            -0.972463768115942,
+            -0.9539130434782609
+          ],
+          "clusters_positive": 0,
+          "clusters_negative": 23,
+          "clusters_zero": 0
+        },
+        "no_han_turn_rate": {
+          "high_mean": 0.06782608695652174,
+          "low_mean": 0.0,
+          "mean_difference": 0.06782608695652174,
+          "interval_95_cluster_bootstrap": [
+            0.05623188405797101,
+            0.07942028985507246
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        }
+      }
+    },
+    "qwen3-8b": {
+      "seed_clusters": 23,
+      "scenarios_per_cluster": 50,
+      "indicators": {
+        "chars_per_turn": {
+          "high_mean": 451.78492753623186,
+          "low_mean": 55.04985507246377,
+          "mean_difference": 396.73507246376806,
+          "interval_95_cluster_bootstrap": [
+            392.8631884057971,
+            400.58
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "exclaim_turn_rate": {
+          "high_mean": 0.9997101449275362,
+          "low_mean": 0.0,
+          "mean_difference": 0.9997101449275362,
+          "interval_95_cluster_bootstrap": [
+            0.9991304347826088,
+            1.0
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "question_turn_rate": {
+          "high_mean": 0.7927536231884058,
+          "low_mean": 0.07188405797101449,
+          "mean_difference": 0.7208695652173914,
+          "interval_95_cluster_bootstrap": [
+            0.7020289855072465,
+            0.7391304347826086
+          ],
+          "clusters_positive": 23,
+          "clusters_negative": 0,
+          "clusters_zero": 0
+        },
+        "chinese_turn_rate": {
+          "high_mean": 1.0,
+          "low_mean": 1.0,
+          "mean_difference": 0.0,
+          "interval_95_cluster_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "clusters_positive": 0,
+          "clusters_negative": 0,
+          "clusters_zero": 23
+        },
+        "no_han_turn_rate": {
+          "high_mean": 0.0,
+          "low_mean": 0.0,
+          "mean_difference": 0.0,
+          "interval_95_cluster_bootstrap": [
+            0.0,
+            0.0
+          ],
+          "clusters_positive": 0,
+          "clusters_negative": 0,
+          "clusters_zero": 23
+        }
+      }
+    }
+  }
+}

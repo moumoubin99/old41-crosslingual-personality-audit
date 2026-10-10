@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "corpus": "cped",
+  "shard": "process/results/xlpt/h-public/scores-cped.jsonl",
+  "shard_sha256": "604f64497afffe0428360cf3d017479ba32b07acad1b95568b234dff42a5b7e2",
+  "records": 569,
+  "rater_calls": 6828,
+  "units_sha256": "68fbc139487a1b283b6875101675a0c74b78ac148dfdae736930f6c8ce857d46",
+  "provenance_sha256": "a22c500a63c02a1e74a90dc904c52d824fbc12ccce22809164349da5c23ac8cc",
+  "code_sha256": {
+    "experiments/xlpt/score_public_personality.py": "64e6a04a06d85181d6910242253ed057ba7733eac3c00c86092539038d026c30",
+    "experiments/xlpt/reduce_h_public.py": "2cb64d7602973d65d3d5a0d0431f623ed52443851dcc34d46a13b1327b63f3dc",
+    "experiments/xlpt/test_h_public_contract.py": "3792f36969a1b4f58dfd031bd31d59458c6a0a04585d84ba18fed930001a3943",
+    "experiments/xlpt/inference_contract.py": "7f529e8fb8744032fd81b03546b5a568f2ce1f14e128e0833f1df1a5c2c28289",
+    "experiments/xlpt/rater_frozen_inputs.py": "3754416741238eff7cdeffbc4f451fb27191db3adc2da281f13bc17dc98f463e",
+    "experiments/xlpt/rater_runtime.py": "62e91bc4eb64b635fd7331a84c0e12dcd28c72b3da3df39f61e894b0fea73bed",
+    "experiments/xlpt/run_rater_scoring.py": "cbcf6f7317afa5e7f8d49ec4d6e87bc47cfe5e7591e6b2fbba6d64ff29dd65a9",
+    "experiments/xlpt/score_rater.py": "391247038aaee534e1dd14fbcad4bbac29f612c5fdc7af483650679f51c52e85"
+  }
+}

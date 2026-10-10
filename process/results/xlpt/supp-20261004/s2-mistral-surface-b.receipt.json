@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s2-mistral-surface-b.jsonl",
+  "sha256": "1b1db1be62f4f6adcd87323478e2d66793f38ea77e374ca1b27f17b711702c01",
+  "records": 12600,
+  "calls": 75600,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 40110.694558382034,
+  "calls_per_second": 1.884784116364838,
+  "args": {
+    "project": ".",
+    "rater": "mistral",
+    "task": "transcripts",
+    "tag": "s2-mistral-surface-b",
+    "tok_workers": 16,
+    "variants": "strip_edges,trunc2,swap_edges",
+    "traits": "extraversion",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 2,
+  "status": "FROZEN",
+  "scope": "English behavior-only execution: neutral, compliance-control, and the two project-authored Extraversion persona poles; no self-report instrument text",
+  "supersedes": null,
+  "extends": "process/consumption/frozen/english_execution_v1.json",
+  "settings": {
+    "NEUTRAL": "Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in English.",
+    "COMPLIANCE_CONTROL": "Follow the supplied account and policy facts and the requested response language exactly. Do not claim actions that the facts do not permit. Complete the support task directly.",
+    "EXTRAVERSION_HIGH": "You are a support agent who is outgoing, talkative and energetic. Open warmly and by name, speak first rather than waiting to be asked, state your recommendation plainly and take the lead in driving the case to a resolution, keep the exchange lively, and volunteer further help the customer has not requested. Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in English.",
+    "EXTRAVERSION_LOW": "You are a support agent who is reserved, quiet and low-key. Keep each reply short and plain, let the customer lead the exchange and set its pace, answer only what was asked and offer no opinion unless the customer asks for one, and add no greeting flourish, small talk or unrequested extra help. Follow the supplied account and policy facts. Do not claim actions that the facts do not permit. Respond to the customer's request in English."
+  },
+  "persona_pole_provenance": {
+    "authored_by": "project (this study)",
+    "construct": "Extraversion, described at the behavioral level for a customer-support agent",
+    "facets_targeted": [
+      "sociability",
+      "assertiveness",
+      "energy"
+    ],
+    "instrument_text_used": "none",
+    "note": "The two pole prompts are original behavioral descriptions written for this study. No BFI-2, TIPI or other copyrighted inventory item wording is quoted, paraphrased or reconstructed. The poles are contrastive on the same three Extraversion facets the frozen English behavior rubric scores, and they add no agreeableness instruction."
+  },
+  "qualification_seed_block": [
+    20260811,
+    20260812,
+    20260813,
+    20260814,
+    20260815,
+    20260816,
+    20260817,
+    20260818,
+    20260819,
+    20260820,
+    20260821,
+    20260822,
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260829,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834
+  ],
+  "evaluation_seed_block": [
+    20260911,
+    20260912,
+    20260913,
+    20260914,
+    20260915,
+    20260916,
+    20260917,
+    20260918,
+    20260919,
+    20260920,
+    20260921,
+    20260922,
+    20260923,
+    20260924,
+    20260925,
+    20260926,
+    20260927,
+    20260928,
+    20260929,
+    20260930,
+    20260931,
+    20260932,
+    20260933,
+    20260934
+  ],
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_new_tokens": 512,
+    "repetition_penalty": 1.0,
+    "max_model_len": 4096,
+    "attention_implementation": "eager"
+  },
+  "limitations": [
+    "No BFI-2 or TIPI item wording is present or reconstructed.",
+    "The persona poles cover Extraversion only; Agreeableness has no pole prompt in this version.",
+    "Only the frozen English scenario and English behavior-rubric surfaces are in scope.",
+    "The NEUTRAL and COMPLIANCE_CONTROL strings are byte-identical to version 1, so v1 shards remain comparable; v1 itself is unchanged and still governs every shard already generated."
+  ],
+  "self_sha256": "a721c72cfcbb7d5c45b0d3accddccd7c128848799d1267cda671f4f8f138c12f"
+}

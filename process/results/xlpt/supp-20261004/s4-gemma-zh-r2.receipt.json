@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s4-gemma-zh-r2.jsonl",
+  "sha256": "fa6bf9fe0f88b8a0719cfadf43793159cf9b494ffdad2885593fb7c4b0651a81",
+  "records": 8400,
+  "calls": 50400,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 5070.665215015411,
+  "calls_per_second": 9.939524275977432,
+  "args": {
+    "project": ".",
+    "rater": "gemma",
+    "task": "transcripts",
+    "tag": "s4-gemma-zh-r2",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion",
+    "instrument": "zh",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.85,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "compiled_extensions": {
+    "vllm._C": {
+      "filename": "_C.abi3.so",
+      "sha256": "984de21ce38cc8083d207663a380ca75acc6ad3dc230858092f59e363c4eebd5",
+      "size_bytes": 368889032
+    },
+    "vllm.vllm_flash_attn._vllm_fa2_C": {
+      "filename": "_vllm_fa2_C.abi3.so",
+      "sha256": "155115736b3e1d3f5feb2da35236b8c8ee43926a1879b5ba5f79afe63c10a09f",
+      "size_bytes": 195736224
+    },
+    "vllm.vllm_flash_attn._vllm_fa3_C": {
+      "filename": "_vllm_fa3_C.abi3.so",
+      "sha256": "edd9cd35d101bda7d83ce230bf48fe4a21fb19724da45638946f767500ca40f6",
+      "size_bytes": 622666656
+    }
+  },
+  "dist_info_files": {
+    "METADATA": {
+      "sha256": "7faa4f3a4a2588709bc8e7bf3bb0fd80c4f0a22ef559ada8e34793f4ada36e8f",
+      "size_bytes": 17070
+    },
+    "RECORD": {
+      "sha256": "4f023ec0c71a63b974ff57c91f2751e00cd52b2551019398a99d4f093c1493fb",
+      "size_bytes": 242530
+    },
+    "WHEEL": {
+      "sha256": "17455bce061ee87f02913347ce35b6c2ef64b43663e593659e6945247bae0c2d",
+      "size_bytes": 102
+    }
+  },
+  "distribution": "vllm",
+  "distribution_version": "0.11.0",
+  "torch": {
+    "build_config": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 201703\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.7.1 (Git Hash 8d263e693366ef8db40acc569cc7d8edf644556d)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - CUDA Runtime 12.8\n  - NVCC architecture flags: -gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120\n  - CuDNN 91.0.2  (built against CUDA 12.9)\n    - Built with CuDNN 90.8\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=a1cb3cc05d46d198467bebbb6e8fba50a325d4e7, CUDA_VERSION=12.8, CUDNN_VERSION=9.8.0, CXX_COMPILER=<LOCAL_PATH>/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.8.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "cuda": "12.8",
+    "version": "2.8.0+cu128"
+  },
+  "version": 1,
+  "wheel_metadata": "Wheel-Version: 1.0\nGenerator: setuptools (79.0.1)\nRoot-Is-Purelib: false\nTag: cp38-abi3-linux_x86_64\n\n"
+}

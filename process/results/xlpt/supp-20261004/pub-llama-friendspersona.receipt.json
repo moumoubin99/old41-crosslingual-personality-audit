@@ -1,0 +1,26 @@
+{
+  "output": "process/results/xlpt/supp-20261004/pub-llama-friendspersona.jsonl",
+  "sha256": "1dc18244536f6836cac794de615f61eda3fcde59848d2a015c1ce085b90af783",
+  "records": 711,
+  "calls": 8532,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 286.47800374031067,
+  "calls_per_second": 29.782391278229408,
+  "args": {
+    "project": ".",
+    "rater": "llama",
+    "task": "public",
+    "tag": "pub-llama-friendspersona",
+    "variants": "none",
+    "traits": "extraversion,agreeableness",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

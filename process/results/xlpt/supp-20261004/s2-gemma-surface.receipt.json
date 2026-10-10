@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s2-gemma-surface.jsonl",
+  "sha256": "4748fc2e6c6d4976777d9de8438aa717bcccbbc8b5a71836709aa4af28380397",
+  "records": 25200,
+  "calls": 151200,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 11982.87711429596,
+  "calls_per_second": 12.618004721054305,
+  "args": {
+    "project": ".",
+    "rater": "gemma",
+    "task": "transcripts",
+    "tag": "s2-gemma-surface",
+    "tok_workers": 16,
+    "variants": "strip_edges,trunc2,swap_edges",
+    "traits": "extraversion",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.85,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-10",
+  "scope": "CPU replay from saved score and transcript-feature files on Linux/WSL Python 3.13; not GPU inference re-execution",
+  "result_files_compared": 23,
+  "common_numeric_values_compared": 141384,
+  "relative_tolerance": 1e-08,
+  "absolute_tolerance": 1e-08,
+  "common_statistical_numeric_mismatches": 0,
+  "publication_privacy_scan": {
+    "structured_strings_parsed": true,
+    "credential_literal_matches": 0,
+    "absolute_machine_path_matches": 0,
+    "email_matches": 0,
+    "ipv4_matches": 0,
+    "third_party_script_units_files": 0
+  },
+  "email_masks": {
+    "occurrences": 260,
+    "files": 114,
+    "Unicode_length_preserved": true
+  },
+  "historical_test_execution_source_missing": [
+    {
+      "sha256": "2df227c7dd7a9c69fc29ccd30c8fc498742e991913382936c10ca08d37f74d54",
+      "file": "smoke2-mistral.jsonl",
+      "records": 100,
+      "used_by_reported_production_reducers": false
+    }
+  ]
+}

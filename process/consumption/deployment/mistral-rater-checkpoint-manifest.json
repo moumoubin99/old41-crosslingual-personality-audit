@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "--unit",
+    "checkpoint",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/rater-reference-{unit}-v2-seed-{seed}.json",
+    "--seed",
+    "17091814",
+    "--rater-path",
+    "<LOCAL_PATH>/OPEA__Mistral-Small-3.1-24B-Instruct-2503-int4-AutoRound-awq-sym"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "experiments/xlpt/mistral_awq_reference.py",
+    "experiments/xlpt/test_mistral_awq_quant.py",
+    "experiments/xlpt/test_mistral_awq_attention.py",
+    "experiments/xlpt/test_mistral_awq_decode.py",
+    "experiments/xlpt/test_rater_reference_probe.py",
+    "process/consumption/deployment/mistral-rater-config/config.json",
+    "process/consumption/deployment/mistral-rater-config/quantization_config.json",
+    "process/consumption/deployment/mistral-rater-config/generation_config.json",
+    "process/consumption/deployment/mistral-rater-config/tokenizer_config.json"
+  ],
+  "spec": "process/consumption/deployment/RATER_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "rater_checkpoint_groups"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_checkpoint_groups",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "key_value_group_count"
+        }
+      ],
+      "test_ids": [
+        "runner_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_reference_probe"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "This identity unit selects only rater_checkpoint_groups, the grouped-query head ratio computed from the deployed checkpoint configuration; no weight-dependent inference formula is claimed. It answers the fifth requirement of the english-b0-rater-v2 handoff, which objected that the packet reported checkpoint HASHES only: the unit reads config.json, quantization_config.json, generation_config.json and tokenizer_config.json from the deployed rater directory and records their INSPECTABLE CONTENT beside the digests -- attention and key-value head counts, the derived key-value group count, head dimension, RMS epsilon, rotary base, vocabulary size, terminal token ids, quantization bits, group size, symmetry, zero-point convention, quantization method and kernel version. Missing, incomplete or disagreeing standalone/nested quantization configuration is refused rather than defaulted. The runner contract test exercises this path on synthetic checkpoints with independently written expected values. The unit loads no weights, uses no GPU, produces no rubric score and no scientific estimate; its receipt carries eligible_for_analysis false. It is the one unit that cannot run in the authoring sandbox because the model directory is readable only from host 41's account, and it must be probed there. This unit does not settle the open production-linkage requirement of the handoff."
+}

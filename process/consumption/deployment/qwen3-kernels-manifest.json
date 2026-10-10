@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "--unit",
+    "kernels",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/qwen-reference-{unit}-seed-{seed}.json",
+    "--seed",
+    "17091701",
+    "--device",
+    "cpu"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "experiments/xlpt/qwen3_reference.py",
+    "experiments/xlpt/test_qwen3_kernels.py",
+    "experiments/xlpt/test_qwen3_attention.py",
+    "experiments/xlpt/test_qwen3_autoregression.py",
+    "experiments/xlpt/test_qwen3_checkpoint_binding.py",
+    "experiments/xlpt/test_qwen3_sampler.py",
+    "experiments/xlpt/test_qwen_reference_probe.py"
+  ],
+  "spec": "process/consumption/deployment/QWEN_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "qwen_rms_norm",
+    "qwen_rope_tables",
+    "qwen_rope_apply",
+    "qwen_linear",
+    "qwen_swiglu"
+  ],
+  "bindings": [
+    {
+      "formula_id": "qwen_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "rms_norm"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_rope_tables",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "rope_tables"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_rope_apply",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "apply_rope"
+        },
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "rotate_half"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_linear",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "linear"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_swiglu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "swiglu_mlp"
+        },
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "silu"
+        }
+      ],
+      "test_ids": [
+        "kernels_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "kernels_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_kernels.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_kernels.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "The launched command executes exactly the five elementwise and projection formulas selected above, through the same dispatch point the launch argv names. Every expected value in the contract test is computed in that test in plain Python, never read back from the implementation. The run emits no rater score, no scientific estimate and nothing that enters a gate; its receipt is written with eligible_for_analysis false. The scientific estimators eq1-eq7 are not executed by this unit and remain in refine-logs/MATH_SPEC.json."
+}

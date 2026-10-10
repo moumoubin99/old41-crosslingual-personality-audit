@@ -1,0 +1,1254 @@
+{
+  "screen": "G1_competence",
+  "surface": "D = zh (Chinese dialogue) on the frozen Chinese qualification packet",
+  "phase": "zh-b0-competence",
+  "setting": "NEUTRAL_DZH",
+  "project": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "phase_root": "<LOCAL_PATH>/zh-b0-competence-repaired",
+  "thresholds": {
+    "response_language_accuracy": 0.95,
+    "instruction_compliance": 0.9,
+    "turn_is_chinese_when_han_ratio_at_least": 0.5,
+    "mandatory_agent_turns": 3
+  },
+  "language_identification": "Han-character ratio over script-bearing characters (Han + Latin letters); digits, punctuation and whitespace are script-neutral and excluded",
+  "frozen_apparatus": {
+    "prompt_config_sha256": "fd7dc5882f3b213db893e728cdd22563b28b3f1d52e9ad4aa4393e72e2d9e921",
+    "freeze_receipt_sha256": "6f13586c8d5c82e54e0a6ef0a3c034aa293c71a07a33fe1881e5735100e1f8c6"
+  },
+  "shard_count": 92,
+  "checkpoints": [
+    {
+      "checkpoint": "Llama-3.1-8B-Instruct",
+      "seeds": [
+        20260811,
+        20260812,
+        20260813,
+        20260814,
+        20260815,
+        20260816,
+        20260817,
+        20260818,
+        20260819,
+        20260820,
+        20260821,
+        20260822,
+        20260823,
+        20260824,
+        20260825,
+        20260826,
+        20260827,
+        20260828,
+        20260830,
+        20260831,
+        20260832,
+        20260833,
+        20260834
+      ],
+      "seed_count": 23,
+      "scenarios": 1150,
+      "agent_turns": 3450,
+      "response_language_accuracy": 1.0,
+      "response_language_accuracy_seed_mean": 1.0,
+      "instruction_compliance": 1.0,
+      "instruction_compliance_seed_mean": 1.0,
+      "screen": "IN_COMPETENCE",
+      "failures": [],
+      "per_seed": [
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260811,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260812,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260813,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260814,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260815,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260816,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260817,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260818,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260819,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260820,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260821,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260822,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260823,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260824,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260825,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260826,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260827,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260828,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260830,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260831,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260832,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260833,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "Llama-3.1-8B-Instruct",
+          "seed": 20260834,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        }
+      ]
+    },
+    {
+      "checkpoint": "aya-expanse-8b",
+      "seeds": [
+        20260811,
+        20260812,
+        20260813,
+        20260814,
+        20260815,
+        20260816,
+        20260817,
+        20260818,
+        20260819,
+        20260820,
+        20260821,
+        20260822,
+        20260823,
+        20260824,
+        20260825,
+        20260826,
+        20260827,
+        20260828,
+        20260830,
+        20260831,
+        20260832,
+        20260833,
+        20260834
+      ],
+      "seed_count": 23,
+      "scenarios": 1150,
+      "agent_turns": 3450,
+      "response_language_accuracy": 1.0,
+      "response_language_accuracy_seed_mean": 1.0,
+      "instruction_compliance": 1.0,
+      "instruction_compliance_seed_mean": 1.0,
+      "screen": "IN_COMPETENCE",
+      "failures": [],
+      "per_seed": [
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260811,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260812,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260813,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260814,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260815,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260816,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260817,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260818,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260819,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260820,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260821,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260822,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260823,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260824,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260825,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260826,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260827,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260828,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260830,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260831,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260832,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260833,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "aya-expanse-8b",
+          "seed": 20260834,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        }
+      ]
+    },
+    {
+      "checkpoint": "gemma-3-12b-it",
+      "seeds": [
+        20260811,
+        20260812,
+        20260813,
+        20260814,
+        20260815,
+        20260816,
+        20260817,
+        20260818,
+        20260819,
+        20260820,
+        20260821,
+        20260822,
+        20260823,
+        20260824,
+        20260825,
+        20260826,
+        20260827,
+        20260828,
+        20260830,
+        20260831,
+        20260832,
+        20260833,
+        20260834
+      ],
+      "seed_count": 23,
+      "scenarios": 1150,
+      "agent_turns": 3450,
+      "response_language_accuracy": 0.282609,
+      "response_language_accuracy_seed_mean": 0.282609,
+      "instruction_compliance": 1.0,
+      "instruction_compliance_seed_mean": 1.0,
+      "screen": "OUT_OF_COMPETENCE",
+      "failures": [
+        "response_language_accuracy 0.2826 < 0.95"
+      ],
+      "per_seed": [
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260811,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 54,
+          "response_language_accuracy": 0.36
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260812,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 49,
+          "response_language_accuracy": 0.32666666666666666
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260813,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 25,
+          "response_language_accuracy": 0.16666666666666666
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260814,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 47,
+          "response_language_accuracy": 0.31333333333333335
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260815,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 40,
+          "response_language_accuracy": 0.26666666666666666
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260816,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 55,
+          "response_language_accuracy": 0.36666666666666664
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260817,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 53,
+          "response_language_accuracy": 0.35333333333333333
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260818,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 33,
+          "response_language_accuracy": 0.22
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260819,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 39,
+          "response_language_accuracy": 0.26
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260820,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 31,
+          "response_language_accuracy": 0.20666666666666667
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260821,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 34,
+          "response_language_accuracy": 0.22666666666666666
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260822,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 46,
+          "response_language_accuracy": 0.30666666666666664
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260823,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 31,
+          "response_language_accuracy": 0.20666666666666667
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260824,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 52,
+          "response_language_accuracy": 0.3466666666666667
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260825,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 48,
+          "response_language_accuracy": 0.32
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260826,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 38,
+          "response_language_accuracy": 0.25333333333333335
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260827,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 42,
+          "response_language_accuracy": 0.28
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260828,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 52,
+          "response_language_accuracy": 0.3466666666666667
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260830,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 40,
+          "response_language_accuracy": 0.26666666666666666
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260831,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 44,
+          "response_language_accuracy": 0.29333333333333333
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260832,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 38,
+          "response_language_accuracy": 0.25333333333333335
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260833,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 38,
+          "response_language_accuracy": 0.25333333333333335
+        },
+        {
+          "checkpoint": "gemma-3-12b-it",
+          "seed": 20260834,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 46,
+          "response_language_accuracy": 0.30666666666666664
+        }
+      ]
+    },
+    {
+      "checkpoint": "qwen3-8b",
+      "seeds": [
+        20260811,
+        20260812,
+        20260813,
+        20260814,
+        20260815,
+        20260816,
+        20260817,
+        20260818,
+        20260819,
+        20260820,
+        20260821,
+        20260822,
+        20260823,
+        20260824,
+        20260825,
+        20260826,
+        20260827,
+        20260828,
+        20260830,
+        20260831,
+        20260832,
+        20260833,
+        20260834
+      ],
+      "seed_count": 23,
+      "scenarios": 1150,
+      "agent_turns": 3450,
+      "response_language_accuracy": 1.0,
+      "response_language_accuracy_seed_mean": 1.0,
+      "instruction_compliance": 1.0,
+      "instruction_compliance_seed_mean": 1.0,
+      "screen": "IN_COMPETENCE",
+      "failures": [],
+      "per_seed": [
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260811,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260812,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260813,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260814,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260815,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260816,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260817,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260818,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260819,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260820,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260821,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260822,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260823,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260824,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260825,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260826,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260827,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260828,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260830,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260831,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260832,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260833,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        },
+        {
+          "checkpoint": "qwen3-8b",
+          "seed": 20260834,
+          "scenarios": 50,
+          "scenarios_compliant": 50,
+          "instruction_compliance": 1.0,
+          "agent_turns": 150,
+          "agent_turns_chinese": 150,
+          "response_language_accuracy": 1.0
+        }
+      ]
+    }
+  ],
+  "non_chinese_examples": {
+    "Llama-3.1-8B-Instruct": [],
+    "aya-expanse-8b": [],
+    "gemma-3-12b-it": [
+      {
+        "scenario_id": "xlpt-telecom-billing_dispute-v2",
+        "turn_index": 0,
+        "han_ratio": 0.247,
+        "script_chars": 498,
+        "excerpt": "好的，我了解了。\n\n您好！根据您的账号 7702-3391 的记录，系统显示今天成功收取了两笔 48 美元的直接借款，总共 96 美元。您表示您的账单金额应该是 48 美元，而不是 96 美元。\n\n我确认了这两笔收款记录。我可以为您申请退款，但请您知悉，退款流程需要 5 到 7 个银行工作日，并且无法立即撤销这两笔借款"
+      },
+      {
+        "scenario_id": "xlpt-telecom-billing_dispute-v2",
+        "turn_index": 1,
+        "han_ratio": 0.247,
+        "script_chars": 660,
+        "excerpt": "我非常理解您的担忧。\n\n您说第二次借款导致您的账户超额提现，并且在下个月的账单上，信用并没有帮助您。这确实令人困扰。\n\n鉴于这种情况，我将为您申请退还这两笔 48 美元的款项。 请您再次确认，退款需要 5 到 7 个银行工作日，且无法立即撤销。 同时，我会将您的情况反馈给相关部门，以便他们调查为什么第二次借款会造成超额"
+      },
+      {
+        "scenario_id": "xlpt-telecom-billing_dispute-v2",
+        "turn_index": 2,
+        "han_ratio": 0.2949,
+        "script_chars": 719,
+        "excerpt": "好的，我理解您需要一个明确的日期以便告知您的银行。\n\n根据我的记录，我已为您申请退还这两笔 48 美元的款项。由于退款需要经过银行处理，具体到账日期我无法准确确定。但是，根据流程，预计在 5 到 7 个银行工作日内完成。\n\n为了给您的银行提供一个大致的预期时间，我建议您告知他们预计在**[当前日期 + 7 个银行工作日"
+      },
+      {
+        "scenario_id": "xlpt-telecom-status_delay-v5",
+        "turn_index": 0,
+        "han_ratio": 0.2228,
+        "script_chars": 956,
+        "excerpt": "好的，我理解您的情况。\n\n您好，关于您光纤升级订单FIB-20553，已经等待调查五周，并且没有收到任何更新或联系。我查看了您的订单信息，确认订单已发布五周，目前状态是“审核中”。\n\n由于您的订单涉及到邮政编码的调查，并且这个邮政编码之前有类似预订记录，所以需要进一步的调查确认。 经纪人可以标记调查优先级，并且可以提供"
+      },
+      {
+        "scenario_id": "xlpt-telecom-status_delay-v5",
+        "turn_index": 1,
+        "han_ratio": 0.2246,
+        "script_chars": 846,
+        "excerpt": "您好，我非常理解您的担忧。\n\n您提到已经支付了更高的光纤价格，但尚未安装服务，这确实是不应该发生的。 我再次确认了订单FIB-20553的状态，目前仍在审核中。\n\n我非常抱歉给您带来的不便。 我会将此情况升级，并向相关部门强调您已经支付了更高费用，但尚未获得服务。 我会尽最大努力推动调查尽快完成，并尽快安排您的光纤安装"
+      },
+      {
+        "scenario_id": "xlpt-telecom-status_delay-v5",
+        "turn_index": 2,
+        "han_ratio": 0.2208,
+        "script_chars": 1445,
+        "excerpt": "您好，我理解您现在最希望得到一个明确的调查日期，或者退还之前支付的费用。\n\n很遗憾，根据目前的信息，我无法立即提供一个具体的调查完成日期，因为调查进度受到邮政编码历史记录的影响，需要相关部门进一步确认。 我已经将您的订单升级并标记为优先调查，但具体时间仍不确定。\n\n关于退还之前支付的费用，我可以提交申请，让财务部门评估"
+      },
+      {
+        "scenario_id": "xlpt-telecom-technical_fault-v2",
+        "turn_index": 0,
+        "han_ratio": 0.2524,
+        "script_chars": 733,
+        "excerpt": "好的，我了解了。\n\n您好！ 您的手机号码是0771-336-4408，您反映拨打电话时出现网络错误，而数据服务却一切正常，这与我们的记录相符。 语音通话在家庭网络上出现问题，但在漫游时则正常。\n\n根据我们的系统信息，这可能是线路配置出现错误导致的。 为了解决这个问题，我们可以为您重新配置线路。 这个过程可能需要最长两个"
+      },
+      {
+        "scenario_id": "xlpt-telecom-technical_fault-v2",
+        "turn_index": 1,
+        "han_ratio": 0.2531,
+        "script_chars": 636,
+        "excerpt": "您说得对，考虑到您的新合同开始时国外通话正常，并且数据服务一切良好，这确实更倾向于手机本身没有问题，而是网络配置或线路的问题。\n\n我理解您的顾虑。我们将立即采取行动，重新配置您的线路。正如之前提到的，这个过程可能需要长达两个小时，期间我们会为您安排临时转移。我们会尽快完成，并确保您的语音通话功能恢复正常。\n\n请您稍作耐"
+      },
+      {
+        "scenario_id": "xlpt-telecom-technical_fault-v2",
+        "turn_index": 2,
+        "han_ratio": 0.3829,
+        "script_chars": 773,
+        "excerpt": "我完全理解您的情况，周四的医院预约非常重要。 考虑到您的语音通话功能目前无法使用，我们必须尽快解决这个问题。\n\n我们正在全力处理线路重新配置。同时，为了确保您不会错过周四的预约电话，我们可以提供以下几种临时解决方案：\n\n1. **临时转移号码：** 我们会为您安排一个临时转移号码，您可以将这个号码告知医院，让他们在周四"
+      },
+      {
+        "scenario_id": "xlpt-telecom-account_access-v1",
+        "turn_index": 0,
+        "han_ratio": 0.2514,
+        "script_chars": 521,
+        "excerpt": "您好！\n\n您的账户 7248-1130 因为多次登录失败而被锁定。我已经为您触发了密码重置邮件。请您检查您的邮箱，点击邮件中的链接进行密码重置。\n\n请注意，由于您的个人资料已被锁定，我无法直接读取或设置您的密码。您需要通过邮件中的重置链接来完成密码重置。\n\n如果您在点击链接后仍然无法重置密码，请告知我，我将尽力协助您。"
+      },
+      {
+        "scenario_id": "xlpt-telecom-account_access-v1",
+        "turn_index": 1,
+        "han_ratio": 0.2376,
+        "script_chars": 985,
+        "excerpt": "您好！\n\n非常抱歉听到您仍然遇到问题。您已经确认使用了注册的电子邮件地址，并且在两个浏览器上都遇到了无效代币的错误，这表明情况比较复杂。\n\n由于安全原因，我无法直接解决此问题。但是，我可以确认我已经触发了密码重置邮件，并且系统可以发送邮件。\n\n为了解决您的问题，我建议您联系我们的客服部门，他们可以进行更深入的调查，并手"
+      },
+      {
+        "scenario_id": "xlpt-telecom-account_access-v1",
+        "turn_index": 2,
+        "han_ratio": 0.2251,
+        "script_chars": 955,
+        "excerpt": "您好！\n\n我理解您今天需要访问下载您的会计账单，并且需要尽快解决这个问题。\n\n由于账户已被锁定且重置密码失败，我无法直接让您下载账单。 但是，为了满足您的需求，我可以尝试通过其他方式为您提供账单。\n\n我将立即将您的请求转交给我们的客服团队，让他们优先处理您的情况，并尽快为您提供会计账单。请您耐心等待，客服人员会尽快与您"
+      },
+      {
+        "scenario_id": "xlpt-retail-billing_dispute-v5",
+        "turn_index": 0,
+        "han_ratio": 0.2332,
+        "script_chars": 596,
+        "excerpt": "好的，请您稍等。\n\n根据您的订单R-523114，您购买的外套价格为180英镑。订单于3日18点00分发出，同一项目在4日14点00分被列出。我们的价格承诺窗口为14天，涵盖零售商自身网站上的降价。\n\n如果零售商网站上该外套在您收到外套后的14天内降价了，我们经纪人可以为您退还36美元的差额。\n\n请您提供零售商网站上该"
+      },
+      {
+        "scenario_id": "xlpt-retail-billing_dispute-v5",
+        "turn_index": 1,
+        "han_ratio": 0.2412,
+        "script_chars": 539,
+        "excerpt": "您说得对，我的描述不够清晰。\n\n我们的价格承诺主要针对与其他零售商的价格进行比对。关于您已经订购的产品是否能享受零售商自身网站的折扣，情况比较特殊。\n\n请您提供零售商网站上该外套的降价链接和具体价格，我们会进一步评估并告知您是否符合价格承诺的条件。我们会尽力为您争取最优惠的处理方案。\n\n(Nín shuō de duì"
+      },
+      {
+        "scenario_id": "xlpt-retail-billing_dispute-v5",
+        "turn_index": 2,
+        "han_ratio": 0.3106,
+        "script_chars": 747,
+        "excerpt": "很抱歉，目前我无法直接确认是否符合36美元差额退款的条件。这取决于零售商自身网站上的降价情况，以及是否符合我们的价格承诺的具体条款。\n\n为了尽快为您确认，请您提供以下信息：\n\n*   **零售商网站的网址：** 这样我们可以直接查看降价信息。\n*   **降价后的价格：** 请告知您在零售商网站上看到的降价后的价格。\n"
+      },
+      {
+        "scenario_id": "xlpt-retail-billing_dispute-v6",
+        "turn_index": 0,
+        "han_ratio": 0.2745,
+        "script_chars": 674,
+        "excerpt": "好的，根据您的订阅信息 (S-77401) 以及我们的政策，我理解您希望跳过10月份的订阅。\n\n虽然您在应用程序中提交了跳过请求，但系统记录显示该请求是在截止时间后的11小时提交的。 另外，39元的盒子已经发货了。\n\n根据我们的政策，我们**无法取消已经发货的盒子**。 但是，您可以选择退货，届时我们会为您**全额退款"
+      },
+      {
+        "scenario_id": "xlpt-retail-billing_dispute-v6",
+        "turn_index": 1,
+        "han_ratio": 0.2503,
+        "script_chars": 743,
+        "excerpt": "好的，非常抱歉给您带来了困扰。我理解您说应用程序没有提醒您截止时间，并且在后续的时间表屏幕上显示了已跳过的10月。\n\n根据您提供的信息，这似乎是一个应用程序显示错误。 尽管盒子已经发货，但由于应用程序显示了跳过10月的订阅信息，我们愿意为您**全额退款**，并且**免除退货邮费**。\n\n请您放心，我们会尽快为您处理退款"
+      },
+      {
+        "scenario_id": "xlpt-retail-billing_dispute-v6",
+        "turn_index": 2,
+        "han_ratio": 0.2469,
+        "script_chars": 405,
+        "excerpt": "好的，我完全理解。您不需要这个盒子，并且希望确认退款和费用问题。\n\n是的，您将收到39英镑的全额退款。 并且，您**不需要支付任何退货邮费**。 我们会承担退货的运费。\n\n请您放心，我们会尽快启动退款流程。 退款通常需要3-5个工作日才能显示在您的账户中。\n\n(Hǎo de, wǒ wánquán lǐjiě. Nín"
+      },
+      {
+        "scenario_id": "xlpt-retail-status_delay-v3",
+        "turn_index": 0,
+        "han_ratio": 0.2461,
+        "script_chars": 321,
+        "excerpt": "好的，我理解您的情况。\n\n您好！您的退货RET-22890已经在仓库收到15天了。我们已经为您安排了74.50的退款，但目前尚未处理。 我会尽快联系相关部门，帮您加快退款进度，预计两个工作日内完成。 感谢您的耐心等待！\n\n(Hǎo de, wǒ lǐjiě nín de qíngkuàng.\n\nNín hǎo! Nín"
+      },
+      {
+        "scenario_id": "xlpt-retail-status_delay-v3",
+        "turn_index": 1,
+        "han_ratio": 0.2454,
+        "script_chars": 432,
+        "excerpt": "您好！您说得对，根据我们的政策，收到退货后10个工作日已经过去。您也确认了追踪信息显示退货已成功签收，这非常好。\n\n我再次确认您的退款情况，并会立即联系相关部门，确保您的74.50元退款在两个工作日内处理完成。非常抱歉给您带来不便，感谢您的理解和耐心。\n\n(Nín hǎo! Nín shuō de duì, gēnjù"
+      }
+    ],
+    "qwen3-8b": []
+  },
+  "gate_decision": "NOT_DECIDED_BY_THIS_TOOL",
+  "limitations": [
+    "The Chinese scenarios are a single-stratum NLLB-200-3.3B rendering, not the registered translation ensemble; a competence failure here can be a rendering artefact as well as a model limitation, and both readings stay open.",
+    "Han-ratio language identification cannot distinguish Chinese from Japanese kanji text; it is a script screen, not a full language identifier.",
+    "Instruction compliance here is turn-structure compliance only. Task fidelity is scored by the English behavior rubric on the pole arms, not by this screen.",
+    "This screen writes no QUALIFICATION_GATE.results and freezes no ELIGIBLE_PAIRS."
+  ]
+}

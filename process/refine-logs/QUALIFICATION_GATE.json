@@ -1,0 +1,112 @@
+{
+  "artifact": "QUALIFICATION_GATE.json",
+  "status": "SPECIFICATION FROZEN BEFORE B1. Thresholds, limbs, samples and decision maps only; NO ESTIMATE IS PRESENT. Results are written once, at the pre-B1 gate run, into the results block of this same schema and then hashed into ELIGIBLE_PAIRS.json.",
+  "authority": "pico.preregistration.decision_rule sections E, F1-F4 as amended by R15-F3, R16-F1, R16-F2, R16-F3, R16-F4, R16-F5 and R17-F2/F3/F4(b); where this file could be read as adding a rule, the design card governs.",
+  "governing_card_sha256": "efeff88f3efb81f42a22613e0563b915f551780beaa04635cd5a7cd1d15acf50",
+  "reads_only": {
+    "partition": "the 60-scenario QUALIFICATION partition of SCENARIO_PARTITION.json plus the separately hashed 50-prompt competence sample; NEVER the 30 tuning scenarios and NEVER the 90 evaluation scenarios",
+    "scenario_partition_sha256_prefix": "466fc495a386ed6c",
+    "rubric": "RUBRIC_BEHAVIOR.md, frozen and hashed before any generation",
+    "tensor": "the section-H2 qualification tensor: 12 checkpoint-language cells x 60 qualification scenarios x 5 settings x 24 seeds = 86400 fresh transcripts (R17-F2), disjoint from the confirmatory core and from tuning"
+  },
+  "no_gate_statistic_is_confirmatory": "Every family below runs at its OWN FWER 0.05, shares no critical value with any other family, and is a member of NO confirmatory family (F1-F4, R16-F4(c)). Nothing computed on the evaluation split may change any admission.",
+  "cells": {
+    "checkpoints": [
+      "gemma-3-12b-it",
+      "Qwen3-8B",
+      "Llama-3.1-8B-Instruct",
+      "aya-expanse-8b"
+    ],
+    "languages_L3": [
+      "English",
+      "Chinese",
+      "Swahili"
+    ],
+    "n_cells": 12,
+    "targeted_traits": [
+      "Extraversion",
+      "Agreeableness"
+    ]
+  },
+  "gates": [
+    {
+      "id": "G1_competence",
+      "rule": "R16-F5 (governs)",
+      "family": "the R16-F5 competence family, own FWER 0.05",
+      "sample": "its own SEPARATELY HASHED 50-prompt QUALIFICATION sample of held-out neutral support prompts, per checkpoint x target language; never tuning material",
+      "measured": [
+        "response-language accuracy by language identifier at >= 0.9 confidence",
+        "instruction compliance under the frozen decoding configuration (temperature 0.7, top_p 0.95, max_new_tokens 512, fixed stop sequences, fixed seed list)"
+      ],
+      "thresholds": {
+        "language_accuracy_min": 0.95,
+        "instruction_compliance_min": 0.9
+      },
+      "decision": "A cell enters the grid only at accuracy >= 0.95 AND compliance >= 0.90. A failing cell is reported OUT OF COMPETENCE and excluded - never as a checkpoint whose induced trait fails to transfer.",
+      "run_policy": "Run once, frozen, never re-run after any evaluation datum exists."
+    },
+    {
+      "id": "G2_validity_F2",
+      "rule": "decision_rule F2 (filed in full in DESIGN_REVISION_HISTORY.md, binding word for word)",
+      "family": "the F2 validity family, cell by cell, own FWER 0.05",
+      "sample": "720 blind double-annotated adjudicated transcripts - ONE per qualification scenario in each of the 12 cells, so 60 INDEPENDENT SCENARIO CLUSTERS per cell and no transcript shared between two cells' gates; annotators fluent in the language, blind to persona language, dialogue language, checkpoint and pole; a third adjudicates; none sees the injected-delta anchors",
+      "estimator": "BCa bootstrap RESAMPLING SCENARIOS inside the cell, 9999 replications, generator seed 20260911; transcript-level Fisher-z standard errors are VOID",
+      "thresholds": {
+        "cell_rater_vs_criterion_95_lower_bound_min": 0.4,
+        "pooled_rater_vs_criterion_95_lower_bound_min": 0.6,
+        "pooling": "each scenario counted once by averaging within scenario",
+        "discriminant_and_anti_stereotype": "registered thresholds retained, same scenario-level bootstrap, paired within scenario",
+        "rater_vs_adjudicated_krippendorff_alpha_min": 0.7,
+        "cross_language_agreement_equivalence": "registered equivalence test must pass in every language, else the behavior arm is DESCRIPTIVE ONLY"
+      },
+      "decision": "Failure of any threshold in a checkpoint-language removes that checkpoint (F3, with R16-F3)."
+    },
+    {
+      "id": "G3_instrument_language_invariance",
+      "rule": "R16-F1(b)(c)(d) (governs)",
+      "family": "12 limbs, ONE per (checkpoint, language), own FWER 0.05",
+      "sample": "n_inv = 360 cross-scored qualification transcripts - 30 per cell, the FIRST 30 qualification scenarios of the F2 subsample - each scored TWICE, once under the ENGLISH instrument and once under the transcript-language rendering, by disjoint certified raters, blind exactly as in F2; 720 ratings in total",
+      "statistic": "the within-transcript mean instrument-language difference on the RAW NATIVE 1-7 scale",
+      "resampling": "the section I(i)-(iii) seed-cluster Webb bootstrap at G = 24, V_hat on 23 df, 9999 replications, at the R17-F2(b) calibrated critical level q* = 0.965",
+      "critical_value": "ONE TWO-SIDED single-step max-|t| critical value over the 12 limbs",
+      "equivalence_margin_iota_native_points": 0.1,
+      "decision": "Invariance HOLDS for a cell iff its simultaneous 95% interval lies wholly inside +- 0.10 native points. A cell whose invariance fails is NOT ADMITTED under F3.",
+      "power": "power/power_sim_r16.py must certify >= 0.80 power for this 12-limb equivalence family at a true difference of 0 under the R16-F6 conservative inputs and file POWER_SIM_R16.json BEFORE B0; until it does, n_inv rises under the section-H2 schedule."
+    },
+    {
+      "id": "G4_perturbation_sensitivity",
+      "rule": "decision_rule F3 (gating), instrument from controls.evaluator_validity rule F limb (ii) as archived verbatim",
+      "family": "per checkpoint-language cell, own FWER 0.05",
+      "sample": "360 perturbation pairs, 30 per cell - minimally edited transcript pairs differing by ONE trait-diagnostic behavior",
+      "statistic": "the detection-sensitivity difference across languages within a checkpoint",
+      "equivalence_margin": 0.05,
+      "decision": "Equal detection sensitivity must hold within the registered margin in each cell; failure in a checkpoint-language removes that checkpoint (F3).",
+      "note": "The R15-F4 apparatus-artifact arm read off these same pairs is EXPLORATORY and gates and falsifies nothing; only the F3 sensitivity-equivalence reading is gating."
+    },
+    {
+      "id": "G5_diagonal_admission",
+      "rule": "R15-F3 as amended by R16-F2 and R16-F3 (governs)",
+      "family": "the enumerated 24-limb admission family = 4 checkpoints x 3 languages x 2 targeted traits, own FWER 0.05",
+      "null_per_limb": "E*(p,p) <= f_diag = 0.18 on the diagonal (persona language = dialogue language) cell effect, raw native 1-7 rubric mean",
+      "critical_value": "ONE ONE-SIDED SIGNED single-step max-T critical value over the 24 limbs, seed-cluster Webb bootstrap at G = 24, q* = 0.965",
+      "decision": "Admission rejects in the UPPER TAIL ONLY: a limb admits iff the one-sided signed max-T statistic exceeds its critical value, equivalently iff the SIMULTANEOUS LOWER BOUND exceeds f_diag = 0.18. The |t| two-sided reading is VOID (R16-F2).",
+      "admission_map": "DETERMINISTIC and LANGUAGE-LEVEL: a checkpoint-language is admitted only if every gate G1-G5 passes there; L = 3 is MANDATORY - a checkpoint keeps ALL THREE languages or is not admitted, and the L = 2 branch is VOID (R16-F3). Pair-level eligibility is VOID.",
+      "gate_power": "power/power_sim_r9.py must show >= 0.90 per-pair gate power at the anticipated diagonal effect of 0.60 on the H2 tensor under the section-I seed-cluster bootstrap at G = 24, filed as power/POWER_SIM_R9.json before B1 (F4)."
+    }
+  ],
+  "deterministic_consequences": {
+    "fewer_than_3_of_4_checkpoints_admitted": "the behavior channel is NOT ADMITTED, H1 takes outcome (C), and NO endpoint is substituted (F3).",
+    "gate_power_below_0.90_at_Q_60": "H1 is UNTESTABLE on the behavior channel and takes outcome (C). THE CORPUS IS NOT ENLARGED, no threshold is relaxed, no scenario is reused (F4).",
+    "invariance_power_below_0.80": "n_inv rises under the section-H2 schedule before B0; no threshold moves (R16-F1(d)).",
+    "H2b_rater_language_subsample": "NON-GATING. A failure is disclosed wherever the headline is stated and narrows the claim, but never removes a checkpoint, changes a family or changes an admission."
+  },
+  "descriptive_not_gating": [
+    "anchor slope, anchor intercept and the cross-language slope-equivalence margin (R16-F4(a)) - 288 anchored ratings over 12 anchor sets of 24",
+    "the four rater-free indicators (escalation rate, refusal rate, mean turn length, apology-token rate) as a convergence check",
+    "the R15-F4 apparatus-artifact exclusion",
+    "the H2b 20% rater-language subsample of the confirmatory core"
+  ],
+  "freeze": "On completion of G1-G5 the ADMITTED CHECKPOINT SET, the ELIGIBLE PAIR SET, the primary family and the estimand composition are FROZEN AND HASHED into ELIGIBLE_PAIRS.json and CANNOT CHANGE after any confirmatory transcript exists (F).",
+  "results": null,
+  "self_sha256": "6e00883e4cf468efa523f23ebd1798e9f18fa05000cc2a1dcbea17c2edbb4770"
+}

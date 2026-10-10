@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "design_card": "refine-logs/design_card.json",
+  "formula_ids": [
+    "rater_score_parse",
+    "english_trait_mean",
+    "english_rate"
+  ],
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_rater_scoring",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--seed",
+    "20260811",
+    "--rater-path",
+    "<LOCAL_PATH>/OPEA__Mistral-Small-3.1-24B-Instruct-2503-int4-AutoRound-awq-sym",
+    "--runtime-manifest",
+    "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json",
+    "--source-checkpoint",
+    "gemma-3-12b-it",
+    "--source-phase",
+    "zh-b4-extraversion-low",
+    "--prompt-config",
+    "process/consumption/frozen/english_execution_v3.json",
+    "--freeze-receipt",
+    "process/consumption/frozen/english_execution_receipt_v3.json"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_score_parse",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/run_rater_scoring.py",
+          "symbol": "parse_item_score"
+        }
+      ],
+      "test_ids": [
+        "rater_launch_integration"
+      ]
+    },
+    {
+      "formula_id": "english_trait_mean",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "trait_score"
+        }
+      ],
+      "test_ids": [
+        "rater_launch_integration"
+      ]
+    },
+    {
+      "formula_id": "english_rate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/rater_runtime.py",
+          "symbol": "measured_rate"
+        }
+      ],
+      "test_ids": [
+        "rater_launch_integration"
+      ]
+    }
+  ],
+  "source_roots": [
+    "experiments/xlpt/__init__.py",
+    "experiments/xlpt/inference_contract.py",
+    "experiments/xlpt/rater_frozen_inputs.py",
+    "experiments/xlpt/rater_runtime.py",
+    "experiments/xlpt/run_rater_scoring.py",
+    "experiments/xlpt/score_rater.py",
+    "experiments/xlpt/test_pole_rater_contract.py",
+    "experiments/xlpt/test_rater_launch_integration.py",
+    "experiments/xlpt/test_rater_module_smoke.py",
+    "experiments/xlpt/test_rater_prompt_date_freeze.py",
+    "process/consumption/deployment/gemma-3-12b-it-runtime-manifest.json",
+    "process/consumption/deployment/mistral-rater-build-provenance-v1.json",
+    "process/consumption/deployment/mistral-rater-config/chat_template.json",
+    "process/consumption/deployment/mistral-rater-config/config.json",
+    "process/consumption/deployment/mistral-rater-config/generation_config.json",
+    "process/consumption/deployment/mistral-rater-cuda-witness-v1.json",
+    "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json",
+    "process/consumption/deployment/qwen3-runtime-manifest.json",
+    "process/consumption/frozen/english_execution_receipt_v3.json",
+    "process/consumption/frozen/english_execution_v3.json",
+    "refine-logs/RUBRIC_BEHAVIOR.md"
+  ],
+  "tests": [
+    {
+      "id": "rater_launch_integration",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_launch_integration"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_launch_integration.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_module_smoke",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_module_smoke"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_module_smoke.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "rater_prompt_date_freeze",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_prompt_date_freeze"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_prompt_date_freeze.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "pole_rater_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_pole_rater_contract"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_pole_rater_contract.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ]
+}

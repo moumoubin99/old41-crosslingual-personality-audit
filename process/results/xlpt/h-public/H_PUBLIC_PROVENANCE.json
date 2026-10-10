@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "spec": "refine-logs/followup/H_public_spec.md",
+  "builder": "experiments/xlpt/score_public_personality.py",
+  "builder_sha256": "64e6a04a06d85181d6910242253ed057ba7733eac3c00c86092539038d026c30",
+  "corpora": {
+    "friendspersona": {
+      "repository": "emorynlp/personality-detection",
+      "commit": "3ec08a58dc7c708c5dfc314b3bff8f5808786928",
+      "licence": null,
+      "inputs": {
+        "data/collected/public_personality/friendspersona/friends-personality.csv": "89c9d0785eb21570899f1d9202284aee48be1698ce89664f1283c73c4a6b7cd3"
+      },
+      "units_file": "process/results/xlpt/h-public/units-friendspersona.jsonl",
+      "units_sha256": "2cea4892f096efd7c2d2d1f39467803bcdafe81e66de446fd1df9d9859189b8f",
+      "counts": {
+        "rows": 711,
+        "units": 711
+      }
+    },
+    "cped": {
+      "repository": "scutcyr/CPED",
+      "commit": "1e4b81c28a123f22387e06664f37e5dc9322380f",
+      "licence": "Apache-2.0",
+      "inputs": {
+        "data/collected/public_personality/cped/train_split.csv": "7bce6a11f0bf0ac353d28e96f6cfa03ff5e83b95810647abb55d18ff7299e487",
+        "data/collected/public_personality/cped/valid_split.csv": "f434a04d21640bb38c849f3e9598c2b7b2fbdb49be6a7365b2ae016019bd389b",
+        "data/collected/public_personality/cped/test_split.csv": "a4bcde678438ba1f95224d8e772e40f1f1df7c72f348796b3fafd421c2443a53"
+      },
+      "units_file": "process/results/xlpt/h-public/units-cped.jsonl",
+      "units_sha256": "68fbc139487a1b283b6875101675a0c74b78ac148dfdae736930f6c8ce857d46",
+      "counts": {
+        "components": 32,
+        "labelled_show_speakers": 334,
+        "identities": 287,
+        "eligible_show_speakers": 333,
+        "units": 569
+      }
+    }
+  }
+}

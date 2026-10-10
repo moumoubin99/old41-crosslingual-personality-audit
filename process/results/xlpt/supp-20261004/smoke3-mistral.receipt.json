@@ -1,0 +1,26 @@
+{
+  "output": "process/results/xlpt/supp-20261004/smoke3-mistral.jsonl",
+  "sha256": "9d50274870abe8739c5b453114b10af39e4d07ce27d561812ee694eec48cd5c9",
+  "records": 100,
+  "calls": 1200,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 343.4452700614929,
+  "calls_per_second": 3.494006482561671,
+  "args": {
+    "project": ".",
+    "rater": "mistral",
+    "task": "transcripts",
+    "tag": "smoke3-mistral",
+    "variants": "none",
+    "traits": "extraversion,agreeableness",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 100,
+    "chunk": 600,
+    "gpu_memory_utilization": 0.9,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

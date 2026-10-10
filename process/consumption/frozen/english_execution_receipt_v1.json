@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "status": "FROZEN",
+  "scope": "English behavior-only neutral and compliance-control execution",
+  "design_card_sha256": "f254839edf83b423ff8888da35b09c2e91ebecba720e82c6b805cb0369d6389b",
+  "prompt_config_self_sha256": "c3541632d9825738658e1989c31c99ea9b9e24f6e54de6a742fdf2ef3e0777ac",
+  "files": {
+    "process/consumption/frozen/english_execution_v1.json": "0b2ffb79daa086929fefaa7599130c8f9da081ca9deaedbe5c39426e72a46399",
+    "process/consumption/frozen/english_b0_competence_scenarios_v1.jsonl": "ee348d9071f5cba3555ce5b8304108a90084bd8eb1e4a2d0876a781bdeb8c998",
+    "process/consumption/frozen/english_b1_control_scenarios_v1.jsonl": "546f0db8f0ffabbac4f48e770c3b7e519746aab6db296ba829913925a5161c10",
+    "refine-logs/RUBRIC_BEHAVIOR.md": "1128825e3e9343f7cd32a8e9b5a1e1ea618d4d1c378429dc8436ea832de914ae"
+  },
+  "limitations": [
+    "Authoritative BFI-2/TIPI wording is absent and outside this receipt.",
+    "Persona-pole settings and non-English surfaces are absent and outside this receipt.",
+    "The B1/B2 control manifests remain pending until their registered stage dependency is released."
+  ],
+  "self_sha256": "04a3cde52ad5f34a53f69b627c2735ca439502cc7bc6a5f4f447f4d954522134"
+}

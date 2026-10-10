@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "--unit",
+    "decode",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/rater-reference-{unit}-v2-seed-{seed}.json",
+    "--seed",
+    "17091813"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "experiments/xlpt/mistral_awq_reference.py",
+    "experiments/xlpt/test_mistral_awq_quant.py",
+    "experiments/xlpt/test_mistral_awq_attention.py",
+    "experiments/xlpt/test_mistral_awq_decode.py",
+    "experiments/xlpt/test_rater_reference_probe.py",
+    "process/consumption/deployment/mistral-rater-config/config.json",
+    "process/consumption/deployment/mistral-rater-config/generation_config.json"
+  ],
+  "spec": "process/consumption/deployment/RATER_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "rater_residual",
+    "rater_decoder_layer",
+    "rater_vocab_parallel",
+    "rater_lm_head",
+    "rater_greedy",
+    "rater_eos_stop"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_residual",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "compose_decoder_residual"
+        }
+      ],
+      "test_ids": [
+        "decode_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_decoder_layer",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "decode_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_vocab_parallel",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "vocabulary_parallel_logit"
+        }
+      ],
+      "test_ids": [
+        "decode_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_lm_head",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "model_logits"
+        }
+      ],
+      "test_ids": [
+        "decode_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "greedy_next_token"
+        },
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "greedy_generate"
+        }
+      ],
+      "test_ids": [
+        "decode_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_eos_stop",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "eos_stop"
+        }
+      ],
+      "test_ids": [
+        "decode_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "decode_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_mistral_awq_decode"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_mistral_awq_decode.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_reference_probe"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "The launched command executes exactly the six composition, logit and selection formulas selected above, through the dispatch point the launch argv names. End-of-sequence stopping is now SET MEMBERSHIP over the checkpoint's terminal ids rather than the single-id comparison the english-b0-rater-v2 review rejected, and vocabulary-parallel logit concatenation is stated instead of being left implicit. Expected values in the contract test are computed in the test itself -- the shard concatenation is compared against an unsharded projection, greedy selection against an argmax written out by hand, the cached decode against the full recompute -- never read back from the implementation under test. No rater weight is loaded, no GPU is used, no rubric score and no scientific estimate is produced; the receipt carries eligible_for_analysis false. This unit does NOT settle the open first requirement of the handoff: it verifies the captured reference, it does not assert that the deployed vLLM rater is routed through it."
+}

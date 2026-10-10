@@ -1,0 +1,63 @@
+{
+  "budget": "R16-F4(b) as amended by R17-F2: the complete pre-B1 gating budget, enumerated once and hashed before B0",
+  "revision": "R12 as amended by R15, R16 and R17",
+  "source_of_counts": "RUN_TENSOR.json (transcripts) and FAMILY_REGISTRY.json (families)",
+  "items": [
+    {
+      "item": "qualification transcripts (section-H2 tensor at S = 24)",
+      "count": 86400,
+      "rule": "H2 as amended by R17-F2",
+      "human": false,
+      "note": "12 checkpoint-language cells x 60 qualification scenarios x 5 settings x 24 seeds; the 28 800 figure at S = 8 is VOID"
+    },
+    {
+      "item": "blind double-annotated rule-F2 transcripts",
+      "count": 720,
+      "rule": "F2 / R16-F4(b)",
+      "human": true,
+      "note": "stratified subsample, two independent annotators with a third adjudicating"
+    },
+    {
+      "item": "cross-scored R16-F1(b) invariance transcripts",
+      "count": 360,
+      "ratings": 720,
+      "rule": "R16-F1(b)",
+      "human": true,
+      "note": "gating instrument-language invariance family, +-iota = 0.10"
+    },
+    {
+      "item": "anchored ratings",
+      "count": 288,
+      "rule": "R16-F4(a)",
+      "human": true,
+      "note": "12 anchor sets of 24; DESCRIPTIVE ONLY - no estimated calibration enters any confirmatory statistic"
+    },
+    {
+      "item": "perturbation pairs",
+      "count": 360,
+      "rule": "R15-F4",
+      "human": true,
+      "note": "30 per cell; descriptive apparatus arm, gates and falsifies nothing"
+    },
+    {
+      "item": "competence screen prompts",
+      "count": 50,
+      "rule": "R16-F5",
+      "human": false,
+      "note": "its own hashed QUALIFICATION sample; never tuning material (R17-F3(b))"
+    }
+  ],
+  "human_totals": {
+    "annotated_transcripts": 720,
+    "ratings": 1008,
+    "perturbation_pairs": 360
+  },
+  "gpu_totals": {
+    "development_and_qualification_gpu_hours": "200-260",
+    "evaluation_gpu_hours": "560-930",
+    "cpu_hours": 140,
+    "note": "one 80GB card is required for the frozen 24B rater; generation fits a 48GB L40S/A6000"
+  },
+  "filed_before": "block B0",
+  "self_sha256": "c360f70620caedff68372e59b914eaca11d53a12491c612bf3bf5a162e7e561b"
+}

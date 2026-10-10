@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_timing_generation.py",
+    "--project",
+    ".",
+    "--model-path",
+    "<LOCAL_PATH>/Qwen__Qwen3-8B",
+    "--model-id",
+    "Qwen/Qwen3-8B",
+    "--output-jsonl",
+    "process/logs/timing-qwen-tuning-seed-{seed}.jsonl",
+    "--freeze-receipt",
+    "process/consumption/frozen/timing_assets.json",
+    "--mode",
+    "timing",
+    "--partition",
+    "tuning",
+    "--setting",
+    "NEUTRAL",
+    "--language",
+    "English",
+    "--offset",
+    "0",
+    "--limit",
+    "1",
+    "--seed",
+    "17091701",
+    "--temperature",
+    "0.7",
+    "--top-p",
+    "0.95",
+    "--max-new-tokens",
+    "512",
+    "--max-model-len",
+    "4096",
+    "--gpu-memory-utilization",
+    "0.60",
+    "--dtype",
+    "bfloat16"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_timing_generation.py",
+    "experiments/xlpt/run_generation.py",
+    "experiments/xlpt/math_impl.py",
+    "experiments/xlpt/test_math_contract.py",
+    "experiments/xlpt/test_generation_contract.py",
+    "process/consumption/frozen/timing_assets.json"
+  ],
+  "spec": "refine-logs/MATH_SPEC.json",
+  "formula_ids": [
+    "eq1",
+    "eq2",
+    "eq3",
+    "eq4",
+    "eq5",
+    "eq6",
+    "eq7"
+  ],
+  "bindings": [
+    {
+      "formula_id": "eq1",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "translation_ensemble_persona_effect"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq2",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "directed_retention_matrix"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq3",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "normalized_shortfall"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq4",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "transfer_asymmetry_index"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq5",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "target_resource_shortfall_gradient"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq6",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "paired_difference_in_differences"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq7",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "three_way_factorial_decomposition"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "eq1_eq7_contract",
+      "python_args": [
+        "experiments/xlpt/test_math_contract.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_math_contract.py"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": "timing_boundary_contract",
+      "python_args": [
+        "experiments/xlpt/test_generation_contract.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_generation_contract.py"
+      ],
+      "timeout_seconds": 60
+    }
+  ],
+  "no_formula_reason": "The timing entrypoint executes the deployed eq1-eq7 contract before loading the model. The timing output is not an estimator input. Token sampling is delegated to the runtime-pinned vLLM 0.11.0 implementation with explicit temperature, top-p and seed; no custom sampling, loss or optimizer formula exists in project code."
+}

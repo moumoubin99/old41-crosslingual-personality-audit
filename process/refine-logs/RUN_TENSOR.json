@@ -1,0 +1,125 @@
+{
+  "generated_by": "schedule/make_run_tensor.py",
+  "revision": "R12 as amended by R15-R35",
+  "seed_count_S": 20,
+  "seed_list": [
+    20260911,
+    20260912,
+    20260913,
+    20260914,
+    20260915,
+    20260916,
+    20260917,
+    20260918,
+    20260919,
+    20260920,
+    20260921,
+    20260922,
+    20260923,
+    20260924,
+    20260925,
+    20260926,
+    20260927,
+    20260928,
+    20260929,
+    20260930
+  ],
+  "seed_clusters_G": 20,
+  "vhat_df": 19,
+  "qualification_seed_clusters_G": 24,
+  "corpus_partition": {
+    "total": 180,
+    "tuning": 30,
+    "qualification": 60,
+    "evaluation": 90
+  },
+  "blocks": [
+    {
+      "block": "B0-qualification",
+      "role": "gating, never confirmatory",
+      "cells": 12,
+      "cell_basis": "checkpoint-language cells of section H2",
+      "partition": "qualification",
+      "scenarios": 60,
+      "settings": 3,
+      "checkpoints": 1,
+      "seeds": 24,
+      "scoring": "frozen 24B rater at instrument language I = D (rule G)",
+      "seed_note": "R35-F2: the gate keeps the disjoint R26-F6 block 20260811 + {0..23} at 24 clusters; the R35-F1 reduction applies to the evaluation tensor only",
+      "transcripts": 51840
+    },
+    {
+      "block": "B1b-behavior-core",
+      "role": "confirmatory",
+      "cells": 9,
+      "cell_basis": "admitted 3 x 3 persona x dialogue subtable (R17-F3(b))",
+      "partition": "evaluation",
+      "scenarios": 90,
+      "settings": 3,
+      "checkpoints": 4,
+      "seeds": 20,
+      "scoring": "frozen 24B rater at instrument language I = EN (R16-F1)",
+      "transcripts": 194400
+    }
+  ],
+  "totals": {
+    "confirmatory_transcripts": 194400,
+    "descriptive_omnibus_transcripts": 0,
+    "qualification_transcripts": 51840,
+    "generated_transcripts": 246240,
+    "self_report_administrations": 777600
+  },
+  "gates": [
+    {
+      "gate": "SCENARIO_PARTITION.json",
+      "when": "before any prompt is written",
+      "effect": "freezes TUNING 30 / QUALIFICATION 60 / EVALUATION 90"
+    },
+    {
+      "gate": "power/POWER_SIM_R18.json",
+      "when": "before any B0 GPU hour (R16-F6, R18-F1(e))",
+      "effect": "registers delta_alt = 0.38 at the R18-F1 primary level; every power, delta_alt and seed-count assertion is read from it as recomputed at the registered scale by POWER_SIM_R35_FINAL.json, and POWER_SIM_R16_PRE.json and POWER_SIM_R16.json are VOID as certificates"
+    },
+    {
+      "gate": "power/POWER_SIM_R35_FINAL.json",
+      "when": "before any B0 GPU hour (R35-F1)",
+      "effect": "the declaration-power certificate of record at the R35 registered scale (n_U = 120, K = 8, alpha_j = 0.00625); POWER_SIM_R30_FINAL.json and every earlier POWER_SIM are superseded and certify nothing"
+    },
+    {
+      "gate": "power/GATE_POWER_R35_FINAL.json",
+      "when": "before any B0 GPU hour (R35-F2)",
+      "effect": "the pre-B1 diagonal-admission gate power certificate of record over the 12 R35 limbs at N_G = 24; GATE_POWER_R30_FINAL.json is superseded"
+    },
+    {
+      "gate": "power/CLUSTER_CALIB_R18.json",
+      "when": "before B0 (R17-F2(b) as superseded by R18-F1)",
+      "effect": "PER FAMILY over the R18-F1 adversarial envelope: null FWER upper bound <= 0.05 and simultaneous coverage lower bound >= 0.95 at G = 24, at the worst envelope point; the single exported level of CLUSTER_CALIB_R17.json is VOID; failure means the study is not run as designed"
+    },
+    {
+      "gate": "normalize_prereg.py PASS receipt (PREREG_OF_RECORD.json)",
+      "when": "before B0 (R19-F1)",
+      "effect": "the single normalized self-contained specification is rebuilt from the card, the filed-in-full clauses and this tensor; B0 may not open unless its decision_rule sha256 equals the current one"
+    },
+    {
+      "gate": "consistency_check.py PASS receipt",
+      "when": "before B0 (R16-F7, R17-F3(c))",
+      "effect": "documents verified against RUN_TENSOR.json and FAMILY_REGISTRY.json"
+    },
+    {
+      "gate": "QUALIFICATION_GATE.json",
+      "when": "at M1, before B1",
+      "effect": "freezes the admitted checkpoint set, the admitted language set and the primary family"
+    }
+  ],
+  "void": [
+    "S in {8..12} and its nesting rule",
+    "the M2 seed-selection step",
+    "rule J's S-escalation branch",
+    "any confirmatory use of the 6 x 6 grid, the 30-scenario subset or a 4-seed count",
+    "R35-F3 VOID: the C-omnibus-grid block itself, at any resolution, and every count read from it, including the 64800 descriptive transcripts it used to contribute",
+    "R35-F1 VOID on the EVALUATION tensor: S = G = 24, the 23-df V_hat, n_U = 144, K = 16 and alpha_j = 0.003125; S = 24 survives ONLY on the disjoint R26-F6 qualification block",
+    "R35-F4 VOID: the 5-setting evaluation cell",
+    "R35-F5 VOID: the two-trait confirmatory family and every count that crossed it, including the superseded totals 388800 confirmatory, 86400 qualification, 540000 generated and 1620000 self-report administrations"
+  ],
+  "self_sha256": "cb787455b08c180efd15b59aca67b41d89e4dd5de7597ae7c1309e63ef5de165"
+}

@@ -1,0 +1,26 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s3-llama-zh.jsonl",
+  "sha256": "99d217f229379792577d5abb5f37a6001fbca2748a3a99669eaeecc1bc3e2389",
+  "records": 8400,
+  "calls": 50400,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 3749.1160459518433,
+  "calls_per_second": 13.443168838270571,
+  "args": {
+    "project": ".",
+    "rater": "llama",
+    "task": "transcripts",
+    "tag": "s3-llama-zh",
+    "variants": "none",
+    "traits": "extraversion",
+    "instrument": "zh",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

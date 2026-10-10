@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s3-gemma-zh.jsonl",
+  "sha256": "85d0ab3d5cf59d9892ba0449507dd29369ac9f9aec00052a8bb7de8ef6b8329a",
+  "records": 8400,
+  "calls": 50400,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 5128.256663322449,
+  "calls_per_second": 9.827901236001575,
+  "args": {
+    "project": ".",
+    "rater": "gemma",
+    "task": "transcripts",
+    "tag": "s3-gemma-zh",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion",
+    "instrument": "zh",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.85,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

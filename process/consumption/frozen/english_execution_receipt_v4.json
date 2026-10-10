@@ -1,0 +1,25 @@
+{
+  "version": 4,
+  "status": "FROZEN",
+  "scope": "Chinese persona surface (P = zh) with reviewed *_PZHN_* wording, for D = zh and D = en; everything frozen by receipt v3 is carried unchanged",
+  "design_card_sha256": "f254839edf83b423ff8888da35b09c2e91ebecba720e82c6b805cb0369d6389b",
+  "prompt_config_self_sha256": "b02068dea6dfb9c33655f19275d456f02b0c291f9fbfabbfaea5edf00eb55aa7",
+  "files": {
+    "process/consumption/frozen/english_execution_v4.json": "98374503aaaa10a898704589106387fd99ed94b4d7f2e24d29f22972d4f2ab2a",
+    "process/consumption/frozen/english_b0_competence_scenarios_v1.jsonl": "ee348d9071f5cba3555ce5b8304108a90084bd8eb1e4a2d0876a781bdeb8c998",
+    "process/consumption/frozen/english_b1_control_scenarios_v1.jsonl": "546f0db8f0ffabbac4f48e770c3b7e519746aab6db296ba829913925a5161c10",
+    "process/consumption/frozen/zh_b0_competence_scenarios_v1.jsonl": "56bcdc69d5df9ae834d2ed5721a37029148e36a802d3d7017b771d5849601b9a",
+    "process/consumption/frozen/zh_b1_control_scenarios_v1.jsonl": "75dcdf9ab99bbf8a61d41b63e295a9643e225e419915014c2666093bb4e634ec",
+    "refine-logs/RUBRIC_BEHAVIOR.md": "1128825e3e9343f7cd32a8e9b5a1e1ea618d4d1c378429dc8436ea832de914ae"
+  },
+  "limitations": [
+    "Authoritative BFI-2/TIPI wording is absent and outside this receipt; the pole prompts are original behavioral descriptions authored for this study and their Chinese variants are machine renderings of those descriptions.",
+    "The Chinese surface was rendered by a SINGLE engine stratum (engine C, NLLB-200-3.3B). The registered three-engine block allocation could not be executed because the other two engines were unreachable from the worker, so no ensemble disagreement signal exists and every D = zh effect is confounded with this engine's idiolect.",
+    "The back-translation screen is descriptive provenance: no chrF threshold is registered, nothing was filtered, re-rendered or hand-edited, and 578 of 1260 fields fall below the descriptive flag of 50.",
+    "The zh pole cells are an exploratory within-checkpoint contrast. They write nothing to QUALIFICATION_GATE.results and freeze no ELIGIBLE_PAIRS; the zh competence screen reports competence per checkpoint and decides no gate.",
+    "Scoring stays on the ENGLISH instrument for every row (R16-F1); instrument-language invariance is a separate later comparison this receipt does not cover.",
+    "This receipt governs *_PZHN_* phases only. Every shard already generated stays bound to receipt v1, v2 or v3, all unchanged.",
+    "The *_PZHN_* text is a single model-reviewed rendering; see pzhn_rendering_provenance in the config."
+  ],
+  "self_sha256": "3304381a2a399eb49f30a02f4cd61db05e7d10683744dec8e7cb16d840ebc97c"
+}

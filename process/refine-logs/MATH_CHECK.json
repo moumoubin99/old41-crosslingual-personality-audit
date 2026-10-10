@@ -1,0 +1,153 @@
+{
+  "findings": [
+    {
+      "level": "INFO",
+      "msg": "[eq1] L1 形状 OK:输出 (2, 3, 5, 7) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq1] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq2] L1 形状 OK:输出 (2, 3, 5, 7) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq2] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq3] L1 形状 OK:输出 (2, 3, 5, 7) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq3] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq4] L1 形状 OK:输出 (2, 5) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq4] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq5] L1 形状 OK:输出 (3, 5) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq5] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq6] L1 形状 OK:输出 (2, 3, 7, 5) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq6] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq7] L1 形状 OK:输出 (2, 13, 11) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+    },
+    {
+      "level": "INFO",
+      "msg": "[eq7] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+    }
+  ],
+  "per_item": [
+    {
+      "id": "eq1",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq1] L1 形状 OK:输出 (2, 3, 5, 7) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq1] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    },
+    {
+      "id": "eq2",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq2] L1 形状 OK:输出 (2, 3, 5, 7) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq2] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    },
+    {
+      "id": "eq3",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq3] L1 形状 OK:输出 (2, 3, 5, 7) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq3] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    },
+    {
+      "id": "eq4",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq4] L1 形状 OK:输出 (2, 5) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq4] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    },
+    {
+      "id": "eq5",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq5] L1 形状 OK:输出 (3, 5) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq5] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    },
+    {
+      "id": "eq6",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq6] L1 形状 OK:输出 (2, 3, 7, 5) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq6] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    },
+    {
+      "id": "eq7",
+      "findings": [
+        {
+          "level": "INFO",
+          "msg": "[eq7] L1 形状 OK:输出 (2, 13, 11) 与声明一致(各轴独立尺寸,漏转置会被此步抓到)"
+        },
+        {
+          "level": "INFO",
+          "msg": "[eq7] L2 等价 OK:expr ≡ reference_expr(随机代入比对通过)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1099 @@
+{
+  "modules": [
+    {
+      "file_sha256": "8ce080429d7f1cd30d55b590e3ba5bb7ed6421c0fbf6668bcd45114e3d3f0e9f",
+      "module": "vllm._custom_ops",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm___custom_ops.py",
+      "symbols": [
+        {
+          "ast_sha256": "c055d24cb6bc1204ad4e1dd194d908de4f1802e52f36a7e23f0e68524daa0930",
+          "kind": "definition",
+          "source": "def awq_gemm(input: torch.Tensor, qweight: torch.Tensor, qzeros: torch.Tensor, scales: torch.Tensor, split_k_iters: int) -> torch.Tensor:\n    if envs.VLLM_USE_TRITON_AWQ:\n        from vllm.model_executor.layers.quantization.awq_triton import awq_gemm_triton\n        return awq_gemm_triton(input, qweight, qzeros, scales, split_k_iters)\n    return torch.ops._C.awq_gemm(input, qweight, qzeros, scales, split_k_iters)",
+          "symbol": "awq_gemm"
+        },
+        {
+          "ast_sha256": "5b1149abb21f4e16e85b6fc11e87a42be4e100426beb9b72f20ed82160a152ad",
+          "kind": "definition",
+          "source": "def awq_dequantize(qweight: torch.Tensor, scales: torch.Tensor, zeros: torch.Tensor, split_k_iters: int, thx: int, thy: int) -> torch.Tensor:\n    if envs.VLLM_USE_TRITON_AWQ:\n        from vllm.model_executor.layers.quantization.awq_triton import awq_dequantize_triton\n        return awq_dequantize_triton(qweight, scales, zeros)\n    return torch.ops._C.awq_dequantize(qweight, scales, zeros, split_k_iters, thx, thy)",
+          "symbol": "awq_dequantize"
+        },
+        {
+          "ast_sha256": "a9062482a864c509ce57435f701a130312136ba93c6b7079e5039dff6cacdba5",
+          "kind": "definition",
+          "source": "def rms_norm(out: torch.Tensor, input: torch.Tensor, weight: torch.Tensor, epsilon: float) -> None:\n    input_contiguous = input.contiguous()\n    torch.ops._C.rms_norm(out, input_contiguous, weight, epsilon)",
+          "symbol": "rms_norm"
+        },
+        {
+          "ast_sha256": "7f4ba1d9868ce21b4cabe9f7c9b4cb3b8b0479844b7b03ba067f7b9581227393",
+          "kind": "definition",
+          "source": "def fused_add_rms_norm(input: torch.Tensor, residual: torch.Tensor, weight: torch.Tensor, epsilon: float) -> None:\n    torch.ops._C.fused_add_rms_norm(input, residual, weight, epsilon)",
+          "symbol": "fused_add_rms_norm"
+        },
+        {
+          "ast_sha256": "e6ac53b3c2f51fef9af660d2966c4228bf2e84cce6a1407f3fc2050de02a63ab",
+          "kind": "definition",
+          "source": "def rotary_embedding(positions: torch.Tensor, query: torch.Tensor, key: Optional[torch.Tensor], head_size: int, cos_sin_cache: torch.Tensor, is_neox: bool) -> None:\n    torch.ops._C.rotary_embedding(positions, query, key, head_size, cos_sin_cache, is_neox)",
+          "symbol": "rotary_embedding"
+        },
+        {
+          "ast_sha256": "15932a61d958dc07cdc3e57721e78330013638313d180ec9ca0660a8227faeb3",
+          "kind": "definition",
+          "source": "def reshape_and_cache_flash(key: torch.Tensor, value: torch.Tensor, key_cache: torch.Tensor, value_cache: torch.Tensor, slot_mapping: torch.Tensor, kv_cache_dtype: str, k_scale: torch.Tensor, v_scale: torch.Tensor) -> None:\n    torch.ops._C_cache_ops.reshape_and_cache_flash(key, value, key_cache, value_cache, slot_mapping, kv_cache_dtype, k_scale, v_scale)",
+          "symbol": "reshape_and_cache_flash"
+        }
+      ]
+    },
+    {
+      "file_sha256": "c25cf0f6698761080a1e2cfad804c8220b318027b469427f44e2894faae24110",
+      "module": "vllm.model_executor.layers.quantization.awq",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__quantization__awq.py",
+      "symbols": [
+        {
+          "ast_sha256": "719ced6da9431834b8644c7b3dcc4a645a21dea74b464c9f8d55e95278ebcf90",
+          "kind": "definition",
+          "source": "class AWQConfig(QuantizationConfig):\n\n    def __init__(self, weight_bits: int, group_size: int, zero_point: bool, modules_to_not_convert: Optional[list[str]]=None) -> None:\n        super().__init__()\n        self.weight_bits = weight_bits\n        self.group_size = group_size\n        self.zero_point = zero_point\n        self.modules_to_not_convert = modules_to_not_convert or []\n        if self.weight_bits != 4:\n            raise ValueError(f'Currently, only 4-bit weight quantization is supported for AWQ, but got {self.weight_bits} bits.')\n        self.pack_factor = 32 // self.weight_bits\n\n    def __repr__(self) -> str:\n        return f'AWQConfig(weight_bits={self.weight_bits}, group_size={self.group_size}, zero_point={self.zero_point}, modules_to_not_convert={self.modules_to_not_convert})'\n\n    def get_name(self) -> QuantizationMethods:\n        return 'awq'\n\n    def get_supported_act_dtypes(self) -> list[torch.dtype]:\n        return [torch.half]\n\n    @classmethod\n    def get_min_capability(cls) -> int:\n        return 75\n\n    @staticmethod\n    def get_config_filenames() -> list[str]:\n        return ['quant_config.json', 'quantize_config.json']\n\n    @classmethod\n    def from_config(cls, config: dict[str, Any]) -> 'AWQConfig':\n        weight_bits = cls.get_from_keys(config, ['w_bit', 'bits'])\n        group_size = cls.get_from_keys(config, ['q_group_size', 'group_size'])\n        zero_point = cls.get_from_keys(config, ['zero_point'])\n        modules_to_not_convert = cls.get_from_keys_or(config, ['modules_to_not_convert'], None)\n        return cls(weight_bits, group_size, zero_point, modules_to_not_convert)\n\n    def get_quant_method(self, layer: torch.nn.Module, prefix: str) -> Optional[Union['LinearMethodBase', 'QuantizeMethodBase']]:\n        if isinstance(layer, LinearBase):\n            if is_layer_skipped_awq(prefix, self.modules_to_not_convert):\n                return UnquantizedLinearMethod()\n            return AWQLinearMethod(self)\n        elif isinstance(layer, FusedMoE):\n            from .awq_marlin import AWQMarlinConfig, AWQMoEMethod\n            from .moe_wna16 import MoeWNA16Config\n            from .utils.marlin_utils import check_moe_marlin_supports_layer\n            if not check_moe_marlin_supports_layer(layer, self.group_size):\n                logger.warning_once(f\"Layer '{prefix}' is not supported by AWQMoeMarlin. Falling back to Moe WNA16 kernels.\")\n                config = {'quant_method': 'awq', 'bits': self.weight_bits, 'group_size': self.group_size, 'zero_point': self.zero_point, 'lm_head': False}\n                return MoeWNA16Config.from_config(config).get_quant_method(layer, prefix)\n            marlin_compatible_config_dict = {'quant_method': 'awq', 'bits': self.weight_bits, 'group_size': self.group_size, 'zero_point': self.zero_point, 'lm_head': False, 'modules_to_not_convert': self.modules_to_not_convert}\n            awq_marlin_config = AWQMarlinConfig.from_config(marlin_compatible_config_dict)\n            return AWQMoEMethod(awq_marlin_config, layer.moe_config)\n        return None",
+          "symbol": "AWQConfig"
+        },
+        {
+          "ast_sha256": "c1989bc10c926fc9f8a35b16d7c4b629d333e65882135dc4fd271bb1f9f313ea",
+          "kind": "definition",
+          "source": "def apply(self, layer: torch.nn.Module, x: torch.Tensor, bias: Optional[torch.Tensor]=None) -> torch.Tensor:\n    qweight = layer.qweight\n    scales = layer.scales\n    qzeros = layer.qzeros\n    pack_factor = self.quant_config.pack_factor\n    out_shape = x.shape[:-1] + (qweight.shape[-1] * pack_factor,)\n    reshaped_x = x.reshape(-1, x.shape[-1])\n    FP16_MATMUL_HEURISTIC_CONDITION = x.shape[:-1].numel() >= 256\n    if FP16_MATMUL_HEURISTIC_CONDITION:\n        out = ops.awq_dequantize(qweight, scales, qzeros, 0, 0, 0)\n        out = torch.matmul(reshaped_x, out)\n    else:\n        out = ops.awq_gemm(reshaped_x, qweight, scales, qzeros, pack_factor)\n    if bias is not None:\n        out.add_(bias)\n    return out.reshape(out_shape)",
+          "symbol": "AWQLinearMethod.apply"
+        }
+      ]
+    },
+    {
+      "file_sha256": "f74cbf9882ae59449ce4713cd3ac24b77bdf5a585770399c5968b281f591a6e7",
+      "module": "vllm.model_executor.layers.vocab_parallel_embedding",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__vocab_parallel_embedding.py",
+      "symbols": [
+        {
+          "ast_sha256": "aaab28a07d1fa779e940c9906d45abfc2085bc2b2313ba49ae28cd2b75e47ff7",
+          "kind": "definition",
+          "source": "def forward_native(self, input_):\n    if self.tp_size > 1:\n        masked_input, input_mask = get_masked_input_and_mask(input_, self.shard_indices.org_vocab_start_index, self.shard_indices.org_vocab_end_index, self.shard_indices.num_org_vocab_padding, self.shard_indices.added_vocab_start_index, self.shard_indices.added_vocab_end_index)\n    else:\n        masked_input = input_\n    output_parallel = self.quant_method.embedding(self, masked_input.long())\n    if self.tp_size > 1:\n        output_parallel.masked_fill_(input_mask.unsqueeze(-1), 0)\n    output = tensor_model_parallel_all_reduce(output_parallel)\n    return output",
+          "symbol": "VocabParallelEmbedding.forward_native"
+        },
+        {
+          "ast_sha256": "8fb20c0d2e318de22c7c86873232a39247f515f849e24feb4323ceaf08df8eca",
+          "kind": "definition",
+          "source": "def forward(self, input_):\n    del input_\n    raise RuntimeError(\"LMHead's weights should be used in the sampler.\")",
+          "symbol": "ParallelLMHead.forward"
+        },
+        {
+          "ast_sha256": "1aab2d0f9ddbe6c7e5047f2e69fbdd718394d45ae581b81735142e5202c9d116",
+          "kind": "definition",
+          "source": "def apply(self, layer: torch.nn.Module, x: torch.Tensor, bias: Optional[torch.Tensor]=None) -> torch.Tensor:\n    return dispatch_unquantized_gemm()(layer, x, layer.weight, bias)",
+          "symbol": "UnquantizedEmbeddingMethod.apply"
+        },
+        {
+          "ast_sha256": "170d70802d371c1cb30dca9698036d184e59f7ae755369c4448fa695a5c3a526",
+          "kind": "definition",
+          "source": "def embedding(self, layer: torch.nn.Module, input_: torch.Tensor) -> torch.Tensor:\n    return F.embedding(input_, layer.weight)",
+          "symbol": "UnquantizedEmbeddingMethod.embedding"
+        }
+      ]
+    },
+    {
+      "file_sha256": "b2cc3cb18d161976a957f0b70af302291baa66aaed99229497674f266e1aac4d",
+      "module": "vllm.model_executor.layers.linear",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__linear.py",
+      "symbols": [
+        {
+          "ast_sha256": "1aab2d0f9ddbe6c7e5047f2e69fbdd718394d45ae581b81735142e5202c9d116",
+          "kind": "definition",
+          "source": "def apply(self, layer: torch.nn.Module, x: torch.Tensor, bias: Optional[torch.Tensor]=None) -> torch.Tensor:\n    return dispatch_unquantized_gemm()(layer, x, layer.weight, bias)",
+          "symbol": "UnquantizedLinearMethod.apply"
+        },
+        {
+          "ast_sha256": "bdad796f89c6585a64cb17bdee41b1df610c9993675da943bb2665442b50fac8",
+          "kind": "definition",
+          "source": "def forward(self, input_) -> Union[torch.Tensor, tuple[torch.Tensor, Optional[Parameter]]]:\n    bias = self.bias if not self.skip_bias_add else None\n    assert self.quant_method is not None\n    output_parallel = self.quant_method.apply(self, input_, bias)\n    if self.gather_output and self.tp_size > 1:\n        output = tensor_model_parallel_all_gather(output_parallel)\n    else:\n        output = output_parallel\n    output_bias = self.bias if self.skip_bias_add else None\n    if not self.return_bias:\n        return output\n    return (output, output_bias)",
+          "symbol": "ColumnParallelLinear.forward"
+        },
+        {
+          "ast_sha256": "09aa860ecf2a1a73ae3b3ee427b8f77c6bff558e8d083a9514e3aad7fd05db66",
+          "kind": "definition",
+          "source": "def __init__(self, input_size: int, output_sizes: list[int], bias: bool=True, gather_output: bool=False, skip_bias_add: bool=False, params_dtype: Optional[torch.dtype]=None, quant_config: Optional[QuantizationConfig]=None, prefix: str='', *, return_bias: bool=True, disable_tp: bool=False):\n    self.output_sizes = output_sizes\n    self.tp_size = get_tensor_model_parallel_world_size() if not disable_tp else 1\n    self.tp_rank = get_tensor_model_parallel_rank() if not disable_tp else 0\n    assert all((output_size % self.tp_size == 0 for output_size in output_sizes))\n    super().__init__(input_size=input_size, output_size=sum(output_sizes), bias=bias, gather_output=gather_output, skip_bias_add=skip_bias_add, params_dtype=params_dtype, quant_config=quant_config, prefix=prefix, return_bias=return_bias, disable_tp=disable_tp)",
+          "symbol": "MergedColumnParallelLinear.__init__"
+        },
+        {
+          "ast_sha256": "584736d009cdcaa4efc010151dcd08966f9e172d0b2e8896d03bfedd8cf6e9c4",
+          "kind": "definition",
+          "source": "def weight_loader(self, param: Parameter, loaded_weight: torch.Tensor, loaded_shard_id: Optional[int]=None):\n    is_gguf_weight = getattr(param, 'is_gguf_weight', False)\n    is_gguf_weight_type = getattr(param, 'is_gguf_weight_type', False)\n    if is_gguf_weight_type:\n        if loaded_shard_id is not None:\n            param.data[loaded_shard_id].copy_(loaded_weight)\n            param.shard_weight_type[loaded_shard_id] = loaded_weight.item()\n        else:\n            param.shard_weight_type = {i: loaded_weight.item() for i, _ in enumerate(self.output_sizes)}\n        return\n    if is_gguf_weight:\n        output_dim = getattr(param, 'output_dim', None)\n        shard_size = loaded_weight.size(output_dim) // self.tp_size\n        start_idx = self.tp_rank * shard_size\n        if loaded_shard_id is not None:\n            loaded_weight = loaded_weight.narrow(output_dim, start_idx, shard_size)\n            param.shard_id.append(loaded_shard_id)\n            param.shard_id_map[loaded_shard_id] = len(param.data_container)\n            param.data_container.append(loaded_weight)\n            return\n    param_data = param.data\n    output_dim = getattr(param, 'output_dim', None)\n    needs_scalar_to_array = getattr(param, 'needs_scalar_to_array', False)\n    if loaded_shard_id is None:\n        if output_dim is None:\n            if needs_scalar_to_array:\n                param_data, loaded_weight = adjust_scalar_to_fused_array(param_data, loaded_weight, 0)\n            assert param_data.shape == loaded_weight.shape\n            param_data.copy_(loaded_weight)\n            return\n        current_shard_offset = 0\n        use_bitsandbytes_4bit = getattr(param, 'use_bitsandbytes_4bit', False)\n        shard_offsets: list[tuple[int, int, int]] = []\n        for i, output_size in enumerate(self.output_sizes):\n            shard_offsets.append((i, current_shard_offset, output_size))\n            current_shard_offset += output_size\n        packed_dim = getattr(param, 'packed_dim', None)\n        for shard_id, shard_offset, shard_size in shard_offsets:\n            if packed_dim == output_dim:\n                shard_size = shard_size // param.packed_factor\n                shard_offset = shard_offset // param.packed_factor\n                shard_size, shard_offset = adjust_marlin_shard(param, shard_size, shard_offset)\n            shard_size, shard_offset = adjust_bitblas_shard(param, shard_size, shard_offset)\n            if use_bitsandbytes_4bit:\n                index = list(itertools.accumulate([0] + self.output_sizes))\n                orig_offsets = {str(i): (index[i], size) for i, size in enumerate(self.output_sizes)}\n                orig_offsets['total'] = (self.output_size, 0)\n                shard_size, shard_offset = adjust_bitsandbytes_4bit_shard(param, orig_offsets, str(shard_id))\n            loaded_weight_shard = loaded_weight.narrow(output_dim, shard_offset, shard_size)\n            self.weight_loader(param, loaded_weight_shard, shard_id)\n        return\n    assert loaded_shard_id < len(self.output_sizes)\n    if output_dim is not None:\n        shard_offset = sum(self.output_sizes[:loaded_shard_id]) // self.tp_size\n        shard_size = self.output_sizes[loaded_shard_id] // self.tp_size\n        packed_dim = getattr(param, 'packed_dim', None)\n        if packed_dim == output_dim:\n            shard_size = shard_size // param.packed_factor\n            shard_offset = shard_offset // param.packed_factor\n            shard_size, shard_offset = adjust_marlin_shard(param, shard_size, shard_offset)\n        shard_size, shard_offset = adjust_bitblas_shard(param, shard_size, shard_offset)\n        use_bitsandbytes_4bit = getattr(param, 'use_bitsandbytes_4bit', False)\n        is_sharded_weight = getattr(param, 'is_sharded_weight', False)\n        is_sharded_weight = is_sharded_weight or use_bitsandbytes_4bit\n        if use_bitsandbytes_4bit:\n            shard_size = loaded_weight.shape[output_dim]\n            shard_offset = loaded_weight.shape[output_dim] * loaded_shard_id\n        param_data = param_data.narrow(output_dim, shard_offset, shard_size)\n        start_idx = self.tp_rank * shard_size\n        if not is_sharded_weight:\n            loaded_weight = loaded_weight.narrow(output_dim, start_idx, shard_size)\n    elif needs_scalar_to_array:\n        param_data, loaded_weight = adjust_scalar_to_fused_array(param_data, loaded_weight, loaded_shard_id)\n    else:\n        ignore_warning = getattr(param, 'ignore_warning', False)\n        if not ignore_warning:\n            logger.warning('Loading a weight without `output_dim` attribute in MergedColumnParallelLinear, assume the weight is the same for all partitions.')\n    assert param_data.shape == loaded_weight.shape\n    param_data.copy_(loaded_weight)",
+          "symbol": "MergedColumnParallelLinear.weight_loader"
+        },
+        {
+          "ast_sha256": "8b1c4720c6b5b280214d81e600402a95be59157f1526c334725c8fc1c8202989",
+          "kind": "definition",
+          "source": "def __init__(self, hidden_size: int, head_size: int, total_num_heads: int, total_num_kv_heads: Optional[int]=None, bias: bool=True, skip_bias_add: bool=False, params_dtype: Optional[torch.dtype]=None, quant_config: Optional[QuantizationConfig]=None, prefix: str='', *, return_bias: bool=True, disable_tp: bool=False):\n    self.hidden_size = hidden_size\n    self.head_size = head_size\n    self.total_num_heads = total_num_heads\n    if total_num_kv_heads is None:\n        total_num_kv_heads = total_num_heads\n    self.total_num_kv_heads = total_num_kv_heads\n    tp_size = get_tensor_model_parallel_world_size() if not disable_tp else 1\n    self.num_heads = divide(self.total_num_heads, tp_size)\n    if tp_size >= self.total_num_kv_heads:\n        self.num_kv_heads = 1\n        self.num_kv_head_replicas = divide(tp_size, self.total_num_kv_heads)\n    else:\n        self.num_kv_heads = divide(self.total_num_kv_heads, tp_size)\n        self.num_kv_head_replicas = 1\n    input_size = self.hidden_size\n    output_size = (self.num_heads + 2 * self.num_kv_heads) * tp_size * self.head_size\n    self.output_sizes = [self.num_heads * self.head_size * tp_size, self.num_kv_heads * self.head_size * tp_size, self.num_kv_heads * self.head_size * tp_size]\n    super().__init__(input_size=input_size, output_size=output_size, bias=bias, gather_output=False, skip_bias_add=skip_bias_add, params_dtype=params_dtype, quant_config=quant_config, prefix=prefix, return_bias=return_bias, disable_tp=disable_tp)",
+          "symbol": "QKVParallelLinear.__init__"
+        },
+        {
+          "ast_sha256": "de82247df739541630c81cfb9c693e1cdae46d08ad193f67a92fef9f80f02176",
+          "kind": "definition",
+          "source": "def weight_loader(self, param: Parameter, loaded_weight: torch.Tensor, loaded_shard_id: Optional[str]=None):\n    is_gguf_weight = getattr(param, 'is_gguf_weight', False)\n    is_gguf_weight_type = getattr(param, 'is_gguf_weight_type', False)\n    if is_gguf_weight_type:\n        idx_map = {'q': 0, 'k': 1, 'v': 2}\n        if loaded_shard_id is not None:\n            param.data[idx_map[loaded_shard_id]].copy_(loaded_weight)\n            param.shard_weight_type[loaded_shard_id] = loaded_weight.item()\n        else:\n            param.shard_weight_type = {k: loaded_weight.item() for k in idx_map}\n        return\n    if is_gguf_weight:\n        output_dim = getattr(param, 'output_dim', None)\n        shard_size = loaded_weight.size(output_dim) // self.tp_size\n        start_idx = self.tp_rank * shard_size\n        if loaded_shard_id is not None:\n            loaded_weight = loaded_weight.narrow(output_dim, start_idx, shard_size)\n            param.shard_id.append(loaded_shard_id)\n            param.shard_id_map[loaded_shard_id] = len(param.data_container)\n            param.data_container.append(loaded_weight)\n            return\n    param_data = param.data\n    output_dim = getattr(param, 'output_dim', None)\n    needs_scalar_to_array = getattr(param, 'needs_scalar_to_array', False)\n    if loaded_shard_id is None:\n        if output_dim is None:\n            if needs_scalar_to_array:\n                param_data, loaded_weight = adjust_scalar_to_fused_array(param_data, loaded_weight, 0)\n            assert param_data.shape == loaded_weight.shape\n            param_data.copy_(loaded_weight)\n            return\n        shard_offsets = [('q', 0, self.total_num_heads * self.head_size), ('k', self.total_num_heads * self.head_size, self.total_num_kv_heads * self.head_size), ('v', (self.total_num_heads + self.total_num_kv_heads) * self.head_size, self.total_num_kv_heads * self.head_size)]\n        use_bitsandbytes_4bit = getattr(param, 'use_bitsandbytes_4bit', False)\n        packed_dim = getattr(param, 'packed_dim', None)\n        for shard_id, shard_offset, shard_size in shard_offsets:\n            if packed_dim == output_dim:\n                shard_size = shard_size // param.packed_factor\n                shard_offset = shard_offset // param.packed_factor\n                shard_size, shard_offset = adjust_marlin_shard(param, shard_size, shard_offset)\n            if use_bitsandbytes_4bit:\n                orig_qkv_offsets = {'q': (0, self.total_num_heads * self.head_size), 'k': (self.total_num_heads * self.head_size, self.total_num_kv_heads * self.head_size), 'v': ((self.total_num_heads + self.total_num_kv_heads) * self.head_size, self.total_num_kv_heads * self.head_size), 'total': ((self.total_num_heads + 2 * self.total_num_kv_heads) * self.head_size, 0)}\n                shard_size, shard_offset = adjust_bitsandbytes_4bit_shard(param, orig_qkv_offsets, shard_id)\n            loaded_weight_shard = loaded_weight.narrow(output_dim, shard_offset, shard_size)\n            self.weight_loader(param, loaded_weight_shard, shard_id)\n        return\n    assert loaded_shard_id in ['q', 'k', 'v']\n    if output_dim is not None:\n        if loaded_shard_id == 'q':\n            shard_offset = 0\n            shard_size = self.num_heads * self.head_size\n        elif loaded_shard_id == 'k':\n            shard_offset = self.num_heads * self.head_size\n            shard_size = self.num_kv_heads * self.head_size\n        elif loaded_shard_id == 'v':\n            shard_offset = (self.num_heads + self.num_kv_heads) * self.head_size\n            shard_size = self.num_kv_heads * self.head_size\n        packed_dim = getattr(param, 'packed_dim', None)\n        if packed_dim == output_dim:\n            shard_size = shard_size // param.packed_factor\n            shard_offset = shard_offset // param.packed_factor\n            shard_size, shard_offset = adjust_marlin_shard(param, shard_size, shard_offset)\n        use_bitsandbytes_4bit = getattr(param, 'use_bitsandbytes_4bit', False)\n        is_sharded_weight = getattr(param, 'is_sharded_weight', False)\n        is_sharded_weight = is_sharded_weight or use_bitsandbytes_4bit\n        if use_bitsandbytes_4bit:\n            orig_qkv_offsets = {'q': (0, self.num_heads * self.head_size), 'k': (self.num_heads * self.head_size, self.num_kv_heads * self.head_size), 'v': ((self.num_heads + self.num_kv_heads) * self.head_size, self.num_kv_heads * self.head_size), 'total': ((self.num_heads + 2 * self.num_kv_heads) * self.head_size, 0)}\n            shard_size, shard_offset = adjust_bitsandbytes_4bit_shard(param, orig_qkv_offsets, loaded_shard_id)\n        param_data = param_data.narrow(output_dim, shard_offset, shard_size)\n        if loaded_shard_id == 'q':\n            shard_id = self.tp_rank\n        else:\n            shard_id = self.tp_rank // self.num_kv_head_replicas\n        start_idx = shard_id * shard_size\n        if not is_sharded_weight:\n            loaded_weight = loaded_weight.narrow(output_dim, start_idx, shard_size)\n    elif needs_scalar_to_array:\n        param_data, loaded_weight = adjust_scalar_to_fused_array(param_data, loaded_weight, loaded_shard_id)\n    else:\n        ignore_warning = getattr(param, 'ignore_warning', False)\n        if not ignore_warning:\n            logger.warning('Loading a weight without `output_dim` attribute in QKVParallelLinear, assume the weight is the same for all partitions.')\n    assert param_data.shape == loaded_weight.shape\n    param_data.copy_(loaded_weight)",
+          "symbol": "QKVParallelLinear.weight_loader"
+        },
+        {
+          "ast_sha256": "141ba02ac5c4b61cb153d1452fab2b06e8d8f26f506410c13ee2bca01328d7cc",
+          "kind": "definition",
+          "source": "def __init__(self, input_size: int, output_size: int, bias: bool=True, input_is_parallel: bool=True, skip_bias_add: bool=False, params_dtype: Optional[torch.dtype]=None, reduce_results: bool=True, quant_config: Optional[QuantizationConfig]=None, prefix: str='', *, return_bias: bool=True, disable_tp: bool=False):\n    self.tp_rank = get_tensor_model_parallel_rank() if not disable_tp else 0\n    self.tp_size = get_tensor_model_parallel_world_size() if not disable_tp else 1\n    self.input_size_per_partition = divide(input_size, self.tp_size)\n    self.output_size_per_partition = output_size\n    self.output_partition_sizes = [output_size]\n    super().__init__(input_size, output_size, skip_bias_add, params_dtype, quant_config, prefix, return_bias=return_bias, disable_tp=disable_tp)\n    self.input_is_parallel = input_is_parallel\n    self.reduce_results = reduce_results\n    assert self.quant_method is not None\n    self.quant_method.create_weights(layer=self, input_size_per_partition=self.input_size_per_partition, output_partition_sizes=self.output_partition_sizes, input_size=self.input_size, output_size=self.output_size, params_dtype=self.params_dtype, weight_loader=self.weight_loader_v2 if self.quant_method.__class__.__name__ in WEIGHT_LOADER_V2_SUPPORTED else self.weight_loader)\n    if not reduce_results and (bias and (not skip_bias_add)):\n        raise ValueError('When not reduce the results, adding bias to the results can lead to incorrect results')\n    if bias:\n        self.bias = Parameter(torch.empty(self.output_size, dtype=params_dtype))\n        set_weight_attrs(self.bias, {'output_dim': 0, 'weight_loader': self.weight_loader})\n    else:\n        self.register_parameter('bias', None)\n    self.update_param_tp_status()",
+          "symbol": "RowParallelLinear.__init__"
+        },
+        {
+          "ast_sha256": "cdface317fe1165dff9e75e4a309d73de4fb9762cf091a46537f4382608e0f23",
+          "kind": "definition",
+          "source": "def forward(self, input_) -> Union[torch.Tensor, tuple[torch.Tensor, Optional[Parameter]]]:\n    if self.input_is_parallel:\n        input_parallel = input_\n    else:\n        splitted_input = split_tensor_along_last_dim(input_, num_partitions=self.tp_size)\n        input_parallel = splitted_input[self.tp_rank].contiguous()\n    assert self.quant_method is not None\n    bias_ = None if self.tp_rank > 0 or self.skip_bias_add else self.bias\n    output_parallel = self.quant_method.apply(self, input_parallel, bias_)\n    if self.reduce_results and self.tp_size > 1:\n        output = tensor_model_parallel_all_reduce(output_parallel)\n    else:\n        output = output_parallel\n    output_bias = self.bias if self.skip_bias_add else None\n    if not self.return_bias:\n        return output\n    return (output, output_bias)",
+          "symbol": "RowParallelLinear.forward"
+        }
+      ]
+    },
+    {
+      "file_sha256": "878ae09c09a54a3565c740a99324946b99e60810ee8297be9850951759bbe022",
+      "module": "vllm.model_executor.layers.layernorm",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__layernorm.py",
+      "symbols": [
+        {
+          "ast_sha256": "b7aab4f7bec327a3a20e8775ed0dfd790165b22de1de9b9d75d2bfa7e9c7c98d",
+          "kind": "definition",
+          "source": "def forward_native(self, x: torch.Tensor, residual: Optional[torch.Tensor]=None) -> Union[torch.Tensor, tuple[torch.Tensor, torch.Tensor]]:\n    orig_dtype = x.dtype\n    x = x.to(torch.float32)\n    if residual is not None:\n        x = x + residual.to(torch.float32)\n        residual = x.to(orig_dtype)\n    hidden_size = x.shape[-1]\n    if hidden_size != self.hidden_size:\n        raise ValueError(f'Expected hidden_size to be {self.hidden_size}, but found: {hidden_size}')\n    if self.variance_size_override is None:\n        x_var = x\n    else:\n        if hidden_size < self.variance_size_override:\n            raise ValueError(f'Expected hidden_size to be at least {self.variance_size_override}, but found: {hidden_size}')\n        x_var = x[:, :, :self.variance_size_override]\n    variance = x_var.pow(2).mean(dim=-1, keepdim=True)\n    x = x * torch.rsqrt(variance + self.variance_epsilon)\n    x = x.to(orig_dtype)\n    if self.has_weight:\n        x = x * self.weight\n    if residual is None:\n        return x\n    else:\n        return (x, residual)",
+          "symbol": "RMSNorm.forward_native"
+        },
+        {
+          "ast_sha256": "d8299b78c84b56df385829705034a7a67bbc57cf64389ddb5bf3f2800c8b745e",
+          "kind": "definition",
+          "source": "def forward_cuda(self, x: torch.Tensor, residual: Optional[torch.Tensor]=None) -> Union[torch.Tensor, tuple[torch.Tensor, torch.Tensor]]:\n    if self.variance_size_override is not None:\n        return self.forward_native(x, residual)\n    add_residual = residual is not None\n    if add_residual:\n        return fused_add_rms_norm(x, residual, self.weight.data, self.variance_epsilon)\n    else:\n        return rms_norm(x, self.weight.data, self.variance_epsilon)",
+          "symbol": "RMSNorm.forward_cuda"
+        }
+      ]
+    },
+    {
+      "file_sha256": "c2649d32e466a5593e254c5d00188e2fdd570d18fec7d39af86dcb8805debb85",
+      "module": "vllm.model_executor.layers.rotary_embedding",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__rotary_embedding.py",
+      "symbols": [
+        {
+          "ast_sha256": "099a7ef33cc4b1ec0964f9b1fd4d836812b91ce27135773b699d7754f31e89f6",
+          "kind": "definition",
+          "source": "def get_rope(head_size: int, rotary_dim: int, max_position: int, base: float, is_neox_style: bool=True, rope_scaling: Optional[dict[str, Any]]=None, dtype: Optional[torch.dtype]=None, partial_rotary_factor: float=1.0, dual_chunk_attention_config: Optional[dict[str, Any]]=None) -> RotaryEmbedding:\n    if dtype is None:\n        dtype = torch.get_default_dtype()\n    if rope_scaling is not None:\n        rope_scaling_tuple = {k: tuple(v) if isinstance(v, list) else v for k, v in rope_scaling.items()}\n        rope_scaling_args = tuple(rope_scaling_tuple.items())\n    else:\n        rope_scaling_args = None\n    if dual_chunk_attention_config is not None:\n        dual_chunk_attention_tuple = {k: tuple(v) if isinstance(v, list) else v for k, v in dual_chunk_attention_config.items() if k != 'sparse_attention_config'}\n        dual_chunk_attention_args = tuple(dual_chunk_attention_tuple.items())\n    else:\n        dual_chunk_attention_args = None\n    if partial_rotary_factor < 1.0:\n        rotary_dim = int(rotary_dim * partial_rotary_factor)\n    key = (head_size, rotary_dim, max_position, base, is_neox_style, rope_scaling_args, dual_chunk_attention_args, dtype)\n    if key in _ROPE_DICT:\n        return _ROPE_DICT[key]\n    if dual_chunk_attention_config is not None:\n        extra_kwargs = {k: v for k, v in dual_chunk_attention_config.items() if k in ('chunk_size', 'local_size')}\n        rotary_emb = DualChunkRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, dtype, **extra_kwargs)\n    elif not rope_scaling:\n        rotary_emb = RotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, dtype)\n    else:\n        scaling_type = rope_scaling['rope_type']\n        if scaling_type == 'llama3':\n            scaling_factor = rope_scaling['factor']\n            low_freq_factor = rope_scaling['low_freq_factor']\n            high_freq_factor = rope_scaling['high_freq_factor']\n            original_max_position = rope_scaling['original_max_position_embeddings']\n            rotary_emb = Llama3RotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, dtype, scaling_factor, low_freq_factor, high_freq_factor, original_max_position)\n        elif scaling_type == 'mllama4':\n            rotary_emb = Llama4VisionRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, dtype)\n        elif scaling_type == 'default':\n            if 'mrope_section' in rope_scaling:\n                rotary_emb = MRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, dtype, mrope_section=rope_scaling['mrope_section'], mrope_interleaved=rope_scaling.get('mrope_interleaved', False))\n            else:\n                rotary_emb = RotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, dtype)\n        elif scaling_type == 'linear':\n            scaling_factor = rope_scaling['factor']\n            rotary_emb = LinearScalingRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, scaling_factor, dtype)\n        elif scaling_type == 'ntk':\n            scaling_factor = rope_scaling['factor']\n            mixed_b = rope_scaling.get('mixed_b', None)\n            rotary_emb = NTKScalingRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, scaling_factor, dtype, mixed_b)\n        elif scaling_type == 'dynamic':\n            if 'alpha' in rope_scaling:\n                scaling_alpha = rope_scaling['alpha']\n                rotary_emb = DynamicNTKAlphaRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, scaling_alpha, dtype)\n            elif 'factor' in rope_scaling:\n                scaling_factor = rope_scaling['factor']\n                rotary_emb = DynamicNTKScalingRotaryEmbedding(head_size, rotary_dim, max_position, base, is_neox_style, scaling_factor, dtype)\n            else:\n                raise ValueError(\"Dynamic rope scaling must contain either 'alpha' or 'factor' field\")\n        elif scaling_type == 'yarn':\n            scaling_factor = rope_scaling['factor']\n            original_max_position = rope_scaling['original_max_position_embeddings']\n            extra_kwargs = {k: v for k, v in rope_scaling.items() if k in ('extrapolation_factor', 'attn_factor', 'beta_fast', 'beta_slow')}\n            if 'mrope_section' in rope_scaling:\n                rotary_emb = MRotaryEmbedding(head_size, rotary_dim, original_max_position, base, is_neox_style, dtype, mrope_section=rope_scaling['mrope_section'], mrope_interleaved=rope_scaling.get('mrope_interleaved', False), scaling_factor=scaling_factor, **extra_kwargs)\n            else:\n                rotary_emb = YaRNScalingRotaryEmbedding(head_size, rotary_dim, original_max_position, base, is_neox_style, scaling_factor, dtype, **extra_kwargs)\n        elif scaling_type == 'deepseek_yarn':\n            scaling_factor = rope_scaling['factor']\n            original_max_position = rope_scaling['original_max_position_embeddings']\n            extra_kwargs = {k: v for k, v in rope_scaling.items() if k in ('extrapolation_factor', 'attn_factor', 'beta_fast', 'beta_slow', 'mscale', 'mscale_all_dim')}\n            rotary_emb = DeepseekScalingRotaryEmbedding(head_size, rotary_dim, original_max_position, base, is_neox_style, scaling_factor, dtype, **extra_kwargs)\n        elif scaling_type == 'longrope':\n            short_factor = rope_scaling['short_factor']\n            long_factor = rope_scaling['long_factor']\n            original_max_position = rope_scaling['original_max_position_embeddings']\n            extra_kwargs = {k: v for k, v in rope_scaling.items() if k in ('short_mscale', 'long_mscale')}\n            rotary_emb = Phi3LongRoPEScaledRotaryEmbedding(head_size, rotary_dim, max_position, original_max_position, base, is_neox_style, dtype, short_factor, long_factor, **extra_kwargs)\n        else:\n            raise ValueError(f'Unknown RoPE scaling type {scaling_type}')\n    _ROPE_DICT[key] = rotary_emb\n    return rotary_emb",
+          "symbol": "get_rope"
+        }
+      ]
+    },
+    {
+      "file_sha256": "7274b7959148f5807347377363b742e77f4519681dec83fbfe5ee8f8fa6b5f24",
+      "module": "vllm.model_executor.layers.rotary_embedding.base",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__rotary_embedding__base.py",
+      "symbols": [
+        {
+          "ast_sha256": "d60b2083e77219f60df203e5eb848db6776b51f4ce61be351086ecf0c56862f6",
+          "kind": "definition",
+          "source": "def __init__(self, head_size: int, rotary_dim: int, max_position_embeddings: int, base: float, is_neox_style: bool, dtype: torch.dtype) -> None:\n    super().__init__()\n    self.head_size = head_size\n    self.rotary_dim = rotary_dim\n    self.max_position_embeddings = max_position_embeddings\n    self.base = base\n    self.is_neox_style = is_neox_style\n    self.dtype = dtype\n    self.use_flashinfer = False\n    cache = self._compute_cos_sin_cache()\n    if not self.use_flashinfer:\n        cache = cache.to(dtype)\n    self.cos_sin_cache: torch.Tensor\n    self.register_buffer('cos_sin_cache', cache, persistent=False)\n    self.is_rocm_triton_rotary_embedding_enabled = is_rocm_triton_rotary_embedding_enabled()",
+          "symbol": "RotaryEmbedding.__init__"
+        },
+        {
+          "ast_sha256": "6d55ad37fb80849ead3badb59552bef2f630566dee79b20f4d0f7006f074d4c0",
+          "kind": "definition",
+          "source": "def _compute_inv_freq(self, base: float) -> torch.Tensor:\n    inv_freq = 1.0 / base ** (torch.arange(0, self.rotary_dim, 2, dtype=torch.float) / self.rotary_dim)\n    return inv_freq",
+          "symbol": "RotaryEmbedding._compute_inv_freq"
+        },
+        {
+          "ast_sha256": "aca1aa604bb32bcb9f5c45a205ca64c7d4685e99eb282990ef60210977aa1f45",
+          "kind": "definition",
+          "source": "def _compute_cos_sin_cache(self) -> torch.Tensor:\n    inv_freq = self._compute_inv_freq(self.base)\n    t = torch.arange(self.max_position_embeddings, dtype=torch.float)\n    freqs = torch.einsum('i,j -> ij', t, inv_freq)\n    cos = freqs.cos()\n    sin = freqs.sin()\n    cache = torch.cat((cos, sin), dim=-1)\n    return cache",
+          "symbol": "RotaryEmbedding._compute_cos_sin_cache"
+        },
+        {
+          "ast_sha256": "6f34665ab134d56b828c85bbbfa69d38d36d704639681013cc3f7d5da9eaf0f6",
+          "kind": "definition",
+          "source": "def forward_native(self, positions: torch.Tensor, query: torch.Tensor, key: Optional[torch.Tensor]=None) -> tuple[torch.Tensor, Optional[torch.Tensor]]:\n    positions = positions.flatten()\n    num_tokens = positions.shape[0]\n    cos_sin = self.cos_sin_cache.index_select(0, positions)\n    cos, sin = cos_sin.chunk(2, dim=-1)\n    query_shape = query.shape\n    query = query.view(num_tokens, -1, self.head_size)\n    query_rot = query[..., :self.rotary_dim]\n    query_pass = query[..., self.rotary_dim:]\n    query_rot = apply_rotary_emb_torch(query_rot, cos, sin, self.is_neox_style)\n    query = torch.cat((query_rot, query_pass), dim=-1).reshape(query_shape)\n    if key is not None:\n        key_shape = key.shape\n        key = key.view(num_tokens, -1, self.head_size)\n        key_rot = key[..., :self.rotary_dim]\n        key_pass = key[..., self.rotary_dim:]\n        key_rot = apply_rotary_emb_torch(key_rot, cos, sin, self.is_neox_style)\n        key = torch.cat((key_rot, key_pass), dim=-1).reshape(key_shape)\n    return (query, key)",
+          "symbol": "RotaryEmbedding.forward_native"
+        },
+        {
+          "ast_sha256": "90f17bd2bc4a248255a9829280ef4fc3d17ff8130cbc783c7d24c47b2a6770eb",
+          "kind": "definition",
+          "source": "def forward_cuda(self, positions: torch.Tensor, query: torch.Tensor, key: Optional[torch.Tensor]=None) -> tuple[torch.Tensor, Optional[torch.Tensor]]:\n    if self.use_flashinfer:\n        torch.ops.vllm.flashinfer_rotary_embedding(positions, query, key, self.head_size, self.cos_sin_cache, self.is_neox_style)\n        return (query, key)\n    from vllm import _custom_ops as ops\n    self._match_cos_sin_cache_dtype(query)\n    ops.rotary_embedding(positions, query, key, self.head_size, self.cos_sin_cache, self.is_neox_style)\n    return (query, key)",
+          "symbol": "RotaryEmbedding.forward_cuda"
+        }
+      ]
+    },
+    {
+      "file_sha256": "5a514c782e1f5dedc3266a892a50003d102c4ab5e4aa36a769befce2c072ee68",
+      "module": "vllm.model_executor.layers.activation",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__activation.py",
+      "symbols": [
+        {
+          "ast_sha256": "f909b376ff17c0ad0183d4269f6bcb08eb5568fdd5d3c8d5a005b7675f70c1a9",
+          "kind": "definition",
+          "source": "def forward_native(self, x: torch.Tensor) -> torch.Tensor:\n    d = x.shape[-1] // 2\n    return F.silu(x[..., :d]) * x[..., d:]",
+          "symbol": "SiluAndMul.forward_native"
+        },
+        {
+          "ast_sha256": "8778d7235cf71099453e8ee679da70019492bd1ac3b04f0b090f95788288cc60",
+          "kind": "definition",
+          "source": "def forward_cuda(self, x: torch.Tensor) -> torch.Tensor:\n    d = x.shape[-1] // 2\n    output_shape = x.shape[:-1] + (d,)\n    out = torch.empty(output_shape, dtype=x.dtype, device=x.device)\n    self.op(out, x)\n    return out",
+          "symbol": "SiluAndMul.forward_cuda"
+        }
+      ]
+    },
+    {
+      "file_sha256": "83136ff53e104322f5ab1425c19038d75c4ea8b06085b627af13211a39bc2653",
+      "module": "vllm.attention.layer",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__attention__layer.py",
+      "symbols": [
+        {
+          "ast_sha256": "b865e35cde5147ef55effb9d67b19b8162263eea572c68d48300444d917327b5",
+          "kind": "definition",
+          "source": "def __init__(self, num_heads: int, head_size: int, scale: float, num_kv_heads: Optional[int]=None, alibi_slopes: Optional[List[float]]=None, cache_config: Optional[CacheConfig]=None, quant_config: Optional[QuantizationConfig]=None, logits_soft_cap: Optional[float]=None, per_layer_sliding_window: Optional[int]=None, use_mla: bool=False, use_sparse: bool=False, prefix: str='', attn_type: str=AttentionType.DECODER, kv_sharing_target_layer_name: Optional[str]=None, attn_backend: Optional[type[AttentionBackend]]=None, **extra_impl_args) -> None:\n    super().__init__()\n    if per_layer_sliding_window is not None:\n        sliding_window = per_layer_sliding_window\n    elif cache_config is not None:\n        sliding_window = cache_config.sliding_window\n    else:\n        sliding_window = None\n    if cache_config is not None:\n        kv_cache_dtype = cache_config.cache_dtype\n        block_size = cache_config.block_size\n        calculate_kv_scales = cache_config.calculate_kv_scales\n    else:\n        kv_cache_dtype = 'auto'\n        block_size = 16\n        calculate_kv_scales = False\n    if num_kv_heads is None:\n        num_kv_heads = num_heads\n    assert num_heads % num_kv_heads == 0, f'num_heads ({num_heads}) is not divisible by num_kv_heads ({num_kv_heads})'\n    self.kv_cache_dtype = kv_cache_dtype\n    self.calculate_kv_scales = calculate_kv_scales\n    self._k_scale = torch.tensor(1.0, dtype=torch.float32)\n    self._v_scale = torch.tensor(1.0, dtype=torch.float32)\n    self._q_scale = torch.tensor(1.0, dtype=torch.float32)\n    self._prob_scale = torch.tensor(1.0, dtype=torch.float32)\n    self._q_scale_float = 1.0\n    self._k_scale_float = 1.0\n    self._v_scale_float = 1.0\n    self._o_scale_float: Optional[float] = None\n    self.use_mla = use_mla\n    self.use_sparse = use_sparse\n    self.num_heads = num_heads\n    self.head_size = head_size\n    self.num_kv_heads = num_kv_heads\n    self.sliding_window = sliding_window\n    self.has_sink = extra_impl_args.get('sinks') is not None\n    quant_method = quant_config.get_quant_method(self, prefix=prefix) if quant_config else None\n    if quant_method is not None and (not isinstance(quant_method, UnquantizedLinearMethod)):\n        assert isinstance(quant_method, BaseKVCacheMethod)\n        if self.kv_cache_dtype == 'fp8_e5m2':\n            raise ValueError('fp8_e5m2 kv-cache is not supported with fp8 checkpoints.')\n        self.quant_method = quant_method\n        self.quant_method.create_weights(self)\n    dtype = torch.get_default_dtype()\n    if attn_backend is None:\n        self.attn_backend = get_attn_backend(head_size, dtype, kv_cache_dtype, block_size, use_mla=use_mla, has_sink=self.has_sink, use_sparse=use_sparse)\n    else:\n        self.attn_backend = attn_backend\n    impl_cls = self.attn_backend.get_impl_cls()\n    self.impl = impl_cls(num_heads, head_size, scale, num_kv_heads, alibi_slopes, sliding_window, kv_cache_dtype, logits_soft_cap, attn_type, kv_sharing_target_layer_name, **extra_impl_args)\n    self.backend = backend_name_to_enum(self.attn_backend.get_name())\n    self.dtype = dtype\n    self.use_direct_call = not current_platform.opaque_attention_op()\n    self.use_output = self.attn_backend.accept_output_buffer\n    compilation_config = get_current_vllm_config().compilation_config\n    if prefix in compilation_config.static_forward_context:\n        raise ValueError(f'Duplicate layer name: {prefix}')\n    compilation_config.static_forward_context[prefix] = self\n    self.layer_name = prefix\n    self.attn_type = attn_type\n    if kv_sharing_target_layer_name is not None:\n        validate_kv_sharing_target(prefix, kv_sharing_target_layer_name, compilation_config.static_forward_context)\n    self.kv_sharing_target_layer_name = kv_sharing_target_layer_name\n    self.kv_cache = [torch.tensor([]) for _ in range(get_current_vllm_config().parallel_config.pipeline_parallel_size)]\n    try:\n        self.q_range = torch.tensor(envs.Q_SCALE_CONSTANT, dtype=torch.float32)\n        self.k_range = torch.tensor(envs.K_SCALE_CONSTANT, dtype=torch.float32)\n        self.v_range = torch.tensor(envs.V_SCALE_CONSTANT, dtype=torch.float32)\n    except torch.cuda.OutOfMemoryError as e:\n        logger.error('Failed to initialize attention q/k/v range constants: %s', e)\n        if torch.cuda.is_available():\n            logger.debug('CUDA device: %s', torch.cuda.current_device())\n            logger.debug('Allocated: %.2f GiB', torch.cuda.memory_allocated() / GiB_bytes)\n            logger.debug('Reserved: %.2f GiB', torch.cuda.memory_reserved() / GiB_bytes)\n        raise RuntimeError('Failed to initialize q/k/v range constants. This may be caused by insufficient memory to allocate kv cache.') from e\n    self.query_quant = None\n    if self.kv_cache_dtype.startswith('fp8') and self.attn_backend.supports_quant_query_input:\n        self.query_quant = QuantFP8(static=True, group_shape=GroupShape.PER_TENSOR)",
+          "symbol": "Attention.__init__"
+        },
+        {
+          "ast_sha256": "74b300b923b60a37b0e5dcaba1b85b45d14de03ab0fe724aca20d824160e616d",
+          "kind": "definition",
+          "source": "def forward(self, query: torch.Tensor, key: torch.Tensor, value: torch.Tensor, output_shape: Optional[torch.Size]=None) -> torch.Tensor:\n    if self.calculate_kv_scales:\n        attn_metadata = get_forward_context().attn_metadata\n        if attn_metadata.enable_kv_scales_calculation:\n            self.calc_kv_scales(query, key, value)\n    output_dtype = query.dtype\n    if self.query_quant is not None:\n        assert self.kv_cache_dtype in {'fp8', 'fp8_e4m3'}\n        query, _ = self.query_quant(query, self._q_scale)\n    if self.use_output:\n        output_shape = output_shape if output_shape is not None else query.shape\n        output = torch.zeros(output_shape, dtype=output_dtype, device=query.device)\n        hidden_size = output_shape[-1]\n        if not self.use_mla:\n            query = query.view(-1, self.num_heads, self.head_size)\n            output = output.view(-1, self.num_heads, self.head_size)\n            if key is not None:\n                key = key.view(-1, self.num_kv_heads, self.head_size)\n            if value is not None:\n                value = value.view(-1, self.num_kv_heads, self.head_size)\n        if self.use_direct_call:\n            forward_context: ForwardContext = get_forward_context()\n            attn_metadata = forward_context.attn_metadata\n            if isinstance(attn_metadata, dict):\n                attn_metadata = attn_metadata[self.layer_name]\n            self_kv_cache = self.kv_cache[forward_context.virtual_engine]\n            self.impl.forward(self, query, key, value, self_kv_cache, attn_metadata, output=output)\n        else:\n            torch.ops.vllm.unified_attention_with_output(query, key, value, output, self.layer_name)\n        return output.view(-1, hidden_size)\n    elif self.use_direct_call:\n        forward_context = get_forward_context()\n        attn_metadata = forward_context.attn_metadata\n        if isinstance(attn_metadata, dict):\n            attn_metadata = attn_metadata[self.layer_name]\n        self_kv_cache = self.kv_cache[forward_context.virtual_engine]\n        return self.impl.forward(self, query, key, value, self_kv_cache, attn_metadata)\n    else:\n        return torch.ops.vllm.unified_attention(query, key, value, self.layer_name)",
+          "symbol": "Attention.forward"
+        }
+      ]
+    },
+    {
+      "file_sha256": "109910d63200b9e2f82af13dbf1ddff7a21d3b08d7792911c89646b243b14493",
+      "module": "vllm.v1.attention.backends.flash_attn",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__attention__backends__flash_attn.py",
+      "symbols": [
+        {
+          "ast_sha256": "672eebdbe11e62d8a184ac81e9c4672367a82ec65c2634b77cdd9953d02fcd6d",
+          "kind": "definition",
+          "source": "class FlashAttentionMetadata:\n    num_actual_tokens: int\n    max_query_len: int\n    query_start_loc: torch.Tensor\n    max_seq_len: int\n    seq_lens: torch.Tensor\n    block_table: torch.Tensor\n    slot_mapping: torch.Tensor\n    use_cascade: bool\n    common_prefix_len: int\n    cu_prefix_query_lens: Optional[torch.Tensor]\n    prefix_kv_lens: Optional[torch.Tensor]\n    suffix_kv_lens: Optional[torch.Tensor]\n    scheduler_metadata: Optional[torch.Tensor] = None\n    prefix_scheduler_metadata: Optional[torch.Tensor] = None\n    max_num_splits: int = 0\n    causal: bool = True",
+          "symbol": "FlashAttentionMetadata"
+        },
+        {
+          "ast_sha256": "5488e660b70aa8267085c859d3a22e0fb0f8bd0420d6b13839dc4843c7f8124c",
+          "kind": "definition",
+          "source": "def __init__(self, num_heads: int, head_size: int, scale: float, num_kv_heads: int, alibi_slopes: Optional[list[float]], sliding_window: Optional[int], kv_cache_dtype: str, logits_soft_cap: Optional[float]=None, attn_type: AttentionType=AttentionType.DECODER, kv_sharing_target_layer_name: Optional[str]=None, sinks: Optional[torch.Tensor]=None) -> None:\n    self.num_heads = num_heads\n    self.head_size = head_size\n    self.scale = float(scale)\n    self.num_kv_heads = num_kv_heads\n    if alibi_slopes is not None:\n        alibi_slopes = torch.tensor(alibi_slopes, dtype=torch.float32)\n    self.alibi_slopes = alibi_slopes\n    if sliding_window is None:\n        self.sliding_window = (-1, -1)\n    elif attn_type == AttentionType.ENCODER_ONLY:\n        self.sliding_window = (sliding_window - 1, sliding_window - 1)\n    else:\n        self.sliding_window = (sliding_window - 1, 0)\n    self.kv_cache_dtype = kv_cache_dtype\n    if logits_soft_cap is None:\n        logits_soft_cap = 0\n    self.logits_soft_cap = logits_soft_cap\n    self.kv_sharing_target_layer_name = kv_sharing_target_layer_name\n    self.num_queries_per_kv = self.num_heads // self.num_kv_heads\n    FlashAttentionBackend.validate_head_size(head_size)\n    self.attn_type = attn_type\n    self.vllm_flash_attn_version = get_flash_attn_version()\n    if is_quantized_kv_cache(self.kv_cache_dtype) and (not flash_attn_supports_fp8()):\n        raise NotImplementedError('FlashAttention does not support fp8 kv-cache on this device.')\n    self.sinks = sinks\n    if self.sinks is not None:\n        assert self.vllm_flash_attn_version == 3, 'Sinks are only supported in FlashAttention 3'\n        assert self.sinks.shape[0] == num_heads, 'Sinks must have the same number of heads as the number of heads in the layer'",
+          "symbol": "FlashAttentionImpl.__init__"
+        },
+        {
+          "ast_sha256": "90465ade7f0bd7988d04ad87d57cffbcade2ee865d887f988ff69db8be9950a8",
+          "kind": "definition",
+          "source": "def forward(self, layer: torch.nn.Module, query: torch.Tensor, key: torch.Tensor, value: torch.Tensor, kv_cache: torch.Tensor, attn_metadata: FlashAttentionMetadata, output: Optional[torch.Tensor]=None, output_scale: Optional[torch.Tensor]=None, output_block_scale: Optional[torch.Tensor]=None) -> torch.Tensor:\n    assert output is not None, 'Output tensor must be provided.'\n    if output_scale is not None or output_block_scale is not None:\n        raise NotImplementedError('fused output quantization is not yet supported for FlashAttentionImpl')\n    if attn_metadata is None:\n        return output\n    attn_type = self.attn_type\n    num_actual_tokens = attn_metadata.num_actual_tokens\n    if attn_type in (AttentionType.ENCODER_ONLY, AttentionType.ENCODER):\n        return self._forward_encoder_attention(query[:num_actual_tokens], key[:num_actual_tokens], value[:num_actual_tokens], output[:num_actual_tokens], attn_metadata, layer)\n    key_cache, value_cache = kv_cache.unbind(0)\n    if self.kv_sharing_target_layer_name is None and key is not None and (value is not None):\n        reshape_and_cache_flash(key, value, key_cache, value_cache, attn_metadata.slot_mapping, self.kv_cache_dtype, layer._k_scale, layer._v_scale)\n    if self.kv_cache_dtype.startswith('fp8'):\n        dtype = FlashAttentionBackend.get_fp8_dtype_for_flashattn(self.kv_cache_dtype)\n        key_cache = key_cache.view(dtype)\n        value_cache = value_cache.view(dtype)\n    if not attn_metadata.use_cascade:\n        cu_seqlens_q = attn_metadata.query_start_loc\n        seqused_k = attn_metadata.seq_lens\n        max_seqlen_q = attn_metadata.max_query_len\n        max_seqlen_k = attn_metadata.max_seq_len\n        block_table = attn_metadata.block_table\n        scheduler_metadata = attn_metadata.scheduler_metadata\n        descale_shape = (cu_seqlens_q.shape[0] - 1, self.num_kv_heads)\n        flash_attn_varlen_func(q=query[:num_actual_tokens], k=key_cache, v=value_cache, out=output[:num_actual_tokens], cu_seqlens_q=cu_seqlens_q, max_seqlen_q=max_seqlen_q, seqused_k=seqused_k, max_seqlen_k=max_seqlen_k, softmax_scale=self.scale, causal=attn_metadata.causal, alibi_slopes=self.alibi_slopes, window_size=self.sliding_window, block_table=block_table, softcap=self.logits_soft_cap, scheduler_metadata=scheduler_metadata, fa_version=self.vllm_flash_attn_version, q_descale=layer._q_scale.expand(descale_shape), k_descale=layer._k_scale.expand(descale_shape), v_descale=layer._v_scale.expand(descale_shape), num_splits=attn_metadata.max_num_splits, s_aux=self.sinks)\n        return output\n    cascade_attention(output[:num_actual_tokens], query[:num_actual_tokens], key_cache, value_cache, cu_query_lens=attn_metadata.query_start_loc, max_query_len=attn_metadata.max_query_len, cu_prefix_query_lens=attn_metadata.cu_prefix_query_lens, prefix_kv_lens=attn_metadata.prefix_kv_lens, suffix_kv_lens=attn_metadata.suffix_kv_lens, max_kv_len=attn_metadata.max_seq_len, softmax_scale=self.scale, alibi_slopes=self.alibi_slopes, sliding_window=self.sliding_window, logits_soft_cap=self.logits_soft_cap, block_table=attn_metadata.block_table, common_prefix_len=attn_metadata.common_prefix_len, fa_version=self.vllm_flash_attn_version, prefix_scheduler_metadata=attn_metadata.prefix_scheduler_metadata, suffix_scheduler_metadata=attn_metadata.scheduler_metadata, q_descale=layer._q_scale, k_descale=layer._k_scale, v_descale=layer._v_scale)\n    return output",
+          "symbol": "FlashAttentionImpl.forward"
+        }
+      ]
+    },
+    {
+      "file_sha256": "135cc5e748672057e1528b7f21c7a767c56d2ea4438b73ad60e3cfa3743d8613",
+      "module": "vllm.model_executor.models.llama",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__models__llama.py",
+      "symbols": [
+        {
+          "ast_sha256": "46854e2838ddf84b9e43dd9c850f95f5e4932f17bf36213cdbb714bc602c7fb3",
+          "kind": "definition",
+          "source": "def forward(self, positions: torch.Tensor, hidden_states: torch.Tensor) -> torch.Tensor:\n    qkv, _ = self.qkv_proj(hidden_states)\n    q, k, v = qkv.split([self.q_size, self.kv_size, self.kv_size], dim=-1)\n    q, k = self.rotary_emb(positions, q, k)\n    attn_output = self.attn(q, k, v)\n    output, _ = self.o_proj(attn_output)\n    return output",
+          "symbol": "LlamaAttention.forward"
+        },
+        {
+          "ast_sha256": "7e111faf250d324596a25a5d1fdbbe75eb15adc8b9320054e5959ac0e5f1a49f",
+          "kind": "definition",
+          "source": "def forward(self, x):\n    x, _ = self.gate_up_proj(x)\n    x = self.act_fn(x)\n    x, _ = self.down_proj(x)\n    return x",
+          "symbol": "LlamaMLP.forward"
+        },
+        {
+          "ast_sha256": "4b9ea1a16b5a90e7c19d7833a00b2658d45383bca996f53fe3f2d3a447f3b2c5",
+          "kind": "definition",
+          "source": "def forward(self, positions: torch.Tensor, hidden_states: torch.Tensor, residual: Optional[torch.Tensor]) -> tuple[torch.Tensor, torch.Tensor]:\n    if residual is None:\n        residual = hidden_states\n        hidden_states = self.input_layernorm(hidden_states)\n    else:\n        hidden_states, residual = self.input_layernorm(hidden_states, residual)\n    hidden_states = self.self_attn(positions=positions, hidden_states=hidden_states)\n    hidden_states, residual = self.post_attention_layernorm(hidden_states, residual)\n    hidden_states = self.mlp(hidden_states)\n    return (hidden_states, residual)",
+          "symbol": "LlamaDecoderLayer.forward"
+        },
+        {
+          "ast_sha256": "d50bfd8d62486ac4ccdbc470da425c3fc673b70a85b3ebfb135c79324d6a9a1c",
+          "kind": "definition",
+          "source": "def forward(self, input_ids: Optional[torch.Tensor], positions: torch.Tensor, intermediate_tensors: Optional[IntermediateTensors], inputs_embeds: Optional[torch.Tensor]=None) -> Union[torch.Tensor, IntermediateTensors, tuple[torch.Tensor, list[torch.Tensor]]]:\n    if get_pp_group().is_first_rank:\n        if inputs_embeds is not None:\n            hidden_states = inputs_embeds\n        else:\n            hidden_states = self.get_input_embeddings(input_ids)\n        residual = None\n    else:\n        assert intermediate_tensors is not None\n        hidden_states = intermediate_tensors['hidden_states']\n        residual = intermediate_tensors['residual']\n    aux_hidden_states = []\n    for idx, layer in enumerate(islice(self.layers, self.start_layer, self.end_layer)):\n        if idx in self.aux_hidden_state_layers:\n            aux_hidden_states.append(hidden_states + residual)\n        hidden_states, residual = layer(positions, hidden_states, residual)\n    if not get_pp_group().is_last_rank:\n        return IntermediateTensors({'hidden_states': hidden_states, 'residual': residual})\n    hidden_states, _ = self.norm(hidden_states, residual)\n    if len(aux_hidden_states) > 0:\n        return (hidden_states, aux_hidden_states)\n    return hidden_states",
+          "symbol": "LlamaModel.forward"
+        },
+        {
+          "ast_sha256": "fb07aa0ad056ec610a00982a2b22e58b872740ac76e52c537ebacbc97ccb9cdc",
+          "kind": "definition",
+          "source": "def compute_logits(self, hidden_states: torch.Tensor) -> Optional[torch.Tensor]:\n    logits = self.logits_processor(self.lm_head, hidden_states)\n    return logits",
+          "symbol": "LlamaForCausalLM.compute_logits"
+        }
+      ]
+    },
+    {
+      "file_sha256": "e2b03b11fb10c590a7c9d1c02162d22e9bb80c94677dadc7919be4f4766f4f5d",
+      "module": "vllm.model_executor.models.mistral3",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__models__mistral3.py",
+      "symbols": [
+        {
+          "ast_sha256": "41c6b46655058510100b889f12b913ebca2e00b54a1eb9e8829925739bb1bf76",
+          "kind": "definition",
+          "source": "class Mistral3ForConditionalGeneration(nn.Module, SupportsLoRA, SupportsMultiModal, SupportsPP):\n    packed_modules_mapping = {'qkv_proj': ['q_proj', 'k_proj', 'v_proj'], 'gate_up_proj': ['gate_proj', 'up_proj']}\n    hf_to_vllm_mapper = WeightsMapper(orig_to_new_prefix={'model.language_model.': 'language_model.model.', 'model.vision_tower.': 'vision_tower.', 'model.multi_modal_projector.': 'multi_modal_projector.', 'lm_head.': 'language_model.lm_head.'})\n\n    @classmethod\n    def get_placeholder_str(cls, modality: str, i: int) -> Optional[str]:\n        if modality.startswith('image'):\n            return None\n        raise ValueError('Only image modality is supported')\n\n    def __init__(self, *, vllm_config: VllmConfig, prefix: str='') -> None:\n        super().__init__()\n        config = vllm_config.model_config.hf_config\n        quant_config = vllm_config.quant_config\n        multimodal_config = vllm_config.model_config.multimodal_config\n        self.config = config\n        self.multimodal_config = multimodal_config\n        if config.text_config.architectures is None and config.text_config.model_type == 'mistral':\n            config.text_config.architectures = ['MistralForCausalLM']\n        if config.projector_hidden_act is None and config.vision_config.hidden_act == 'gelu':\n            config.projector_hidden_act = 'gelu'\n        if multimodal_config.get_limit_per_prompt('image'):\n            self.vision_tower = init_vision_tower_for_llava(config, quant_config, require_post_norm=False, prefix=maybe_prefix(prefix, 'vision_tower'))\n            self.multi_modal_projector = Mistral3MultiModalProjector(vision_hidden_size=config.vision_config.hidden_size, text_hidden_size=config.text_config.hidden_size, projector_hidden_act=config.projector_hidden_act, spatial_merge_size=config.spatial_merge_size, patch_size=config.vision_config.patch_size, multimodal_projector_bias=config.multimodal_projector_bias, quant_config=quant_config, prefix=maybe_prefix(prefix, 'multi_modal_projector'))\n        else:\n            self.vision_tower = None\n            self.multi_modal_projector = None\n        self.language_model = init_vllm_registered_model(vllm_config=vllm_config, hf_config=config.text_config, prefix=maybe_prefix(prefix, 'language_model'))\n        self.make_empty_intermediate_tensors = self.language_model.make_empty_intermediate_tensors\n\n    def _parse_and_validate_image_input(self, **kwargs: object) -> Optional[Mistral3ImagePixelInputs]:\n        pixel_values = kwargs.pop('pixel_values', None)\n        image_embeds = kwargs.pop('image_embeds', None)\n        if pixel_values is None and image_embeds is None:\n            return None\n        assert pixel_values is not None\n        if not isinstance(pixel_values, (torch.Tensor, list)):\n            raise ValueError(f'Incorrect type of pixel values. Got type: {type(pixel_values)}')\n        return Mistral3ImagePixelInputs(type='pixel_values_pixtral', pixel_values=flatten_bn(pixel_values))\n\n    def _process_image_input(self, image_input: Mistral3ImagePixelInputs) -> Union[torch.Tensor, tuple[torch.Tensor, ...]]:\n        if image_input['type'] == 'image_embeds':\n            return image_input['data']\n        image_sizes = [(img.shape[-2], img.shape[-1]) for img in image_input['pixel_values']]\n        image_features = self.vision_tower(image_input['pixel_values'])\n        if isinstance(image_features, torch.Tensor):\n            return self.multi_modal_projector(image_features, image_sizes)\n        feature_sizes = [image_feature.shape[0] // self.config.spatial_merge_size ** 2 for image_feature in image_features]\n        image_embeds = self.multi_modal_projector(torch.cat(image_features), image_sizes)\n        if len(feature_sizes) > 1:\n            image_embeds = torch.split(image_embeds, feature_sizes)\n        else:\n            image_embeds = (image_embeds,)\n        return image_embeds\n\n    def get_language_model(self) -> torch.nn.Module:\n        return self.language_model\n\n    def get_multimodal_embeddings(self, **kwargs: object) -> MultiModalEmbeddings:\n        image_input = self._parse_and_validate_image_input(**kwargs)\n        if image_input is None:\n            return []\n        vision_embeddings = self._process_image_input(image_input)\n        return vision_embeddings\n\n    def get_input_embeddings(self, input_ids: torch.Tensor, multimodal_embeddings: Optional[MultiModalEmbeddings]=None) -> torch.Tensor:\n        inputs_embeds = self.language_model.get_input_embeddings(input_ids)\n        if multimodal_embeddings is not None and len(multimodal_embeddings) != 0:\n            inputs_embeds = merge_multimodal_embeddings(input_ids, inputs_embeds, multimodal_embeddings, self.config.image_token_index)\n        return inputs_embeds\n\n    def forward(self, input_ids: torch.Tensor, positions: torch.Tensor, intermediate_tensors: Optional[IntermediateTensors]=None, inputs_embeds: Optional[torch.Tensor]=None, **kwargs: object) -> Union[torch.Tensor, IntermediateTensors]:\n        if intermediate_tensors is not None:\n            inputs_embeds = None\n        elif inputs_embeds is None:\n            vision_embeddings = self.get_multimodal_embeddings(**kwargs)\n            inputs_embeds = self.get_input_embeddings(input_ids, vision_embeddings)\n            input_ids = None\n        hidden_states = self.language_model.model(input_ids, positions, intermediate_tensors, inputs_embeds=inputs_embeds)\n        return hidden_states\n\n    def compute_logits(self, hidden_states: torch.Tensor) -> Optional[torch.Tensor]:\n        return self.language_model.compute_logits(hidden_states)\n\n    def load_weights(self, weights: Iterable[tuple[str, torch.Tensor]]) -> set[str]:\n        skip_prefixes = []\n        if self.vision_tower is None and self.multi_modal_projector is None:\n            skip_prefixes = ['vision_tower.', 'multi_modal_projector.']\n        loader = AutoWeightsLoader(self, skip_prefixes=skip_prefixes)\n        return loader.load_weights(weights, mapper=self.hf_to_vllm_mapper)\n\n    def get_mm_mapping(self) -> MultiModelKeys:\n        return MultiModelKeys.from_string_field(language_model='language_model', connector='multi_modal_projector', tower_model='vision_tower')",
+          "symbol": "Mistral3ForConditionalGeneration"
+        }
+      ]
+    },
+    {
+      "file_sha256": "3dc2eb8526b0ec49aae393022db488d9220be3fa507893d1d1bff9442529b56e",
+      "module": "vllm.model_executor.layers.logits_processor",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__logits_processor.py",
+      "symbols": [
+        {
+          "ast_sha256": "df7027feaa57592f97f5a2c639bece4204ac8635101a8e25c97f35795d787a8e",
+          "kind": "definition",
+          "source": "def forward(self, lm_head: VocabParallelEmbedding, hidden_states: torch.Tensor, embedding_bias: Optional[torch.Tensor]=None) -> Optional[torch.Tensor]:\n    if self.logits_as_input:\n        logits = hidden_states\n    else:\n        logits = self._get_logits(hidden_states, lm_head, embedding_bias)\n    if logits is not None:\n        if self.soft_cap is not None:\n            logits = logits / self.soft_cap\n            logits = torch.tanh(logits)\n            logits = logits * self.soft_cap\n        if self.scale != 1.0:\n            logits *= self.scale\n    return logits",
+          "symbol": "LogitsProcessor.forward"
+        },
+        {
+          "ast_sha256": "19ded4228c44940f2f585050cef76667b2896c7ff0388e4e2858fa111f0769fa",
+          "kind": "definition",
+          "source": "def _get_logits(self, hidden_states: torch.Tensor, lm_head: VocabParallelEmbedding, embedding_bias: Optional[torch.Tensor]) -> Optional[torch.Tensor]:\n    logits = lm_head.quant_method.apply(lm_head, hidden_states, bias=embedding_bias)\n    logits = self._gather_logits(logits)\n    if logits is not None:\n        logits = logits[..., :self.org_vocab_size]\n    return logits",
+          "symbol": "LogitsProcessor._get_logits"
+        }
+      ]
+    },
+    {
+      "file_sha256": "3720fbfd59c1f064a62b8e0489ec0436468188b69f8b8eb84d2d62eba31f3912",
+      "module": "vllm.v1.sample.sampler",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__sampler.py",
+      "symbols": [
+        {
+          "ast_sha256": "106d8c3f0dc67e28868cef15c3550221d38d86508e57648e433e0e817dd9ada9",
+          "kind": "definition",
+          "source": "def forward(self, logits: torch.Tensor, sampling_metadata: SamplingMetadata) -> SamplerOutput:\n    num_logprobs = sampling_metadata.max_num_logprobs\n    if num_logprobs is not None:\n        if self.logprobs_mode == 'raw_logprobs':\n            raw_logprobs = self.compute_logprobs(logits)\n        elif self.logprobs_mode == 'raw_logits':\n            raw_logprobs = logits.clone()\n    logits = logits.to(torch.float32)\n    logits = self.apply_allowed_token_ids(logits, sampling_metadata)\n    logits = self.apply_bad_words(logits, sampling_metadata)\n    for processor in sampling_metadata.logitsprocs.non_argmax_invariant:\n        logits = processor.apply(logits)\n    logits = self.apply_penalties(logits, sampling_metadata)\n    sampled, processed_logprobs = self.sample(logits, sampling_metadata)\n    if processed_logprobs is not None:\n        raw_logprobs = processed_logprobs\n    sampled = sampled.long()\n    logprobs_tensors = None if num_logprobs is None else self.gather_logprobs(raw_logprobs, num_logprobs, token_ids=sampled)\n    sampled = sampled.to(torch.int32)\n    sampler_output = SamplerOutput(sampled_token_ids=sampled.unsqueeze(-1), logprobs_tensors=logprobs_tensors)\n    return sampler_output",
+          "symbol": "Sampler.forward"
+        },
+        {
+          "ast_sha256": "9b10f991c33967d9b0a01943c6de12879b235c4bb749aa1ac4ce90eeb9f424b1",
+          "kind": "definition",
+          "source": "def sample(self, logits: torch.Tensor, sampling_metadata: SamplingMetadata) -> tuple[torch.Tensor, Optional[torch.Tensor]]:\n    assert not (sampling_metadata.all_greedy and sampling_metadata.all_random)\n    if sampling_metadata.all_random:\n        greedy_sampled = None\n    else:\n        greedy_sampled = self.greedy_sample(logits)\n        if sampling_metadata.all_greedy:\n            processed_logprobs = None\n            if sampling_metadata.max_num_logprobs is not None:\n                if self.logprobs_mode == 'processed_logits':\n                    processed_logprobs = logits\n                elif self.logprobs_mode == 'processed_logprobs':\n                    processed_logprobs = self.compute_logprobs(logits)\n            return (greedy_sampled, processed_logprobs)\n    assert sampling_metadata.temperature is not None\n    logits = self.apply_temperature(logits, sampling_metadata.temperature, sampling_metadata.all_random)\n    for processor in sampling_metadata.logitsprocs.argmax_invariant:\n        logits = processor.apply(logits)\n    random_sampled, processed_logprobs = self.topk_topp_sampler(logits, sampling_metadata.generators, sampling_metadata.top_k, sampling_metadata.top_p)\n    if greedy_sampled is None:\n        return (random_sampled, processed_logprobs)\n    sampled = torch.where(sampling_metadata.temperature < _SAMPLING_EPS, greedy_sampled, random_sampled, out=greedy_sampled)\n    return (sampled, processed_logprobs)",
+          "symbol": "Sampler.sample"
+        },
+        {
+          "ast_sha256": "89a417c70d40f4b8231efe53554127e8e87d699176833c75640bb2635e109a82",
+          "kind": "definition",
+          "source": "def greedy_sample(self, logits: torch.Tensor) -> torch.Tensor:\n    return logits.argmax(dim=-1).view(-1)",
+          "symbol": "Sampler.greedy_sample"
+        }
+      ]
+    },
+    {
+      "file_sha256": "a0f4fababeca48cff378179cfe1d1cecb51dc1709f05c3231ab52fca70ec837c",
+      "module": "vllm.v1.sample.logits_processor",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor.py",
+      "symbols": [
+        {
+          "ast_sha256": "82feafcb921601195206bb94cd0efd6d340ee5163edd9a2aeb500468c8430858",
+          "kind": "definition",
+          "source": "def _load_logitsprocs_by_fqcns(logits_processors: Optional[Sequence[Union[str, type[LogitsProcessor]]]]) -> list[type[LogitsProcessor]]:\n    if not logits_processors:\n        return []\n    logger.debug('%s additional custom logits processors specified, checking whether they need to be loaded.', len(logits_processors))\n    classes: list[type[LogitsProcessor]] = []\n    for ldx, logitproc in enumerate(logits_processors):\n        if isinstance(logitproc, type):\n            logger.debug(' - Already-loaded logit processor: %s', logitproc.__name__)\n            if not issubclass(logitproc, LogitsProcessor):\n                raise ValueError(f'{logitproc.__name__} is not a subclass of LogitsProcessor')\n            classes.append(logitproc)\n            continue\n        logger.debug('- Loading logits processor %s', logitproc)\n        module_path, qualname = logitproc.split(':')\n        try:\n            module = importlib.import_module(module_path)\n        except Exception as e:\n            raise RuntimeError(f'Failed to load {ldx}th LogitsProcessor plugin {logitproc}') from e\n        obj = module\n        for attr in qualname.split('.'):\n            obj = getattr(obj, attr)\n        if not isinstance(obj, type):\n            raise ValueError('Loaded logit processor must be a type.')\n        if not issubclass(obj, LogitsProcessor):\n            raise ValueError(f'{obj.__name__} must be a subclass of LogitsProcessor')\n        classes.append(obj)\n    return classes",
+          "symbol": "_load_logitsprocs_by_fqcns"
+        }
+      ]
+    },
+    {
+      "file_sha256": "298af662dde967771d80dcae4af0303a5ce143f9ef7fce660d7815b4ff874573",
+      "module": "vllm.v1.sample.logits_processor.builtin",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor__builtin.py",
+      "symbols": [
+        {
+          "ast_sha256": "45aec786aa90f6b91afed265b32f675fe8e1223f1f4bf62c73bb2e442cf7e8dd",
+          "kind": "definition",
+          "source": "def is_argmax_invariant(self) -> bool:\n    return True",
+          "symbol": "MinPLogitsProcessor.is_argmax_invariant"
+        },
+        {
+          "ast_sha256": "ca97de1d850bf247200c9bcc572eadbc01cdfa2cbca42b8af729c00e987ca166",
+          "kind": "definition",
+          "source": "def is_argmax_invariant(self) -> bool:\n    return False",
+          "symbol": "LogitBiasLogitsProcessor.is_argmax_invariant"
+        },
+        {
+          "ast_sha256": "ca97de1d850bf247200c9bcc572eadbc01cdfa2cbca42b8af729c00e987ca166",
+          "kind": "definition",
+          "source": "def is_argmax_invariant(self) -> bool:\n    return False",
+          "symbol": "MinTokensLogitsProcessor.is_argmax_invariant"
+        }
+      ]
+    },
+    {
+      "file_sha256": "1999e687a183ce4b7b039b4c5357b73f0ad0afd8a5b52383ef1f7d1d5613263e",
+      "module": "vllm.v1.engine.output_processor",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__engine__output_processor.py",
+      "symbols": [
+        {
+          "ast_sha256": "fd7333a8a27040d173e9cca83413df7b1bda9cd80f92cf0fe60c2cf7471f0b60",
+          "kind": "definition",
+          "source": "def process_outputs(self, engine_core_outputs: list[EngineCoreOutput], engine_core_timestamp: Optional[float]=None, iteration_stats: Optional[IterationStats]=None) -> OutputProcessorOutput:\n    request_outputs: Union[list[RequestOutput], list[PoolingRequestOutput]] = []\n    reqs_to_abort: list[str] = []\n    for engine_core_output in engine_core_outputs:\n        req_id = engine_core_output.request_id\n        req_state = self.request_states.get(req_id)\n        if req_state is None:\n            continue\n        self._update_stats_from_output(req_state, engine_core_output, engine_core_timestamp, iteration_stats)\n        new_token_ids = engine_core_output.new_token_ids\n        pooling_output = engine_core_output.pooling_output\n        finish_reason = engine_core_output.finish_reason\n        stop_reason = engine_core_output.stop_reason\n        kv_transfer_params = engine_core_output.kv_transfer_params\n        req_state.num_cached_tokens = engine_core_output.num_cached_tokens\n        req_state.is_prefilling = False\n        if pooling_output is None:\n            assert req_state.detokenizer is not None\n            assert req_state.logprobs_processor is not None\n            stop_string = req_state.detokenizer.update(new_token_ids, finish_reason == FinishReason.STOP)\n            if stop_string:\n                finish_reason = FinishReason.STOP\n                stop_reason = stop_string\n            req_state.logprobs_processor.update_from_output(engine_core_output)\n        if (request_output := req_state.make_request_output(new_token_ids, pooling_output, finish_reason, stop_reason, kv_transfer_params)):\n            if req_state.queue is not None:\n                req_state.queue.put(request_output)\n            else:\n                request_outputs.append(request_output)\n        if finish_reason is not None:\n            self.request_states.pop(req_id)\n            parent_req = req_state.parent_req\n            if parent_req and (not parent_req.child_requests):\n                self.parent_requests.pop(parent_req.request_id, None)\n            if not engine_core_output.finished:\n                reqs_to_abort.append(req_id)\n            self._update_stats_from_finished(req_state, finish_reason, iteration_stats)\n            if self.tracer:\n                self.do_tracing(engine_core_output, req_state, iteration_stats)\n    self.lora_states.update_iteration_stats(iteration_stats)\n    return OutputProcessorOutput(request_outputs=request_outputs, reqs_to_abort=reqs_to_abort)",
+          "symbol": "OutputProcessor.process_outputs"
+        }
+      ]
+    },
+    {
+      "file_sha256": "357ac414a5b5da8c3423984dd1fdde860584a0d417c30ac2ee25874ea9e5a04c",
+      "module": "vllm.v1.core.sched.scheduler",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__core__sched__scheduler.py",
+      "symbols": [
+        {
+          "ast_sha256": "7590f5165f25b74ca4e52b24b10720b3076d73c5e1836a7e2a3b2320b0029b6e",
+          "kind": "definition",
+          "source": "def update_from_output(self, scheduler_output: SchedulerOutput, model_runner_output: ModelRunnerOutput) -> dict[int, EngineCoreOutputs]:\n    sampled_token_ids = model_runner_output.sampled_token_ids\n    logprobs = model_runner_output.logprobs\n    prompt_logprobs_dict = model_runner_output.prompt_logprobs_dict\n    num_scheduled_tokens = scheduler_output.num_scheduled_tokens\n    pooler_outputs = model_runner_output.pooler_output\n    num_nans_in_logits = model_runner_output.num_nans_in_logits\n    kv_connector_output = model_runner_output.kv_connector_output\n    outputs: dict[int, list[EngineCoreOutput]] = defaultdict(list)\n    spec_decoding_stats: Optional[SpecDecodingStats] = None\n    kv_connector_stats = kv_connector_output.kv_connector_stats if kv_connector_output else None\n    stopped_running_reqs: set[Request] = set()\n    stopped_preempted_reqs: set[Request] = set()\n    for req_id, num_tokens_scheduled in num_scheduled_tokens.items():\n        assert num_tokens_scheduled > 0\n        request = self.requests.get(req_id)\n        if request is None:\n            continue\n        req_index = model_runner_output.req_id_to_index[req_id]\n        generated_token_ids = sampled_token_ids[req_index] if sampled_token_ids else []\n        scheduled_spec_token_ids = scheduler_output.scheduled_spec_decode_tokens.get(req_id)\n        if scheduled_spec_token_ids:\n            num_draft_tokens = len(scheduled_spec_token_ids)\n            num_accepted = len(generated_token_ids) - 1\n            num_rejected = num_draft_tokens - num_accepted\n            request.num_computed_tokens -= num_rejected\n            spec_decoding_stats = self.make_spec_decoding_stats(spec_decoding_stats, num_draft_tokens=num_draft_tokens, num_accepted_tokens=num_accepted)\n        stopped = False\n        new_logprobs = None\n        new_token_ids = generated_token_ids\n        kv_transfer_params = None\n        status_before_stop = request.status\n        if new_token_ids:\n            new_token_ids, stopped = self._update_request_with_output(request, new_token_ids)\n        pooler_output = None\n        if pooler_outputs:\n            pooler_output = pooler_outputs[req_index]\n            stopped = check_stop(request, self.max_model_len, pooler_output)\n        if stopped:\n            kv_transfer_params = self._free_request(request)\n            if status_before_stop == RequestStatus.RUNNING:\n                stopped_running_reqs.add(request)\n            else:\n                stopped_preempted_reqs.add(request)\n        if request.sampling_params is not None and request.sampling_params.logprobs is not None and logprobs:\n            new_logprobs = logprobs.slice(req_index, req_index + 1)\n        if new_token_ids and self.structured_output_manager.should_advance(request):\n            request.structured_output_request.grammar.accept_tokens(req_id, new_token_ids)\n        if num_nans_in_logits is not None and req_id in num_nans_in_logits:\n            request.num_nans_in_logits = num_nans_in_logits[req_id]\n        prompt_logprobs_tensors = prompt_logprobs_dict.get(req_id)\n        if new_token_ids or pooler_output is not None or kv_transfer_params:\n            outputs[request.client_index].append(EngineCoreOutput(request_id=req_id, new_token_ids=new_token_ids, finish_reason=request.get_finished_reason(), new_logprobs=new_logprobs, new_prompt_logprobs_tensors=prompt_logprobs_tensors, pooling_output=pooler_output, stop_reason=request.stop_reason, events=request.take_events(), kv_transfer_params=kv_transfer_params, trace_headers=request.trace_headers, num_cached_tokens=request.num_cached_tokens))\n        else:\n            assert not prompt_logprobs_tensors\n    if stopped_running_reqs:\n        self.running = remove_all(self.running, stopped_running_reqs)\n    if stopped_preempted_reqs:\n        self.waiting.remove_requests(stopped_preempted_reqs)\n    if model_runner_output.kv_connector_output:\n        self._update_from_kv_xfer_finished(model_runner_output.kv_connector_output)\n    engine_core_outputs = {client_index: EngineCoreOutputs(outputs=outs) for client_index, outs in outputs.items()}\n    finished_req_ids = self.finished_req_ids_dict\n    if finished_req_ids:\n        for client_index, finished_set in finished_req_ids.items():\n            if (eco := engine_core_outputs.get(client_index)) is not None:\n                eco.finished_requests = finished_set\n            else:\n                engine_core_outputs[client_index] = EngineCoreOutputs(finished_requests=finished_set)\n        finished_req_ids.clear()\n    if (stats := self.make_stats(spec_decoding_stats, kv_connector_stats)) is not None:\n        if (eco := next(iter(engine_core_outputs.values()), None)) is None:\n            engine_core_outputs[0] = eco = EngineCoreOutputs()\n        eco.scheduler_stats = stats\n    return engine_core_outputs",
+          "symbol": "Scheduler.update_from_output"
+        },
+        {
+          "ast_sha256": "463216e667f0faa5ac089874b74e2588e9b06c7586d85983165ea0a4cc6298dc",
+          "kind": "definition",
+          "source": "def _update_request_with_output(self, request: Request, new_token_ids: list[int]) -> tuple[list[int], bool]:\n    stopped = False\n    for num_new, output_token_id in enumerate(new_token_ids, 1):\n        request.append_output_token_ids(output_token_id)\n        stopped = check_stop(request, self.max_model_len)\n        if stopped:\n            del new_token_ids[num_new:]\n            break\n    return (new_token_ids, stopped)",
+          "symbol": "Scheduler._update_request_with_output"
+        }
+      ]
+    },
+    {
+      "file_sha256": "defe5df4832f536bdf82764d7d16abda43db8bd9c7cb93ebe631df3ad03f7ceb",
+      "module": "vllm.v1.core.sched.utils",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__core__sched__utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "b1521154d4c37d6d7c5b0883394b8f47a472968f87ad37972dd0f8d6a825c984",
+          "kind": "definition",
+          "source": "def check_stop(request: Request, max_model_len: int, pooler_output: Optional[torch.Tensor]=None) -> bool:\n    if request.num_tokens >= max_model_len or request.num_output_tokens >= request.max_tokens:\n        request.status = RequestStatus.FINISHED_LENGTH_CAPPED\n        return True\n    if request.pooling_params:\n        if pooler_output is not None:\n            request.status = RequestStatus.FINISHED_STOPPED\n            return True\n        return False\n    sampling_params = request.sampling_params\n    assert sampling_params is not None\n    last_token_id = request.output_token_ids[-1]\n    if not sampling_params.ignore_eos and last_token_id == request.eos_token_id:\n        request.status = RequestStatus.FINISHED_STOPPED\n        return True\n    if last_token_id in (sampling_params.stop_token_ids or ()):\n        request.status = RequestStatus.FINISHED_STOPPED\n        request.stop_reason = last_token_id\n        return True\n    return False",
+          "symbol": "check_stop"
+        }
+      ]
+    },
+    {
+      "file_sha256": "be457706757fe6734c5a1bd9f3261722276ec27616dac996d6b1c33cacdfa5ec",
+      "module": "vllm.v1.request",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__request.py",
+      "symbols": [
+        {
+          "ast_sha256": "e0e0fc3eb5579ff98cae0d28949e374c76b69a9cde8298d1eb9b0450857ae9fd",
+          "kind": "definition",
+          "source": "def append_output_token_ids(self, token_ids: Union[int, list[int]]) -> None:\n    if isinstance(token_ids, int):\n        self._output_token_ids.append(token_ids)\n        self._all_token_ids.append(token_ids)\n    else:\n        self._output_token_ids.extend(token_ids)\n        self._all_token_ids.extend(token_ids)\n    if self.get_hash_new_full_blocks is not None:\n        self.block_hashes.extend(self.get_hash_new_full_blocks())",
+          "symbol": "Request.append_output_token_ids"
+        },
+        {
+          "ast_sha256": "da89115d3706cb0d4041f3fb058adce0aea45756370b7c5b973c862019ce634e",
+          "kind": "definition",
+          "source": "def get_finished_reason(status: 'RequestStatus') -> Union[FinishReason, None]:\n    return _FINISHED_REASON_MAP.get(status)",
+          "symbol": "RequestStatus.get_finished_reason"
+        }
+      ]
+    },
+    {
+      "file_sha256": "8219442773ae7cca6d3b63507438e8b0654fbcf024bf7f037dd80ed9f860bf01",
+      "module": "vllm.sampling_params",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__sampling_params.py",
+      "symbols": [
+        {
+          "ast_sha256": "5549f14b44b08b41eb28b3f8ef47b28a75b248a83c3a65848e333f4e35d59e23",
+          "kind": "definition",
+          "source": "def update_from_generation_config(self, generation_config: dict[str, Any], model_eos_token_id: Optional[int]=None) -> None:\n    if model_eos_token_id is not None:\n        self._all_stop_token_ids.add(model_eos_token_id)\n    if (eos_ids := generation_config.get('eos_token_id')) is not None:\n        eos_ids = {eos_ids} if isinstance(eos_ids, int) else set(eos_ids)\n        if model_eos_token_id is not None:\n            eos_ids.discard(model_eos_token_id)\n        if eos_ids:\n            self._all_stop_token_ids.update(eos_ids)\n            if not self.ignore_eos:\n                eos_ids.update(self.stop_token_ids)\n                self.stop_token_ids = list(eos_ids)",
+          "symbol": "SamplingParams.update_from_generation_config"
+        }
+      ]
+    },
+    {
+      "file_sha256": "5a693f2c06e18744f85d4b9915fbe88aa72d49d51de9b91d56293b5fb31d6054",
+      "module": "vllm.model_executor.custom_op",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__custom_op.py",
+      "symbols": [
+        {
+          "ast_sha256": "9ed8f7f5854469537374b364137b15746d755aaa72873ebf13130522534f99d6",
+          "kind": "definition",
+          "source": "def forward(self, *args, **kwargs):\n    return self._forward_method(*args, **kwargs)",
+          "symbol": "CustomOp.forward"
+        }
+      ]
+    },
+    {
+      "file_sha256": "8a00815cda00849f1e668a11efd2a1a738189553f54d48273c5e42ec14a94891",
+      "module": "vllm.distributed.communication_op",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__distributed__communication_op.py",
+      "symbols": [
+        {
+          "ast_sha256": "4efc2b2989924e000ce579958dc7e2e8629a9bbe9c9fe9f3d56efdae096bafb2",
+          "kind": "definition",
+          "source": "def tensor_model_parallel_all_reduce(input_: torch.Tensor) -> torch.Tensor:\n    return get_tp_group().all_reduce(input_)",
+          "symbol": "tensor_model_parallel_all_reduce"
+        }
+      ]
+    },
+    {
+      "file_sha256": "7102fb0fa39dcf3beef4f7030737be4399d2ea5bf3dd671235e220305cfa086b",
+      "module": "vllm.model_executor.layers.utils",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__model_executor__layers__utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "1dbc186b288a9f80450243bec0691c689bb49887b748af0fdc26591469e7c695",
+          "kind": "definition",
+          "source": "def dispatch_unquantized_gemm() -> Callable[..., torch.Tensor]:\n    if current_platform.is_rocm():\n        return rocm_unquantized_gemm\n    elif current_platform.is_cpu():\n        return cpu_unquantized_gemm\n    else:\n        return default_unquantized_gemm",
+          "symbol": "dispatch_unquantized_gemm"
+        }
+      ]
+    },
+    {
+      "file_sha256": "994638f636fb88e56d3991ad655d26674f9e64c56ad0f74cfa3fc47dc4aac150",
+      "module": "vllm.attention.utils.fa_utils",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__attention__utils__fa_utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "1049bdee38a4f8db3615fe4feeb5306699305a2a7ff0c9446a4fa9c384908d1e",
+          "kind": "definition",
+          "source": "def get_flash_attn_version(requires_alibi: bool=False) -> Optional[int]:\n    from vllm.platforms import current_platform\n    if current_platform.is_xpu():\n        return 2\n    try:\n        from vllm.vllm_flash_attn.flash_attn_interface import fa_version_unsupported_reason, is_fa_version_supported\n        device_capability = current_platform.get_device_capability()\n        assert device_capability is not None\n        fa_version = 3 if device_capability.major == 9 and is_fa_version_supported(3) else 2\n        if envs.VLLM_FLASH_ATTN_VERSION is not None:\n            assert envs.VLLM_FLASH_ATTN_VERSION in [2, 3]\n            fa_version = envs.VLLM_FLASH_ATTN_VERSION\n        if device_capability.major == 10 and fa_version == 3:\n            logger.warning_once('Cannot use FA version 3 on Blackwell platform defaulting to FA version 2.')\n            fa_version = 2\n        if requires_alibi and fa_version == 3:\n            logger.warning_once('Cannot use FA version 3 with ALiBi, defaulting to FA version 2.')\n            fa_version = 2\n        if not is_fa_version_supported(fa_version):\n            logger.error('Cannot use FA version %d is not supported due to %s', fa_version, fa_version_unsupported_reason(fa_version))\n        assert is_fa_version_supported(fa_version)\n        return fa_version\n    except (ImportError, AssertionError):\n        return None",
+          "symbol": "get_flash_attn_version"
+        },
+        {
+          "ast_sha256": "6d842e197180e5d4e156b57eabc17f95f2fa10cd0999ec293cbb4f76abbf7c20",
+          "kind": "conditional_binding",
+          "source": "if current_platform.is_cuda():\n    from vllm import _custom_ops as ops\n    reshape_and_cache_flash = ops.reshape_and_cache_flash\n    from vllm.vllm_flash_attn import flash_attn_varlen_func, get_scheduler_metadata\nelif current_platform.is_xpu():\n    from vllm._ipex_ops import ipex_ops as ops\n    reshape_and_cache_flash = ops.reshape_and_cache_flash\n    flash_attn_varlen_func = ops.flash_attn_varlen_func\n    get_scheduler_metadata = ops.get_scheduler_metadata",
+          "symbol": "flash_attn_varlen_func"
+        },
+        {
+          "ast_sha256": "6d842e197180e5d4e156b57eabc17f95f2fa10cd0999ec293cbb4f76abbf7c20",
+          "kind": "conditional_binding",
+          "source": "if current_platform.is_cuda():\n    from vllm import _custom_ops as ops\n    reshape_and_cache_flash = ops.reshape_and_cache_flash\n    from vllm.vllm_flash_attn import flash_attn_varlen_func, get_scheduler_metadata\nelif current_platform.is_xpu():\n    from vllm._ipex_ops import ipex_ops as ops\n    reshape_and_cache_flash = ops.reshape_and_cache_flash\n    flash_attn_varlen_func = ops.flash_attn_varlen_func\n    get_scheduler_metadata = ops.get_scheduler_metadata",
+          "symbol": "reshape_and_cache_flash"
+        }
+      ]
+    },
+    {
+      "file_sha256": "8d1edca09a331c9bb9491f2bf12ba75ced93181ab30fd88c2a94bb4ea02c98fa",
+      "module": "vllm.vllm_flash_attn",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__vllm_flash_attn.py",
+      "symbols": [
+        {
+          "ast_sha256": "6cdab20429019cb4b6d41b92e3bea952d496793a0438b64a0b99bc1d143a0836",
+          "kind": "import_binding",
+          "source": "from .flash_attn_interface import flash_attn_varlen_func, flash_attn_with_kvcache, get_scheduler_metadata, sparse_attn_func, sparse_attn_varlen_func, is_fa_version_supported, fa_version_unsupported_reason",
+          "symbol": "flash_attn_varlen_func"
+        },
+        {
+          "ast_sha256": "6cdab20429019cb4b6d41b92e3bea952d496793a0438b64a0b99bc1d143a0836",
+          "kind": "import_binding",
+          "source": "from .flash_attn_interface import flash_attn_varlen_func, flash_attn_with_kvcache, get_scheduler_metadata, sparse_attn_func, sparse_attn_varlen_func, is_fa_version_supported, fa_version_unsupported_reason",
+          "symbol": "get_scheduler_metadata"
+        },
+        {
+          "ast_sha256": "6cdab20429019cb4b6d41b92e3bea952d496793a0438b64a0b99bc1d143a0836",
+          "kind": "import_binding",
+          "source": "from .flash_attn_interface import flash_attn_varlen_func, flash_attn_with_kvcache, get_scheduler_metadata, sparse_attn_func, sparse_attn_varlen_func, is_fa_version_supported, fa_version_unsupported_reason",
+          "symbol": "is_fa_version_supported"
+        }
+      ]
+    },
+    {
+      "file_sha256": "ed89ae32b047bd30f63eff322bf91dc759883c6135e4f642fa0bab8daaa930ae",
+      "module": "vllm.vllm_flash_attn.flash_attn_interface",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__vllm_flash_attn__flash_attn_interface.py",
+      "symbols": [
+        {
+          "ast_sha256": "ce4e79cc76452c674a0612eabb6e7d2e549d3a7de872f88c75fb55a31b506714",
+          "kind": "definition",
+          "source": "def is_fa_version_supported(fa_version: int, device=None) -> bool:\n    assert fa_version in [2, 3], f'Unsupported FA version: {fa_version}'\n    if fa_version == 2:\n        return _is_fa2_supported(device)[0]\n    elif fa_version == 3:\n        return _is_fa3_supported(device)[0]",
+          "symbol": "is_fa_version_supported"
+        },
+        {
+          "ast_sha256": "86727965a04b103e563971e1b63b5e0f30803be5623f85673f87f9c05063d57f",
+          "kind": "definition",
+          "source": "def flash_attn_varlen_func(q, k, v, max_seqlen_q, cu_seqlens_q, max_seqlen_k, cu_seqlens_k=None, seqused_k=None, q_v=None, dropout_p=0.0, softmax_scale=None, causal=False, window_size: Optional[List[int]]=None, softcap=0.0, alibi_slopes=None, deterministic=False, return_attn_probs=False, block_table=None, return_softmax_lse=False, out=None, scheduler_metadata=None, q_descale=None, k_descale=None, v_descale=None, num_splits: int=0, fa_version: int=DEFAULT_FA_VERSION, s_aux=None):\n    assert cu_seqlens_k is not None or seqused_k is not None, 'cu_seqlens_k or seqused_k must be provided'\n    assert cu_seqlens_k is None or seqused_k is None, 'cu_seqlens_k and seqused_k cannot be provided at the same time'\n    assert block_table is None or seqused_k is not None, 'seqused_k must be provided if block_table is provided'\n    if softmax_scale is None:\n        softmax_scale = q.shape[-1] ** (-0.5)\n    real_window_size: Tuple[int, int]\n    if window_size is None:\n        real_window_size = (-1, -1)\n    else:\n        assert len(window_size) == 2\n        real_window_size = (window_size[0], window_size[1])\n    q, k, v = [maybe_contiguous(x) for x in (q, k, v)]\n    dummy_cu_seqlens_k = torch.empty_like(cu_seqlens_q)\n    if fa_version == 2:\n        if scheduler_metadata is not None and q_descale is not None and (k_descale is not None) and (v_descale is not None):\n            raise NotImplementedError('FA2 does not support scheduler_metadata, q_descale, k_descale, v_descale')\n        if s_aux is not None:\n            raise NotImplementedError('FA2 does not support s_aux')\n        if num_splits > 1:\n            raise NotImplementedError('FA2 does not support num_splits > 1')\n        out, softmax_lse = torch.ops._vllm_fa2_C.varlen_fwd(q, k, v, out, cu_seqlens_q, dummy_cu_seqlens_k if cu_seqlens_k is None else cu_seqlens_k, seqused_k, None, block_table, alibi_slopes, max_seqlen_q, max_seqlen_k, dropout_p, softmax_scale, False, causal, real_window_size[0], real_window_size[1], softcap, return_softmax_lse and dropout_p > 0, None)\n    elif fa_version == 3:\n        assert alibi_slopes is None, 'Alibi is not supported in FA3'\n        out, softmax_lse, _, _ = torch.ops._vllm_fa3_C.fwd(q, k, v, None, None, q_v, out, cu_seqlens_q, cu_seqlens_k, None, None, seqused_k, max_seqlen_q, max_seqlen_k, block_table, None, None, None, None, None, q_descale, k_descale, v_descale, softmax_scale, causal, real_window_size[0], real_window_size[1], softcap, True, scheduler_metadata, num_splits, None, 0, s_aux)\n    else:\n        raise ValueError(f'Unsupported FA version: {fa_version}')\n    return (out, softmax_lse) if return_softmax_lse else out",
+          "symbol": "flash_attn_varlen_func"
+        },
+        {
+          "ast_sha256": "0447f82bf18327c322242b7cbeaf97cd13e67f777f500a5227369c835c3ebb9a",
+          "kind": "definition",
+          "source": "def get_scheduler_metadata(batch_size, max_seqlen_q, max_seqlen_k, num_heads_q, num_heads_kv, headdim, cache_seqlens: torch.Tensor, qkv_dtype=torch.bfloat16, headdim_v=None, cu_seqlens_q: Optional[torch.Tensor]=None, cu_seqlens_k_new: Optional[torch.Tensor]=None, cache_leftpad: Optional[torch.Tensor]=None, page_size: Optional[int]=None, max_seqlen_k_new=0, causal=False, window_size=(-1, -1), has_softcap=False, num_splits=0, pack_gqa=None, sm_margin=0):\n    cache_seqlens = maybe_contiguous(cache_seqlens)\n    if headdim_v is None:\n        headdim_v = headdim\n    scheduler_metadata = torch.ops._vllm_fa3_C.get_scheduler_metadata(batch_size, max_seqlen_q, max_seqlen_k, num_heads_q, num_heads_kv, headdim, headdim_v, qkv_dtype, cache_seqlens, cu_seqlens_q, None, cu_seqlens_k_new, None, cache_leftpad, page_size, max_seqlen_k_new, causal, window_size[0], window_size[1], has_softcap, num_splits, pack_gqa, sm_margin)\n    return scheduler_metadata",
+          "symbol": "get_scheduler_metadata"
+        }
+      ]
+    },
+    {
+      "file_sha256": "66cc1cd3245239328c86af49dde46ac98bfefa3b5e52d038eb683c2d06076c25",
+      "module": "vllm.model_executor.models.registry",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor<LOCAL_PATH>/registry.py",
+      "symbols": [
+        {
+          "ast_sha256": "35d36bfea34b4c4b7efed7d3bb8dcbeb4b1efb194115a7cb63eb7f0c3008945f",
+          "kind": "conditional_binding",
+          "source": "_VLLM_MODELS = {**_TEXT_GENERATION_MODELS, **_EMBEDDING_MODELS, **_CROSS_ENCODER_MODELS, **_MULTIMODAL_MODELS, **_SPECULATIVE_DECODING_MODELS, **_TRANSFORMERS_SUPPORTED_MODELS, **_TRANSFORMERS_BACKEND_MODELS}",
+          "symbol": "_VLLM_MODELS"
+        },
+        {
+          "ast_sha256": "3f12bf640aa9dc497d5afb86c831dbd0b4edc0c12269997d312e5cb70d4d3b54",
+          "kind": "definition",
+          "source": "def resolve_model_cls(self, architectures: Union[str, list[str]], model_config: ModelConfig) -> tuple[type[nn.Module], str]:\n    if isinstance(architectures, str):\n        architectures = [architectures]\n    if not architectures:\n        raise ValueError('No model architectures are specified')\n    if model_config.model_impl == 'transformers':\n        arch = self._try_resolve_transformers(architectures[0], model_config)\n        if arch is not None:\n            model_cls = self._try_load_model_cls(arch)\n            if model_cls is not None:\n                return (model_cls, arch)\n    elif model_config.model_impl == 'terratorch':\n        arch = 'Terratorch'\n        model_cls = self._try_load_model_cls(arch)\n        if model_cls is not None:\n            return (model_cls, arch)\n    if all((arch not in self.models for arch in architectures)) and model_config.model_impl == 'auto' and (getattr(model_config, 'convert_type', 'none') == 'none'):\n        arch = self._try_resolve_transformers(architectures[0], model_config)\n        if arch is not None:\n            model_cls = self._try_load_model_cls(arch)\n            if model_cls is not None:\n                return (model_cls, arch)\n    for arch in architectures:\n        normalized_arch = self._normalize_arch(arch, model_config)\n        model_cls = self._try_load_model_cls(normalized_arch)\n        if model_cls is not None:\n            return (model_cls, arch)\n    if all((arch not in self.models for arch in architectures)) and model_config.model_impl == 'auto':\n        arch = self._try_resolve_transformers(architectures[0], model_config)\n        if arch is not None:\n            model_cls = self._try_load_model_cls(arch)\n            if model_cls is not None:\n                return (model_cls, arch)\n    return self._raise_for_unsupported(architectures)",
+          "symbol": "_ModelRegistry.resolve_model_cls"
+        },
+        {
+          "ast_sha256": "f842f45dd90b59d00b8d9cb3f40687de0d0f7b3f40e1c67a70230c63a7b8726f",
+          "kind": "conditional_binding",
+          "source": "ModelRegistry = _ModelRegistry({model_arch: _LazyRegisteredModel(module_name=f'vllm.model_executor.models.{mod_relname}', class_name=cls_name) for model_arch, (mod_relname, cls_name) in _VLLM_MODELS.items()})",
+          "symbol": "ModelRegistry"
+        }
+      ]
+    },
+    {
+      "file_sha256": "a23f543890cd74c88476dcb448947010300b41123edad9320c4e0e9ad5b10e3a",
+      "module": "vllm.model_executor.models.utils",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor<LOCAL_PATH>/utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "fda75b4c60aee8aa79f087fccc28fd87d6d11894cca944da8906fdc320e06a22",
+          "kind": "definition",
+          "source": "def __init__(self, module: nn.Module, *, skip_prefixes: Optional[list[str]]=None, skip_substrs: Optional[list[str]]=None, ignore_unexpected_prefixes: Optional[list[str]]=None) -> None:\n    super().__init__()\n    self.module = module\n    self.skip_prefixes = skip_prefixes or []\n    self.skip_substrs = skip_substrs or []\n    self.ignore_unexpected_prefixes = ignore_unexpected_prefixes or []\n    self.skip_substrs += self.ROTARY_EMBEDS_UNUSED_WEIGHTS",
+          "symbol": "AutoWeightsLoader.__init__"
+        },
+        {
+          "ast_sha256": "f9485c702bf2fbd195e6836bb1dd9f78cf14909055b7107503ae1a4c688ddd9f",
+          "kind": "definition",
+          "source": "def _load_param(self, base_prefix: str, param: nn.Parameter, weights: Iterable[tuple[str, torch.Tensor]]) -> Iterable[str]:\n    for weight_name, weight_data in weights:\n        weight_qualname = self._get_qualname(base_prefix, weight_name)\n        if self._can_skip(weight_qualname):\n            logger.debug('Skipping weight %s', weight_qualname)\n            continue\n        if weight_name != '':\n            if self._can_ignore_unexpected(weight_qualname):\n                logger.debug('Ignoring weight %s', weight_qualname)\n                continue\n            raise ValueError(f\"Attempted to load nested weight '{weight_qualname}' into a single parameter '{base_prefix}'\")\n        weight_loader = getattr(param, 'weight_loader', default_weight_loader)\n        weight_loader(param, weight_data)\n        logger.debug('Loaded weight %s with shape %s', weight_qualname, param.shape)\n        yield weight_qualname",
+          "symbol": "AutoWeightsLoader._load_param"
+        },
+        {
+          "ast_sha256": "7e2125a64fe67e1f0f35d6cf5983d7561636cef96f6be4ef801e75fdb7c875fb",
+          "kind": "definition",
+          "source": "def _load_module(self, base_prefix: str, module: nn.Module, weights: Iterable[tuple[str, torch.Tensor]]) -> Iterable[str]:\n    if isinstance(module, PPMissingLayer):\n        return\n    if module != self.module:\n        module_load_weights = getattr(module, 'load_weights', None)\n        if callable(module_load_weights):\n            loaded_params = module_load_weights(weights)\n            if loaded_params is None:\n                logger.warning('Unable to collect loaded parameters for module %s', module)\n            else:\n                yield from map(lambda x: self._get_qualname(base_prefix, x), loaded_params)\n    child_modules = dict(module.named_children())\n    child_params = dict(module.named_parameters(recurse=False))\n    self._add_loadable_non_param_tensors(module, child_params)\n    for child_prefix, child_weights in self._groupby_prefix(weights):\n        prefix = self._get_qualname(base_prefix, child_prefix)\n        if child_prefix in child_modules:\n            if self._can_skip(prefix + '.'):\n                logger.debug('Skipping module %s', prefix)\n                continue\n            yield from self._load_module(prefix, child_modules[child_prefix], child_weights)\n        elif child_prefix in child_params:\n            if self._can_skip(prefix):\n                logger.debug('Skipping param %s', prefix)\n                continue\n            yield from self._load_param(prefix, child_params[child_prefix], child_weights)\n        else:\n            can_skip_module = self._can_skip(prefix + '.')\n            can_skip_param = self._can_skip(prefix)\n            if can_skip_module or can_skip_param:\n                logger.debug('Skipping missing %s', prefix)\n                continue\n            can_ignore_module = self._can_ignore_unexpected(prefix + '.')\n            can_ignore_param = self._can_ignore_unexpected(prefix)\n            if can_ignore_module or can_ignore_param:\n                logger.debug('Ignoring missing %s', prefix)\n                continue\n            msg = f\"There is no module or parameter named '{prefix}' in {type(self.module).__name__}\"\n            raise ValueError(msg)",
+          "symbol": "AutoWeightsLoader._load_module"
+        },
+        {
+          "ast_sha256": "5a53bddecde68963ade0000d79bd602178f0f4c12fc28fd418cdb1cecfb03a59",
+          "kind": "definition",
+          "source": "def load_weights(self, weights: Iterable[tuple[str, torch.Tensor]], *, mapper: Optional[WeightsMapper]=None) -> set[str]:\n    if mapper is not None:\n        weights = mapper.apply(weights)\n    weights = ((name, weight) for name, weight in weights if not self._can_skip(name))\n    autoloaded_weights = set(self._load_module('', self.module, weights))\n    return autoloaded_weights",
+          "symbol": "AutoWeightsLoader.load_weights"
+        },
+        {
+          "ast_sha256": "4a4cb70aa659d9220a1b79bf71a6d97c17dee1172e7320d38799e3ff89f47e3b",
+          "kind": "definition",
+          "source": "class PPMissingLayer(torch.nn.Identity):\n\n    def __init__(self, *args, **kwargs):\n        super().__init__()\n\n    def forward(self, *args, **kwargs):\n        return args[0] if args else next(iter(kwargs.values()))",
+          "symbol": "PPMissingLayer"
+        },
+        {
+          "ast_sha256": "8bcd80a40aea337e49e71191ba9ac93b07847fe98b75a98e8d8e563924031187",
+          "kind": "definition",
+          "source": "class WeightsMapper:\n    orig_to_new_substr: WeightsMapping = field(default_factory=dict)\n    orig_to_new_prefix: WeightsMapping = field(default_factory=dict)\n    orig_to_new_suffix: WeightsMapping = field(default_factory=dict)\n\n    def _map_name(self, key: str) -> Optional[str]:\n        for substr, new_key in self.orig_to_new_substr.items():\n            if substr in key:\n                if new_key is None:\n                    return None\n                key = key.replace(substr, new_key, 1)\n        for prefix, new_key in self.orig_to_new_prefix.items():\n            if key.startswith(prefix):\n                if new_key is None:\n                    return None\n                key = key.replace(prefix, new_key, 1)\n        for suffix, new_key in self.orig_to_new_suffix.items():\n            if key.endswith(suffix):\n                if new_key is None:\n                    return None\n                key = new_key.join(key.rsplit(suffix, 1))\n        return key\n\n    def apply(self, weights: Iterable[tuple[str, torch.Tensor]]) -> Iterable[tuple[str, torch.Tensor]]:\n        return ((out_name, data) for name, data in weights if (out_name := self._map_name(name)) is not None)\n\n    def apply_list(self, values: list[str]) -> list[str]:\n        return [out_name for name in values if (out_name := self._map_name(name)) is not None]\n\n    def apply_dict(self, values: dict[str, Any]) -> dict[str, Any]:\n        return {out_name: value for name, value in values.items() if (out_name := self._map_name(name)) is not None}",
+          "symbol": "WeightsMapper"
+        },
+        {
+          "ast_sha256": "1116b802f8cbf392eb0d391c00ab371db1457eb2ed3db666982a21d6de8e30ae",
+          "kind": "definition",
+          "source": "def extract_layer_index(layer_name: str, num_attn_module: int=1) -> int:\n    subnames = layer_name.split('.')\n    int_vals: list[int] = []\n    for subname in subnames:\n        try:\n            int_vals.append(int(subname))\n        except ValueError:\n            continue\n    if num_attn_module == 1 or 'attn' not in layer_name:\n        assert len(int_vals) == 1, f'layer name {layer_name} should only contain one integer'\n        return int_vals[0]\n    else:\n        assert len(int_vals) <= 2, f'layer name {layer_name} should contain most two integers'\n        layer_index = int_vals[0] * num_attn_module + int_vals[1] if len(int_vals) == 2 else int_vals[0]\n        return layer_index",
+          "symbol": "extract_layer_index"
+        },
+        {
+          "ast_sha256": "2031a8a73d55eb2fc68cc13c1375ac054c5368a504f4165f63557bca24e508e6",
+          "kind": "definition",
+          "source": "def flatten_bn(x: torch.Tensor) -> torch.Tensor:\n    ...",
+          "symbol": "flatten_bn"
+        },
+        {
+          "ast_sha256": "e763dbcf7e3beddb5aec95ee486dbec4461ae9adce40a548ed5e7faed8c735bb",
+          "kind": "definition",
+          "source": "def init_vllm_registered_model(vllm_config: VllmConfig, *, prefix: str='', hf_config: Optional[PretrainedConfig]=None, architectures: Optional[list[str]]=None) -> nn.Module:\n    from vllm.model_executor.model_loader.utils import initialize_model\n    if hf_config is None and architectures is not None:\n        hf_config = vllm_config.model_config.hf_config\n    if hf_config is not None:\n        vllm_config = vllm_config.with_hf_config(hf_config, architectures=architectures)\n    return initialize_model(vllm_config=vllm_config, prefix=prefix)",
+          "symbol": "init_vllm_registered_model"
+        },
+        {
+          "ast_sha256": "2600bbfaadfecffd552c28ff885067451395e197794bf872e440ea8f5d65a392",
+          "kind": "definition",
+          "source": "def is_pp_missing_parameter(name: str, model: torch.nn.Module) -> bool:\n    if isinstance(model, PPMissingLayer):\n        return True\n    return any((name.startswith(missing_layer_name) for missing_layer_name in get_pp_missing_layer_names(model)))",
+          "symbol": "is_pp_missing_parameter"
+        },
+        {
+          "ast_sha256": "c9974071e98e0455266530fd0bcec2d9d280ce9882fdf2aa338d0addbd399ab7",
+          "kind": "definition",
+          "source": "def make_empty_intermediate_tensors_factory(keys: list[str], hidden_size: int):\n\n    def make_empty_intermediate_tensors(batch_size: int, dtype: torch.dtype, device: torch.device) -> IntermediateTensors:\n        return IntermediateTensors({key: torch.zeros((batch_size, hidden_size), dtype=dtype, device=device) for key in keys})\n    return make_empty_intermediate_tensors",
+          "symbol": "make_empty_intermediate_tensors_factory"
+        },
+        {
+          "ast_sha256": "abc242dcc10ead205168cfa4720c384687dafc26727bcc8823d734cd56e4c739",
+          "kind": "definition",
+          "source": "def make_layers(num_hidden_layers: int, layer_fn: LayerFn, prefix: str) -> tuple[int, int, torch.nn.ModuleList]:\n    from vllm.distributed.parallel_state import get_pp_group\n    from vllm.distributed.utils import get_pp_indices\n    start_layer, end_layer = get_pp_indices(num_hidden_layers, get_pp_group().rank_in_group, get_pp_group().world_size)\n    modules = torch.nn.ModuleList([PPMissingLayer() for _ in range(start_layer)] + [maybe_offload_to_cpu(layer_fn(prefix=f'{prefix}.{idx}')) for idx in range(start_layer, end_layer)] + [PPMissingLayer() for _ in range(end_layer, num_hidden_layers)])\n    return (start_layer, end_layer, modules)",
+          "symbol": "make_layers"
+        },
+        {
+          "ast_sha256": "ac726c44bc8eff283941482794b22878c84d1d71c1dea11ce30963326bd6cac2",
+          "kind": "definition",
+          "source": "def maybe_prefix(prefix: str, name: str) -> str:\n    return name if not prefix else f'{prefix}.{name}'",
+          "symbol": "maybe_prefix"
+        },
+        {
+          "ast_sha256": "1f1be8c655ea27c06556c043a50488bd7987a86a64d2d154c206b68ceafaefdb",
+          "kind": "definition",
+          "source": "def merge_multimodal_embeddings(input_ids: torch.Tensor, inputs_embeds: torch.Tensor, multimodal_embeddings: NestedTensors, placeholder_token_id: Union[int, list[int]]) -> torch.Tensor:\n    if isinstance(placeholder_token_id, list):\n        placeholder_token_id = torch.tensor(placeholder_token_id, pin_memory=is_pin_memory_available()).to(device=input_ids.device, non_blocking=True)\n        return _merge_multimodal_embeddings(inputs_embeds, torch.isin(input_ids, placeholder_token_id), multimodal_embeddings)\n    return _merge_multimodal_embeddings(inputs_embeds, input_ids == placeholder_token_id, multimodal_embeddings)",
+          "symbol": "merge_multimodal_embeddings"
+        }
+      ]
+    },
+    {
+      "file_sha256": "eeb695cacded25ae5ccdfdc5b9df5e7c65cd2d413f29230c42a94fca87112a93",
+      "module": "vllm.model_executor.model_loader.weight_utils",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/model_loader/weight_utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "9c6f175f9b2c6ea070b4cdc7b0e6cb441f21c6efffaea14217de8c6b76c770a6",
+          "kind": "definition",
+          "source": "def default_weight_loader(param: torch.Tensor, loaded_weight: torch.Tensor) -> None:\n    try:\n        if param.numel() == 1 and loaded_weight.numel() == 1:\n            param.data.fill_(loaded_weight.item())\n        else:\n            assert param.size() == loaded_weight.size(), f'Attempted to load weight ({loaded_weight.size()}) into parameter ({param.size()})'\n            param.data.copy_(loaded_weight)\n    except Exception:\n        raise",
+          "symbol": "default_weight_loader"
+        },
+        {
+          "ast_sha256": "1869959e6e17d3b2fdc26f86caa9fa13d8dc26e4898c6166f6f462996886ac65",
+          "kind": "definition",
+          "source": "def get_quant_config(model_config: ModelConfig, load_config: LoadConfig) -> QuantizationConfig:\n    quant_cls = get_quantization_config(model_config.quantization)\n    if model_config.quantization in ('gguf', 'inc'):\n        return quant_cls()\n    hf_quant_config = getattr(model_config.hf_config, 'quantization_config', None)\n    hf_text_config = getattr(model_config.hf_config, 'text_config', None)\n    if hf_quant_config is None and hf_text_config is not None:\n        hf_quant_config = getattr(hf_text_config, 'quantization_config', None)\n    if hf_quant_config is None:\n        hf_quant_config = getattr(model_config.hf_config, 'compression_config', None)\n    if hf_quant_config is not None:\n        return quant_cls.from_config(hf_quant_config)\n    if model_config.quantization == 'bitsandbytes':\n        return quant_cls.from_config({})\n    model_name_or_path = maybe_download_from_modelscope(model_config.model, revision=model_config.revision, download_dir=load_config.download_dir, allow_patterns=['*.json']) or model_config.model\n    is_local = os.path.isdir(model_name_or_path)\n    if not is_local:\n        with get_lock(model_config.model, load_config.download_dir):\n            hf_folder = snapshot_download(model_config.model, revision=model_config.revision, allow_patterns='*.json', cache_dir=load_config.download_dir, local_files_only=huggingface_hub.constants.HF_HUB_OFFLINE, tqdm_class=DisabledTqdm)\n    else:\n        hf_folder = model_name_or_path\n    possible_config_filenames = quant_cls.get_config_filenames()\n    if not possible_config_filenames:\n        return quant_cls()\n    config_files = glob.glob(os.path.join(hf_folder, '*.json'))\n    quant_config_files = [f for f in config_files if any((f.endswith(x) for x in possible_config_filenames))]\n    if len(quant_config_files) == 0:\n        raise ValueError(f'Cannot find the config file for {model_config.quantization}')\n    if len(quant_config_files) > 1:\n        raise ValueError(f'Found multiple config files for {model_config.quantization}: {quant_config_files}')\n    quant_config_file = quant_config_files[0]\n    with open(quant_config_file) as f:\n        config = json.load(f)\n        if model_config.quantization == 'bitsandbytes':\n            config['adapter_name_or_path'] = model_config.model\n        elif model_config.quantization == 'modelopt':\n            if config['producer']['name'] == 'modelopt':\n                return quant_cls.from_config(config)\n            else:\n                raise ValueError(f'Unsupported quantization config found for {model_config.quantization} in {f}.')\n    return quant_cls.from_config(config)",
+          "symbol": "get_quant_config"
+        },
+        {
+          "ast_sha256": "bbf2892c8a637393531743482ae9b596c0180507cdc37e496c711c1419cc6528",
+          "kind": "definition",
+          "source": "def maybe_remap_kv_scale_name(name: str, params_dict: dict) -> Optional[str]:\n    if name.endswith('.kv_scale'):\n        logger.warning_once('DEPRECATED. Found kv_scale in the checkpoint. This format is deprecated in favor of separate k_scale and v_scale tensors and will be removed in a future release. Functionally, we will remap kv_scale to k_scale and duplicate k_scale to v_scale')\n        remapped_name = name.replace('.kv_scale', '.attn.k_scale')\n        if remapped_name not in params_dict:\n            logger.warning_once('Found kv_scale in the checkpoint (e.g. %s), but not found the expected name in the model (e.g. %s). kv_scale is not loaded.', name, remapped_name)\n            return None\n        return remapped_name\n    scale_mapping_patterns = [('<LOCAL_PATH>])_proj<LOCAL_PATH>])_scale$', '.self_attn.attn.<LOCAL_PATH>'), ('<LOCAL_PATH>])_scale$', '.self_attn.attn.<LOCAL_PATH>'), ('<LOCAL_PATH>])_scale$', '.self_attn.attn.<LOCAL_PATH>'), ('<LOCAL_PATH>])_scale$', '.attn.<LOCAL_PATH>')]\n    if name.endswith(('.k_scale', '.v_scale')):\n        import regex as re\n        for pattern, replacement in scale_mapping_patterns:\n            if re.search(pattern, name):\n                remapped_name = re.sub(pattern, replacement, name)\n                if remapped_name not in params_dict:\n                    scale_type = name.split('.')[-1]\n                    logger.warning_once('Found %s in the checkpoint (e.g. %s), but not found the expected name in the model (e.g. %s). %s is not loaded.', scale_type, name, remapped_name, scale_type)\n                    return None\n                return remapped_name\n    return name",
+          "symbol": "maybe_remap_kv_scale_name"
+        },
+        {
+          "ast_sha256": "b21b6e26ed611ab96e43d1e9c496bf6fb8670dbb90e6369c867eb451d15a4f54",
+          "kind": "definition",
+          "source": "def safetensors_weights_iterator(hf_weights_files: list[str], use_tqdm_on_load: bool, safetensors_load_strategy: str='lazy') -> Generator[tuple[str, torch.Tensor], None, None]:\n    loading_desc = 'Loading safetensors checkpoint shards'\n    if safetensors_load_strategy == 'eager':\n        loading_desc += ' (eager)'\n    for st_file in tqdm(hf_weights_files, desc=loading_desc, disable=not enable_tqdm(use_tqdm_on_load), bar_format=_BAR_FORMAT):\n        if safetensors_load_strategy == 'eager':\n            with open(st_file, 'rb') as f:\n                state_dict = load(f.read())\n            yield from state_dict.items()\n        else:\n            with safe_open(st_file, framework='pt') as f:\n                for name in f.keys():\n                    param = f.get_tensor(name)\n                    yield (name, param)",
+          "symbol": "safetensors_weights_iterator"
+        }
+      ]
+    },
+    {
+      "file_sha256": "8d456f181c87d51dd125ce1a8d5d5e704614e44237da3c9cc1d465ddbc6acfd5",
+      "module": "vllm.attention.selector",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/attention/selector.py",
+      "symbols": [
+        {
+          "ast_sha256": "9c4ffaaf724bfac3c234a1e073c4a07cc2a1cca72c727fee826ea75a4b1f2d71",
+          "kind": "definition",
+          "source": "def backend_name_to_enum(backend_name: str) -> Optional[_Backend]:\n    assert backend_name is not None\n    return _Backend[backend_name] if backend_name in _Backend.__members__ else None",
+          "symbol": "backend_name_to_enum"
+        },
+        {
+          "ast_sha256": "b1029321e816eeaf094431defecd6f65c71e00d941f5e5e4a1b518661f3e4b99",
+          "kind": "definition",
+          "source": "def get_attn_backend(head_size: int, dtype: torch.dtype, kv_cache_dtype: Optional[str], block_size: int, use_mla: bool=False, has_sink: bool=False, use_sparse: bool=False) -> type[AttentionBackend]:\n    return _cached_get_attn_backend(head_size=head_size, dtype=dtype, kv_cache_dtype=kv_cache_dtype, block_size=block_size, use_v1=envs.VLLM_USE_V1, use_mla=use_mla, has_sink=has_sink, use_sparse=use_sparse)",
+          "symbol": "get_attn_backend"
+        },
+        {
+          "ast_sha256": "8aaa79beb2d0980958d55c7ede0a8aa3d2a203b5c519823bd3293d85b2cfb9d2",
+          "kind": "definition",
+          "source": "def _cached_get_attn_backend(head_size: int, dtype: torch.dtype, kv_cache_dtype: Optional[str], block_size: int, use_v1: bool=False, use_mla: bool=False, has_sink: bool=False, use_sparse: bool=False) -> type[AttentionBackend]:\n    selected_backend = None\n    backend_by_global_setting: Optional[_Backend] = get_global_forced_attn_backend()\n    if backend_by_global_setting is not None:\n        selected_backend = backend_by_global_setting\n    else:\n        backend_by_env_var: Optional[str] = envs.VLLM_ATTENTION_BACKEND\n        if backend_by_env_var is not None:\n            if backend_by_env_var.endswith('_VLLM_V1'):\n                logger.warning(\"The suffix '_VLLM_V1' in the environment variable %s is no longer necessary as V0 backends have been deprecated. Please remove this suffix from your environment variable setting.\", STR_BACKEND_ENV_VAR)\n                backend_by_env_var = backend_by_env_var.removesuffix('_VLLM_V1')\n            selected_backend = backend_name_to_enum(backend_by_env_var)\n            if selected_backend is None:\n                raise ValueError(f\"Invalid attention backend: '{backend_by_env_var}'. Valid backends are: {list(_Backend.__members__.keys())}\")\n    attention_cls = current_platform.get_attn_backend_cls(selected_backend, head_size, dtype, kv_cache_dtype, block_size, use_v1, use_mla, has_sink, use_sparse)\n    if not attention_cls:\n        raise ValueError(f'Invalid attention backend for {current_platform.device_name}')\n    return resolve_obj_by_qualname(attention_cls)",
+          "symbol": "_cached_get_attn_backend"
+        }
+      ]
+    },
+    {
+      "file_sha256": "58afc04176f50acf598c300a1fb85a4f9a0e664e13d79fff833ac0e0ffbe57a4",
+      "module": "vllm.model_executor.layers.quantization",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/layers/quantization/__init__.py",
+      "symbols": [
+        {
+          "ast_sha256": "2efa8c80d58817cfd4fac1054a37e5abe654434ab948dc06696c6c60b3073726",
+          "kind": "import_binding",
+          "source": "from vllm.model_executor.layers.quantization.base_config import QuantizationConfig",
+          "symbol": "QuantizationConfig"
+        },
+        {
+          "ast_sha256": "2edfcda3b841fc21215972e760c1c85e8a8cb4690357792cbc44ebd18c684155",
+          "kind": "definition",
+          "source": "def get_quantization_config(quantization: str) -> type[QuantizationConfig]:\n    if quantization not in QUANTIZATION_METHODS:\n        raise ValueError(f'Invalid quantization method: {quantization}')\n    from vllm.model_executor.layers.quantization.quark.quark import QuarkConfig\n    from .auto_round import AutoRoundConfig\n    from .awq import AWQConfig\n    from .awq_marlin import AWQMarlinConfig\n    from .bitblas import BitBLASConfig\n    from .bitsandbytes import BitsAndBytesConfig\n    from .compressed_tensors.compressed_tensors import CompressedTensorsConfig\n    from .deepspeedfp import DeepSpeedFPConfig\n    from .experts_int8 import ExpertsInt8Config\n    from .fbgemm_fp8 import FBGEMMFp8Config\n    from .fp8 import Fp8Config\n    from .gguf import GGUFConfig\n    from .gptq import GPTQConfig\n    from .gptq_bitblas import GPTQBitBLASConfig\n    from .gptq_marlin import GPTQMarlinConfig\n    from .gptq_marlin_24 import GPTQMarlin24Config\n    from .hqq_marlin import HQQMarlinConfig\n    from .inc import INCConfig\n    from .ipex_quant import IPEXConfig\n    from .modelopt import ModelOptFp8Config, ModelOptNvFp4Config\n    from .moe_wna16 import MoeWNA16Config\n    from .mxfp4 import Mxfp4Config\n    from .petit import PetitNvFp4Config\n    from .ptpc_fp8 import PTPCFp8Config\n    from .rtn import RTNConfig\n    from .torchao import TorchAOConfig\n    from .tpu_int8 import Int8TpuConfig\n    method_to_config: dict[str, type[QuantizationConfig]] = {'awq': AWQConfig, 'deepspeedfp': DeepSpeedFPConfig, 'tpu_int8': Int8TpuConfig, 'fp8': Fp8Config, 'fbgemm_fp8': FBGEMMFp8Config, 'modelopt': ModelOptFp8Config, 'modelopt_fp4': ModelOptNvFp4Config, 'bitblas': BitBLASConfig, 'gguf': GGUFConfig, 'gptq_marlin_24': GPTQMarlin24Config, 'gptq_marlin': GPTQMarlinConfig, 'gptq_bitblas': GPTQBitBLASConfig, 'awq_marlin': AWQMarlinConfig, 'gptq': GPTQConfig, 'compressed-tensors': CompressedTensorsConfig, 'bitsandbytes': BitsAndBytesConfig, 'ptpc_fp8': PTPCFp8Config, 'hqq': HQQMarlinConfig, 'experts_int8': ExpertsInt8Config, 'ipex': IPEXConfig, 'quark': QuarkConfig, 'moe_wna16': MoeWNA16Config, 'torchao': TorchAOConfig, 'auto-round': AutoRoundConfig, 'rtn': RTNConfig, 'inc': INCConfig, 'mxfp4': Mxfp4Config, 'petit_nvfp4': PetitNvFp4Config}\n    method_to_config.update(_CUSTOMIZED_METHOD_TO_QUANT_CONFIG)\n    return method_to_config[quantization]",
+          "symbol": "get_quantization_config"
+        }
+      ]
+    },
+    {
+      "file_sha256": "a46debf768efb012fe92f5a90a9d7d33f1d98ea2498aae6e09954c0f8023225a",
+      "module": "vllm.model_executor.layers.quantization.base_config",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/layers/quantization/base_config.py",
+      "symbols": [
+        {
+          "ast_sha256": "981399eb6492771b8bea4cdfe5fde9459401b0270f11727a818023c5f58167b0",
+          "kind": "definition",
+          "source": "class QuantizationConfig(ABC):\n\n    def __init__(self):\n        super().__init__()\n        self.packed_modules_mapping: dict[str, list[str]] = dict()\n\n    @abstractmethod\n    def get_name(self) -> QuantizationMethods:\n        raise NotImplementedError\n\n    @abstractmethod\n    def get_supported_act_dtypes(self) -> list[torch.dtype]:\n        raise NotImplementedError\n\n    @classmethod\n    @abstractmethod\n    def get_min_capability(cls) -> int:\n        raise NotImplementedError\n\n    @staticmethod\n    @abstractmethod\n    def get_config_filenames() -> list[str]:\n        raise NotImplementedError\n\n    @classmethod\n    @abstractmethod\n    def from_config(cls, config: dict[str, Any]) -> 'QuantizationConfig':\n        raise NotImplementedError\n\n    @classmethod\n    def override_quantization_method(cls, hf_quant_cfg, user_quant) -> Optional[QuantizationMethods]:\n        return None\n\n    @staticmethod\n    def get_from_keys(config: dict[str, Any], keys: list[str]) -> Any:\n        for key in keys:\n            if key in config:\n                return config[key]\n        raise ValueError(f\"Cannot find any of {keys} in the model's quantization config.\")\n\n    @staticmethod\n    def get_from_keys_or(config: dict[str, Any], keys: list[str], default: Any) -> Any:\n        try:\n            return QuantizationConfig.get_from_keys(config, keys)\n        except ValueError:\n            return default\n\n    @abstractmethod\n    def get_quant_method(self, layer: torch.nn.Module, prefix: str) -> Optional[QuantizeMethodBase]:\n        raise NotImplementedError\n\n    def get_cache_scale(self, name: str) -> Optional[str]:\n        return None\n\n    def apply_vllm_mapper(self, hf_to_vllm_mapper: 'WeightsMapper'):\n        pass\n\n    def maybe_update_config(self, model_name: str):\n        pass",
+          "symbol": "QuantizationConfig"
+        },
+        {
+          "ast_sha256": "76468edeb06abeca9926f55ff0ab48b09b8f56676a187e88a98a7fb9df8c00a9",
+          "kind": "definition",
+          "source": "class QuantizeMethodBase(ABC):\n\n    @abstractmethod\n    def create_weights(self, layer: torch.nn.Module, *weight_args, **extra_weight_attrs):\n        raise NotImplementedError\n\n    @abstractmethod\n    def apply(self, layer: torch.nn.Module, *args, **kwargs) -> torch.Tensor:\n        raise NotImplementedError\n\n    def embedding(self, layer: torch.nn.Module, *args, **kwargs) -> torch.Tensor:\n        raise NotImplementedError\n\n    def process_weights_after_loading(self, layer: nn.Module) -> None:\n        return",
+          "symbol": "QuantizeMethodBase"
+        }
+      ]
+    },
+    {
+      "file_sha256": "9dd07b49d4414be79129003b342b054bbb8e14bf2adb2bb410226f6420952ee2",
+      "module": "vllm.model_executor.parameter",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/parameter.py",
+      "symbols": [
+        {
+          "ast_sha256": "f7a44de7e812bdedf0543988a603e3d1fccc228737e3f7a114f1fe21a3f9c168",
+          "kind": "definition",
+          "source": "class BasevLLMParameter(Parameter):\n\n    def __new__(cls, data: Optional[torch.Tensor], **kwargs):\n        return super().__new__(cls, data=data, requires_grad=False)\n\n    def __init__(self, data: torch.Tensor, weight_loader: Callable):\n        from vllm.platforms import current_platform\n        if current_platform.use_sync_weight_loader():\n            weight_loader = current_platform.make_synced_weight_loader(weight_loader)\n        self._weight_loader = weight_loader\n        self.tp_rank = get_tensor_model_parallel_rank()\n        self.tp_size = get_tensor_model_parallel_world_size()\n\n    @property\n    def weight_loader(self) -> Callable:\n        if self._weight_loader is None:\n            raise AttributeError(f'{self.__class__.__name__} weight_loader attribute has been deleted')\n        return self._weight_loader\n\n    @weight_loader.setter\n    def weight_loader(self, value: Callable):\n        self._weight_loader = value\n\n    @weight_loader.deleter\n    def weight_loader(self):\n        self._weight_loader = None\n\n    def _is_1d_and_scalar(self, loaded_weight: torch.Tensor):\n        cond1 = self.data.ndim == 1 and self.data.numel() == 1\n        cond2 = loaded_weight.ndim == 0 and loaded_weight.numel() == 1\n        return cond1 and cond2\n\n    def _assert_and_load(self, loaded_weight: torch.Tensor):\n        assert self.data.shape == loaded_weight.shape or self._is_1d_and_scalar(loaded_weight)\n        self.data.copy_(loaded_weight)\n\n    def load_column_parallel_weight(self, loaded_weight: torch.Tensor):\n        self._assert_and_load(loaded_weight)\n\n    def load_row_parallel_weight(self, loaded_weight: torch.Tensor):\n        self._assert_and_load(loaded_weight)\n\n    def load_merged_column_weight(self, loaded_weight: torch.Tensor, **kwargs):\n        self._assert_and_load(loaded_weight)\n\n    def load_qkv_weight(self, loaded_weight: torch.Tensor, **kwargs):\n        self._assert_and_load(loaded_weight)\n\n    def _shard_id_as_int(self, shard_id: Union[str, int]) -> int:\n        if isinstance(shard_id, int):\n            return shard_id\n        qkv_idxs = {'q': 0, 'k': 1, 'v': 2}\n        assert isinstance(shard_id, str)\n        assert shard_id in qkv_idxs\n        return qkv_idxs[shard_id]\n\n    @classmethod\n    def __torch_function__(cls, func, types, args=(), kwargs=None):\n        if kwargs is None:\n            kwargs = {}\n        return super().__torch_function__(func, types, args, kwargs)",
+          "symbol": "BasevLLMParameter"
+        },
+        {
+          "ast_sha256": "4e70de4693ca3c78292633de300d803b96d66192f72f1562238732bf0603349e",
+          "kind": "definition",
+          "source": "class BlockQuantScaleParameter(_ColumnvLLMParameter, RowvLLMParameter):\n    pass",
+          "symbol": "BlockQuantScaleParameter"
+        },
+        {
+          "ast_sha256": "47f778e402c49575723ba0c6090ae999d9d54f3d07f75aff520abb489ac92544",
+          "kind": "definition",
+          "source": "class GroupQuantScaleParameter(_ColumnvLLMParameter, RowvLLMParameter):\n    pass",
+          "symbol": "GroupQuantScaleParameter"
+        },
+        {
+          "ast_sha256": "dda6d9c8549558dcb3c68fdd76dfdf85a0cae0560a2771256e5d2c7f02aaa075",
+          "kind": "definition",
+          "source": "class ModelWeightParameter(_ColumnvLLMParameter, RowvLLMParameter):\n    pass",
+          "symbol": "ModelWeightParameter"
+        },
+        {
+          "ast_sha256": "f28b83cf1c0997999a9998b728817619747a018beee3d0a474c1e47ec27a9498",
+          "kind": "definition",
+          "source": "class PackedColumnParameter(_ColumnvLLMParameter):\n\n    def __init__(self, packed_factor: Union[int, Fraction], packed_dim: int, marlin_tile_size: Optional[int]=None, bitblas_tile_size: Optional[int]=None, **kwargs):\n        self._packed_factor = packed_factor\n        self._packed_dim = packed_dim\n        self._marlin_tile_size = marlin_tile_size\n        self._bitblas_tile_size = bitblas_tile_size\n        super().__init__(**kwargs)\n\n    @property\n    def packed_dim(self):\n        return self._packed_dim\n\n    @property\n    def packed_factor(self):\n        return self._packed_factor\n\n    @property\n    def marlin_tile_size(self):\n        return self._marlin_tile_size\n\n    @property\n    def bitblas_tile_size(self):\n        return self._bitblas_tile_size\n\n    def adjust_shard_indexes_for_packing(self, shard_size, shard_offset):\n        return _adjust_shard_indexes_for_packing(shard_size=shard_size, shard_offset=shard_offset, packed_factor=self.packed_factor, marlin_tile_size=self.marlin_tile_size, bitblas_tile_size=self.bitblas_tile_size)",
+          "symbol": "PackedColumnParameter"
+        },
+        {
+          "ast_sha256": "29c61de5bfe6908cd2bfca2c97dafe0bb6ce735f20b0c3e803f7b3f1b1fcc255",
+          "kind": "definition",
+          "source": "class PackedvLLMParameter(ModelWeightParameter):\n\n    def __init__(self, packed_factor: Union[int, Fraction], packed_dim: int, marlin_tile_size: Optional[int]=None, bitblas_tile_size: Optional[int]=None, **kwargs):\n        self._packed_factor = packed_factor\n        self._packed_dim = packed_dim\n        self._marlin_tile_size = marlin_tile_size\n        self._bitblas_tile_size = bitblas_tile_size\n        super().__init__(**kwargs)\n\n    @property\n    def packed_dim(self):\n        return self._packed_dim\n\n    @property\n    def packed_factor(self):\n        return self._packed_factor\n\n    @property\n    def marlin_tile_size(self):\n        return self._marlin_tile_size\n\n    @property\n    def bitblas_tile_size(self):\n        return self._bitblas_tile_size\n\n    def adjust_shard_indexes_for_packing(self, shard_size, shard_offset):\n        return _adjust_shard_indexes_for_packing(shard_size=shard_size, shard_offset=shard_offset, packed_factor=self.packed_factor, marlin_tile_size=self.marlin_tile_size, bitblas_tile_size=self.bitblas_tile_size)",
+          "symbol": "PackedvLLMParameter"
+        },
+        {
+          "ast_sha256": "a89a9459d6379d2de2ac0820859159c57ab12e69e0a0486f8a0fffbf42f24787",
+          "kind": "definition",
+          "source": "class PerTensorScaleParameter(BasevLLMParameter):\n\n    def __init__(self, **kwargs):\n        super().__init__(**kwargs)\n\n    def load_row_parallel_weight(self, *args, **kwargs):\n        super().load_row_parallel_weight(*args, **kwargs)\n\n    def load_merged_column_weight(self, *args, **kwargs):\n        self._load_into_shard_id(*args, **kwargs)\n\n    def load_qkv_weight(self, *args, **kwargs):\n        self._load_into_shard_id(*args, **kwargs)\n\n    def load_column_parallel_weight(self, *args, **kwargs):\n        super().load_row_parallel_weight(*args, **kwargs)\n\n    def _load_into_shard_id(self, loaded_weight: torch.Tensor, shard_id: Union[str, int], **kwargs):\n        param_data = self.data\n        shard_id = self._shard_id_as_int(shard_id)\n        if len(loaded_weight.shape) != 0:\n            assert loaded_weight.shape[0] == 1\n            loaded_weight = loaded_weight[0]\n        param_data = param_data[shard_id]\n        assert param_data.shape == loaded_weight.shape\n        param_data.copy_(loaded_weight)",
+          "symbol": "PerTensorScaleParameter"
+        },
+        {
+          "ast_sha256": "c8e7d0b48f33ed16ca170da96da4320199e03b827a75a5e802339e3b8b817022",
+          "kind": "definition",
+          "source": "class RowvLLMParameter(BasevLLMParameter):\n\n    def __init__(self, input_dim: int, **kwargs):\n        self._input_dim = input_dim\n        super().__init__(**kwargs)\n\n    @property\n    def input_dim(self):\n        return self._input_dim\n\n    def load_row_parallel_weight(self, loaded_weight: torch.Tensor):\n        shard_size = self.data.shape[self.input_dim]\n        loaded_weight = loaded_weight.narrow(self.input_dim, self.tp_rank * shard_size, shard_size)\n        if len(loaded_weight.shape) == 0:\n            loaded_weight = loaded_weight.reshape(1)\n        assert self.data.shape == loaded_weight.shape\n        self.data.copy_(loaded_weight)",
+          "symbol": "RowvLLMParameter"
+        }
+      ]
+    },
+    {
+      "file_sha256": "a382f4854726dd411c9ed9f821171b729df59bb493a66a180f64c6aa41f880bf",
+      "module": "vllm.model_executor.utils",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/installed/vllm/model_executor/utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "6ef31247455b125bdc41f22bfd028af6297d5c734823793a731d012ac1b8644c",
+          "kind": "definition",
+          "source": "def set_weight_attrs(weight: torch.Tensor, weight_attrs: Optional[dict[str, Any]]):\n    if weight_attrs is None:\n        return\n    for key, value in weight_attrs.items():\n        assert not hasattr(weight, key), f'Overwriting existing tensor attribute: {key}'\n        from vllm.platforms import current_platform\n        if current_platform.use_sync_weight_loader() and key == 'weight_loader':\n            value = current_platform.make_synced_weight_loader(value)\n        setattr(weight, key, value)",
+          "symbol": "set_weight_attrs"
+        }
+      ]
+    },
+    {
+      "file_sha256": "ee4a1ae908f6e04b822c8ef55bb1ecff89a781cee90944a3d989e85286b6489a",
+      "module": "vllm.entrypoints.llm",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__entrypoints__llm.py",
+      "symbols": [
+        {
+          "ast_sha256": "1134721c170fd0b7bc0bb4333fae73ea591200b1940c8ca8edc9ddeabce27fe9",
+          "kind": "definition",
+          "source": "def __init__(self, model: str, *, runner: RunnerOption='auto', convert: ConvertOption='auto', tokenizer: Optional[str]=None, tokenizer_mode: TokenizerMode='auto', skip_tokenizer_init: bool=False, trust_remote_code: bool=False, allowed_local_media_path: str='', allowed_media_domains: Optional[list[str]]=None, tensor_parallel_size: int=1, dtype: ModelDType='auto', quantization: Optional[QuantizationMethods]=None, revision: Optional[str]=None, tokenizer_revision: Optional[str]=None, seed: Optional[int]=None, gpu_memory_utilization: float=0.9, swap_space: float=4, cpu_offload_gb: float=0, enforce_eager: bool=False, disable_custom_all_reduce: bool=False, hf_token: Optional[Union[bool, str]]=None, hf_overrides: Optional[HfOverrides]=None, mm_processor_kwargs: Optional[dict[str, Any]]=None, pooler_config: Optional[PoolerConfig]=None, override_pooler_config: Optional[PoolerConfig]=None, structured_outputs_config: Optional[Union[dict[str, Any], StructuredOutputsConfig]]=None, kv_cache_memory_bytes: Optional[int]=None, compilation_config: Optional[Union[int, dict[str, Any], CompilationConfig]]=None, logits_processors: Optional[list[Union[str, type[LogitsProcessor]]]]=None, **kwargs: Any) -> None:\n    if 'disable_log_stats' not in kwargs:\n        kwargs['disable_log_stats'] = True\n    if 'worker_cls' in kwargs:\n        worker_cls = kwargs['worker_cls']\n        if isinstance(worker_cls, type):\n            kwargs['worker_cls'] = cloudpickle.dumps(worker_cls)\n    if 'kv_transfer_config' in kwargs and isinstance(kwargs['kv_transfer_config'], dict):\n        from vllm.config.kv_transfer import KVTransferConfig\n        raw_config_dict = kwargs['kv_transfer_config']\n        try:\n            kwargs['kv_transfer_config'] = KVTransferConfig(**raw_config_dict)\n        except ValidationError as e:\n            logger.error(\"Failed to convert 'kv_transfer_config' dict to KVTransferConfig object. Dict: %s. Error: %s\", raw_config_dict, e)\n            raise ValueError(f\"Invalid 'kv_transfer_config' provided: {e}\") from e\n    if hf_overrides is None:\n        hf_overrides = {}\n    if compilation_config is not None:\n        if isinstance(compilation_config, int):\n            compilation_config_instance = CompilationConfig(level=compilation_config)\n        elif isinstance(compilation_config, dict):\n            compilation_config_instance = CompilationConfig(**{k: v for k, v in compilation_config.items() if is_init_field(CompilationConfig, k)})\n        else:\n            compilation_config_instance = compilation_config\n    else:\n        compilation_config_instance = CompilationConfig()\n    if structured_outputs_config is not None:\n        if isinstance(structured_outputs_config, dict):\n            structured_outputs_instance = StructuredOutputsConfig(**{k: v for k, v in structured_outputs_config.items() if is_init_field(StructuredOutputsConfig, k)})\n        else:\n            structured_outputs_instance = structured_outputs_config\n    else:\n        structured_outputs_instance = StructuredOutputsConfig()\n    engine_args = EngineArgs(model=model, runner=runner, convert=convert, tokenizer=tokenizer, tokenizer_mode=tokenizer_mode, skip_tokenizer_init=skip_tokenizer_init, trust_remote_code=trust_remote_code, allowed_local_media_path=allowed_local_media_path, allowed_media_domains=allowed_media_domains, tensor_parallel_size=tensor_parallel_size, dtype=dtype, quantization=quantization, revision=revision, tokenizer_revision=tokenizer_revision, seed=seed, gpu_memory_utilization=gpu_memory_utilization, kv_cache_memory_bytes=kv_cache_memory_bytes, swap_space=swap_space, cpu_offload_gb=cpu_offload_gb, enforce_eager=enforce_eager, disable_custom_all_reduce=disable_custom_all_reduce, hf_token=hf_token, hf_overrides=hf_overrides, mm_processor_kwargs=mm_processor_kwargs, pooler_config=pooler_config, override_pooler_config=override_pooler_config, structured_outputs_config=structured_outputs_instance, compilation_config=compilation_config_instance, logits_processors=logits_processors, **kwargs)\n    log_non_default_args(engine_args)\n    self.llm_engine = LLMEngine.from_engine_args(engine_args=engine_args, usage_context=UsageContext.LLM_CLASS)\n    self.engine_class = type(self.llm_engine)\n    self.request_counter = Counter()\n    self.default_sampling_params: Union[dict[str, Any], None] = None\n    supported_tasks = self.llm_engine.get_supported_tasks()\n    logger.info('Supported_tasks: %s', supported_tasks)\n    self.supported_tasks = supported_tasks\n    io_processor_plugin = self.llm_engine.model_config.io_processor_plugin\n    self.io_processor = get_io_processor(self.llm_engine.vllm_config, io_processor_plugin)",
+          "symbol": "LLM.__init__"
+        }
+      ]
+    },
+    {
+      "file_sha256": "85f46c065ecb1cf8b2923883473146a729c3b0556356b726cc1dfac9df1f6123",
+      "module": "vllm.v1.engine.processor",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__engine__processor.py",
+      "symbols": [
+        {
+          "ast_sha256": "7393b79c72adc182e4bc77a20a5f9d9cb52f7ab7529784044d3e095d7d11495c",
+          "kind": "definition",
+          "source": "def process_inputs(self, request_id: str, prompt: PromptType, params: Union[SamplingParams, PoolingParams], arrival_time: Optional[float]=None, lora_request: Optional[LoRARequest]=None, tokenization_kwargs: Optional[dict[str, Any]]=None, trace_headers: Optional[Mapping[str, str]]=None, priority: int=0, data_parallel_rank: Optional[int]=None) -> tuple[Optional[str], EngineCoreRequest]:\n    self._validate_lora(lora_request)\n    self._validate_params(params)\n    data_parallel_size = self.vllm_config.parallel_config.data_parallel_size\n    if data_parallel_rank is not None and (not 0 <= data_parallel_rank < data_parallel_size):\n        raise ValueError(f'data_parallel_rank {data_parallel_rank} is out of range [0, {data_parallel_size}).')\n    if arrival_time is None:\n        arrival_time = time.time()\n    if self.model_config.multimodal_config and self.model_config.multimodal_config.mm_processor_cache_gb == 0 and (not self.cache_config.enable_prefix_caching):\n        mm_uuids = self._maybe_build_mm_uuids(request_id, prompt)\n    else:\n        self._validate_multi_modal_uuids(prompt)\n        if isinstance(prompt, dict):\n            mm_uuids = prompt.get('multi_modal_uuids')\n        else:\n            mm_uuids = None\n    processed_inputs: ProcessorInputs = self.input_preprocessor.preprocess(prompt, tokenization_kwargs=tokenization_kwargs, mm_uuids=mm_uuids)\n    from vllm.platforms import current_platform\n    current_platform.validate_request(prompt=prompt, params=params, processed_inputs=processed_inputs)\n    eos_token_id = self.input_preprocessor.get_eos_token_id()\n    encoder_inputs, decoder_inputs = split_enc_dec_inputs(processed_inputs)\n    self._validate_model_inputs(encoder_inputs, decoder_inputs)\n    prompt_str: Optional[str] = None if decoder_inputs['type'] == 'embeds' else decoder_inputs.get('prompt')\n    prompt_token_ids = decoder_inputs['prompt_token_ids'] if decoder_inputs['type'] != 'embeds' else None\n    prompt_embeds = decoder_inputs['prompt_embeds'] if decoder_inputs['type'] == 'embeds' else None\n    sampling_params = None\n    pooling_params = None\n    if isinstance(params, SamplingParams):\n        sampling_params = params.clone()\n        if sampling_params.max_tokens is None:\n            seq_len = length_from_prompt_token_ids_or_embeds(prompt_token_ids, prompt_embeds)\n            sampling_params.max_tokens = self.model_config.max_model_len - seq_len\n        sampling_params.update_from_generation_config(self.generation_config_fields, eos_token_id)\n        if self.tokenizer is not None:\n            sampling_params.update_from_tokenizer(self.tokenizer)\n    else:\n        pooling_params = params.clone()\n    mm_features: Optional[list[MultiModalFeatureSpec]] = None\n    if decoder_inputs['type'] == 'multimodal':\n        decoder_mm_inputs = decoder_inputs['mm_kwargs']\n        decoder_mm_positions = decoder_inputs['mm_placeholders']\n        decoder_mm_hashes = decoder_inputs['mm_hashes']\n        sorted_mm_idxs = argsort_mm_positions(decoder_mm_positions)\n        mm_features = []\n        for modality, idx in sorted_mm_idxs:\n            mm_features.append(MultiModalFeatureSpec(data=decoder_mm_inputs[modality][idx], modality=modality, identifier=decoder_mm_hashes[modality][idx], mm_position=decoder_mm_positions[modality][idx]))\n    return (prompt_str, EngineCoreRequest(request_id=request_id, prompt_token_ids=prompt_token_ids, prompt_embeds=prompt_embeds, mm_features=mm_features, sampling_params=sampling_params, pooling_params=pooling_params, eos_token_id=eos_token_id, arrival_time=arrival_time, lora_request=lora_request, cache_salt=decoder_inputs.get('cache_salt'), priority=priority, data_parallel_rank=data_parallel_rank, trace_headers=trace_headers))",
+          "symbol": "Processor.process_inputs"
+        }
+      ]
+    },
+    {
+      "file_sha256": "377b76c0cc5668d72855e5b159b2101bb5b3b9461dcc59419ed344ce74912506",
+      "module": "vllm.v1.sample.logits_processor.interface",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor__interface.py",
+      "symbols": [
+        {
+          "ast_sha256": "ab0eab948bf8b2a593c932ac9b6f64822af158890ef95c711ea3555ec300d52b",
+          "kind": "definition",
+          "source": "def is_argmax_invariant(self) -> bool:\n    raise NotImplementedError",
+          "symbol": "LogitsProcessor.is_argmax_invariant"
+        }
+      ]
+    },
+    {
+      "file_sha256": "b6f33a89f7db2510b19d32e33e62e7e168beb8bc1561b71d7bc007e915798208",
+      "module": "vllm.v1.sample.logits_processor.state",
+      "snapshot": "experiments/xlpt/vendor/vllm_0_11/runtime_sources/vllm__v1__sample__logits_processor__state.py",
+      "symbols": [
+        {
+          "ast_sha256": "75fe549d9136a7d44208e33952a1ac8f13134b36cb4a020e9ee4e4c130270275",
+          "kind": "definition",
+          "source": "def __init__(self, logitsprocs: Optional[Iterator['LogitsProcessor']]=None) -> None:\n    self.argmax_invariant: list[LogitsProcessor] = []\n    self.non_argmax_invariant: list[LogitsProcessor] = []\n    if logitsprocs:\n        for logitproc in logitsprocs:\n            (self.argmax_invariant if logitproc.is_argmax_invariant() else self.non_argmax_invariant).append(logitproc)",
+          "symbol": "LogitsProcessors.__init__"
+        }
+      ]
+    },
+    {
+      "file_sha256": "e71871474be2b1aa32f3a147dc31fe0a195fd402a27c37d30d666035fcccd891",
+      "module": "transformers.tokenization_utils_base",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/transformers/tokenization_utils_base.py",
+      "symbols": [
+        {
+          "ast_sha256": "678fc8df6647ad771375d679d72d3a3c71c1413f4311e2d93acb72bce1fc07de",
+          "kind": "definition",
+          "source": "def apply_chat_template(self, conversation: Union[list[dict[str, str]], list[list[dict[str, str]]]], tools: Optional[list[Union[dict, Callable]]]=None, documents: Optional[list[dict[str, str]]]=None, chat_template: Optional[str]=None, add_generation_prompt: bool=False, continue_final_message: bool=False, tokenize: bool=True, padding: Union[bool, str, PaddingStrategy]=False, truncation: bool=False, max_length: Optional[int]=None, return_tensors: Optional[Union[str, TensorType]]=None, return_dict: bool=False, return_assistant_tokens_mask: bool=False, tokenizer_kwargs: Optional[dict[str, Any]]=None, **kwargs) -> Union[str, list[int], list[str], list[list[int]], BatchEncoding]:\n    if return_dict and (not tokenize):\n        raise ValueError('`return_dict=True` is incompatible with `tokenize=False`, because there is no dict of tokenizer outputs to return.')\n    if return_assistant_tokens_mask and (not return_dict):\n        raise ValueError('`return_assistant_tokens_mask=True` is incompatible with `return_dict=False`')\n    if tokenizer_kwargs is None:\n        tokenizer_kwargs = {}\n    chat_template = self.get_chat_template(chat_template, tools)\n    if isinstance(conversation, (list, tuple)) and (isinstance(conversation[0], (list, tuple)) or hasattr(conversation[0], 'messages')):\n        conversations = conversation\n        is_batched = True\n    else:\n        conversations = [conversation]\n        is_batched = False\n    if continue_final_message:\n        if add_generation_prompt:\n            raise ValueError('continue_final_message and add_generation_prompt are not compatible. Use continue_final_message when you want the model to continue the final message, and add_generation_prompt when you want to add a header that will prompt it to start a new assistant message instead.')\n        if return_assistant_tokens_mask:\n            raise ValueError('continue_final_message is not compatible with return_assistant_tokens_mask.')\n    template_kwargs = {**self.special_tokens_map, **kwargs}\n    rendered_chat, generation_indices = render_jinja_template(conversations=conversations, tools=tools, documents=documents, chat_template=chat_template, return_assistant_tokens_mask=return_assistant_tokens_mask, continue_final_message=continue_final_message, add_generation_prompt=add_generation_prompt, **template_kwargs)\n    if not is_batched:\n        rendered_chat = rendered_chat[0]\n    if tokenize:\n        out = self(rendered_chat, padding=padding, truncation=truncation, max_length=max_length, add_special_tokens=False, return_tensors=return_tensors, **tokenizer_kwargs)\n        if return_dict:\n            if return_assistant_tokens_mask:\n                assistant_masks = []\n                if is_batched or return_tensors:\n                    input_ids = out['input_ids']\n                else:\n                    input_ids = [out['input_ids']]\n                for i in range(len(input_ids)):\n                    current_mask = [0] * len(input_ids[i])\n                    for assistant_start_char, assistant_end_char in generation_indices[i]:\n                        start_token = out.char_to_token(i, assistant_start_char)\n                        end_token = out.char_to_token(i, assistant_end_char - 1)\n                        if start_token is None:\n                            break\n                        for token_id in range(start_token, end_token + 1 if end_token else len(input_ids[i])):\n                            current_mask[token_id] = 1\n                    assistant_masks.append(current_mask)\n                if not is_batched and (not return_tensors):\n                    assistant_masks = assistant_masks[0]\n                out['assistant_masks'] = assistant_masks\n                if return_tensors:\n                    out.convert_to_tensors(tensor_type=return_tensors)\n            return out\n        else:\n            return out['input_ids']\n    else:\n        return rendered_chat",
+          "symbol": "PreTrainedTokenizerBase.apply_chat_template"
+        }
+      ]
+    },
+    {
+      "file_sha256": "06e793d2d66d3872485ca79564d4d9bfe72fac2cdc44131a43cb0c3866505db8",
+      "module": "vllm.model_executor.model_loader.default_loader",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/vllm/default_loader.py",
+      "symbols": [
+        {
+          "ast_sha256": "562487058d70999c798851d7e8d040a9a5aef68283b24f942b2af1140c37b598",
+          "kind": "definition",
+          "source": "def _get_weights_iterator(self, source: 'Source') -> Generator[tuple[str, torch.Tensor], None, None]:\n    extra_config = self.load_config.model_loader_extra_config\n    hf_folder, hf_weights_files, use_safetensors = self._prepare_weights(source.model_or_path, source.revision, source.fall_back_to_pt, source.allow_patterns_overrides)\n    if self.load_config.load_format == 'npcache':\n        assert use_safetensors is False\n        weights_iterator = np_cache_weights_iterator(source.model_or_path, self.load_config.download_dir, hf_folder, hf_weights_files, self.load_config.use_tqdm_on_load)\n    elif use_safetensors:\n        if self.load_config.load_format == 'fastsafetensors':\n            weights_iterator = fastsafetensors_weights_iterator(hf_weights_files, self.load_config.use_tqdm_on_load)\n        elif extra_config.get('enable_multithread_load'):\n            weights_iterator = multi_thread_safetensors_weights_iterator(hf_weights_files, self.load_config.use_tqdm_on_load, max_workers=extra_config.get('num_threads', self.DEFAULT_NUM_THREADS))\n        else:\n            weights_iterator = safetensors_weights_iterator(hf_weights_files, self.load_config.use_tqdm_on_load, self.load_config.safetensors_load_strategy)\n    elif extra_config.get('enable_multithread_load'):\n        weights_iterator = multi_thread_pt_weights_iterator(hf_weights_files, self.load_config.use_tqdm_on_load, self.load_config.pt_load_map_location, max_workers=extra_config.get('num_threads', self.DEFAULT_NUM_THREADS))\n    else:\n        weights_iterator = pt_weights_iterator(hf_weights_files, self.load_config.use_tqdm_on_load, self.load_config.pt_load_map_location)\n    if current_platform.is_tpu():\n        from vllm.platforms.tpu import USE_TPU_COMMONS\n        if not USE_TPU_COMMONS:\n            import torch_xla\n\n            def _xla_weights_iterator(iterator: Generator):\n                for weights in iterator:\n                    yield weights\n                    torch_xla.sync(wait=False)\n            weights_iterator = _xla_weights_iterator(weights_iterator)\n    if self.counter_before_loading_weights == 0.0:\n        self.counter_before_loading_weights = time.perf_counter()\n    return ((source.prefix + name, tensor) for name, tensor in weights_iterator)",
+          "symbol": "DefaultModelLoader._get_weights_iterator"
+        }
+      ]
+    },
+    {
+      "file_sha256": "558e454ee6850e90e8bc5d1782e35878dfda1da9bfdf997ae113fa7ff771a0f3",
+      "module": "transformers.tokenization_utils_fast",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/transformers/tokenization_utils_fast.py",
+      "symbols": [
+        {
+          "ast_sha256": "dfdca5b3944ec8de8156311c82ebbc7dc6ca66e376886a3bd6c5893db6f2a249",
+          "kind": "definition",
+          "source": "def _batch_encode_plus(self, batch_text_or_text_pairs: Union[list[TextInput], list[TextInputPair], list[PreTokenizedInput], list[PreTokenizedInputPair]], add_special_tokens: bool=True, padding_strategy: PaddingStrategy=PaddingStrategy.DO_NOT_PAD, truncation_strategy: TruncationStrategy=TruncationStrategy.DO_NOT_TRUNCATE, max_length: Optional[int]=None, stride: int=0, is_split_into_words: bool=False, pad_to_multiple_of: Optional[int]=None, padding_side: Optional[str]=None, return_tensors: Optional[str]=None, return_token_type_ids: Optional[bool]=None, return_attention_mask: Optional[bool]=None, return_overflowing_tokens: bool=False, return_special_tokens_mask: bool=False, return_offsets_mapping: bool=False, return_length: bool=False, verbose: bool=True, split_special_tokens: bool=False) -> BatchEncoding:\n    if not isinstance(batch_text_or_text_pairs, (tuple, list)):\n        raise TypeError(f'batch_text_or_text_pairs has to be a list or a tuple (got {type(batch_text_or_text_pairs)})')\n    self.set_truncation_and_padding(padding_strategy=padding_strategy, truncation_strategy=truncation_strategy, max_length=max_length, stride=stride, pad_to_multiple_of=pad_to_multiple_of, padding_side=padding_side)\n    if self._tokenizer.encode_special_tokens != split_special_tokens:\n        self._tokenizer.encode_special_tokens = split_special_tokens\n    encodings = self._tokenizer.encode_batch(batch_text_or_text_pairs, add_special_tokens=add_special_tokens, is_pretokenized=is_split_into_words)\n    tokens_and_encodings = [self._convert_encoding(encoding=encoding, return_token_type_ids=return_token_type_ids, return_attention_mask=return_attention_mask, return_overflowing_tokens=return_overflowing_tokens, return_special_tokens_mask=return_special_tokens_mask, return_offsets_mapping=return_offsets_mapping, return_length=return_length, verbose=verbose) for encoding in encodings]\n    sanitized_tokens = {}\n    for key in tokens_and_encodings[0][0]:\n        stack = [e for item, _ in tokens_and_encodings for e in item[key]]\n        sanitized_tokens[key] = stack\n    sanitized_encodings = [e for _, item in tokens_and_encodings for e in item]\n    if return_overflowing_tokens:\n        overflow_to_sample_mapping = []\n        for i, (toks, _) in enumerate(tokens_and_encodings):\n            overflow_to_sample_mapping += [i] * len(toks['input_ids'])\n        sanitized_tokens['overflow_to_sample_mapping'] = overflow_to_sample_mapping\n    for input_ids in sanitized_tokens['input_ids']:\n        self._eventual_warn_about_too_long_sequence(input_ids, max_length, verbose)\n    return BatchEncoding(sanitized_tokens, sanitized_encodings, tensor_type=return_tensors)",
+          "symbol": "PreTrainedTokenizerFast._batch_encode_plus"
+        },
+        {
+          "ast_sha256": "984e18dfcc60d50e5af30acfb9ef6816a4621eaa49c1b753c51315d6636d7216",
+          "kind": "definition",
+          "source": "def _decode(self, token_ids: Union[int, list[int]], skip_special_tokens: bool=False, clean_up_tokenization_spaces: Optional[bool]=None, **kwargs) -> str:\n    self._decode_use_source_tokenizer = kwargs.pop('use_source_tokenizer', False)\n    if isinstance(token_ids, int):\n        token_ids = [token_ids]\n    text = self._tokenizer.decode(token_ids, skip_special_tokens=skip_special_tokens)\n    clean_up_tokenization_spaces = clean_up_tokenization_spaces if clean_up_tokenization_spaces is not None else self.clean_up_tokenization_spaces\n    if clean_up_tokenization_spaces:\n        clean_text = self.clean_up_tokenization(text)\n        return clean_text\n    else:\n        return text",
+          "symbol": "PreTrainedTokenizerFast._decode"
+        }
+      ]
+    },
+    {
+      "file_sha256": "a61d29d984494999a0f1a280143422e2846964727a4cc66f72e12cff1d992ee2",
+      "module": "transformers.utils.chat_template_utils",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/transformers/chat_template_utils.py",
+      "symbols": [
+        {
+          "ast_sha256": "9622117ad0c0b28e549e1660d6f652dcba7446522b9fd869eb486eafbfbad392",
+          "kind": "definition",
+          "source": "def _compile_jinja_template(chat_template):\n    if not is_jinja_available():\n        raise ImportError('apply_chat_template requires jinja2 to be installed. Please install it using `pip install jinja2`.')\n\n    class AssistantTracker(Extension):\n        tags = {'generation'}\n\n        def __init__(self, environment: ImmutableSandboxedEnvironment):\n            super().__init__(environment)\n            environment.extend(activate_tracker=self.activate_tracker)\n            self._rendered_blocks = None\n            self._generation_indices = None\n\n        def parse(self, parser: jinja2.parser.Parser) -> jinja2.nodes.CallBlock:\n            lineno = next(parser.stream).lineno\n            body = parser.parse_statements(['name:endgeneration'], drop_needle=True)\n            return jinja2.nodes.CallBlock(self.call_method('_generation_support'), [], [], body).set_lineno(lineno)\n\n        @jinja2.pass_eval_context\n        def _generation_support(self, context: jinja2.nodes.EvalContext, caller: jinja2.runtime.Macro) -> str:\n            rv = caller()\n            if self.is_active():\n                start_index = len(''.join(self._rendered_blocks))\n                end_index = start_index + len(rv)\n                self._generation_indices.append((start_index, end_index))\n            return rv\n\n        def is_active(self) -> bool:\n            return self._rendered_blocks or self._generation_indices\n\n        @contextmanager\n        def activate_tracker(self, rendered_blocks: list[int], generation_indices: list[int]):\n            try:\n                if self.is_active():\n                    raise ValueError('AssistantTracker should not be reused before closed')\n                self._rendered_blocks = rendered_blocks\n                self._generation_indices = generation_indices\n                yield\n            finally:\n                self._rendered_blocks = None\n                self._generation_indices = None\n    if version.parse(jinja2.__version__) < version.parse('3.1.0'):\n        raise ImportError(f'apply_chat_template requires jinja2>=3.1.0 to be installed. Your version is {jinja2.__version__}.')\n\n    def raise_exception(message):\n        raise jinja2.exceptions.TemplateError(message)\n\n    def tojson(x, ensure_ascii=False, indent=None, separators=None, sort_keys=False):\n        return json.dumps(x, ensure_ascii=ensure_ascii, indent=indent, separators=separators, sort_keys=sort_keys)\n\n    def strftime_now(format):\n        return datetime.now().strftime(format)\n    jinja_env = ImmutableSandboxedEnvironment(trim_blocks=True, lstrip_blocks=True, extensions=[AssistantTracker, jinja2.ext.loopcontrols])\n    jinja_env.filters['tojson'] = tojson\n    jinja_env.globals['raise_exception'] = raise_exception\n    jinja_env.globals['strftime_now'] = strftime_now\n    return jinja_env.from_string(chat_template)",
+          "symbol": "_compile_jinja_template"
+        },
+        {
+          "ast_sha256": "a0c3f06de70a3b2af1325f6a02f73b2887d950ec729c81476a96a6170904b838",
+          "kind": "definition",
+          "source": "def render_jinja_template(conversations: list[list[dict[str, str]]], tools: Optional[list[Union[dict, Callable]]]=None, documents: Optional[list[dict[str, str]]]=None, chat_template: Optional[str]=None, return_assistant_tokens_mask: bool=False, continue_final_message: bool=False, add_generation_prompt: bool=False, **kwargs) -> str:\n    if return_assistant_tokens_mask and (not re.search('<LOCAL_PATH>', chat_template)):\n        logger.warning_once('return_assistant_tokens_mask==True but chat template does not contain `{% generation %}` keyword.')\n    compiled_template = _compile_jinja_template(chat_template)\n    if tools is not None:\n        tool_schemas = []\n        for tool in tools:\n            if isinstance(tool, dict):\n                tool_schemas.append(tool)\n            elif isfunction(tool):\n                tool_schemas.append(get_json_schema(tool))\n            else:\n                raise ValueError('Tools should either be a JSON schema, or a callable function with type hints and a docstring suitable for auto-conversion to a schema.')\n    else:\n        tool_schemas = None\n    if documents is not None:\n        for document in documents:\n            if not isinstance(document, dict):\n                raise TypeError(\"Documents should be a list of dicts with 'title' and 'text' keys!\")\n    rendered = []\n    all_generation_indices = []\n    continue_final_message_tag = 'CONTINUE_FINAL_MESSAGE_TAG '\n    for chat in conversations:\n        if hasattr(chat, 'messages'):\n            chat = chat.messages\n        if continue_final_message:\n            chat = deepcopy(chat)\n            final_message = chat[-1]['content']\n            if isinstance(final_message, (list, tuple)):\n                for content_block in reversed(final_message):\n                    if 'text' in content_block:\n                        final_message = content_block['text']\n                        content_block['text'] = content_block['text'] + continue_final_message_tag\n                        break\n                else:\n                    raise ValueError('continue_final_message is set but we could not find any text to continue in the final message!')\n            else:\n                chat[-1]['content'] = chat[-1]['content'] + continue_final_message_tag\n        if return_assistant_tokens_mask:\n            rendered_chat, generation_indices = _render_with_assistant_indices(compiled_template=compiled_template, messages=chat, tools=tool_schemas, documents=documents, add_generation_prompt=add_generation_prompt, **kwargs)\n            all_generation_indices.append(generation_indices)\n        else:\n            rendered_chat = compiled_template.render(messages=chat, tools=tool_schemas, documents=documents, add_generation_prompt=add_generation_prompt, **kwargs)\n        if continue_final_message:\n            if final_message.strip() not in rendered_chat or continue_final_message_tag.strip() not in rendered_chat:\n                raise ValueError('continue_final_message is set but the final message does not appear in the chat after applying the chat template! This can happen if the chat template deletes portions of the final message. Please verify the chat template and final message in your chat to ensure they are compatible.')\n            tag_loc = rendered_chat.rindex(continue_final_message_tag.strip())\n            if rendered_chat[tag_loc:tag_loc + len(continue_final_message_tag)] == continue_final_message_tag:\n                rendered_chat = rendered_chat[:tag_loc]\n            else:\n                rendered_chat = rendered_chat[:tag_loc].rstrip()\n        rendered.append(rendered_chat)\n    return (rendered, all_generation_indices)",
+          "symbol": "render_jinja_template"
+        }
+      ]
+    },
+    {
+      "file_sha256": "f6786b3fb0a1f8d6c65f4d30bf2af8cb2fae84d1ead8e09ceb48201ab9e2fdf9",
+      "module": "jinja2.environment",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/jinja2/environment.py",
+      "symbols": [
+        {
+          "ast_sha256": "2a5421f87111760202b3a8f58594c270cd1ccd481d969922a379a2df73e0d8a5",
+          "kind": "definition",
+          "source": "def from_string(self, source: t.Union[str, nodes.Template], globals: t.Optional[t.MutableMapping[str, t.Any]]=None, template_class: t.Optional[t.Type['Template']]=None) -> 'Template':\n    gs = self.make_globals(globals)\n    cls = template_class or self.template_class\n    return cls.from_code(self, self.compile(source), gs, None)",
+          "symbol": "Environment.from_string"
+        },
+        {
+          "ast_sha256": "31ec96b43271029683d058b5c803ddc9ecacde811a094167d163500ebca59a62",
+          "kind": "definition",
+          "source": "def render(self, *args: t.Any, **kwargs: t.Any) -> str:\n    if self.environment.is_async:\n        import asyncio\n        return asyncio.run(self.render_async(*args, **kwargs))\n    ctx = self.new_context(dict(*args, **kwargs))\n    try:\n        return self.environment.concat(self.root_render_func(ctx))\n    except Exception:\n        self.environment.handle_exception()",
+          "symbol": "Template.render"
+        }
+      ]
+    },
+    {
+      "file_sha256": "330d9a8ad958d88f256bb15885c5f6606f41b5461c2e70f41a1ddddbd7035ab6",
+      "module": "jinja2.sandbox",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/jinja2/sandbox.py",
+      "symbols": [
+        {
+          "ast_sha256": "750467e5049e9fde90d4ca11f8bc7d299bed1b534ad7bc362d0cec1c24d665b5",
+          "kind": "definition",
+          "source": "def call(__self, __context: Context, __obj: t.Any, *args: t.Any, **kwargs: t.Any) -> t.Any:\n    if not __self.is_safe_callable(__obj):\n        raise SecurityError(f'{__obj!r} is not safely callable')\n    return __context.call(__obj, *args, **kwargs)",
+          "symbol": "SandboxedEnvironment.call"
+        }
+      ]
+    },
+    {
+      "file_sha256": "347a1f3ae7e883ccf299927fc168dadd91b207a0b18c321913a2900379987a57",
+      "module": "vllm.inputs.preprocess",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/vllm/inputs_preprocess.py",
+      "symbols": [
+        {
+          "ast_sha256": "dd86a5a40b913e4a30e05f7c4497bb97ff6f6dff5f8b892a147c80500ced0d59",
+          "kind": "definition",
+          "source": "def preprocess(self, prompt: PromptType, tokenization_kwargs: Optional[dict[str, Any]]=None, *, mm_uuids: Optional[MultiModalUUIDDict]=None) -> ProcessorInputs:\n    if self.model_config.is_encoder_decoder:\n        return self._process_encoder_decoder_prompt(prompt, tokenization_kwargs, mm_uuids=mm_uuids)\n    if is_explicit_encoder_decoder_prompt(prompt):\n        raise ValueError('Cannot pass encoder-decoder prompt to decoder-only models')\n    return self._process_decoder_only_prompt(prompt, tokenization_kwargs=tokenization_kwargs, mm_uuids=mm_uuids)",
+          "symbol": "InputPreprocessor.preprocess"
+        },
+        {
+          "ast_sha256": "6d2d0bfd62242356e96b65b04b4968ac0a2cf26abbf940beaf57b3c0d6a65136",
+          "kind": "definition",
+          "source": "def _process_tokens(self, parsed_content: TokensPrompt, tokenization_kwargs: Optional[dict[str, Any]]=None, *, mm_uuids: Optional[MultiModalUUIDDict]=None) -> Union[TokenInputs, MultiModalInputs]:\n    prompt_token_ids = self._truncate_inputs(parsed_content['prompt_token_ids'], tokenization_kwargs)\n    inputs: Union[TokenInputs, MultiModalInputs]\n    if (multi_modal_data := parsed_content.get('multi_modal_data')):\n        inputs = self._process_multimodal(prompt_token_ids, multi_modal_data, parsed_content.get('mm_processor_kwargs'), tokenization_kwargs=tokenization_kwargs, mm_uuids=mm_uuids)\n    else:\n        inputs = token_inputs(prompt_token_ids=prompt_token_ids)\n    if (cache_salt := parsed_content.get('cache_salt')):\n        inputs['cache_salt'] = cache_salt\n    return inputs",
+          "symbol": "InputPreprocessor._process_tokens"
+        }
+      ]
+    },
+    {
+      "file_sha256": "f4c1a528ed7b5d7021e2bf6210e819b2473a718f8a2589a041e04b79bc34d7b5",
+      "module": "vllm.v1.engine.detokenizer",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/vllm/detokenizer.py",
+      "symbols": [
+        {
+          "ast_sha256": "89834d4a35ae48163fe615b977213f9849a4a4c809f3109bfbaf129a6b99f007",
+          "kind": "definition",
+          "source": "def from_new_request(cls, tokenizer: Optional[AnyTokenizer], request: EngineCoreRequest) -> 'IncrementalDetokenizer':\n    assert request.sampling_params is not None\n    if tokenizer is None:\n        return IncrementalDetokenizer()\n    if USE_FAST_DETOKENIZER and isinstance(tokenizer, PreTrainedTokenizerFast):\n        return FastIncrementalDetokenizer(tokenizer, request)\n    return SlowIncrementalDetokenizer(tokenizer, request)",
+          "symbol": "IncrementalDetokenizer.from_new_request"
+        },
+        {
+          "ast_sha256": "e1be809dfc33354faae0ac9f09c065bf6b6610f7ea306a72cc4b5bb6d4e9a132",
+          "kind": "definition",
+          "source": "def update(self, new_token_ids: list[int], stop_terminated: bool) -> Optional[str]:\n    if not new_token_ids:\n        return None\n    if stop_terminated and (not self.include_stop_str_in_output):\n        skipped_stop_token_id = new_token_ids[-1]\n        new_token_ids = new_token_ids[:-1]\n    else:\n        skipped_stop_token_id = None\n    stop_check_offset = len(self.output_text)\n    for new_token_id in new_token_ids:\n        self.token_ids.append(new_token_id)\n        self.output_text += self.decode_next(new_token_id)\n        if self.min_tokens and len(self.output_token_ids) <= self.min_tokens:\n            stop_check_offset = len(self.output_text)\n    if skipped_stop_token_id is not None:\n        self.token_ids.append(skipped_stop_token_id)\n    stop_string = None\n    if self.stop and len(self.output_token_ids) > self.min_tokens:\n        stop = check_stop_strings(output_text=self.output_text, new_char_count=len(self.output_text) - stop_check_offset, stop=self.stop, include_in_output=self.include_stop_str_in_output)\n        if stop is not None:\n            stop_string, truncate_to = stop\n            if truncate_to != -1:\n                self.output_text = self.output_text[:truncate_to]\n    return stop_string",
+          "symbol": "BaseIncrementalDetokenizer.update"
+        },
+        {
+          "ast_sha256": "d1dda37df846f8ddf9f2d3bc2035492ef9e4f7985e77fa02803c2562410681a7",
+          "kind": "definition",
+          "source": "def __init__(self, tokenizer: PreTrainedTokenizerFast, request: EngineCoreRequest):\n    super().__init__(request)\n    sampling_params = request.sampling_params\n    assert sampling_params is not None\n    self.request_id = request.request_id\n    self.skip_special_tokens = sampling_params.skip_special_tokens\n    self.stream = DecodeStream(skip_special_tokens=self.skip_special_tokens)\n    self.tokenizer: Tokenizer = tokenizer._tokenizer\n    prompt_token_ids = request.prompt_token_ids or []\n    prompt_suffix = prompt_token_ids\n    prompt_len = len(prompt_suffix)\n    if prompt_len > 4:\n        for i in range(4, min(prompt_len + 1, 24)):\n            suffix = prompt_token_ids[-i:]\n            if '�' not in self.tokenizer.decode(suffix):\n                prompt_suffix = suffix\n                break\n    for tid in prompt_suffix:\n        self._protected_step(tid)\n    self.spaces_between_special_tokens = sampling_params.skip_special_tokens or sampling_params.spaces_between_special_tokens\n    if not self.spaces_between_special_tokens:\n        if (added_token_ids := getattr(self.tokenizer, 'added_token_ids', None)) is None:\n            self.tokenizer.added_token_ids = added_token_ids = {tid: tok.content for tid, tok in self.tokenizer.get_added_tokens_decoder().items()}\n        if added_token_ids:\n            self.last_special = False\n            self.added_token_ids = added_token_ids\n        else:\n            self.spaces_between_special_tokens = True",
+          "symbol": "FastIncrementalDetokenizer.__init__"
+        },
+        {
+          "ast_sha256": "d5ed02098cc050c8226e97c4c44b875c63df70e05571f546d5e180630504428a",
+          "kind": "definition",
+          "source": "def _protected_step(self, next_token_id: int) -> Optional[str]:\n    try:\n        token = self.stream.step(self.tokenizer, next_token_id)\n    except OverflowError:\n        logger.exception('Encountered invalid token id: %d', next_token_id)\n        token = None\n    except Exception as e:\n        if not str(e).startswith(INVALID_PREFIX_ERR_MSG):\n            raise e\n        logger.warning('Encountered invalid prefix detokenization error for request %s, resetting decode stream.', self.request_id)\n        self.stream = DecodeStream(skip_special_tokens=self.skip_special_tokens)\n        token = self.stream.step(self.tokenizer, next_token_id)\n    return token",
+          "symbol": "FastIncrementalDetokenizer._protected_step"
+        }
+      ]
+    },
+    {
+      "file_sha256": "f3f476d1f8c04fe65fa3797426556a0b7afa43f8c4db9db6b799c7cf84748f3d",
+      "module": "safetensors.torch",
+      "snapshot": "experiments/xlpt/vendor/rater_runtime/safetensors/torch.py",
+      "symbols": [
+        {
+          "ast_sha256": "e5904493413b473808a6eada744bf285aebe7bb12039c40af61fd395d61bb915",
+          "kind": "definition",
+          "source": "def load_file(filename: Union[str, os.PathLike], device: Union[str, int]='cpu', *, backend: str='mmap') -> Dict[str, torch.Tensor]:\n    with safe_open(filename, framework='pt', device=device, backend=backend) as f:\n        return f.get_tensors()",
+          "symbol": "load_file"
+        }
+      ]
+    }
+  ],
+  "python_dependency_count": 48,
+  "runtime_manifest": "process/consumption/deployment/mistral-rater-runtime-v2-manifest.json",
+  "version": 1
+}

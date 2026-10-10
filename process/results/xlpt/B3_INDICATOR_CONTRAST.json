@@ -1,0 +1,673 @@
+{
+  "schema_version": 1,
+  "tool": "experiments/xlpt/analyze_b3_indicators.py",
+  "kind": "b1-b2-rater-free-indicator-contrast",
+  "status": "exploratory",
+  "gate_decision": "NOT_DECIDED_BY_THIS_TOOL",
+  "is_c1_transfer_reading": false,
+  "why_not_c1": "both phases are English dialogue under an English persona; the language switch that claim C1 is about was never applied, so this surface carries no cross-lingual quantity",
+  "multiplicity_correction": "none applied; the registered max-T family belongs to the gate",
+  "uses_gpu": false,
+  "trains_or_updates_weights": false,
+  "baseline_phase": "b1-neutral",
+  "contrast_phase": "b2-compliance",
+  "resampling_unit": "seed cluster",
+  "clusters": 24,
+  "scenarios_per_cluster": 90,
+  "indicators": [
+    "refusal_turn_rate",
+    "escalation_turn_rate",
+    "apology_turn_rate",
+    "mean_agent_words_per_turn"
+  ],
+  "summary": {
+    "refusal_turn_rate": {
+      "clusters": 24,
+      "mean_difference": -0.00787037037037037,
+      "sd_difference": 0.022969520127628717,
+      "median_difference": -0.00555555555555555,
+      "clusters_positive": 10,
+      "clusters_negative": 12,
+      "clusters_zero": 2,
+      "bootstrap": {
+        "draws": 10000,
+        "mass": 0.95,
+        "low": -0.01712962962962963,
+        "high": 0.0009259259259259307
+      },
+      "interval_excludes_zero": false
+    },
+    "escalation_turn_rate": {
+      "clusters": 24,
+      "mean_difference": -0.02700617283950617,
+      "sd_difference": 0.013352963125171223,
+      "median_difference": -0.02592592592592592,
+      "clusters_positive": 0,
+      "clusters_negative": 24,
+      "clusters_zero": 0,
+      "bootstrap": {
+        "draws": 10000,
+        "mass": 0.95,
+        "low": -0.032407407407407406,
+        "high": -0.02191358024691358
+      },
+      "interval_excludes_zero": true
+    },
+    "apology_turn_rate": {
+      "clusters": 24,
+      "mean_difference": -0.1567901234567901,
+      "sd_difference": 0.0167306578540231,
+      "median_difference": -0.15740740740740738,
+      "clusters_positive": 0,
+      "clusters_negative": 24,
+      "clusters_zero": 0,
+      "bootstrap": {
+        "draws": 10000,
+        "mass": 0.95,
+        "low": -0.16342592592592592,
+        "high": -0.15030864197530863
+      },
+      "interval_excludes_zero": true
+    },
+    "mean_agent_words_per_turn": {
+      "clusters": 24,
+      "mean_difference": -59.72314814814815,
+      "sd_difference": 1.892621505399468,
+      "median_difference": -59.43703703703704,
+      "clusters_positive": 0,
+      "clusters_negative": 24,
+      "clusters_zero": 0,
+      "bootstrap": {
+        "draws": 10000,
+        "mass": 0.95,
+        "low": -60.45787037037038,
+        "high": -58.96466049382716
+      },
+      "interval_excludes_zero": true
+    }
+  },
+  "per_cluster": [
+    {
+      "seed": 20260911,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.24074074074074073,
+        "b2-compliance": 0.2185185185185185,
+        "difference": -0.022222222222222227
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.037037037037037035,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.018518518518518517
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18148148148148147,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.15925925925925924
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.77407407407406,
+        "b2-compliance": 73.97037037037036,
+        "difference": -59.803703703703704
+      }
+    },
+    {
+      "seed": 20260912,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2185185185185185,
+        "b2-compliance": 0.18888888888888888,
+        "difference": -0.029629629629629617
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.04814814814814815,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.014814814814814815
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18148148148148147,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.15555555555555556
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.7703703703704,
+        "b2-compliance": 70.52592592592592,
+        "difference": -63.24444444444447
+      }
+    },
+    {
+      "seed": 20260913,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2111111111111111,
+        "b2-compliance": 0.2222222222222222,
+        "difference": 0.0111111111111111
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.0925925925925926,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.05925925925925927
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18148148148148147,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.15925925925925924
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 132.14074074074074,
+        "b2-compliance": 73.65555555555555,
+        "difference": -58.48518518518519
+      }
+    },
+    {
+      "seed": 20260914,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.1925925925925926,
+        "b2-compliance": 0.2111111111111111,
+        "difference": 0.018518518518518517
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.059259259259259255,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.02592592592592592
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.15555555555555556,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.13333333333333333
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 131.78148148148148,
+        "b2-compliance": 72.95555555555555,
+        "difference": -58.82592592592593
+      }
+    },
+    {
+      "seed": 20260915,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2111111111111111,
+        "b2-compliance": 0.2148148148148148,
+        "difference": 0.0037037037037036813
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.05555555555555555,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.025925925925925925
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.15925925925925924,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.14074074074074072
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 132.88518518518518,
+        "b2-compliance": 71.23703703703703,
+        "difference": -61.64814814814815
+      }
+    },
+    {
+      "seed": 20260916,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2222222222222222,
+        "b2-compliance": 0.2222222222222222,
+        "difference": 0.0
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.03333333333333333,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.007407407407407411
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.16296296296296295,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.13333333333333333
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.34444444444443,
+        "b2-compliance": 71.95555555555555,
+        "difference": -61.388888888888886
+      }
+    },
+    {
+      "seed": 20260917,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.23333333333333334,
+        "b2-compliance": 0.2185185185185185,
+        "difference": -0.014814814814814836
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.04814814814814815,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.014814814814814815
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.2185185185185185,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.18888888888888888
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.11111111111111,
+        "b2-compliance": 73.9037037037037,
+        "difference": -59.207407407407416
+      }
+    },
+    {
+      "seed": 20260918,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2296296296296296,
+        "b2-compliance": 0.2185185185185185,
+        "difference": -0.0111111111111111
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.07407407407407407,
+        "b2-compliance": 0.044444444444444446,
+        "difference": -0.029629629629629624
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.19629629629629627,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.17777777777777776
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 130.14814814814815,
+        "b2-compliance": 71.58888888888889,
+        "difference": -58.559259259259264
+      }
+    },
+    {
+      "seed": 20260919,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.22592592592592592,
+        "b2-compliance": 0.23703703703703702,
+        "difference": 0.0111111111111111
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.05555555555555555,
+        "b2-compliance": 0.03703703703703704,
+        "difference": -0.01851851851851851
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.1851851851851852,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.15925925925925927
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 129.55555555555554,
+        "b2-compliance": 73.44444444444444,
+        "difference": -56.1111111111111
+      }
+    },
+    {
+      "seed": 20260920,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.19629629629629627,
+        "b2-compliance": 0.2,
+        "difference": 0.003703703703703737
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.05555555555555555,
+        "b2-compliance": 0.037037037037037035,
+        "difference": -0.018518518518518517
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.2,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.1814814814814815
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 132.42592592592592,
+        "b2-compliance": 71.44074074074075,
+        "difference": -60.98518518518517
+      }
+    },
+    {
+      "seed": 20260921,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2111111111111111,
+        "b2-compliance": 0.2111111111111111,
+        "difference": 0.0
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.06666666666666667,
+        "b2-compliance": 0.014814814814814814,
+        "difference": -0.05185185185185185
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18518518518518515,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.1592592592592592
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 130.6851851851852,
+        "b2-compliance": 71.78518518518518,
+        "difference": -58.900000000000006
+      }
+    },
+    {
+      "seed": 20260922,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.17037037037037037,
+        "b2-compliance": 0.1925925925925926,
+        "difference": 0.022222222222222227
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.044444444444444446,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.022222222222222223
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.17407407407407408,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.14444444444444446
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 131.1925925925926,
+        "b2-compliance": 72.1037037037037,
+        "difference": -59.0888888888889
+      }
+    },
+    {
+      "seed": 20260923,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2222222222222222,
+        "b2-compliance": 0.19629629629629627,
+        "difference": -0.025925925925925936
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.059259259259259255,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.029629629629629627
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18148148148148147,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.15925925925925924
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 131.85185185185185,
+        "b2-compliance": 72.66666666666667,
+        "difference": -59.185185185185176
+      }
+    },
+    {
+      "seed": 20260924,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.23333333333333334,
+        "b2-compliance": 0.2148148148148148,
+        "difference": -0.018518518518518545
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.05555555555555555,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.02962962962962963
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.17777777777777778,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.15555555555555556
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 131.64444444444445,
+        "b2-compliance": 74.51851851851852,
+        "difference": -57.12592592592593
+      }
+    },
+    {
+      "seed": 20260925,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.24074074074074073,
+        "b2-compliance": 0.21851851851851853,
+        "difference": -0.0222222222222222
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.06666666666666667,
+        "b2-compliance": 0.02592592592592593,
+        "difference": -0.04074074074074074
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.17037037037037037,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.15185185185185185
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 134.38888888888889,
+        "b2-compliance": 72.74444444444444,
+        "difference": -61.644444444444446
+      }
+    },
+    {
+      "seed": 20260926,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2185185185185185,
+        "b2-compliance": 0.1925925925925926,
+        "difference": -0.025925925925925908
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.04814814814814815,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.025925925925925925
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.20740740740740737,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.18888888888888886
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 132.7703703703704,
+        "b2-compliance": 71.12962962962963,
+        "difference": -61.64074074074075
+      }
+    },
+    {
+      "seed": 20260927,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2185185185185185,
+        "b2-compliance": 0.2222222222222222,
+        "difference": 0.003703703703703709
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.059259259259259255,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.04074074074074074
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.17777777777777778,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.14444444444444446
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 131.55555555555554,
+        "b2-compliance": 71.99259259259259,
+        "difference": -59.562962962962956
+      }
+    },
+    {
+      "seed": 20260928,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2185185185185185,
+        "b2-compliance": 0.24074074074074073,
+        "difference": 0.022222222222222227
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.04814814814814815,
+        "b2-compliance": 0.02592592592592593,
+        "difference": -0.02222222222222222
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.17777777777777778,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.15555555555555556
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 131.93703703703704,
+        "b2-compliance": 72.62592592592593,
+        "difference": -59.31111111111112
+      }
+    },
+    {
+      "seed": 20260929,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.20740740740740737,
+        "b2-compliance": 0.19629629629629627,
+        "difference": -0.0111111111111111
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.059259259259259255,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.029629629629629627
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.1925925925925926,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.17037037037037037
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.72222222222223,
+        "b2-compliance": 71.20740740740742,
+        "difference": -62.51481481481481
+      }
+    },
+    {
+      "seed": 20260930,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.25555555555555554,
+        "b2-compliance": 0.1962962962962963,
+        "difference": -0.059259259259259234
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.04074074074074074,
+        "b2-compliance": 0.022222222222222223,
+        "difference": -0.018518518518518514
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.16666666666666666,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.14074074074074072
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 132.24444444444444,
+        "b2-compliance": 71.17037037037036,
+        "difference": -61.074074074074076
+      }
+    },
+    {
+      "seed": 20260931,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.25555555555555554,
+        "b2-compliance": 0.2185185185185185,
+        "difference": -0.037037037037037035
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.04814814814814815,
+        "b2-compliance": 0.04074074074074074,
+        "difference": -0.007407407407407411
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18518518518518515,
+        "b2-compliance": 0.018518518518518517,
+        "difference": -0.16666666666666663
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 130.0814814814815,
+        "b2-compliance": 74.23333333333333,
+        "difference": -55.848148148148155
+      }
+    },
+    {
+      "seed": 20260932,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.22592592592592592,
+        "b2-compliance": 0.2296296296296296,
+        "difference": 0.0037037037037036813
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.06666666666666667,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.03333333333333333
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.17777777777777778,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.14814814814814817
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.35555555555555,
+        "b2-compliance": 75.36296296296297,
+        "difference": -57.99259259259259
+      }
+    },
+    {
+      "seed": 20260933,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.16666666666666666,
+        "b2-compliance": 0.2,
+        "difference": 0.033333333333333354
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.08148148148148147,
+        "b2-compliance": 0.03333333333333333,
+        "difference": -0.04814814814814814
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.15185185185185185,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.12592592592592594
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 132.42592592592592,
+        "b2-compliance": 71.97037037037036,
+        "difference": -60.45555555555556
+      }
+    },
+    {
+      "seed": 20260934,
+      "scenarios": 90,
+      "refusal_turn_rate": {
+        "b1-neutral": 0.2518518518518518,
+        "b2-compliance": 0.20740740740740737,
+        "difference": -0.04444444444444445
+      },
+      "escalation_turn_rate": {
+        "b1-neutral": 0.044444444444444446,
+        "b2-compliance": 0.029629629629629627,
+        "difference": -0.014814814814814819
+      },
+      "apology_turn_rate": {
+        "b1-neutral": 0.18888888888888888,
+        "b2-compliance": 0.02592592592592592,
+        "difference": -0.16296296296296298
+      },
+      "mean_agent_words_per_turn": {
+        "b1-neutral": 133.79629629629628,
+        "b2-compliance": 73.04444444444445,
+        "difference": -60.751851851851825
+      }
+    }
+  ],
+  "note": "Descriptive contrast of an apparatus control against its neutral reference. The rule-F qualification gate never ran, so no result here is a gate-admitted confirmatory number.",
+  "project": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "inputs": {
+    "baseline": "process/results/xlpt/b3-rater-free/b1-neutral",
+    "contrast": "process/results/xlpt/b3-rater-free/b2-compliance"
+  }
+}

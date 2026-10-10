@@ -1,0 +1,711 @@
+{"unit_id":"fp-0000","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e01_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":772,"turn_count":10}
+{"unit_id":"fp-0001","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e01_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":507,"turn_count":8}
+{"unit_id":"fp-0002","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e01_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":898,"turn_count":15}
+{"unit_id":"fp-0003","corpus":"friendspersona","identity":"Paul","cluster":"01_e01_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":346,"turn_count":5}
+{"unit_id":"fp-0004","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e01_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":553,"turn_count":10}
+{"unit_id":"fp-0005","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e01_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":461,"turn_count":6}
+{"unit_id":"fp-0006","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e01_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":442,"turn_count":10}
+{"unit_id":"fp-0007","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e01_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":667,"turn_count":13}
+{"unit_id":"fp-0008","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e01_c15","labels":{"AGR":"high","EXT":"low"},"text_chars":257,"turn_count":8}
+{"unit_id":"fp-0009","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e01_c15","labels":{"AGR":"low","EXT":"low"},"text_chars":193,"turn_count":6}
+{"unit_id":"fp-0010","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e02_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":494,"turn_count":9}
+{"unit_id":"fp-0011","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e02_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":268,"turn_count":7}
+{"unit_id":"fp-0012","corpus":"friendspersona","identity":"Barry","cluster":"01_e02_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":158,"turn_count":7}
+{"unit_id":"fp-0013","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e02_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":301,"turn_count":7}
+{"unit_id":"fp-0014","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e02_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":364,"turn_count":10}
+{"unit_id":"fp-0015","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e03_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":766,"turn_count":11}
+{"unit_id":"fp-0016","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e03_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":549,"turn_count":14}
+{"unit_id":"fp-0017","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e03_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":220,"turn_count":6}
+{"unit_id":"fp-0018","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e03_c12","labels":{"AGR":"high","EXT":"low"},"text_chars":209,"turn_count":8}
+{"unit_id":"fp-0019","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e04_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":448,"turn_count":6}
+{"unit_id":"fp-0020","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e04_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":746,"turn_count":13}
+{"unit_id":"fp-0021","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e04_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":675,"turn_count":11}
+{"unit_id":"fp-0022","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e04_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":441,"turn_count":9}
+{"unit_id":"fp-0023","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e04_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":531,"turn_count":10}
+{"unit_id":"fp-0024","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e04_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":263,"turn_count":8}
+{"unit_id":"fp-0025","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e04_c12","labels":{"AGR":"high","EXT":"low"},"text_chars":78,"turn_count":4}
+{"unit_id":"fp-0026","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e04_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":448,"turn_count":6}
+{"unit_id":"fp-0027","corpus":"friendspersona","identity":"Kid","cluster":"01_e04_c15","labels":{"AGR":"high","EXT":"high"},"text_chars":564,"turn_count":9}
+{"unit_id":"fp-0028","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e04_c15","labels":{"AGR":"high","EXT":"high"},"text_chars":719,"turn_count":13}
+{"unit_id":"fp-0029","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e04_c16","labels":{"AGR":"high","EXT":"high"},"text_chars":473,"turn_count":9}
+{"unit_id":"fp-0030","corpus":"friendspersona","identity":"Angela Delvecchio","cluster":"01_e05_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":799,"turn_count":15}
+{"unit_id":"fp-0031","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e05_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":351,"turn_count":4}
+{"unit_id":"fp-0032","corpus":"friendspersona","identity":"Janice","cluster":"01_e05_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":1246,"turn_count":19}
+{"unit_id":"fp-0033","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e05_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":1331,"turn_count":21}
+{"unit_id":"fp-0034","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e06_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":346,"turn_count":8}
+{"unit_id":"fp-0035","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e06_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":344,"turn_count":8}
+{"unit_id":"fp-0036","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e07_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":248,"turn_count":7}
+{"unit_id":"fp-0037","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e07_c10","labels":{"AGR":"low","EXT":"high"},"text_chars":350,"turn_count":8}
+{"unit_id":"fp-0038","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e07_c10","labels":{"AGR":"low","EXT":"high"},"text_chars":271,"turn_count":9}
+{"unit_id":"fp-0039","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e07_c10","labels":{"AGR":"low","EXT":"high"},"text_chars":629,"turn_count":23}
+{"unit_id":"fp-0040","corpus":"friendspersona","identity":"Paolo","cluster":"01_e07_c16","labels":{"AGR":"low","EXT":"low"},"text_chars":130,"turn_count":8}
+{"unit_id":"fp-0041","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e07_c18","labels":{"AGR":"high","EXT":"high"},"text_chars":256,"turn_count":6}
+{"unit_id":"fp-0042","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e08_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":1167,"turn_count":30}
+{"unit_id":"fp-0043","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e08_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":840,"turn_count":14}
+{"unit_id":"fp-0044","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e08_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":167,"turn_count":6}
+{"unit_id":"fp-0045","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e08_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":323,"turn_count":7}
+{"unit_id":"fp-0046","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e08_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":464,"turn_count":8}
+{"unit_id":"fp-0047","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e08_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":276,"turn_count":7}
+{"unit_id":"fp-0048","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e09_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":1126,"turn_count":26}
+{"unit_id":"fp-0049","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e09_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":484,"turn_count":11}
+{"unit_id":"fp-0050","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e09_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":1245,"turn_count":19}
+{"unit_id":"fp-0051","corpus":"friendspersona","identity":"Girl","cluster":"01_e09_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":529,"turn_count":12}
+{"unit_id":"fp-0052","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e09_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":421,"turn_count":8}
+{"unit_id":"fp-0053","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e09_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":733,"turn_count":14}
+{"unit_id":"fp-0054","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e09_c12","labels":{"AGR":"high","EXT":"low"},"text_chars":310,"turn_count":8}
+{"unit_id":"fp-0055","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e10_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":316,"turn_count":9}
+{"unit_id":"fp-0056","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e10_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":316,"turn_count":9}
+{"unit_id":"fp-0057","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e10_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":367,"turn_count":8}
+{"unit_id":"fp-0058","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e10_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":970,"turn_count":11}
+{"unit_id":"fp-0059","corpus":"friendspersona","identity":"Max","cluster":"01_e10_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":425,"turn_count":12}
+{"unit_id":"fp-0060","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e10_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":1009,"turn_count":23}
+{"unit_id":"fp-0061","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e10_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":1628,"turn_count":23}
+{"unit_id":"fp-0062","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e10_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":1407,"turn_count":19}
+{"unit_id":"fp-0063","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e10_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":708,"turn_count":9}
+{"unit_id":"fp-0064","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e11_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":508,"turn_count":14}
+{"unit_id":"fp-0065","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e11_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":508,"turn_count":14}
+{"unit_id":"fp-0066","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e11_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":329,"turn_count":9}
+{"unit_id":"fp-0067","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e11_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":1308,"turn_count":22}
+{"unit_id":"fp-0068","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e11_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":269,"turn_count":8}
+{"unit_id":"fp-0069","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e11_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":1140,"turn_count":14}
+{"unit_id":"fp-0070","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e11_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":461,"turn_count":14}
+{"unit_id":"fp-0071","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e11_c09","labels":{"AGR":"low","EXT":"high"},"text_chars":1049,"turn_count":15}
+{"unit_id":"fp-0072","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e12_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":1295,"turn_count":15}
+{"unit_id":"fp-0073","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e12_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":787,"turn_count":11}
+{"unit_id":"fp-0074","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e12_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":183,"turn_count":9}
+{"unit_id":"fp-0075","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e12_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":649,"turn_count":15}
+{"unit_id":"fp-0076","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e12_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":901,"turn_count":14}
+{"unit_id":"fp-0077","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e12_c14","labels":{"AGR":"low","EXT":"high"},"text_chars":814,"turn_count":20}
+{"unit_id":"fp-0078","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e13_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":562,"turn_count":11}
+{"unit_id":"fp-0079","corpus":"friendspersona","identity":"Roger","cluster":"01_e13_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":288,"turn_count":6}
+{"unit_id":"fp-0080","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e13_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":586,"turn_count":8}
+{"unit_id":"fp-0081","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e13_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":586,"turn_count":8}
+{"unit_id":"fp-0082","corpus":"friendspersona","identity":"Ronni Rappelano","cluster":"01_e13_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":326,"turn_count":13}
+{"unit_id":"fp-0083","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e13_c10","labels":{"AGR":"low","EXT":"high"},"text_chars":1406,"turn_count":12}
+{"unit_id":"fp-0084","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e13_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":432,"turn_count":8}
+{"unit_id":"fp-0085","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e13_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":480,"turn_count":9}
+{"unit_id":"fp-0086","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e14_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":503,"turn_count":12}
+{"unit_id":"fp-0087","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e14_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":380,"turn_count":7}
+{"unit_id":"fp-0088","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e14_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":335,"turn_count":6}
+{"unit_id":"fp-0089","corpus":"friendspersona","identity":"Janice","cluster":"01_e14_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":589,"turn_count":11}
+{"unit_id":"fp-0090","corpus":"friendspersona","identity":"Janice","cluster":"01_e14_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":437,"turn_count":6}
+{"unit_id":"fp-0091","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e14_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":521,"turn_count":8}
+{"unit_id":"fp-0092","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e15_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":788,"turn_count":11}
+{"unit_id":"fp-0093","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e15_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":975,"turn_count":16}
+{"unit_id":"fp-0094","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e15_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":874,"turn_count":13}
+{"unit_id":"fp-0095","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e15_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":478,"turn_count":8}
+{"unit_id":"fp-0096","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e15_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":141,"turn_count":5}
+{"unit_id":"fp-0097","corpus":"friendspersona","identity":"Steve","cluster":"01_e15_c11","labels":{"AGR":"low","EXT":"high"},"text_chars":542,"turn_count":10}
+{"unit_id":"fp-0098","corpus":"friendspersona","identity":"Steve","cluster":"01_e15_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":2370,"turn_count":30}
+{"unit_id":"fp-0099","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e15_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":733,"turn_count":12}
+{"unit_id":"fp-0100","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e16_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":684,"turn_count":10}
+{"unit_id":"fp-0101","corpus":"friendspersona","identity":"Nina Bookbinder","cluster":"01_e16_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":464,"turn_count":8}
+{"unit_id":"fp-0102","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e16_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":480,"turn_count":9}
+{"unit_id":"fp-0103","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e16_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":1352,"turn_count":16}
+{"unit_id":"fp-0104","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e16_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":690,"turn_count":12}
+{"unit_id":"fp-0105","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e16_c09","labels":{"AGR":"low","EXT":"high"},"text_chars":214,"turn_count":4}
+{"unit_id":"fp-0106","corpus":"friendspersona","identity":"Jamie","cluster":"01_e16_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":1136,"turn_count":26}
+{"unit_id":"fp-0107","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e16_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":346,"turn_count":6}
+{"unit_id":"fp-0108","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e16_c15","labels":{"AGR":"low","EXT":"low"},"text_chars":979,"turn_count":10}
+{"unit_id":"fp-0109","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e17_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":1382,"turn_count":21}
+{"unit_id":"fp-0110","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e17_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":1106,"turn_count":13}
+{"unit_id":"fp-0111","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e17_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":929,"turn_count":15}
+{"unit_id":"fp-0112","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e17_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":1243,"turn_count":16}
+{"unit_id":"fp-0113","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e17_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":331,"turn_count":4}
+{"unit_id":"fp-0114","corpus":"friendspersona","identity":"Dr. Rosen","cluster":"01_e17_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":933,"turn_count":17}
+{"unit_id":"fp-0115","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e17_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":501,"turn_count":10}
+{"unit_id":"fp-0116","corpus":"friendspersona","identity":"Dr. Rosen","cluster":"01_e17_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":303,"turn_count":10}
+{"unit_id":"fp-0117","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e18_c01","labels":{"AGR":"low","EXT":"high"},"text_chars":1379,"turn_count":31}
+{"unit_id":"fp-0118","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e18_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":947,"turn_count":19}
+{"unit_id":"fp-0119","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e18_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":430,"turn_count":8}
+{"unit_id":"fp-0120","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e18_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":453,"turn_count":9}
+{"unit_id":"fp-0121","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e18_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":491,"turn_count":12}
+{"unit_id":"fp-0122","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e18_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":851,"turn_count":12}
+{"unit_id":"fp-0123","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e18_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":534,"turn_count":12}
+{"unit_id":"fp-0124","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e18_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":166,"turn_count":5}
+{"unit_id":"fp-0125","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e18_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":470,"turn_count":11}
+{"unit_id":"fp-0126","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e18_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":1225,"turn_count":25}
+{"unit_id":"fp-0127","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e18_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":602,"turn_count":9}
+{"unit_id":"fp-0128","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e19_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":300,"turn_count":6}
+{"unit_id":"fp-0129","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e19_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":1223,"turn_count":14}
+{"unit_id":"fp-0130","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e19_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":764,"turn_count":10}
+{"unit_id":"fp-0131","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e19_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":411,"turn_count":6}
+{"unit_id":"fp-0132","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e19_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":461,"turn_count":14}
+{"unit_id":"fp-0133","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e19_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":179,"turn_count":8}
+{"unit_id":"fp-0134","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e19_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":1035,"turn_count":16}
+{"unit_id":"fp-0135","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e19_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":781,"turn_count":16}
+{"unit_id":"fp-0136","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e20_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":498,"turn_count":10}
+{"unit_id":"fp-0137","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e20_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":650,"turn_count":8}
+{"unit_id":"fp-0138","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e20_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":777,"turn_count":9}
+{"unit_id":"fp-0139","corpus":"friendspersona","identity":"Barry","cluster":"01_e20_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":677,"turn_count":13}
+{"unit_id":"fp-0140","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e20_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":677,"turn_count":13}
+{"unit_id":"fp-0141","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e20_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":680,"turn_count":11}
+{"unit_id":"fp-0142","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e20_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":207,"turn_count":8}
+{"unit_id":"fp-0143","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e20_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":458,"turn_count":10}
+{"unit_id":"fp-0144","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e20_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":1167,"turn_count":18}
+{"unit_id":"fp-0145","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e20_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":620,"turn_count":7}
+{"unit_id":"fp-0146","corpus":"friendspersona","identity":"Danielle","cluster":"01_e20_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":672,"turn_count":14}
+{"unit_id":"fp-0147","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e22_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":268,"turn_count":7}
+{"unit_id":"fp-0148","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e22_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":561,"turn_count":16}
+{"unit_id":"fp-0149","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e22_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":115,"turn_count":7}
+{"unit_id":"fp-0150","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e22_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":645,"turn_count":10}
+{"unit_id":"fp-0151","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e22_c03","labels":{"AGR":"low","EXT":"high"},"text_chars":599,"turn_count":14}
+{"unit_id":"fp-0152","corpus":"friendspersona","identity":"Ethan","cluster":"01_e22_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":390,"turn_count":7}
+{"unit_id":"fp-0153","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e22_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":277,"turn_count":8}
+{"unit_id":"fp-0154","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e22_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":1270,"turn_count":30}
+{"unit_id":"fp-0155","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e22_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":584,"turn_count":17}
+{"unit_id":"fp-0156","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e22_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":803,"turn_count":20}
+{"unit_id":"fp-0157","corpus":"friendspersona","identity":"Chandler Bing","cluster":"01_e22_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":521,"turn_count":7}
+{"unit_id":"fp-0158","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e22_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":884,"turn_count":11}
+{"unit_id":"fp-0159","corpus":"friendspersona","identity":"Rachel Green","cluster":"01_e22_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":410,"turn_count":8}
+{"unit_id":"fp-0160","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e23_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":387,"turn_count":8}
+{"unit_id":"fp-0161","corpus":"friendspersona","identity":"Lydia","cluster":"01_e23_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":904,"turn_count":12}
+{"unit_id":"fp-0162","corpus":"friendspersona","identity":"Susan Bunch","cluster":"01_e23_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":310,"turn_count":7}
+{"unit_id":"fp-0163","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e23_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":310,"turn_count":7}
+{"unit_id":"fp-0164","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e23_c19","labels":{"AGR":"high","EXT":"low"},"text_chars":68,"turn_count":4}
+{"unit_id":"fp-0165","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e23_c20","labels":{"AGR":"high","EXT":"low"},"text_chars":226,"turn_count":10}
+{"unit_id":"fp-0166","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"01_e24_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":936,"turn_count":16}
+{"unit_id":"fp-0167","corpus":"friendspersona","identity":"Ross Geller","cluster":"01_e24_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":2448,"turn_count":44}
+{"unit_id":"fp-0168","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e24_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":1361,"turn_count":19}
+{"unit_id":"fp-0169","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"01_e24_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":577,"turn_count":10}
+{"unit_id":"fp-0170","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e24_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":2119,"turn_count":35}
+{"unit_id":"fp-0171","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e24_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":846,"turn_count":13}
+{"unit_id":"fp-0172","corpus":"friendspersona","identity":"Flight Attendant","cluster":"01_e24_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":679,"turn_count":15}
+{"unit_id":"fp-0173","corpus":"friendspersona","identity":"Melanie","cluster":"01_e24_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":292,"turn_count":5}
+{"unit_id":"fp-0174","corpus":"friendspersona","identity":"Monica Geller","cluster":"01_e24_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":1128,"turn_count":16}
+{"unit_id":"fp-0175","corpus":"friendspersona","identity":"Julie","cluster":"02_e01_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":1006,"turn_count":20}
+{"unit_id":"fp-0176","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e01_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":613,"turn_count":10}
+{"unit_id":"fp-0177","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e01_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":226,"turn_count":6}
+{"unit_id":"fp-0178","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e01_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":542,"turn_count":9}
+{"unit_id":"fp-0179","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e01_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":150,"turn_count":7}
+{"unit_id":"fp-0180","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e01_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":338,"turn_count":7}
+{"unit_id":"fp-0181","corpus":"friendspersona","identity":"Julie","cluster":"02_e01_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":149,"turn_count":4}
+{"unit_id":"fp-0182","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e02_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":1090,"turn_count":21}
+{"unit_id":"fp-0183","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e02_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":728,"turn_count":6}
+{"unit_id":"fp-0184","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e02_c11","labels":{"AGR":"high","EXT":"high"},"text_chars":747,"turn_count":10}
+{"unit_id":"fp-0185","corpus":"friendspersona","identity":"Mr. Heckles","cluster":"02_e03_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":420,"turn_count":12}
+{"unit_id":"fp-0186","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e03_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":465,"turn_count":8}
+{"unit_id":"fp-0187","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e04_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":1299,"turn_count":19}
+{"unit_id":"fp-0188","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e04_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":382,"turn_count":8}
+{"unit_id":"fp-0189","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e04_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":1370,"turn_count":29}
+{"unit_id":"fp-0190","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e04_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":370,"turn_count":12}
+{"unit_id":"fp-0191","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e04_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":1060,"turn_count":16}
+{"unit_id":"fp-0192","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e04_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":697,"turn_count":12}
+{"unit_id":"fp-0193","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e04_c11","labels":{"AGR":"low","EXT":"high"},"text_chars":1248,"turn_count":22}
+{"unit_id":"fp-0194","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e05_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":780,"turn_count":16}
+{"unit_id":"fp-0195","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e05_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":349,"turn_count":10}
+{"unit_id":"fp-0196","corpus":"friendspersona","identity":"Jade","cluster":"02_e05_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":592,"turn_count":14}
+{"unit_id":"fp-0197","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e05_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":627,"turn_count":18}
+{"unit_id":"fp-0198","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e06_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":439,"turn_count":5}
+{"unit_id":"fp-0199","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e06_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":968,"turn_count":23}
+{"unit_id":"fp-0200","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e06_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":515,"turn_count":13}
+{"unit_id":"fp-0201","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e06_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":782,"turn_count":13}
+{"unit_id":"fp-0202","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e07_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":485,"turn_count":6}
+{"unit_id":"fp-0203","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e07_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":1281,"turn_count":17}
+{"unit_id":"fp-0204","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e07_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":214,"turn_count":9}
+{"unit_id":"fp-0205","corpus":"friendspersona","identity":"Michael","cluster":"02_e07_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":1100,"turn_count":11}
+{"unit_id":"fp-0206","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e07_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":1264,"turn_count":20}
+{"unit_id":"fp-0207","corpus":"friendspersona","identity":"Julie","cluster":"02_e08_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":360,"turn_count":8}
+{"unit_id":"fp-0208","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e08_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":176,"turn_count":7}
+{"unit_id":"fp-0209","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e08_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":1113,"turn_count":12}
+{"unit_id":"fp-0210","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e08_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":1193,"turn_count":21}
+{"unit_id":"fp-0211","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e08_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":1404,"turn_count":18}
+{"unit_id":"fp-0212","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e08_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":3099,"turn_count":46}
+{"unit_id":"fp-0213","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e08_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":269,"turn_count":7}
+{"unit_id":"fp-0214","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e08_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":783,"turn_count":8}
+{"unit_id":"fp-0215","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e09_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":351,"turn_count":6}
+{"unit_id":"fp-0216","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e09_c01","labels":{"AGR":"low","EXT":"high"},"text_chars":395,"turn_count":9}
+{"unit_id":"fp-0217","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e09_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":635,"turn_count":12}
+{"unit_id":"fp-0218","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e09_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":1147,"turn_count":18}
+{"unit_id":"fp-0219","corpus":"friendspersona","identity":"Grandmother","cluster":"02_e09_c03","labels":{"AGR":"low","EXT":"high"},"text_chars":1254,"turn_count":18}
+{"unit_id":"fp-0220","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e09_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":230,"turn_count":8}
+{"unit_id":"fp-0221","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e09_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":551,"turn_count":6}
+{"unit_id":"fp-0222","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e09_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":582,"turn_count":14}
+{"unit_id":"fp-0223","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e09_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":1263,"turn_count":19}
+{"unit_id":"fp-0224","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e09_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":381,"turn_count":10}
+{"unit_id":"fp-0225","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e09_c09","labels":{"AGR":"high","EXT":"low"},"text_chars":622,"turn_count":5}
+{"unit_id":"fp-0226","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e09_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":902,"turn_count":13}
+{"unit_id":"fp-0227","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e10_c01","labels":{"AGR":"low","EXT":"high"},"text_chars":595,"turn_count":10}
+{"unit_id":"fp-0228","corpus":"friendspersona","identity":"Russ","cluster":"02_e10_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":816,"turn_count":20}
+{"unit_id":"fp-0229","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e10_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":924,"turn_count":18}
+{"unit_id":"fp-0230","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e10_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":151,"turn_count":7}
+{"unit_id":"fp-0231","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e10_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":183,"turn_count":5}
+{"unit_id":"fp-0232","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e10_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":401,"turn_count":10}
+{"unit_id":"fp-0233","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e10_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":216,"turn_count":5}
+{"unit_id":"fp-0234","corpus":"friendspersona","identity":"Bobby Rush","cluster":"02_e10_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":884,"turn_count":19}
+{"unit_id":"fp-0235","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e10_c09","labels":{"AGR":"low","EXT":"high"},"text_chars":265,"turn_count":7}
+{"unit_id":"fp-0236","corpus":"friendspersona","identity":"Russ","cluster":"02_e10_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":265,"turn_count":7}
+{"unit_id":"fp-0237","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e11_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":1116,"turn_count":16}
+{"unit_id":"fp-0238","corpus":"friendspersona","identity":"Mrs. Green","cluster":"02_e11_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":1241,"turn_count":18}
+{"unit_id":"fp-0239","corpus":"friendspersona","identity":"Mrs. Green","cluster":"02_e11_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":581,"turn_count":9}
+{"unit_id":"fp-0240","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e11_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":383,"turn_count":8}
+{"unit_id":"fp-0241","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e11_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":1366,"turn_count":21}
+{"unit_id":"fp-0242","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e11_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":615,"turn_count":9}
+{"unit_id":"fp-0243","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e11_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":49,"turn_count":4}
+{"unit_id":"fp-0244","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e12_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":290,"turn_count":4}
+{"unit_id":"fp-0245","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e12_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":822,"turn_count":12}
+{"unit_id":"fp-0246","corpus":"friendspersona","identity":"Erica Ford","cluster":"02_e12_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":187,"turn_count":6}
+{"unit_id":"fp-0247","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e12_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":634,"turn_count":7}
+{"unit_id":"fp-0248","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e12_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":426,"turn_count":7}
+{"unit_id":"fp-0249","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e12_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":707,"turn_count":12}
+{"unit_id":"fp-0250","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e13_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":354,"turn_count":6}
+{"unit_id":"fp-0251","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e13_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":1056,"turn_count":14}
+{"unit_id":"fp-0252","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e13_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":268,"turn_count":4}
+{"unit_id":"fp-0253","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e13_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":582,"turn_count":11}
+{"unit_id":"fp-0254","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e13_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":263,"turn_count":4}
+{"unit_id":"fp-0255","corpus":"friendspersona","identity":"Susie","cluster":"02_e13_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":263,"turn_count":4}
+{"unit_id":"fp-0256","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e13_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":506,"turn_count":8}
+{"unit_id":"fp-0257","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e13_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":306,"turn_count":7}
+{"unit_id":"fp-0258","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e13_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":868,"turn_count":20}
+{"unit_id":"fp-0259","corpus":"friendspersona","identity":"Van Damme","cluster":"02_e13_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":294,"turn_count":8}
+{"unit_id":"fp-0260","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e13_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":227,"turn_count":5}
+{"unit_id":"fp-0261","corpus":"friendspersona","identity":"Director","cluster":"02_e13_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":142,"turn_count":5}
+{"unit_id":"fp-0262","corpus":"friendspersona","identity":"Van Damme","cluster":"02_e13_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":142,"turn_count":5}
+{"unit_id":"fp-0263","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e14_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":1170,"turn_count":11}
+{"unit_id":"fp-0264","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e14_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":347,"turn_count":8}
+{"unit_id":"fp-0265","corpus":"friendspersona","identity":"Mrs. Geller","cluster":"02_e14_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":560,"turn_count":12}
+{"unit_id":"fp-0266","corpus":"friendspersona","identity":"Mrs. Geller","cluster":"02_e14_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":430,"turn_count":8}
+{"unit_id":"fp-0267","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e15_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":555,"turn_count":10}
+{"unit_id":"fp-0268","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e15_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":560,"turn_count":13}
+{"unit_id":"fp-0269","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e15_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":760,"turn_count":16}
+{"unit_id":"fp-0270","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e16_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":647,"turn_count":18}
+{"unit_id":"fp-0271","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e16_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":142,"turn_count":5}
+{"unit_id":"fp-0272","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e16_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":321,"turn_count":7}
+{"unit_id":"fp-0273","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e16_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":750,"turn_count":14}
+{"unit_id":"fp-0274","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e16_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":844,"turn_count":10}
+{"unit_id":"fp-0275","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e16_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":317,"turn_count":8}
+{"unit_id":"fp-0276","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e16_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":335,"turn_count":7}
+{"unit_id":"fp-0277","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e16_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":1095,"turn_count":22}
+{"unit_id":"fp-0278","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e16_c16","labels":{"AGR":"low","EXT":"high"},"text_chars":865,"turn_count":12}
+{"unit_id":"fp-0279","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e17_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":803,"turn_count":11}
+{"unit_id":"fp-0280","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e17_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":634,"turn_count":9}
+{"unit_id":"fp-0281","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e17_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":665,"turn_count":12}
+{"unit_id":"fp-0282","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e17_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":354,"turn_count":10}
+{"unit_id":"fp-0283","corpus":"friendspersona","identity":"Richard","cluster":"02_e18_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":679,"turn_count":12}
+{"unit_id":"fp-0284","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e18_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":252,"turn_count":4}
+{"unit_id":"fp-0285","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e18_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":605,"turn_count":10}
+{"unit_id":"fp-0286","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e18_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":354,"turn_count":9}
+{"unit_id":"fp-0287","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e18_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":350,"turn_count":9}
+{"unit_id":"fp-0288","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e18_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":90,"turn_count":4}
+{"unit_id":"fp-0289","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e19_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":592,"turn_count":10}
+{"unit_id":"fp-0290","corpus":"friendspersona","identity":"Estelle","cluster":"02_e19_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":345,"turn_count":7}
+{"unit_id":"fp-0291","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e19_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":631,"turn_count":14}
+{"unit_id":"fp-0292","corpus":"friendspersona","identity":"Eddie","cluster":"02_e19_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":422,"turn_count":6}
+{"unit_id":"fp-0293","corpus":"friendspersona","identity":"Casting Guy","cluster":"02_e19_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":148,"turn_count":4}
+{"unit_id":"fp-0294","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e19_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":1032,"turn_count":21}
+{"unit_id":"fp-0295","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e19_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":1106,"turn_count":22}
+{"unit_id":"fp-0296","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e19_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":741,"turn_count":16}
+{"unit_id":"fp-0297","corpus":"friendspersona","identity":"Eddie","cluster":"02_e19_c13","labels":{"AGR":"low","EXT":"low"},"text_chars":846,"turn_count":17}
+{"unit_id":"fp-0298","corpus":"friendspersona","identity":"Eddie","cluster":"02_e19_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":671,"turn_count":11}
+{"unit_id":"fp-0299","corpus":"friendspersona","identity":"Carol Willick","cluster":"02_e20_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":775,"turn_count":13}
+{"unit_id":"fp-0300","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e20_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":418,"turn_count":5}
+{"unit_id":"fp-0301","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e20_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":693,"turn_count":13}
+{"unit_id":"fp-0302","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e20_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":593,"turn_count":9}
+{"unit_id":"fp-0303","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e20_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":1652,"turn_count":25}
+{"unit_id":"fp-0304","corpus":"friendspersona","identity":"Richard","cluster":"02_e20_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":1399,"turn_count":25}
+{"unit_id":"fp-0305","corpus":"friendspersona","identity":"Carol Willick","cluster":"02_e20_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":497,"turn_count":21}
+{"unit_id":"fp-0306","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e21_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":204,"turn_count":6}
+{"unit_id":"fp-0307","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e21_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":843,"turn_count":20}
+{"unit_id":"fp-0308","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e21_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":514,"turn_count":12}
+{"unit_id":"fp-0309","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e21_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":401,"turn_count":8}
+{"unit_id":"fp-0310","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e21_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":777,"turn_count":15}
+{"unit_id":"fp-0311","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e21_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":933,"turn_count":12}
+{"unit_id":"fp-0312","corpus":"friendspersona","identity":"Little Bully","cluster":"02_e21_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":827,"turn_count":12}
+{"unit_id":"fp-0313","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e22_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":1414,"turn_count":15}
+{"unit_id":"fp-0314","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e22_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":959,"turn_count":7}
+{"unit_id":"fp-0315","corpus":"friendspersona","identity":"Chandler Bing","cluster":"02_e22_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":473,"turn_count":10}
+{"unit_id":"fp-0316","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e22_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":240,"turn_count":11}
+{"unit_id":"fp-0317","corpus":"friendspersona","identity":"Ross Geller","cluster":"02_e22_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":689,"turn_count":7}
+{"unit_id":"fp-0318","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e22_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":1532,"turn_count":30}
+{"unit_id":"fp-0319","corpus":"friendspersona","identity":"Mr. Green","cluster":"02_e22_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":602,"turn_count":8}
+{"unit_id":"fp-0320","corpus":"friendspersona","identity":"Mrs. Green","cluster":"02_e22_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":547,"turn_count":12}
+{"unit_id":"fp-0321","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e22_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":298,"turn_count":5}
+{"unit_id":"fp-0322","corpus":"friendspersona","identity":"Mrs. Green","cluster":"02_e22_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":521,"turn_count":10}
+{"unit_id":"fp-0323","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e23_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":641,"turn_count":11}
+{"unit_id":"fp-0324","corpus":"friendspersona","identity":"Rachel Green","cluster":"02_e23_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":973,"turn_count":10}
+{"unit_id":"fp-0325","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e23_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":921,"turn_count":12}
+{"unit_id":"fp-0326","corpus":"friendspersona","identity":"Richard","cluster":"02_e23_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":959,"turn_count":13}
+{"unit_id":"fp-0327","corpus":"friendspersona","identity":"Scott Alexander","cluster":"02_e23_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":575,"turn_count":7}
+{"unit_id":"fp-0328","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e23_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":926,"turn_count":16}
+{"unit_id":"fp-0329","corpus":"friendspersona","identity":"Richard","cluster":"02_e23_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":324,"turn_count":8}
+{"unit_id":"fp-0330","corpus":"friendspersona","identity":"Ryan","cluster":"02_e23_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":422,"turn_count":13}
+{"unit_id":"fp-0331","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"02_e24_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":385,"turn_count":8}
+{"unit_id":"fp-0332","corpus":"friendspersona","identity":"Monica Geller","cluster":"02_e24_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":1397,"turn_count":17}
+{"unit_id":"fp-0333","corpus":"friendspersona","identity":"Richard","cluster":"02_e24_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":709,"turn_count":16}
+{"unit_id":"fp-0334","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"02_e24_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":1202,"turn_count":19}
+{"unit_id":"fp-0335","corpus":"friendspersona","identity":"Best Man","cluster":"02_e24_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":1085,"turn_count":8}
+{"unit_id":"fp-0336","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e01_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":310,"turn_count":9}
+{"unit_id":"fp-0337","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e01_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":450,"turn_count":7}
+{"unit_id":"fp-0338","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e01_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":173,"turn_count":10}
+{"unit_id":"fp-0339","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e01_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":366,"turn_count":7}
+{"unit_id":"fp-0340","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e01_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":415,"turn_count":8}
+{"unit_id":"fp-0341","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e01_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":677,"turn_count":21}
+{"unit_id":"fp-0342","corpus":"friendspersona","identity":"Janice","cluster":"03_e01_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":450,"turn_count":7}
+{"unit_id":"fp-0343","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e02_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":378,"turn_count":10}
+{"unit_id":"fp-0344","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e02_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":411,"turn_count":11}
+{"unit_id":"fp-0345","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e02_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":767,"turn_count":11}
+{"unit_id":"fp-0346","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e02_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":471,"turn_count":8}
+{"unit_id":"fp-0347","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e02_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":748,"turn_count":11}
+{"unit_id":"fp-0348","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e02_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":778,"turn_count":10}
+{"unit_id":"fp-0349","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e02_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":1177,"turn_count":17}
+{"unit_id":"fp-0350","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e02_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":1168,"turn_count":36}
+{"unit_id":"fp-0351","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e02_c03","labels":{"AGR":"low","EXT":"high"},"text_chars":514,"turn_count":8}
+{"unit_id":"fp-0352","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e02_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":306,"turn_count":7}
+{"unit_id":"fp-0353","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e03_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":931,"turn_count":15}
+{"unit_id":"fp-0354","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e03_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":1176,"turn_count":15}
+{"unit_id":"fp-0355","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e03_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":529,"turn_count":10}
+{"unit_id":"fp-0356","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e03_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":1150,"turn_count":16}
+{"unit_id":"fp-0357","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e03_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":406,"turn_count":7}
+{"unit_id":"fp-0358","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e03_c11","labels":{"AGR":"high","EXT":"high"},"text_chars":774,"turn_count":24}
+{"unit_id":"fp-0359","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e04_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":1777,"turn_count":22}
+{"unit_id":"fp-0360","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e04_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":548,"turn_count":8}
+{"unit_id":"fp-0361","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e04_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":879,"turn_count":11}
+{"unit_id":"fp-0362","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e04_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":780,"turn_count":7}
+{"unit_id":"fp-0363","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e04_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":887,"turn_count":16}
+{"unit_id":"fp-0364","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e04_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":677,"turn_count":15}
+{"unit_id":"fp-0365","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e05_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":497,"turn_count":24}
+{"unit_id":"fp-0366","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e05_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":664,"turn_count":8}
+{"unit_id":"fp-0367","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e05_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":143,"turn_count":4}
+{"unit_id":"fp-0368","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e05_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":436,"turn_count":10}
+{"unit_id":"fp-0369","corpus":"friendspersona","identity":"Frank","cluster":"03_e05_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":1642,"turn_count":32}
+{"unit_id":"fp-0370","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e06_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":293,"turn_count":6}
+{"unit_id":"fp-0371","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e06_c09","labels":{"AGR":"high","EXT":"low"},"text_chars":138,"turn_count":4}
+{"unit_id":"fp-0372","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e06_c11","labels":{"AGR":"high","EXT":"high"},"text_chars":120,"turn_count":5}
+{"unit_id":"fp-0373","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e06_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":120,"turn_count":5}
+{"unit_id":"fp-0374","corpus":"friendspersona","identity":"Dr. Green","cluster":"03_e07_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":851,"turn_count":17}
+{"unit_id":"fp-0375","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e07_c14","labels":{"AGR":"low","EXT":"high"},"text_chars":1549,"turn_count":38}
+{"unit_id":"fp-0376","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e08_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":706,"turn_count":14}
+{"unit_id":"fp-0377","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e08_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":312,"turn_count":6}
+{"unit_id":"fp-0378","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e08_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":414,"turn_count":7}
+{"unit_id":"fp-0379","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e08_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":493,"turn_count":7}
+{"unit_id":"fp-0380","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e08_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":1628,"turn_count":24}
+{"unit_id":"fp-0381","corpus":"friendspersona","identity":"Ben","cluster":"03_e08_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":446,"turn_count":12}
+{"unit_id":"fp-0382","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e08_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":240,"turn_count":9}
+{"unit_id":"fp-0383","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e08_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":447,"turn_count":8}
+{"unit_id":"fp-0384","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e08_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":1022,"turn_count":15}
+{"unit_id":"fp-0385","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e08_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":1311,"turn_count":16}
+{"unit_id":"fp-0386","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e08_c12","labels":{"AGR":"high","EXT":"low"},"text_chars":709,"turn_count":6}
+{"unit_id":"fp-0387","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e09_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":480,"turn_count":15}
+{"unit_id":"fp-0388","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e09_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":781,"turn_count":14}
+{"unit_id":"fp-0389","corpus":"friendspersona","identity":"Margha","cluster":"03_e09_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":260,"turn_count":10}
+{"unit_id":"fp-0390","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e09_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":720,"turn_count":11}
+{"unit_id":"fp-0391","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e09_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":631,"turn_count":14}
+{"unit_id":"fp-0392","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e09_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":713,"turn_count":12}
+{"unit_id":"fp-0393","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e09_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":2349,"turn_count":27}
+{"unit_id":"fp-0394","corpus":"friendspersona","identity":"Gunther","cluster":"03_e10_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":165,"turn_count":5}
+{"unit_id":"fp-0395","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e10_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":165,"turn_count":5}
+{"unit_id":"fp-0396","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e10_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":850,"turn_count":8}
+{"unit_id":"fp-0397","corpus":"friendspersona","identity":"Sarah","cluster":"03_e10_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":1073,"turn_count":13}
+{"unit_id":"fp-0398","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e10_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":398,"turn_count":7}
+{"unit_id":"fp-0399","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e10_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":498,"turn_count":7}
+{"unit_id":"fp-0400","corpus":"friendspersona","identity":"Leader","cluster":"03_e10_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":447,"turn_count":10}
+{"unit_id":"fp-0401","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e10_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":312,"turn_count":5}
+{"unit_id":"fp-0402","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e11_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":572,"turn_count":12}
+{"unit_id":"fp-0403","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e11_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":673,"turn_count":14}
+{"unit_id":"fp-0404","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e11_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":492,"turn_count":10}
+{"unit_id":"fp-0405","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e11_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":416,"turn_count":10}
+{"unit_id":"fp-0406","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e11_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":815,"turn_count":10}
+{"unit_id":"fp-0407","corpus":"friendspersona","identity":"Joey's Grandmother","cluster":"03_e11_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":328,"turn_count":8}
+{"unit_id":"fp-0408","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e11_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":2102,"turn_count":36}
+{"unit_id":"fp-0409","corpus":"friendspersona","identity":"Mark","cluster":"03_e11_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":160,"turn_count":7}
+{"unit_id":"fp-0410","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e12_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":1400,"turn_count":18}
+{"unit_id":"fp-0411","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e12_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":192,"turn_count":4}
+{"unit_id":"fp-0412","corpus":"friendspersona","identity":"Woman","cluster":"03_e12_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":244,"turn_count":6}
+{"unit_id":"fp-0413","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e12_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":70,"turn_count":4}
+{"unit_id":"fp-0414","corpus":"friendspersona","identity":"Julio","cluster":"03_e12_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":592,"turn_count":6}
+{"unit_id":"fp-0415","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e13_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":551,"turn_count":15}
+{"unit_id":"fp-0416","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e13_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":585,"turn_count":9}
+{"unit_id":"fp-0417","corpus":"friendspersona","identity":"Robert","cluster":"03_e13_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":581,"turn_count":12}
+{"unit_id":"fp-0418","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e13_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":1442,"turn_count":16}
+{"unit_id":"fp-0419","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e14_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":602,"turn_count":14}
+{"unit_id":"fp-0420","corpus":"friendspersona","identity":"Ginger","cluster":"03_e14_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":249,"turn_count":5}
+{"unit_id":"fp-0421","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e14_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":862,"turn_count":13}
+{"unit_id":"fp-0422","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e14_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":222,"turn_count":4}
+{"unit_id":"fp-0423","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e15_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":258,"turn_count":6}
+{"unit_id":"fp-0424","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e15_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":913,"turn_count":19}
+{"unit_id":"fp-0425","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e15_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":610,"turn_count":11}
+{"unit_id":"fp-0426","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e15_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":304,"turn_count":5}
+{"unit_id":"fp-0427","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e15_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":814,"turn_count":16}
+{"unit_id":"fp-0428","corpus":"friendspersona","identity":"Chloe","cluster":"03_e15_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":567,"turn_count":5}
+{"unit_id":"fp-0429","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e15_c09","labels":{"AGR":"low","EXT":"high"},"text_chars":466,"turn_count":8}
+{"unit_id":"fp-0430","corpus":"friendspersona","identity":"Mischa","cluster":"03_e15_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":1004,"turn_count":16}
+{"unit_id":"fp-0431","corpus":"friendspersona","identity":"Sergei","cluster":"03_e15_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":656,"turn_count":7}
+{"unit_id":"fp-0432","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e16_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":537,"turn_count":12}
+{"unit_id":"fp-0433","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e16_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":537,"turn_count":12}
+{"unit_id":"fp-0434","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e16_c09","labels":{"AGR":"low","EXT":"high"},"text_chars":256,"turn_count":5}
+{"unit_id":"fp-0435","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e16_c09","labels":{"AGR":"low","EXT":"high"},"text_chars":256,"turn_count":5}
+{"unit_id":"fp-0436","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e16_c11","labels":{"AGR":"high","EXT":"high"},"text_chars":237,"turn_count":10}
+{"unit_id":"fp-0437","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e16_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":1125,"turn_count":15}
+{"unit_id":"fp-0438","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e16_c13","labels":{"AGR":"low","EXT":"low"},"text_chars":528,"turn_count":9}
+{"unit_id":"fp-0439","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e16_c13","labels":{"AGR":"low","EXT":"low"},"text_chars":218,"turn_count":10}
+{"unit_id":"fp-0440","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e16_c13","labels":{"AGR":"low","EXT":"high"},"text_chars":1920,"turn_count":33}
+{"unit_id":"fp-0441","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e16_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":1215,"turn_count":20}
+{"unit_id":"fp-0442","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e17_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":449,"turn_count":10}
+{"unit_id":"fp-0443","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e17_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":729,"turn_count":9}
+{"unit_id":"fp-0444","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e17_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":278,"turn_count":9}
+{"unit_id":"fp-0445","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e18_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":1023,"turn_count":9}
+{"unit_id":"fp-0446","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e18_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":749,"turn_count":6}
+{"unit_id":"fp-0447","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e18_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":846,"turn_count":18}
+{"unit_id":"fp-0448","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e18_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":1218,"turn_count":26}
+{"unit_id":"fp-0449","corpus":"friendspersona","identity":"Frank","cluster":"03_e18_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":1065,"turn_count":21}
+{"unit_id":"fp-0450","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e19_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":152,"turn_count":4}
+{"unit_id":"fp-0451","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e19_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":1228,"turn_count":30}
+{"unit_id":"fp-0452","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e19_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":231,"turn_count":5}
+{"unit_id":"fp-0453","corpus":"friendspersona","identity":"Sophie","cluster":"03_e20_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":30,"turn_count":4}
+{"unit_id":"fp-0454","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e20_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":621,"turn_count":13}
+{"unit_id":"fp-0455","corpus":"friendspersona","identity":"Joanna","cluster":"03_e20_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":192,"turn_count":4}
+{"unit_id":"fp-0456","corpus":"friendspersona","identity":"Lauren","cluster":"03_e20_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":690,"turn_count":15}
+{"unit_id":"fp-0457","corpus":"friendspersona","identity":"The Director","cluster":"03_e20_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":571,"turn_count":11}
+{"unit_id":"fp-0458","corpus":"friendspersona","identity":"Kate","cluster":"03_e20_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":665,"turn_count":14}
+{"unit_id":"fp-0459","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e20_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":648,"turn_count":8}
+{"unit_id":"fp-0460","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e20_c14","labels":{"AGR":"low","EXT":"low"},"text_chars":513,"turn_count":12}
+{"unit_id":"fp-0461","corpus":"friendspersona","identity":"Joanna","cluster":"03_e20_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":482,"turn_count":11}
+{"unit_id":"fp-0462","corpus":"friendspersona","identity":"Joanna","cluster":"03_e20_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":220,"turn_count":6}
+{"unit_id":"fp-0463","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e21_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":167,"turn_count":4}
+{"unit_id":"fp-0464","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e21_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":649,"turn_count":11}
+{"unit_id":"fp-0465","corpus":"friendspersona","identity":"Pete","cluster":"03_e21_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":618,"turn_count":11}
+{"unit_id":"fp-0466","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e21_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":554,"turn_count":13}
+{"unit_id":"fp-0467","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e21_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":842,"turn_count":11}
+{"unit_id":"fp-0468","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e21_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":1356,"turn_count":22}
+{"unit_id":"fp-0469","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e21_c16","labels":{"AGR":"low","EXT":"high"},"text_chars":82,"turn_count":5}
+{"unit_id":"fp-0470","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e22_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":881,"turn_count":13}
+{"unit_id":"fp-0471","corpus":"friendspersona","identity":"Cailin","cluster":"03_e22_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":694,"turn_count":13}
+{"unit_id":"fp-0472","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e22_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":431,"turn_count":9}
+{"unit_id":"fp-0473","corpus":"friendspersona","identity":"Kate","cluster":"03_e22_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":452,"turn_count":10}
+{"unit_id":"fp-0474","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e22_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":1035,"turn_count":13}
+{"unit_id":"fp-0475","corpus":"friendspersona","identity":"Lauren","cluster":"03_e22_c12","labels":{"AGR":"high","EXT":"low"},"text_chars":307,"turn_count":7}
+{"unit_id":"fp-0476","corpus":"friendspersona","identity":"Kate","cluster":"03_e22_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":485,"turn_count":13}
+{"unit_id":"fp-0477","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e23_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":1440,"turn_count":19}
+{"unit_id":"fp-0478","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e23_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":284,"turn_count":8}
+{"unit_id":"fp-0479","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e23_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":472,"turn_count":12}
+{"unit_id":"fp-0480","corpus":"friendspersona","identity":"Monica Geller","cluster":"03_e23_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":1210,"turn_count":11}
+{"unit_id":"fp-0481","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e24_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":657,"turn_count":9}
+{"unit_id":"fp-0482","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e24_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":909,"turn_count":12}
+{"unit_id":"fp-0483","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"03_e24_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":643,"turn_count":14}
+{"unit_id":"fp-0484","corpus":"friendspersona","identity":"Pete","cluster":"03_e24_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":867,"turn_count":10}
+{"unit_id":"fp-0485","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e24_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":1396,"turn_count":18}
+{"unit_id":"fp-0486","corpus":"friendspersona","identity":"Chandler Bing","cluster":"03_e25_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":742,"turn_count":11}
+{"unit_id":"fp-0487","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e25_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":232,"turn_count":6}
+{"unit_id":"fp-0488","corpus":"friendspersona","identity":"Rachel Green","cluster":"03_e25_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":1669,"turn_count":22}
+{"unit_id":"fp-0489","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"03_e25_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":1942,"turn_count":27}
+{"unit_id":"fp-0490","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e25_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":528,"turn_count":8}
+{"unit_id":"fp-0491","corpus":"friendspersona","identity":"Bonnie","cluster":"03_e25_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":338,"turn_count":7}
+{"unit_id":"fp-0492","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e25_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":1002,"turn_count":10}
+{"unit_id":"fp-0493","corpus":"friendspersona","identity":"Bonnie","cluster":"03_e25_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":414,"turn_count":8}
+{"unit_id":"fp-0494","corpus":"friendspersona","identity":"Bonnie","cluster":"03_e25_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":414,"turn_count":10}
+{"unit_id":"fp-0495","corpus":"friendspersona","identity":"Ross Geller","cluster":"03_e25_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":225,"turn_count":8}
+{"unit_id":"fp-0496","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e01_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":775,"turn_count":10}
+{"unit_id":"fp-0497","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e01_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":350,"turn_count":8}
+{"unit_id":"fp-0498","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e01_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":851,"turn_count":18}
+{"unit_id":"fp-0499","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e01_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":797,"turn_count":12}
+{"unit_id":"fp-0500","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e01_c10","labels":{"AGR":"high","EXT":"high"},"text_chars":980,"turn_count":15}
+{"unit_id":"fp-0501","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e01_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":1130,"turn_count":16}
+{"unit_id":"fp-0502","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e02_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":937,"turn_count":16}
+{"unit_id":"fp-0503","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e02_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":344,"turn_count":10}
+{"unit_id":"fp-0504","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e02_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":312,"turn_count":6}
+{"unit_id":"fp-0505","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e02_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":615,"turn_count":13}
+{"unit_id":"fp-0506","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e02_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":908,"turn_count":14}
+{"unit_id":"fp-0507","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e02_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":360,"turn_count":7}
+{"unit_id":"fp-0508","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e02_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":918,"turn_count":8}
+{"unit_id":"fp-0509","corpus":"friendspersona","identity":"Chip","cluster":"04_e02_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":564,"turn_count":10}
+{"unit_id":"fp-0510","corpus":"friendspersona","identity":"Chip","cluster":"04_e02_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":268,"turn_count":4}
+{"unit_id":"fp-0511","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e02_c14","labels":{"AGR":"low","EXT":"high"},"text_chars":838,"turn_count":12}
+{"unit_id":"fp-0512","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e02_c14","labels":{"AGR":"low","EXT":"low"},"text_chars":612,"turn_count":13}
+{"unit_id":"fp-0513","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e03_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":1415,"turn_count":22}
+{"unit_id":"fp-0514","corpus":"friendspersona","identity":"Joanna","cluster":"04_e03_c07","labels":{"AGR":"high","EXT":"low"},"text_chars":1207,"turn_count":24}
+{"unit_id":"fp-0515","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e03_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":1064,"turn_count":21}
+{"unit_id":"fp-0516","corpus":"friendspersona","identity":"Joanna","cluster":"04_e03_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":391,"turn_count":12}
+{"unit_id":"fp-0517","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e03_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":1904,"turn_count":34}
+{"unit_id":"fp-0518","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e03_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":512,"turn_count":6}
+{"unit_id":"fp-0519","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e03_c12","labels":{"AGR":"low","EXT":"low"},"text_chars":604,"turn_count":6}
+{"unit_id":"fp-0520","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e03_c15","labels":{"AGR":"high","EXT":"low"},"text_chars":388,"turn_count":11}
+{"unit_id":"fp-0521","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e04_c01","labels":{"AGR":"high","EXT":"high"},"text_chars":167,"turn_count":5}
+{"unit_id":"fp-0522","corpus":"friendspersona","identity":"Mr. Treeger","cluster":"04_e04_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":552,"turn_count":9}
+{"unit_id":"fp-0523","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e04_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":516,"turn_count":8}
+{"unit_id":"fp-0524","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e04_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":754,"turn_count":13}
+{"unit_id":"fp-0525","corpus":"friendspersona","identity":"Gym Employee","cluster":"04_e04_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":727,"turn_count":13}
+{"unit_id":"fp-0526","corpus":"friendspersona","identity":"Rick","cluster":"04_e04_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":221,"turn_count":5}
+{"unit_id":"fp-0527","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e04_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":462,"turn_count":7}
+{"unit_id":"fp-0528","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e04_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":92,"turn_count":4}
+{"unit_id":"fp-0529","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e04_c14","labels":{"AGR":"low","EXT":"low"},"text_chars":1125,"turn_count":21}
+{"unit_id":"fp-0530","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e04_c14","labels":{"AGR":"high","EXT":"high"},"text_chars":407,"turn_count":12}
+{"unit_id":"fp-0531","corpus":"friendspersona","identity":"Mr. Treeger","cluster":"04_e04_c14","labels":{"AGR":"low","EXT":"high"},"text_chars":1151,"turn_count":23}
+{"unit_id":"fp-0532","corpus":"friendspersona","identity":"Kathy","cluster":"04_e05_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":575,"turn_count":12}
+{"unit_id":"fp-0533","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e05_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":944,"turn_count":14}
+{"unit_id":"fp-0534","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e05_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":460,"turn_count":9}
+{"unit_id":"fp-0535","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e05_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":944,"turn_count":14}
+{"unit_id":"fp-0536","corpus":"friendspersona","identity":"Kathy","cluster":"04_e05_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":578,"turn_count":9}
+{"unit_id":"fp-0537","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e05_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":604,"turn_count":9}
+{"unit_id":"fp-0538","corpus":"friendspersona","identity":"Gunther","cluster":"04_e05_c16","labels":{"AGR":"high","EXT":"low"},"text_chars":183,"turn_count":6}
+{"unit_id":"fp-0539","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e05_c16","labels":{"AGR":"high","EXT":"high"},"text_chars":183,"turn_count":6}
+{"unit_id":"fp-0540","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e06_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":682,"turn_count":11}
+{"unit_id":"fp-0541","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e06_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":1391,"turn_count":19}
+{"unit_id":"fp-0542","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e06_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":1085,"turn_count":16}
+{"unit_id":"fp-0543","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e06_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":793,"turn_count":15}
+{"unit_id":"fp-0544","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e06_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":850,"turn_count":14}
+{"unit_id":"fp-0545","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e06_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":244,"turn_count":6}
+{"unit_id":"fp-0546","corpus":"friendspersona","identity":"Cheryl","cluster":"04_e06_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":642,"turn_count":9}
+{"unit_id":"fp-0547","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e06_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":556,"turn_count":6}
+{"unit_id":"fp-0548","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e06_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":727,"turn_count":8}
+{"unit_id":"fp-0549","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e06_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":1555,"turn_count":31}
+{"unit_id":"fp-0550","corpus":"friendspersona","identity":"Kathy","cluster":"04_e06_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":1551,"turn_count":30}
+{"unit_id":"fp-0551","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e07_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":701,"turn_count":12}
+{"unit_id":"fp-0552","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e07_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":1125,"turn_count":12}
+{"unit_id":"fp-0553","corpus":"friendspersona","identity":"Kathy","cluster":"04_e07_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":394,"turn_count":8}
+{"unit_id":"fp-0554","corpus":"friendspersona","identity":"Kathy","cluster":"04_e07_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":519,"turn_count":13}
+{"unit_id":"fp-0555","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e07_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":1019,"turn_count":17}
+{"unit_id":"fp-0556","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e08_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":1742,"turn_count":27}
+{"unit_id":"fp-0557","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e08_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":2979,"turn_count":41}
+{"unit_id":"fp-0558","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e08_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":683,"turn_count":15}
+{"unit_id":"fp-0559","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e08_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":683,"turn_count":15}
+{"unit_id":"fp-0560","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e08_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":566,"turn_count":11}
+{"unit_id":"fp-0561","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e08_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":914,"turn_count":15}
+{"unit_id":"fp-0562","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e09_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":538,"turn_count":8}
+{"unit_id":"fp-0563","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e09_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":978,"turn_count":17}
+{"unit_id":"fp-0564","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e09_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":282,"turn_count":7}
+{"unit_id":"fp-0565","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e09_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":763,"turn_count":9}
+{"unit_id":"fp-0566","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e09_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":138,"turn_count":7}
+{"unit_id":"fp-0567","corpus":"friendspersona","identity":"Mrs. Lynch","cluster":"04_e09_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":558,"turn_count":12}
+{"unit_id":"fp-0568","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e10_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":837,"turn_count":10}
+{"unit_id":"fp-0569","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e10_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":1165,"turn_count":11}
+{"unit_id":"fp-0570","corpus":"friendspersona","identity":"Mike","cluster":"04_e10_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":680,"turn_count":9}
+{"unit_id":"fp-0571","corpus":"friendspersona","identity":"Drew","cluster":"04_e10_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":680,"turn_count":9}
+{"unit_id":"fp-0572","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e10_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":344,"turn_count":4}
+{"unit_id":"fp-0573","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e10_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":988,"turn_count":16}
+{"unit_id":"fp-0574","corpus":"friendspersona","identity":"The Waiter","cluster":"04_e10_c13","labels":{"AGR":"high","EXT":"high"},"text_chars":435,"turn_count":9}
+{"unit_id":"fp-0575","corpus":"friendspersona","identity":"Woman On Train","cluster":"04_e10_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":213,"turn_count":4}
+{"unit_id":"fp-0576","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e11_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":403,"turn_count":8}
+{"unit_id":"fp-0577","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e11_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":1678,"turn_count":27}
+{"unit_id":"fp-0578","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e11_c03","labels":{"AGR":"low","EXT":"high"},"text_chars":510,"turn_count":10}
+{"unit_id":"fp-0579","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e11_c03","labels":{"AGR":"low","EXT":"high"},"text_chars":322,"turn_count":6}
+{"unit_id":"fp-0580","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e11_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":981,"turn_count":12}
+{"unit_id":"fp-0581","corpus":"friendspersona","identity":"Phoebe Sr.","cluster":"04_e11_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":472,"turn_count":6}
+{"unit_id":"fp-0582","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e11_c10","labels":{"AGR":"low","EXT":"high"},"text_chars":1002,"turn_count":20}
+{"unit_id":"fp-0583","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e11_c11","labels":{"AGR":"low","EXT":"high"},"text_chars":95,"turn_count":4}
+{"unit_id":"fp-0584","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e12_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":278,"turn_count":7}
+{"unit_id":"fp-0585","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e12_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":891,"turn_count":13}
+{"unit_id":"fp-0586","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e12_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":170,"turn_count":5}
+{"unit_id":"fp-0587","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e12_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":288,"turn_count":8}
+{"unit_id":"fp-0588","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e12_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":378,"turn_count":10}
+{"unit_id":"fp-0589","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e12_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":769,"turn_count":21}
+{"unit_id":"fp-0590","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e12_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":1687,"turn_count":45}
+{"unit_id":"fp-0591","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e12_c07","labels":{"AGR":"low","EXT":"low"},"text_chars":433,"turn_count":15}
+{"unit_id":"fp-0592","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e12_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":468,"turn_count":11}
+{"unit_id":"fp-0593","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e12_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":363,"turn_count":7}
+{"unit_id":"fp-0594","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e12_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":885,"turn_count":17}
+{"unit_id":"fp-0595","corpus":"friendspersona","identity":"Kathy's Co-Star","cluster":"04_e13_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":573,"turn_count":14}
+{"unit_id":"fp-0596","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e13_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":279,"turn_count":6}
+{"unit_id":"fp-0597","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e13_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":851,"turn_count":15}
+{"unit_id":"fp-0598","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e13_c06","labels":{"AGR":"high","EXT":"high"},"text_chars":836,"turn_count":14}
+{"unit_id":"fp-0599","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e13_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":1065,"turn_count":17}
+{"unit_id":"fp-0600","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e13_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":1506,"turn_count":24}
+{"unit_id":"fp-0601","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e13_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":381,"turn_count":10}
+{"unit_id":"fp-0602","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e13_c12","labels":{"AGR":"high","EXT":"high"},"text_chars":571,"turn_count":15}
+{"unit_id":"fp-0603","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e13_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":231,"turn_count":9}
+{"unit_id":"fp-0604","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e14_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":158,"turn_count":5}
+{"unit_id":"fp-0605","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e14_c01","labels":{"AGR":"low","EXT":"high"},"text_chars":1351,"turn_count":9}
+{"unit_id":"fp-0606","corpus":"friendspersona","identity":"Emily","cluster":"04_e14_c03","labels":{"AGR":"high","EXT":"high"},"text_chars":1036,"turn_count":12}
+{"unit_id":"fp-0607","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e14_c04","labels":{"AGR":"low","EXT":"high"},"text_chars":1061,"turn_count":16}
+{"unit_id":"fp-0608","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e14_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":750,"turn_count":15}
+{"unit_id":"fp-0609","corpus":"friendspersona","identity":"The A.D","cluster":"04_e14_c06","labels":{"AGR":"high","EXT":"low"},"text_chars":581,"turn_count":11}
+{"unit_id":"fp-0610","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e14_c09","labels":{"AGR":"high","EXT":"low"},"text_chars":816,"turn_count":16}
+{"unit_id":"fp-0611","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e14_c10","labels":{"AGR":"low","EXT":"high"},"text_chars":838,"turn_count":18}
+{"unit_id":"fp-0612","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e15_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":252,"turn_count":5}
+{"unit_id":"fp-0613","corpus":"friendspersona","identity":"Devon","cluster":"04_e15_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":975,"turn_count":15}
+{"unit_id":"fp-0614","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e15_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":669,"turn_count":10}
+{"unit_id":"fp-0615","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e15_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":388,"turn_count":5}
+{"unit_id":"fp-0616","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e15_c06","labels":{"AGR":"low","EXT":"high"},"text_chars":1347,"turn_count":22}
+{"unit_id":"fp-0617","corpus":"friendspersona","identity":"Emily","cluster":"04_e15_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":473,"turn_count":7}
+{"unit_id":"fp-0618","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e15_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":176,"turn_count":4}
+{"unit_id":"fp-0619","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e15_c08","labels":{"AGR":"low","EXT":"low"},"text_chars":176,"turn_count":4}
+{"unit_id":"fp-0620","corpus":"friendspersona","identity":"Ticket Counter Attendant","cluster":"04_e15_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":746,"turn_count":9}
+{"unit_id":"fp-0621","corpus":"friendspersona","identity":"Janice","cluster":"04_e15_c09","labels":{"AGR":"high","EXT":"low"},"text_chars":414,"turn_count":4}
+{"unit_id":"fp-0622","corpus":"friendspersona","identity":"Emily","cluster":"04_e15_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":781,"turn_count":15}
+{"unit_id":"fp-0623","corpus":"friendspersona","identity":"Emily","cluster":"04_e15_c12","labels":{"AGR":"low","EXT":"high"},"text_chars":654,"turn_count":10}
+{"unit_id":"fp-0624","corpus":"friendspersona","identity":"Janice","cluster":"04_e15_c13","labels":{"AGR":"low","EXT":"high"},"text_chars":551,"turn_count":8}
+{"unit_id":"fp-0625","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e16_c01","labels":{"AGR":"low","EXT":"high"},"text_chars":590,"turn_count":9}
+{"unit_id":"fp-0626","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e16_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":1568,"turn_count":25}
+{"unit_id":"fp-0627","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e16_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":815,"turn_count":15}
+{"unit_id":"fp-0628","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e16_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":240,"turn_count":9}
+{"unit_id":"fp-0629","corpus":"friendspersona","identity":"Emily","cluster":"04_e16_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":910,"turn_count":11}
+{"unit_id":"fp-0630","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e16_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":727,"turn_count":6}
+{"unit_id":"fp-0631","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e16_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":693,"turn_count":13}
+{"unit_id":"fp-0632","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e16_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":729,"turn_count":17}
+{"unit_id":"fp-0633","corpus":"friendspersona","identity":"Joshua","cluster":"04_e16_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":551,"turn_count":9}
+{"unit_id":"fp-0634","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e16_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":3308,"turn_count":57}
+{"unit_id":"fp-0635","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e16_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":706,"turn_count":9}
+{"unit_id":"fp-0636","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e17_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":517,"turn_count":12}
+{"unit_id":"fp-0637","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e17_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":539,"turn_count":15}
+{"unit_id":"fp-0638","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e17_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":471,"turn_count":10}
+{"unit_id":"fp-0639","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e17_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":410,"turn_count":11}
+{"unit_id":"fp-0640","corpus":"friendspersona","identity":"The Doctor","cluster":"04_e17_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":410,"turn_count":11}
+{"unit_id":"fp-0641","corpus":"friendspersona","identity":"Frank","cluster":"04_e17_c05","labels":{"AGR":"low","EXT":"high"},"text_chars":1081,"turn_count":19}
+{"unit_id":"fp-0642","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e17_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":551,"turn_count":13}
+{"unit_id":"fp-0643","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e17_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":1195,"turn_count":18}
+{"unit_id":"fp-0644","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e18_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":298,"turn_count":4}
+{"unit_id":"fp-0645","corpus":"friendspersona","identity":"Susan","cluster":"04_e18_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":650,"turn_count":12}
+{"unit_id":"fp-0646","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e18_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":704,"turn_count":11}
+{"unit_id":"fp-0647","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e18_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":768,"turn_count":9}
+{"unit_id":"fp-0648","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e18_c04","labels":{"AGR":"low","EXT":"low"},"text_chars":381,"turn_count":4}
+{"unit_id":"fp-0649","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e18_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":771,"turn_count":12}
+{"unit_id":"fp-0650","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e18_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":1274,"turn_count":19}
+{"unit_id":"fp-0651","corpus":"friendspersona","identity":"Carol","cluster":"04_e18_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":620,"turn_count":12}
+{"unit_id":"fp-0652","corpus":"friendspersona","identity":"Mr. Burgin","cluster":"04_e18_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":490,"turn_count":11}
+{"unit_id":"fp-0653","corpus":"friendspersona","identity":"Mrs. Burgin","cluster":"04_e18_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":569,"turn_count":13}
+{"unit_id":"fp-0654","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e18_c10","labels":{"AGR":"high","EXT":"low"},"text_chars":384,"turn_count":11}
+{"unit_id":"fp-0655","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e18_c11","labels":{"AGR":"high","EXT":"low"},"text_chars":425,"turn_count":8}
+{"unit_id":"fp-0656","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e18_c13","labels":{"AGR":"low","EXT":"low"},"text_chars":116,"turn_count":6}
+{"unit_id":"fp-0657","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e19_c03","labels":{"AGR":"low","EXT":"low"},"text_chars":699,"turn_count":13}
+{"unit_id":"fp-0658","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e19_c03","labels":{"AGR":"high","EXT":"low"},"text_chars":413,"turn_count":15}
+{"unit_id":"fp-0659","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e19_c04","labels":{"AGR":"high","EXT":"low"},"text_chars":756,"turn_count":14}
+{"unit_id":"fp-0660","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e19_c05","labels":{"AGR":"high","EXT":"low"},"text_chars":388,"turn_count":9}
+{"unit_id":"fp-0661","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e19_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":299,"turn_count":7}
+{"unit_id":"fp-0662","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e19_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":229,"turn_count":6}
+{"unit_id":"fp-0663","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e19_c05","labels":{"AGR":"high","EXT":"high"},"text_chars":816,"turn_count":20}
+{"unit_id":"fp-0664","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e19_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":908,"turn_count":24}
+{"unit_id":"fp-0665","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e19_c05","labels":{"AGR":"low","EXT":"low"},"text_chars":1232,"turn_count":29}
+{"unit_id":"fp-0666","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e19_c06","labels":{"AGR":"low","EXT":"low"},"text_chars":1738,"turn_count":30}
+{"unit_id":"fp-0667","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e19_c07","labels":{"AGR":"low","EXT":"high"},"text_chars":1200,"turn_count":22}
+{"unit_id":"fp-0668","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e19_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":532,"turn_count":9}
+{"unit_id":"fp-0669","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e20_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":1014,"turn_count":15}
+{"unit_id":"fp-0670","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e20_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":407,"turn_count":14}
+{"unit_id":"fp-0671","corpus":"friendspersona","identity":"Marjorie","cluster":"04_e20_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":306,"turn_count":8}
+{"unit_id":"fp-0672","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e21_c09","labels":{"AGR":"high","EXT":"low"},"text_chars":468,"turn_count":6}
+{"unit_id":"fp-0673","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e21_c15","labels":{"AGR":"low","EXT":"low"},"text_chars":783,"turn_count":15}
+{"unit_id":"fp-0674","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e21_c15","labels":{"AGR":"low","EXT":"low"},"text_chars":568,"turn_count":10}
+{"unit_id":"fp-0675","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e21_c16","labels":{"AGR":"low","EXT":"low"},"text_chars":384,"turn_count":6}
+{"unit_id":"fp-0676","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e22_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":1020,"turn_count":18}
+{"unit_id":"fp-0677","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e22_c10","labels":{"AGR":"low","EXT":"low"},"text_chars":729,"turn_count":13}
+{"unit_id":"fp-0678","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e22_c11","labels":{"AGR":"low","EXT":"low"},"text_chars":1536,"turn_count":20}
+{"unit_id":"fp-0679","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e22_c13","labels":{"AGR":"low","EXT":"low"},"text_chars":595,"turn_count":8}
+{"unit_id":"fp-0680","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e22_c15","labels":{"AGR":"low","EXT":"high"},"text_chars":1421,"turn_count":21}
+{"unit_id":"fp-0681","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e22_c16","labels":{"AGR":"low","EXT":"high"},"text_chars":1347,"turn_count":11}
+{"unit_id":"fp-0682","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e23_c01","labels":{"AGR":"low","EXT":"low"},"text_chars":355,"turn_count":5}
+{"unit_id":"fp-0683","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e23_c01","labels":{"AGR":"low","EXT":"high"},"text_chars":475,"turn_count":7}
+{"unit_id":"fp-0684","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e23_c02","labels":{"AGR":"low","EXT":"low"},"text_chars":554,"turn_count":14}
+{"unit_id":"fp-0685","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e23_c02","labels":{"AGR":"high","EXT":"high"},"text_chars":368,"turn_count":7}
+{"unit_id":"fp-0686","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e23_c02","labels":{"AGR":"high","EXT":"low"},"text_chars":404,"turn_count":10}
+{"unit_id":"fp-0687","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e23_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":549,"turn_count":14}
+{"unit_id":"fp-0688","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e23_c02","labels":{"AGR":"low","EXT":"high"},"text_chars":328,"turn_count":8}
+{"unit_id":"fp-0689","corpus":"friendspersona","identity":"Emily","cluster":"04_e23_c04","labels":{"AGR":"high","EXT":"high"},"text_chars":415,"turn_count":7}
+{"unit_id":"fp-0690","corpus":"friendspersona","identity":"The Vendor","cluster":"04_e23_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":594,"turn_count":9}
+{"unit_id":"fp-0691","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e23_c09","labels":{"AGR":"low","EXT":"low"},"text_chars":473,"turn_count":7}
+{"unit_id":"fp-0692","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e23_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":954,"turn_count":21}
+{"unit_id":"fp-0693","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e23_c14","labels":{"AGR":"low","EXT":"low"},"text_chars":453,"turn_count":7}
+{"unit_id":"fp-0694","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e24_c01","labels":{"AGR":"high","EXT":"low"},"text_chars":686,"turn_count":10}
+{"unit_id":"fp-0695","corpus":"friendspersona","identity":"Mrs. Waltham","cluster":"04_e24_c07","labels":{"AGR":"high","EXT":"high"},"text_chars":1085,"turn_count":12}
+{"unit_id":"fp-0696","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e24_c08","labels":{"AGR":"low","EXT":"high"},"text_chars":122,"turn_count":4}
+{"unit_id":"fp-0697","corpus":"friendspersona","identity":"Chandler Bing","cluster":"04_e24_c08","labels":{"AGR":"high","EXT":"high"},"text_chars":770,"turn_count":8}
+{"unit_id":"fp-0698","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e24_c08","labels":{"AGR":"high","EXT":"low"},"text_chars":341,"turn_count":7}
+{"unit_id":"fp-0699","corpus":"friendspersona","identity":"Ticket Agent","cluster":"04_e24_c09","labels":{"AGR":"high","EXT":"high"},"text_chars":280,"turn_count":6}
+{"unit_id":"fp-0700","corpus":"friendspersona","identity":"Phoebe Buffay","cluster":"04_e24_c13","labels":{"AGR":"high","EXT":"low"},"text_chars":454,"turn_count":11}
+{"unit_id":"fp-0701","corpus":"friendspersona","identity":"Rachel Green","cluster":"04_e24_c14","labels":{"AGR":"high","EXT":"low"},"text_chars":539,"turn_count":5}
+{"unit_id":"fp-0702","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e24_c15","labels":{"AGR":"high","EXT":"high"},"text_chars":188,"turn_count":7}
+{"unit_id":"fp-0703","corpus":"friendspersona","identity":"Emily","cluster":"04_e24_c17","labels":{"AGR":"high","EXT":"high"},"text_chars":563,"turn_count":6}
+{"unit_id":"fp-0704","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e24_c17","labels":{"AGR":"high","EXT":"low"},"text_chars":343,"turn_count":9}
+{"unit_id":"fp-0705","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e24_c18","labels":{"AGR":"low","EXT":"high"},"text_chars":926,"turn_count":12}
+{"unit_id":"fp-0706","corpus":"friendspersona","identity":"Emily","cluster":"04_e24_c18","labels":{"AGR":"low","EXT":"high"},"text_chars":757,"turn_count":11}
+{"unit_id":"fp-0707","corpus":"friendspersona","identity":"Joey Tribbiani","cluster":"04_e24_c19","labels":{"AGR":"high","EXT":"low"},"text_chars":545,"turn_count":9}
+{"unit_id":"fp-0708","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e24_c19","labels":{"AGR":"high","EXT":"high"},"text_chars":1633,"turn_count":32}
+{"unit_id":"fp-0709","corpus":"friendspersona","identity":"Monica Geller","cluster":"04_e24_c20","labels":{"AGR":"low","EXT":"high"},"text_chars":758,"turn_count":10}
+{"unit_id":"fp-0710","corpus":"friendspersona","identity":"Ross Geller","cluster":"04_e24_c24","labels":{"AGR":"high","EXT":"low"},"text_chars":1714,"turn_count":47}

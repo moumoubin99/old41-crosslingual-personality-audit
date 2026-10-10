@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "tool": "experiments/xlpt/summarize_b0_rater.py",
+  "kind": "b0-english-rater-descriptive-summary",
+  "gate_decision": "NOT_DECIDED_BY_THIS_TOOL",
+  "eligible_for_analysis": false,
+  "uses_gpu": false,
+  "trains_or_updates_weights": false,
+  "note": "Descriptive reduction of completed B0 English rater score shards. It reads the qualification surface only, decides no gate and writes no gate file. The sealed evaluation split is refused on sight.",
+  "frozen_digests": {
+    "prompt_config_sha256": "c3541632d9825738658e1989c31c99ea9b9e24f6e54de6a742fdf2ef3e0777ac",
+    "freeze_receipt_sha256": "04a3cde52ad5f34a53f69b627c2735ca439502cc7bc6a5f4f447f4d954522134",
+    "rater_runtime_manifest_sha256": "28d03ff361775e742fd77ef881d7fc608b9aa64400d9f9c4b956f30b63bfe1ba"
+  },
+  "shards": [
+    {
+      "shard": "seed-20260811.jsonl",
+      "seed": 20260811,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.5431969165802,
+      "rater_calls_per_second": 2.5801657840596253,
+      "source_shard_sha256": "5e2f8ff90241159b5ad3e9652bfc8dc5b5cd7cb1e18aea3628dd3c0c5c5ed831",
+      "shard_sha256": "a2e1589c3514c73073fac2020d6455146475ad714d637c6df2543f5244e4b40e"
+    },
+    {
+      "shard": "seed-20260812.jsonl",
+      "seed": 20260812,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 235.48905491828918,
+      "rater_calls_per_second": 2.5478891161552712,
+      "source_shard_sha256": "e94914588b0a54f3d4438c6841408dec53bfc01de6626e90ecdfd8d7117dccb1",
+      "shard_sha256": "715a80dc42c3375485cca7aa0eaae35a8e41f734d55ae44f22aefe022feae8eb"
+    },
+    {
+      "shard": "seed-20260813.jsonl",
+      "seed": 20260813,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 233.50605273246765,
+      "rater_calls_per_second": 2.5695265410847035,
+      "source_shard_sha256": "4fc3978b62a5135354a834b911a2b8931b3e625f18c930d5e1075f42fa053864",
+      "shard_sha256": "619ee300ac44f73eb8a0c20eade05393b8a146c52e73dd4458fb4ed2dff9decf"
+    },
+    {
+      "shard": "seed-20260814.jsonl",
+      "seed": 20260814,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.11704993247986,
+      "rater_calls_per_second": 2.5849027470172183,
+      "source_shard_sha256": "c768657e1d05b394a8eb033389db257d7a33b59444420f911433de602ddf19ad",
+      "shard_sha256": "888389e670f7f063bc729672eedc1d1db71d954770bb47f3aeffde4e01e898f8"
+    },
+    {
+      "shard": "seed-20260815.jsonl",
+      "seed": 20260815,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 234.43197560310364,
+      "rater_calls_per_second": 2.5593778257271858,
+      "source_shard_sha256": "91efc223165dee2c7275a0b679c3c7f939fa77baeb4dc6d1810a3f3bdf2c3083",
+      "shard_sha256": "a64f93e905b8e6570a5962f88612d0f4b2f72ec8e0ebae4d91fa8cd266393121"
+    },
+    {
+      "shard": "seed-20260816.jsonl",
+      "seed": 20260816,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.57492995262146,
+      "rater_calls_per_second": 2.5798137405533255,
+      "source_shard_sha256": "ced1035ac70316b9669b0450311d691dbd93a42732c6ada0da62cd7863dd196a",
+      "shard_sha256": "9fce5c0778014a4c7d61eab01424e188bc39dfbd022a92a20c132e9eb3ea947e"
+    },
+    {
+      "shard": "seed-20260817.jsonl",
+      "seed": 20260817,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 231.6737024784088,
+      "rater_calls_per_second": 2.5898494027647265,
+      "source_shard_sha256": "fbe8e997fa707bebac935f01dca87824a6cbc1a77a430bebe7d518be6b244a61",
+      "shard_sha256": "091e7e37a013d3b9cd9454c6a9d7909ed597385188560ace96688fa0c3cae51a"
+    },
+    {
+      "shard": "seed-20260818.jsonl",
+      "seed": 20260818,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 234.49071073532104,
+      "rater_calls_per_second": 2.558736753871857,
+      "source_shard_sha256": "898784d18a8719f7be5bcfd7d325af702b5b5f189f57eaa0eb443da68ce2e5a0",
+      "shard_sha256": "f2507dbbd23ae4fec2af772d906a32b0a64c9ec052e40181f9dbf41dd35ac258"
+    },
+    {
+      "shard": "seed-20260819.jsonl",
+      "seed": 20260819,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 230.57075262069702,
+      "rater_calls_per_second": 2.602238112077626,
+      "source_shard_sha256": "b07d200c6f762228613206a21ae979e0eb467f6de27bc57da9c4f1ab1d64e5fc",
+      "shard_sha256": "1835410ae7b176c18b31a3350a3f5a2e8d710f07af10a2164fb4585caeb47f11"
+    },
+    {
+      "shard": "seed-20260820.jsonl",
+      "seed": 20260820,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.2774407863617,
+      "rater_calls_per_second": 2.583117835157539,
+      "source_shard_sha256": "438560e56f71f2060ca045e3afd5bcccfc59b86b2f57838fdba4f190513a80c7",
+      "shard_sha256": "7218cb8efc03360ec739075bcea4f2ab161996c909eb52cdc62de45016d8531e"
+    },
+    {
+      "shard": "seed-20260821.jsonl",
+      "seed": 20260821,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 234.65655326843262,
+      "rater_calls_per_second": 2.5569283774216056,
+      "source_shard_sha256": "38a6429b03abd9054f3333abe728f5d31caa5300dab99d12a3f4e5368ecb26f0",
+      "shard_sha256": "1b8a9ca8704a71a75730ec9562e9fa45fe87d40fe25f7491dc23b15dc0a8776d"
+    },
+    {
+      "shard": "seed-20260822.jsonl",
+      "seed": 20260822,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.89752411842346,
+      "rater_calls_per_second": 2.576240354083424,
+      "source_shard_sha256": "2a890dcee196094ea9e4d8049f2b2724ecef1c062eddaef3c7ae9082848959b6",
+      "shard_sha256": "ad65fe0085b00adf4db7e0de36757ea52fd4fc41c1aa95fea2dde93cecfca27e"
+    },
+    {
+      "shard": "seed-20260823.jsonl",
+      "seed": 20260823,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 235.30332350730896,
+      "rater_calls_per_second": 2.54990023539282,
+      "source_shard_sha256": "bfc0f6b0175c97fd0259e86987464bc1a829a550526e0f8820bb2584bbf76e07",
+      "shard_sha256": "43190b0b872f5b60229e509a53a4f683ea42256d9f112111e2b819fac4debf1d"
+    },
+    {
+      "shard": "seed-20260824.jsonl",
+      "seed": 20260824,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.6831123828888,
+      "rater_calls_per_second": 2.578614295878411,
+      "source_shard_sha256": "f33974cb643e3d3c00328e8d4c562aab7364eb34d25a4194b9aec4a43b64d31b",
+      "shard_sha256": "705188897d887fb7712d5b6ba027496af93e8f13dbdd7bf1a92c51376b366025"
+    },
+    {
+      "shard": "seed-20260825.jsonl",
+      "seed": 20260825,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 236.27946877479553,
+      "rater_calls_per_second": 2.539365790482103,
+      "source_shard_sha256": "582d73cb211e2eac2bdf3099cbeb3d4fea89d0281fe65e537f96e91e75b6dd19",
+      "shard_sha256": "2f2f35f4c471e299f42d5bb8c181da37d0e980448295285a6c44d2acc4fb38dd"
+    },
+    {
+      "shard": "seed-20260826.jsonl",
+      "seed": 20260826,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.4975459575653,
+      "rater_calls_per_second": 2.580672400342282,
+      "source_shard_sha256": "cf511dab2e3decf2616223ef87d0f4c9ff11daaaa4994ef7571ad5959099e9b8",
+      "shard_sha256": "bde2214dfc1c3be7fc76aed9ba9e71c4b210072c3edfcf25a102730ea92411df"
+    },
+    {
+      "shard": "seed-20260827.jsonl",
+      "seed": 20260827,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 233.36888337135315,
+      "rater_calls_per_second": 2.5710368551802056,
+      "source_shard_sha256": "849eafa1658dabda444b4f19d5f37e496330a50fff22c72431c599e016f90577",
+      "shard_sha256": "1e835d9447a94035b5a19f88af708752bc81d8d554ffc58a40620350f8d84f89"
+    },
+    {
+      "shard": "seed-20260828.jsonl",
+      "seed": 20260828,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 231.647394657135,
+      "rater_calls_per_second": 2.5901435277874354,
+      "source_shard_sha256": "27f2cce38214d864af6611d7872b8a6a7761547f918f769c0a261a8ca43b7aff",
+      "shard_sha256": "b38d686a0686da2f7ff57d4385f885eeafb0b677c88b856be6fba45e64ebad3f"
+    },
+    {
+      "shard": "seed-20260830.jsonl",
+      "seed": 20260830,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 235.31248450279236,
+      "rater_calls_per_second": 2.5498009647375084,
+      "source_shard_sha256": "704cd8ffe2065284f024486e08aa392c573f54f153da430ed2878a703974f5ac",
+      "shard_sha256": "3ab6593779c676ab778ac597ce8303771789f26474db004b122507b6c32e9a02"
+    },
+    {
+      "shard": "seed-20260831.jsonl",
+      "seed": 20260831,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 233.3063690662384,
+      "rater_calls_per_second": 2.571725763001579,
+      "source_shard_sha256": "7ad4260e012be45bbac179f8e59b45d104b40392fa76a4d4956fbe6432c511b3",
+      "shard_sha256": "6ab17ce5aee77ea57932c9e67e50be8617eca538bab763dd2a08ca65b3cfe725"
+    },
+    {
+      "shard": "seed-20260832.jsonl",
+      "seed": 20260832,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 232.66920733451843,
+      "rater_calls_per_second": 2.578768402031621,
+      "source_shard_sha256": "704c9db249a2285d4fb67142e7aeef0348fc5dabe433afce90327b254e2badee",
+      "shard_sha256": "fd5e927c9300d629c4e4d107977b2af3e524dbd22bd46742ad4cb1b78355500e"
+    },
+    {
+      "shard": "seed-20260833.jsonl",
+      "seed": 20260833,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 233.53241610527039,
+      "rater_calls_per_second": 2.5692364683519373,
+      "source_shard_sha256": "ec27de4fb42a68d9592ff9ff77658ddc5cd15c6cb2ca1fa09c49e58207f6a859",
+      "shard_sha256": "1801f112d7448a8ae4697f51fc6559b6142afadde0d68131c3ca5cc850c9da62"
+    },
+    {
+      "shard": "seed-20260834.jsonl",
+      "seed": 20260834,
+      "rows": 100,
+      "rater_calls": 600,
+      "scoring_elapsed_seconds": 231.56822419166565,
+      "rater_calls_per_second": 2.5910290675433463,
+      "source_shard_sha256": "18fa0d0e94a27d4b39e49d8bec13b3c641b871372164db30f892b5dc27d9a5ac",
+      "shard_sha256": "42ffc1d848f2810a09aab14025bc48d31253b1152f34388dda8081231c0dc1c3"
+    }
+  ],
+  "seeds_summarised": [
+    20260811,
+    20260812,
+    20260813,
+    20260814,
+    20260815,
+    20260816,
+    20260817,
+    20260818,
+    20260819,
+    20260820,
+    20260821,
+    20260822,
+    20260823,
+    20260824,
+    20260825,
+    20260826,
+    20260827,
+    20260828,
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834
+  ],
+  "seed_count": 23,
+  "rows_total": 2300,
+  "rows_per_shard_consistent": true,
+  "rows_per_shard_observed": [
+    100
+  ],
+  "source_phase_counts": {
+    "b0-competence": 2300
+  },
+  "distinct_checkpoints": [
+    "gemma-3-12b-it"
+  ],
+  "distinct_settings": [
+    "NEUTRAL"
+  ],
+  "distinct_scenarios": 50,
+  "by_trait": {
+    "extraversion": {
+      "n": 1150,
+      "mean": 4.083768,
+      "sd": 0.422092,
+      "min": 2.6666666666666665,
+      "max": 5.333333333333333
+    },
+    "agreeableness": {
+      "n": 1150,
+      "mean": 4.116087,
+      "sd": 0.4155,
+      "min": 3.0,
+      "max": 6.5
+    }
+  },
+  "by_cell": {
+    "NEUTRAL|gemma-3-12b-it|agreeableness": {
+      "n": 1150,
+      "mean": 4.116087,
+      "sd": 0.4155,
+      "min": 3.0,
+      "max": 6.5
+    },
+    "NEUTRAL|gemma-3-12b-it|extraversion": {
+      "n": 1150,
+      "mean": 4.083768,
+      "sd": 0.422092,
+      "min": 2.6666666666666665,
+      "max": 5.333333333333333
+    }
+  },
+  "by_item": {
+    "agreeableness|A1": {
+      "n": 1150,
+      "mean": 3.912174,
+      "sd": 0.768239,
+      "min": 1.0,
+      "max": 7.0
+    },
+    "agreeableness|A2": {
+      "n": 1150,
+      "mean": 4.088696,
+      "sd": 0.538309,
+      "min": 1.0,
+      "max": 7.0
+    },
+    "agreeableness|A3": {
+      "n": 1150,
+      "mean": 4.468696,
+      "sd": 1.085698,
+      "min": 4.0,
+      "max": 7.0
+    },
+    "agreeableness|A4": {
+      "n": 1150,
+      "mean": 4.078261,
+      "sd": 0.474737,
+      "min": 4.0,
+      "max": 7.0
+    },
+    "agreeableness|A5": {
+      "n": 1150,
+      "mean": 4.14087,
+      "sd": 0.634913,
+      "min": 4.0,
+      "max": 7.0
+    },
+    "agreeableness|A6": {
+      "n": 1150,
+      "mean": 4.007826,
+      "sd": 0.153093,
+      "min": 4.0,
+      "max": 7.0
+    },
+    "extraversion|E1": {
+      "n": 1150,
+      "mean": 2.269565,
+      "sd": 1.473418,
+      "min": 1.0,
+      "max": 4.0
+    },
+    "extraversion|E2": {
+      "n": 1150,
+      "mean": 4.086957,
+      "sd": 0.350685,
+      "min": 3.0,
+      "max": 7.0
+    },
+    "extraversion|E3": {
+      "n": 1150,
+      "mean": 5.549565,
+      "sd": 1.496347,
+      "min": 4.0,
+      "max": 7.0
+    },
+    "extraversion|E4": {
+      "n": 1150,
+      "mean": 4.604348,
+      "sd": 1.101853,
+      "min": 3.0,
+      "max": 7.0
+    },
+    "extraversion|E5": {
+      "n": 1150,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "extraversion|E6": {
+      "n": 1150,
+      "mean": 3.992174,
+      "sd": 0.197745,
+      "min": 1.0,
+      "max": 7.0
+    }
+  },
+  "parse_failure_note": "run_rater_scoring.parse_item_score raises unless the rater returns exactly one integer 1..7, so a completed shard cannot contain an unparseable item and the rule K(b) midpoint-4 imputation did not fire in the shards summarised here.",
+  "project": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "shard_dir": "<LOCAL_PATH>/gemma-3-12b-it"
+}

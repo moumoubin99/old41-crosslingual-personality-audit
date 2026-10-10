@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_transformers_generation",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--phase",
+    "b1-neutral",
+    "--model-path",
+    "<LOCAL_PATH>/Qwen__Qwen3-8B",
+    "--model-id",
+    "Qwen3-8B",
+    "--seed",
+    "20260911"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_transformers_generation.py",
+    "experiments/xlpt/__init__.py",
+    "experiments/xlpt/inference_contract.py",
+    "experiments/xlpt/qwen3_captured.py",
+    "experiments/xlpt/test_inference_contract.py",
+    "experiments/xlpt/test_generation_entrypoint.py",
+    "process/consumption/deployment/qwen3-runtime-manifest.json",
+    "process/consumption/frozen/english_execution_v1.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "process/consumption/frozen/english_b0_competence_scenarios_v1.jsonl",
+    "process/consumption/frozen/english_b1_control_scenarios_v1.jsonl",
+    "refine-logs/RUBRIC_BEHAVIOR.md"
+  ],
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "formula_ids": [
+    "english_temperature",
+    "english_nucleus",
+    "english_sample",
+    "english_substream",
+    "english_embedding",
+    "english_rms_norm",
+    "english_rope",
+    "english_gqa",
+    "english_qwen_attention",
+    "english_attention_value",
+    "english_linear_projection",
+    "english_residual",
+    "english_gated_silu",
+    "english_causal_mask",
+    "english_cache_concat",
+    "english_lm_head",
+    "english_ar_recurrence",
+    "english_eos_stop",
+    "english_rate"
+  ],
+  "bindings": [
+    {
+      "formula_id": "english_temperature",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "temperature_probabilities"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_nucleus",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "nucleus_probabilities"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_sample",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "seeded_categorical"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_substream",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "substream_seed"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract",
+        "generation_entrypoint"
+      ]
+    },
+    {
+      "formula_id": "english_embedding",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "CapturedQwen3ForCausalLM.__call__"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_rms_norm",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "rms_norm"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_rope",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "rotary_cos_sin"
+        },
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "apply_rotary"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_gqa",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "repeat_key_value"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_qwen_attention",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "eager_grouped_attention"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_attention_value",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "eager_grouped_attention"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_linear_projection",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "qwen_decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_residual",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "qwen_decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_gated_silu",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "gated_silu_mlp"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_causal_mask",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "causal_attention_mask"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_cache_concat",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "qwen_decoder_layer"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_lm_head",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_captured.py",
+          "symbol": "CapturedQwen3ForCausalLM.__call__"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    },
+    {
+      "formula_id": "english_ar_recurrence",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "autoregressive_generate_ids"
+        },
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "advance_attention_mask"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract",
+        "generation_entrypoint"
+      ]
+    },
+    {
+      "formula_id": "english_eos_stop",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "should_stop"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract",
+        "generation_entrypoint"
+      ]
+    },
+    {
+      "formula_id": "english_rate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/inference_contract.py",
+          "symbol": "measured_rate"
+        }
+      ],
+      "test_ids": [
+        "english_inference_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "english_inference_contract",
+      "python_args": [
+        "experiments/xlpt/test_inference_contract.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_inference_contract.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "generation_entrypoint",
+      "python_args": [
+        "experiments/xlpt/test_generation_entrypoint.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_generation_entrypoint.py"
+      ],
+      "timeout_seconds": 120
+    }
+  ],
+  "no_formula_reason": "Same reviewed Qwen eager-Python generation path as B0, applied to the frozen English EVALUATION surface and neutral arm only. The unit is queued but not released before the pre-B1 dependency. It contains no BFI-2/TIPI text and computes no contrast."
+}

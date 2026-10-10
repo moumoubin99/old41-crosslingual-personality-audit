@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_surface_gpu_score.py",
+    "--project",
+    ".",
+    "--input-jsonl",
+    "data/xlpt-support/rendered_items_and_scenarios/rubric_items_en.jsonl",
+    "--output-json",
+    "process/logs/surface-gpu-timing-seed-{seed}.json",
+    "--seed",
+    "17091701",
+    "--duration-seconds",
+    "180"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_surface_gpu_score.py",
+    "experiments/xlpt/test_surface_gpu_score.py",
+    "experiments/xlpt/math_impl.py",
+    "experiments/xlpt/test_math_contract.py",
+    "data/xlpt-support/rendered_items_and_scenarios/rubric_items_en.jsonl"
+  ],
+  "spec": "process/consumption/deployment/SURFACE_TIMING_MATH_SPEC.json",
+  "formula_ids": [
+    "eq1",
+    "eq2",
+    "eq3",
+    "eq4",
+    "eq5",
+    "eq6",
+    "eq7",
+    "surface_features",
+    "surface_standardize",
+    "surface_parameter",
+    "surface_score",
+    "surface_rate"
+  ],
+  "bindings": [
+    {
+      "formula_id": "eq1",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "translation_ensemble_persona_effect"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq2",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "directed_retention_matrix"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq3",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "normalized_shortfall"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq4",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "transfer_asymmetry_index"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq5",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "target_resource_shortfall_gradient"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq6",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "paired_difference_in_differences"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "eq7",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/math_impl.py",
+          "symbol": "three_way_factorial_decomposition"
+        }
+      ],
+      "test_ids": [
+        "eq1_eq7_contract"
+      ]
+    },
+    {
+      "formula_id": "surface_features",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/run_surface_gpu_score.py",
+          "symbol": "surface_features"
+        }
+      ],
+      "test_ids": [
+        "surface_score_contract"
+      ]
+    },
+    {
+      "formula_id": "surface_standardize",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/run_surface_gpu_score.py",
+          "symbol": "standardize_features"
+        }
+      ],
+      "test_ids": [
+        "surface_score_contract"
+      ]
+    },
+    {
+      "formula_id": "surface_parameter",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/run_surface_gpu_score.py",
+          "symbol": "seeded_linear_parameters"
+        }
+      ],
+      "test_ids": [
+        "surface_score_contract"
+      ]
+    },
+    {
+      "formula_id": "surface_score",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/run_surface_gpu_score.py",
+          "symbol": "linear_surface_score"
+        }
+      ],
+      "test_ids": [
+        "surface_score_contract"
+      ]
+    },
+    {
+      "formula_id": "surface_rate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/run_surface_gpu_score.py",
+          "symbol": "measured_throughput"
+        }
+      ],
+      "test_ids": [
+        "surface_score_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "eq1_eq7_contract",
+      "python_args": [
+        "experiments/xlpt/test_math_contract.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_math_contract.py"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": "surface_score_contract",
+      "python_args": [
+        "experiments/xlpt/test_surface_gpu_score.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_surface_gpu_score.py"
+      ],
+      "timeout_seconds": 60
+    }
+  ],
+  "no_formula_reason": "The command executes the reviewed eq1-eq7 deployment preflight, then the complete selected count-feature, scaling, seeded-parameter, bounded-linear-score and throughput formulas. It is a timing-only GPU scoring model and emits no scientific rater output."
+}

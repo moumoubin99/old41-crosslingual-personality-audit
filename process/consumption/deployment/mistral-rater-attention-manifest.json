@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/41-2026-09-05-aris-3",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "--unit",
+    "attention",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/rater-reference-{unit}-v2-seed-{seed}.json",
+    "--seed",
+    "17091812"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_rater_reference_probe.py",
+    "experiments/xlpt/mistral_awq_reference.py",
+    "experiments/xlpt/test_mistral_awq_quant.py",
+    "experiments/xlpt/test_mistral_awq_attention.py",
+    "experiments/xlpt/test_mistral_awq_decode.py",
+    "experiments/xlpt/test_rater_reference_probe.py",
+    "process/consumption/deployment/mistral-rater-config/config.json"
+  ],
+  "spec": "process/consumption/deployment/RATER_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "rater_rope_inv_freq",
+    "rater_rope_angle",
+    "rater_rope_cos",
+    "rater_rope_sin",
+    "rater_rotate_half",
+    "rater_rope",
+    "rater_qkv_split_query",
+    "rater_qkv_split_key",
+    "rater_gqa",
+    "rater_causal_mask",
+    "rater_attention_score",
+    "rater_attention",
+    "rater_attention_value",
+    "rater_cache_append",
+    "rater_cache_recurrence",
+    "rater_positions"
+  ],
+  "bindings": [
+    {
+      "formula_id": "rater_rope_inv_freq",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_inverse_frequencies"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_angle",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_angle_pairs"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_cos",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_trig_tables"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rope_sin",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rope_trig_tables"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rotate_half",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "rotate_half"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_rope",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "apply_rope"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_split_query",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "split_qkv"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_qkv_split_key",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "split_qkv"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_gqa",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "repeat_kv_head"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_causal_mask",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "causal_mask"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_attention_score",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_attention",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_attention_value",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "scaled_causal_attention"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_append",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "cache_append"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_cache_recurrence",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "cache_next_length"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    },
+    {
+      "formula_id": "rater_positions",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/mistral_awq_reference.py",
+          "symbol": "next_positions"
+        }
+      ],
+      "test_ids": [
+        "attention_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "attention_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_mistral_awq_attention"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_mistral_awq_attention.py"
+      ],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "-m",
+        "experiments.xlpt.test_rater_reference_probe"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_rater_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "The launched command executes exactly the sixteen rotary, split, grouped-query, masking, attention and cache formulas selected above, through the dispatch point the launch argv names. The six defective rater_* entries named by the english-b0-rater-v2 review are corrected in the spec this manifest points at -- the QK scaling and the causal mask now appear inside the attention expression, rotate-half and the rotary tables are defined rather than asserted, and grouped-query repetition carries its output head count. Expected values in the contract test come from independent scalar oracles and from structural invariants (rows of the softmax summing to one, a masked position contributing nothing, the cached and uncached forwards agreeing), never from the implementation under test. No rater weight is loaded, no GPU is used, no rubric score or scientific estimate is produced; the receipt carries eligible_for_analysis false. This unit does NOT settle the open first requirement of the handoff: it verifies the captured reference, it does not assert that the deployed vLLM rater is routed through it."
+}

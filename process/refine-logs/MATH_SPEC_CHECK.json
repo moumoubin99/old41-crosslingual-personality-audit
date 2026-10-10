@@ -1,0 +1,109 @@
+{
+  "overall_status": "incomplete",
+  "drift": true,
+  "n_formulas": 7,
+  "source_design_sha256": "99bb771b8a07719f0a6655c427c76b01b71614b7ce20d17340edecd7d3405482",
+  "current_design_sha256": "5f8673504f7694e1e5f3f532fff0a60f3ad9128257570998d1f94544e50cfa12",
+  "global": {
+    "notation_consistent": true,
+    "all_symbols_defined": true,
+    "undefined_used": [],
+    "symbol_clashes": [],
+    "define_before_use": []
+  },
+  "hard_defects": [],
+  "unconfirmed": [
+    "eq1",
+    "eq2",
+    "eq3",
+    "eq4",
+    "eq5",
+    "eq6",
+    "eq7"
+  ],
+  "formulas": [
+    {
+      "id": "eq1",
+      "status": "needs-human",
+      "kind": "other",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    },
+    {
+      "id": "eq2",
+      "status": "needs-human",
+      "kind": "other",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    },
+    {
+      "id": "eq3",
+      "status": "needs-human",
+      "kind": "other",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    },
+    {
+      "id": "eq4",
+      "status": "needs-human",
+      "kind": "other",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    },
+    {
+      "id": "eq5",
+      "status": "needs-human",
+      "kind": "loss",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    },
+    {
+      "id": "eq6",
+      "status": "needs-human",
+      "kind": "other",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    },
+    {
+      "id": "eq7",
+      "status": "needs-human",
+      "kind": "other",
+      "shape": "pass",
+      "numeric": "pass",
+      "katex_renders": true,
+      "dimensional": "n/a",
+      "symbolic": "n/a",
+      "hard": []
+    }
+  ],
+  "findings": [
+    {
+      "level": "ERROR",
+      "msg": "版本漂移:MATH_SPEC 绑定 design 99bb771b8a07… ≠ 当前 5f8673504f76…;需重确认"
+    }
+  ]
+}

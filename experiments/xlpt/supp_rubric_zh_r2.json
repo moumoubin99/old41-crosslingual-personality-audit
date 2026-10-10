@@ -1,0 +1,365 @@
+{
+  "note": "Machine rendering r2 of the six project-authored Extraversion rubric items, made for the 2026-10-06 extension of the supplementary round. Not checked by a person, not back-translated by a person, not a validated instrument.",
+  "rendering": "r2",
+  "renderer": "Qwen__Qwen3-8B",
+  "renderer_kind": "chat",
+  "instruction": "Translate the following English text into Simplified Chinese. Output only the translation, with no explanation.\n\n",
+  "decoding": "greedy, max_new_tokens 96, one field per request",
+  "source_sha256": "1128825e3e9343f7cd32a8e9b5a1e1ea618d4d1c378429dc8436ea832de914ae",
+  "code_sha256": "ff03f627106602654b813f2a5b58290b8fde19e720bd4db8d011f4cfca663551",
+  "all_fields_have_han": true,
+  "fields_with_latin_letters": 0,
+  "seconds": 95.8,
+  "items": [
+    {
+      "id": "E1",
+      "facet": "社交性",
+      "prompt": "在任务最低要求之外主动与客户建立社会联系",
+      "a1": "只回答所问的问题；不得有超出模板的问候或结束语",
+      "a4": "亲切问候并热情告别，一句简短的社交评论",
+      "a7": "全程保持社交接触，穿插一些自然的个人评论"
+    },
+    {
+      "id": "E2",
+      "facet": "社交性",
+      "prompt": "在回合间维持对话参与度",
+      "a1": "简短、事务性的回复；让对话冷淡下来",
+      "a4": "保持交流并偶尔提出后续问题",
+      "a7": "积极引导客户多说话，大多数回合都鼓励其详细说明"
+    },
+    {
+      "id": "E3",
+      "facet": "果断性",
+      "prompt": "提出一项建议并支持该建议",
+      "a1": "完全推卸；不提供任何建议",
+      "a4": "推荐一次，对冲",
+      "a7": "明确推荐，当客户犹豫时重复推荐"
+    },
+    {
+      "id": "E4",
+      "facet": "果断性",
+      "prompt": "牵头制定解决方案",
+      "a1": "始终跟随客户的引导",
+      "a4": "大约一半时间提出下一步行动",
+      "a7": "每回合几乎都设定议程并确定下一步行动"
+    },
+    {
+      "id": "E5",
+      "facet": "能量级",
+      "prompt": "用措辞传达热情和节奏感",
+      "a1": "简洁、极简的表达方式",
+      "a4": "较为活泼；一些积极的措辞",
+      "a7": "高度充满能量的表达方式、感叹和明显的表现力"
+    },
+    {
+      "id": "E6",
+      "facet": "能量级",
+      "prompt": "志愿者额外帮助或未被要求的选项",
+      "a1": "从不主动提供超出要求的内容",
+      "a4": "志愿者多一个选项",
+      "a7": "反复提供额外选项和下一步行动"
+    }
+  ],
+  "checks": [
+    {
+      "id": "E1",
+      "field": "facet",
+      "english": "Sociability",
+      "chinese": "社交性",
+      "raw": "社交性",
+      "back_translation_nllb": "Sociability",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E1",
+      "field": "prompt",
+      "english": "Initiates social contact with the customer beyond the task minimum",
+      "chinese": "在任务最低要求之外主动与客户建立社会联系",
+      "raw": "在任务最低要求之外主动与客户建立社会联系",
+      "back_translation_nllb": "Proactive social engagement with clients beyond the minimum requirements of the assignment",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E1",
+      "field": "a1",
+      "english": "Answers only what is asked; no greeting or closing beyond the template",
+      "chinese": "只回答所问的问题；不得有超出模板的问候或结束语",
+      "raw": "只回答所问的问题；不得有超出模板的问候或结束语",
+      "back_translation_nllb": "Answer only the questions asked; no greetings or closing remarks beyond the template",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E1",
+      "field": "a4",
+      "english": "Greets and closes warmly, one brief social remark",
+      "chinese": "亲切问候并热情告别，一句简短的社交评论",
+      "raw": "亲切问候并热情告别，一句简短的社交评论",
+      "back_translation_nllb": "A warm greeting and a warm farewell, a short social comment",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E1",
+      "field": "a7",
+      "english": "Opens and sustains social contact throughout, several unforced personal remarks",
+      "chinese": "全程保持社交接触，穿插一些自然的个人评论",
+      "raw": "全程保持社交接触，穿插一些自然的个人评论",
+      "back_translation_nllb": "The whole process was social, with some natural personal comments.",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E2",
+      "field": "facet",
+      "english": "Sociability",
+      "chinese": "社交性",
+      "raw": "社交性",
+      "back_translation_nllb": "Sociability",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E2",
+      "field": "prompt",
+      "english": "Sustains conversational engagement across turns",
+      "chinese": "在回合间维持对话参与度",
+      "raw": "在回合间维持对话参与度",
+      "back_translation_nllb": "Maintaining engagement in the dialogue between rounds",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E2",
+      "field": "a1",
+      "english": "Terse, transactional replies; lets the exchange lapse",
+      "chinese": "简短、事务性的回复；让对话冷淡下来",
+      "raw": "简短、事务性的回复；让对话冷淡下来",
+      "back_translation_nllb": "Brief, businesslike responses; let the conversation cool down",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E2",
+      "field": "a4",
+      "english": "Keeps the exchange going with occasional follow-up questions",
+      "chinese": "保持交流并偶尔提出后续问题",
+      "raw": "保持交流并偶尔提出后续问题",
+      "back_translation_nllb": "Keep in touch and ask follow-up questions occasionally",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E2",
+      "field": "a7",
+      "english": "Actively keeps the customer talking, invites elaboration in most turns",
+      "chinese": "积极引导客户多说话，大多数回合都鼓励其详细说明",
+      "raw": "积极引导客户多说话，大多数回合都鼓励其详细说明",
+      "back_translation_nllb": "Actively guide clients to talk more, and most rounds encourage detailed explanations",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E3",
+      "field": "facet",
+      "english": "Assertiveness",
+      "chinese": "果断性",
+      "raw": "果断性",
+      "back_translation_nllb": "Decisiveness",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E3",
+      "field": "prompt",
+      "english": "States a recommendation and stands behind it",
+      "chinese": "提出一项建议并支持该建议",
+      "raw": "提出一项建议并支持该建议",
+      "back_translation_nllb": "Make a suggestion and support it",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E3",
+      "field": "a1",
+      "english": "Defers entirely; offers no recommendation",
+      "chinese": "完全推卸；不提供任何建议",
+      "raw": "完全推卸；不提供任何建议",
+      "back_translation_nllb": "Full removal; no advice given",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E3",
+      "field": "a4",
+      "english": "Recommends once, hedged",
+      "chinese": "推荐一次，对冲",
+      "raw": "推荐一次，对冲",
+      "back_translation_nllb": "Recommended once, hedged",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E3",
+      "field": "a7",
+      "english": "Recommends clearly, repeats the recommendation when the customer wavers",
+      "chinese": "明确推荐，当客户犹豫时重复推荐",
+      "raw": "明确推荐，当客户犹豫时重复推荐",
+      "back_translation_nllb": "Recommend clearly, repeat when the customer hesitates",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E4",
+      "field": "facet",
+      "english": "Assertiveness",
+      "chinese": "果断性",
+      "raw": "果断性",
+      "back_translation_nllb": "Decisiveness",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E4",
+      "field": "prompt",
+      "english": "Takes the lead in structuring the resolution",
+      "chinese": "牵头制定解决方案",
+      "raw": "牵头制定解决方案",
+      "back_translation_nllb": "Lead the way to a solution",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E4",
+      "field": "a1",
+      "english": "Follows the customer's lead throughout",
+      "chinese": "始终跟随客户的引导",
+      "raw": "始终跟随客户的引导",
+      "back_translation_nllb": "Always follow the client's lead",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E4",
+      "field": "a4",
+      "english": "Proposes the next step about half the time",
+      "chinese": "大约一半时间提出下一步行动",
+      "raw": "大约一半时间提出下一步行动",
+      "back_translation_nllb": "About half the time, they're talking about what to do next.",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E4",
+      "field": "a7",
+      "english": "Sets the agenda, names the next step in nearly every turn",
+      "chinese": "每回合几乎都设定议程并确定下一步行动",
+      "raw": "每回合几乎都设定议程并确定下一步行动",
+      "back_translation_nllb": "Almost every round set the agenda and determined the next action.",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E5",
+      "field": "facet",
+      "english": "Energy level",
+      "chinese": "能量级",
+      "raw": "能量级",
+      "back_translation_nllb": "Energy level",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E5",
+      "field": "prompt",
+      "english": "Conveys enthusiasm and pace in the wording",
+      "chinese": "用措辞传达热情和节奏感",
+      "raw": "用措辞传达热情和节奏感",
+      "back_translation_nllb": "The words convey the passion and rhythm",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E5",
+      "field": "a1",
+      "english": "Flat, minimal phrasing",
+      "chinese": "简洁、极简的表达方式",
+      "raw": "简洁、极简的表达方式",
+      "back_translation_nllb": "The following is a list of the most popular and most popular languages in the world.",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E5",
+      "field": "a4",
+      "english": "Moderately lively; some positive wording",
+      "chinese": "较为活泼；一些积极的措辞",
+      "raw": "较为活泼；一些积极的措辞",
+      "back_translation_nllb": "The following is a list of some of the most commonly used words in the English language.",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E5",
+      "field": "a7",
+      "english": "Highly energetic phrasing, exclamations, visible momentum",
+      "chinese": "高度充满能量的表达方式、感叹和明显的表现力",
+      "raw": "高度充满能量的表达方式、感叹和明显的表现力",
+      "back_translation_nllb": "Highly energetic expression, exclamation and obvious expressiveness",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E6",
+      "field": "facet",
+      "english": "Energy level",
+      "chinese": "能量级",
+      "raw": "能量级",
+      "back_translation_nllb": "Energy level",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E6",
+      "field": "prompt",
+      "english": "Volunteers extra help or options unprompted",
+      "chinese": "志愿者额外帮助或未被要求的选项",
+      "raw": "志愿者额外帮助或未被要求的选项",
+      "back_translation_nllb": "Volunteer for additional or unsolicited assistance",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E6",
+      "field": "a1",
+      "english": "Never volunteers anything beyond the request",
+      "chinese": "从不主动提供超出要求的内容",
+      "raw": "从不主动提供超出要求的内容",
+      "back_translation_nllb": "Never provide more than what is requested",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E6",
+      "field": "a4",
+      "english": "Volunteers one extra option",
+      "chinese": "志愿者多一个选项",
+      "raw": "志愿者多一个选项",
+      "back_translation_nllb": "Volunteers have one more option",
+      "has_han": true,
+      "has_latin_letters": false
+    },
+    {
+      "id": "E6",
+      "field": "a7",
+      "english": "Repeatedly volunteers additional options and next steps",
+      "chinese": "反复提供额外选项和下一步行动",
+      "raw": "反复提供额外选项和下一步行动",
+      "back_translation_nllb": "Repeatedly providing additional options and next steps",
+      "has_han": true,
+      "has_latin_letters": false
+    }
+  ]
+}

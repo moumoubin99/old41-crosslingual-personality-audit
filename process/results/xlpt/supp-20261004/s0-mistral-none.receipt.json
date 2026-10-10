@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s0-mistral-none.jsonl",
+  "sha256": "6c28367aa1f2e6999a86a48003be46a62976cbe17c680adf6799d7034cb1448b",
+  "records": 1400,
+  "calls": 16800,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 4722.908843278885,
+  "calls_per_second": 3.557129844652386,
+  "args": {
+    "project": ".",
+    "rater": "mistral",
+    "task": "transcripts",
+    "tag": "s0-mistral-none",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion,agreeableness",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.7,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

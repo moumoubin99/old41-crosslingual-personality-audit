@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s3-mistral-zh.jsonl",
+  "sha256": "20a5b729a9eb317efa63714f1fff59f639230205834ab52885e3a6f9fd267f59",
+  "records": 4200,
+  "calls": 25200,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 7963.211178302765,
+  "calls_per_second": 3.1645525198003086,
+  "args": {
+    "project": ".",
+    "rater": "mistral",
+    "task": "transcripts",
+    "tag": "s3-mistral-zh",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion",
+    "instrument": "zh",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

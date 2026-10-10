@@ -1,0 +1,726 @@
+{
+  "version": 1,
+  "source_design_sha256": "8dfe18427ae7917c62afc7aba8088e7d5a9794e2ebf0f4972425ea34292d6671",
+  "scope": "Apparatus verification only; no formula below is a scientific estimator or enters B0/B1/B2/B3 analysis.",
+  "symbol_table": [
+    {
+      "name": "norm_hidden",
+      "latex": "X",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Hidden states entering RMS normalization.",
+      "defined_at": "qwen_rms_norm"
+    },
+    {
+      "name": "norm_weight",
+      "latex": "w",
+      "shape": [
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Learned RMSNorm gain.",
+      "defined_at": "qwen_rms_norm"
+    },
+    {
+      "name": "norm_epsilon",
+      "latex": "\\epsilon",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Positive numerical floor read from rms_norm_eps.",
+      "defined_at": "qwen_rms_norm"
+    },
+    {
+      "name": "positions",
+      "latex": "p",
+      "shape": [
+        "tokens"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Absolute token positions.",
+      "defined_at": "qwen_rope_tables"
+    },
+    {
+      "name": "inverse_frequency",
+      "latex": "\\omega",
+      "shape": [
+        "rotary"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "RoPE inverse-frequency vector for one half of a head.",
+      "defined_at": "qwen_rope_tables"
+    },
+    {
+      "name": "rope_value",
+      "latex": "U",
+      "shape": [
+        "heads",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Query or key heads before rotary application.",
+      "defined_at": "qwen_rope_apply"
+    },
+    {
+      "name": "rope_cos",
+      "latex": "C",
+      "shape": [
+        "heads",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Broadcast cosine table.",
+      "defined_at": "qwen_rope_apply"
+    },
+    {
+      "name": "rope_rotated",
+      "latex": "R(U)",
+      "shape": [
+        "heads",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Half-rotated query or key heads.",
+      "defined_at": "qwen_rope_apply"
+    },
+    {
+      "name": "rope_sin",
+      "latex": "S",
+      "shape": [
+        "heads",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Broadcast sine table.",
+      "defined_at": "qwen_rope_apply"
+    },
+    {
+      "name": "projection_input",
+      "latex": "X_p",
+      "shape": [
+        "tokens",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Rows entering a bias-free projection.",
+      "defined_at": "qwen_linear"
+    },
+    {
+      "name": "projection_weight",
+      "latex": "W_p",
+      "shape": [
+        "out",
+        "input_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Bias-free projection weight stored output-major.",
+      "defined_at": "qwen_linear"
+    },
+    {
+      "name": "ffn_hidden",
+      "latex": "X_f",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Hidden states entering SwiGLU.",
+      "defined_at": "qwen_swiglu"
+    },
+    {
+      "name": "gate_weight",
+      "latex": "W_g",
+      "shape": [
+        "inter",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "SwiGLU gate projection.",
+      "defined_at": "qwen_swiglu"
+    },
+    {
+      "name": "up_weight",
+      "latex": "W_u",
+      "shape": [
+        "inter",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "SwiGLU up projection.",
+      "defined_at": "qwen_swiglu"
+    },
+    {
+      "name": "down_weight",
+      "latex": "W_d",
+      "shape": [
+        "hidden",
+        "inter"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "SwiGLU down projection.",
+      "defined_at": "qwen_swiglu"
+    },
+    {
+      "name": "kv_input",
+      "latex": "K",
+      "shape": [
+        "kv_heads",
+        "kv",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Unrepeated key or value heads.",
+      "defined_at": "qwen_repeat_kv"
+    },
+    {
+      "name": "repeat_slots",
+      "latex": "g",
+      "shape": [
+        "groups"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "One slot per contiguous repetition group.",
+      "defined_at": "qwen_repeat_kv"
+    },
+    {
+      "name": "query_position",
+      "latex": "i",
+      "shape": [
+        "tokens"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Query positions within the current block.",
+      "defined_at": "qwen_causal_mask"
+    },
+    {
+      "name": "key_position",
+      "latex": "j",
+      "shape": [
+        "kv"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Key positions covering the cached prefix.",
+      "defined_at": "qwen_causal_mask"
+    },
+    {
+      "name": "query",
+      "latex": "Q",
+      "shape": [
+        "heads",
+        "tokens",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Normalized and rotated query heads.",
+      "defined_at": "qwen_attention"
+    },
+    {
+      "name": "key",
+      "latex": "K",
+      "shape": [
+        "heads",
+        "kv",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Repeated normalized and rotated key heads.",
+      "defined_at": "qwen_attention"
+    },
+    {
+      "name": "value",
+      "latex": "V",
+      "shape": [
+        "heads",
+        "kv",
+        "head_dim"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Repeated value heads.",
+      "defined_at": "qwen_attention"
+    },
+    {
+      "name": "attention_mask",
+      "latex": "M",
+      "shape": [
+        "tokens",
+        "kv"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Additive right-aligned causal mask.",
+      "defined_at": "qwen_attention"
+    },
+    {
+      "name": "decoder_hidden",
+      "latex": "H",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Decoder-layer input.",
+      "defined_at": "qwen_decoder_layer"
+    },
+    {
+      "name": "attention_delta",
+      "latex": "A",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Attention branch update after output projection.",
+      "defined_at": "qwen_decoder_layer"
+    },
+    {
+      "name": "ffn_delta",
+      "latex": "F",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Feed-forward branch update.",
+      "defined_at": "qwen_decoder_layer"
+    },
+    {
+      "name": "final_hidden",
+      "latex": "H_L",
+      "shape": [
+        "tokens",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Final normalized decoder states.",
+      "defined_at": "qwen_model_logits"
+    },
+    {
+      "name": "lm_head",
+      "latex": "W_{lm}",
+      "shape": [
+        "vocab",
+        "hidden"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Vocabulary projection.",
+      "defined_at": "qwen_model_logits"
+    },
+    {
+      "name": "logits",
+      "latex": "z",
+      "shape": [
+        "tokens",
+        "vocab"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Per-position vocabulary logits.",
+      "defined_at": "qwen_greedy"
+    },
+    {
+      "name": "temperature",
+      "latex": "T",
+      "shape": [],
+      "dtype": "float",
+      "role": "input",
+      "description": "Strictly positive sampling temperature; registered value 0.7.",
+      "defined_at": "qwen_temperature_softmax"
+    },
+    {
+      "name": "nucleus_logits",
+      "latex": "z_n",
+      "shape": [
+        "batch",
+        "vocab"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Logits entering nucleus truncation.",
+      "defined_at": "qwen_nucleus"
+    },
+    {
+      "name": "nucleus_mask",
+      "latex": "m_P",
+      "shape": [
+        "batch",
+        "vocab"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Implementation-computed keep mask from descending cumulative mass at top_p=0.95.",
+      "defined_at": "qwen_nucleus"
+    },
+    {
+      "name": "sequence_length",
+      "latex": "L_t",
+      "shape": [
+        "steps"
+      ],
+      "dtype": "float",
+      "role": "input",
+      "description": "Prefix length before each autoregressive step.",
+      "defined_at": "qwen_generate"
+    }
+  ],
+  "formulas": [
+    {
+      "id": "qwen_rms_norm",
+      "name": "Root-mean-square normalization",
+      "kind": "forward",
+      "latex": "\\operatorname{RMSNorm}(X)=w\\odot X/\\sqrt{\\operatorname{mean}(X^2,-1)+\\epsilon}",
+      "explanation": "Normalize each token over its hidden axis without mean subtraction, then apply the learned gain.",
+      "expr": "norm_weight * norm_hidden / np.sqrt(np.mean(norm_hidden ** 2, axis=-1, keepdims=True) + norm_epsilon)",
+      "reference_expr": "norm_weight * norm_hidden / np.sqrt(np.sum(norm_hidden ** 2, axis=-1, keepdims=True) / norm_hidden.shape[-1] + norm_epsilon)",
+      "inputs": [
+        "norm_hidden",
+        "norm_weight",
+        "norm_epsilon"
+      ],
+      "output": {
+        "name": "normalized_hidden",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_rope_tables",
+      "name": "Rotary half-table",
+      "kind": "forward",
+      "latex": "\\phi_{p,r}=p\\omega_r,\\quad C_{p,r}=\\cos(\\phi_{p,r})",
+      "explanation": "Compute one half of the rotary table from absolute positions and checkpoint-derived inverse frequencies; the implementation duplicates this half to full head width.",
+      "expr": "np.cos(positions[:, None] * inverse_frequency[None, :])",
+      "reference_expr": "np.cos(np.einsum('t,r->tr', positions, inverse_frequency))",
+      "inputs": [
+        "positions",
+        "inverse_frequency"
+      ],
+      "output": {
+        "name": "rope_cos_half",
+        "shape": [
+          "tokens",
+          "rotary"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_rope_apply",
+      "name": "Rotary embedding application",
+      "kind": "forward",
+      "latex": "\\operatorname{RoPE}(U)=U\\odot C+R(U)\\odot S",
+      "explanation": "Apply the norm-preserving half rotation with broadcast cosine and sine tables.",
+      "expr": "rope_value * rope_cos + rope_rotated * rope_sin",
+      "reference_expr": "rope_cos * rope_value + rope_sin * rope_rotated",
+      "inputs": [
+        "rope_value",
+        "rope_cos",
+        "rope_rotated",
+        "rope_sin"
+      ],
+      "output": {
+        "name": "rope_output",
+        "shape": [
+          "heads",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_linear",
+      "name": "Bias-free projection",
+      "kind": "forward",
+      "latex": "Y=XW^{\\top}",
+      "explanation": "Contract the input-feature axis against output-major checkpoint weights with no bias.",
+      "expr": "np.matmul(projection_input, projection_weight.T)",
+      "reference_expr": "np.einsum('ti,oi->to', projection_input, projection_weight)",
+      "inputs": [
+        "projection_input",
+        "projection_weight"
+      ],
+      "output": {
+        "name": "projected",
+        "shape": [
+          "tokens",
+          "out"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_swiglu",
+      "name": "SwiGLU feed-forward block",
+      "kind": "forward",
+      "latex": "\\operatorname{FFN}(X)=W_d(\\operatorname{SiLU}(W_gX)\\odot W_uX)",
+      "explanation": "Multiply the SiLU gate and up branches elementwise, then project back to hidden width.",
+      "expr": "np.matmul((np.matmul(ffn_hidden, gate_weight.T) / (1.0 + np.exp(-np.matmul(ffn_hidden, gate_weight.T)))) * np.matmul(ffn_hidden, up_weight.T), down_weight.T)",
+      "reference_expr": "np.matmul(np.matmul(ffn_hidden, gate_weight.T) * (1.0 / (1.0 + np.exp(-np.matmul(ffn_hidden, gate_weight.T)))) * np.matmul(ffn_hidden, up_weight.T), down_weight.T)",
+      "inputs": [
+        "ffn_hidden",
+        "gate_weight",
+        "up_weight",
+        "down_weight"
+      ],
+      "output": {
+        "name": "ffn_output",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_repeat_kv",
+      "name": "Grouped-query key/value repetition",
+      "kind": "forward",
+      "latex": "K^{rep}_{h,g,k,d}=K_{h,k,d}",
+      "explanation": "Broadcast each source key/value head across a contiguous repetition-group axis; the implementation then flattens (kv_heads, groups) into query heads.",
+      "expr": "np.broadcast_to(kv_input[:, None, :, :], (kv_input.shape[0], repeat_slots.shape[0], kv_input.shape[1], kv_input.shape[2]))",
+      "reference_expr": "kv_input[:, None, :, :] + np.zeros((kv_input.shape[0], repeat_slots.shape[0], kv_input.shape[1], kv_input.shape[2]))",
+      "inputs": [
+        "kv_input",
+        "repeat_slots"
+      ],
+      "output": {
+        "name": "repeated_kv",
+        "shape": [
+          "kv_heads",
+          "groups",
+          "kv",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_causal_mask",
+      "name": "Right-aligned cached causal mask",
+      "kind": "forward",
+      "latex": "M_{ij}=0\\;\\text{if }j\\le i+(L_{kv}-L_q),\\; -\\infty\\;\\text{otherwise}",
+      "explanation": "Right-align the current query block against the cached key/value prefix.",
+      "expr": "np.where(key_position[None, :] <= query_position[:, None] + key_position.shape[0] - query_position.shape[0], 0.0, -np.inf)",
+      "reference_expr": "np.where(query_position[:, None] + key_position.shape[0] - query_position.shape[0] >= key_position[None, :], 0.0, -np.inf)",
+      "inputs": [
+        "query_position",
+        "key_position"
+      ],
+      "output": {
+        "name": "causal_mask",
+        "shape": [
+          "tokens",
+          "kv"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_attention",
+      "name": "Scaled causal attention",
+      "kind": "forward",
+      "latex": "\\operatorname{Attn}(Q,K,V)=\\operatorname{softmax}(QK^{\\top}/\\sqrt{d_h}+M)V",
+      "explanation": "Contract queries and keys over head width, apply the additive causal mask, normalize on the key axis, and mix values.",
+      "expr": "np.matmul(np.exp((np.einsum('htd,hkd->htk', query, key) / np.sqrt(query.shape[-1]) + attention_mask[None, :, :]) - np.max(np.einsum('htd,hkd->htk', query, key) / np.sqrt(query.shape[-1]) + attention_mask[None, :, :], axis=-1, keepdims=True)) / np.sum(np.exp((np.einsum('htd,hkd->htk', query, key) / np.sqrt(query.shape[-1]) + attention_mask[None, :, :]) - np.max(np.einsum('htd,hkd->htk', query, key) / np.sqrt(query.shape[-1]) + attention_mask[None, :, :], axis=-1, keepdims=True)), axis=-1, keepdims=True), value)",
+      "inputs": [
+        "query",
+        "key",
+        "value",
+        "attention_mask"
+      ],
+      "output": {
+        "name": "attention_context",
+        "shape": [
+          "heads",
+          "tokens",
+          "head_dim"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_decoder_layer",
+      "name": "Pre-normalized residual decoder layer",
+      "kind": "forward",
+      "latex": "H'=H+A(H),\\quad H''=H'+F(H')",
+      "explanation": "The captured implementation computes attention and feed-forward deltas from their own pre-normalized states; this contract isolates the exact residual addition shared by both paths.",
+      "expr": "decoder_hidden + attention_delta + ffn_delta",
+      "reference_expr": "(decoder_hidden + attention_delta) + ffn_delta",
+      "inputs": [
+        "decoder_hidden",
+        "attention_delta",
+        "ffn_delta"
+      ],
+      "output": {
+        "name": "updated_hidden",
+        "shape": [
+          "tokens",
+          "hidden"
+        ]
+      },
+      "invariants": [
+        "dim_conservation"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_model_logits",
+      "name": "Language-model head",
+      "kind": "forward",
+      "latex": "Z=H_LW_{lm}^{\\top}",
+      "explanation": "Project final normalized hidden states to vocabulary logits.",
+      "expr": "np.matmul(final_hidden, lm_head.T)",
+      "reference_expr": "np.einsum('th,vh->tv', final_hidden, lm_head)",
+      "inputs": [
+        "final_hidden",
+        "lm_head"
+      ],
+      "output": {
+        "name": "model_logits",
+        "shape": [
+          "tokens",
+          "vocab"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_greedy",
+      "name": "Greedy next-token choice",
+      "kind": "inference",
+      "latex": "y=\\operatorname*{argmax}_v Z_{-1,v}",
+      "explanation": "Choose the first maximum vocabulary index at the last decoded position.",
+      "expr": "np.argmax(logits[-1])",
+      "reference_expr": "np.asarray(logits[-1]).argmax()",
+      "inputs": [
+        "logits"
+      ],
+      "output": {
+        "name": "greedy_token",
+        "shape": []
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_temperature_softmax",
+      "name": "Temperature-scaled token distribution",
+      "kind": "inference",
+      "latex": "\\pi_v=\\exp(z_v/T-c)/\\sum_u\\exp(z_u/T-c)",
+      "explanation": "Stably normalize the last-position logits at the registered positive temperature.",
+      "expr": "np.exp(logits[-1] / temperature - np.max(logits[-1] / temperature)) / np.sum(np.exp(logits[-1] / temperature - np.max(logits[-1] / temperature)))",
+      "reference_expr": "np.exp((logits[-1] - np.max(logits[-1])) / temperature) / np.sum(np.exp((logits[-1] - np.max(logits[-1])) / temperature))",
+      "inputs": [
+        "logits",
+        "temperature"
+      ],
+      "output": {
+        "name": "token_probability",
+        "shape": [
+          "vocab"
+        ]
+      },
+      "invariants": [
+        "prob_sum_to_1"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_nucleus",
+      "name": "Nucleus renormalization",
+      "kind": "inference",
+      "latex": "\\tilde\\pi_v=m_v\\exp(z_v)/\\sum_um_u\\exp(z_u)",
+      "explanation": "Renormalize the implementation-computed top-p keep mask. The independent sampler contract verifies the descending cumulative-mass construction, boundary token retention and empirical draws at top_p=0.95.",
+      "expr": "(np.where(nucleus_mask > 0.0, np.exp(nucleus_logits - np.max(nucleus_logits, axis=-1, keepdims=True)), 0.0) + 1e-12) / np.sum(np.where(nucleus_mask > 0.0, np.exp(nucleus_logits - np.max(nucleus_logits, axis=-1, keepdims=True)), 0.0) + 1e-12, axis=-1, keepdims=True)",
+      "reference_expr": "(np.exp(nucleus_logits - np.max(nucleus_logits, axis=-1, keepdims=True)) * (nucleus_mask > 0.0) + 1e-12) / np.sum(np.exp(nucleus_logits - np.max(nucleus_logits, axis=-1, keepdims=True)) * (nucleus_mask > 0.0) + 1e-12, axis=-1, keepdims=True)",
+      "inputs": [
+        "nucleus_logits",
+        "nucleus_mask"
+      ],
+      "output": {
+        "name": "nucleus_probability",
+        "shape": [
+          "batch",
+          "vocab"
+        ]
+      },
+      "invariants": [
+        "prob_sum_to_1"
+      ],
+      "status": "deployment-standard"
+    },
+    {
+      "id": "qwen_generate",
+      "name": "Autoregressive cache-length recurrence",
+      "kind": "inference",
+      "latex": "L_{t+1}=L_t+1",
+      "explanation": "Each sampled token extends the attended prefix by exactly one; sampler choice and EOS stopping are separately exercised by the generation contract.",
+      "expr": "sequence_length + 1",
+      "reference_expr": "1 + sequence_length",
+      "inputs": [
+        "sequence_length"
+      ],
+      "output": {
+        "name": "next_sequence_length",
+        "shape": [
+          "steps"
+        ]
+      },
+      "invariants": [],
+      "status": "deployment-standard"
+    }
+  ],
+  "global": {},
+  "overall_status": "incomplete"
+}

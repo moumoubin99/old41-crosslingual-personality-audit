@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/pub-gemma-friendspersona.jsonl",
+  "sha256": "1ff0ec7a785d86063f3764a56abd1170de50e02df3b41557e83ab9c6f3edf845",
+  "records": 711,
+  "calls": 8532,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 414.40176701545715,
+  "calls_per_second": 20.588715297832593,
+  "args": {
+    "project": ".",
+    "rater": "gemma",
+    "task": "public",
+    "tag": "pub-gemma-friendspersona",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion,agreeableness",
+    "instrument": "en",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.85,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

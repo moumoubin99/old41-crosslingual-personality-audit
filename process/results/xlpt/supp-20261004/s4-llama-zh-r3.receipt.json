@@ -1,0 +1,27 @@
+{
+  "output": "process/results/xlpt/supp-20261004/s4-llama-zh-r3.jsonl",
+  "sha256": "3da7c5f96f63727d346cb8364ff41b3ee19662a33d4bdf096da7cb330ef3dc93",
+  "records": 8400,
+  "calls": 50400,
+  "calls_resumed_from_checkpoint": 0,
+  "elapsed_seconds": 7643.840941429138,
+  "calls_per_second": 6.593543793779795,
+  "args": {
+    "project": ".",
+    "rater": "llama",
+    "task": "transcripts",
+    "tag": "s4-llama-zh-r3",
+    "tok_workers": 16,
+    "variants": "none",
+    "traits": "extraversion",
+    "instrument": "zh",
+    "cells": "Pen_Den,Pen_Dzh,Pzh_Den,Pzh_Dzh",
+    "seeds": "20260811,20260812,20260813,20260814,20260815,20260816",
+    "corpus": "friendspersona",
+    "limit": 0,
+    "chunk": 4096,
+    "gpu_memory_utilization": 0.45,
+    "max_num_batched_tokens": 32768,
+    "max_num_seqs": 256
+  }
+}

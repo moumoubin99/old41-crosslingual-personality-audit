@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python3.12",
+    "-m",
+    "experiments.xlpt.run_hf_generation",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--phase",
+    "b0-competence",
+    "--model-path",
+    "<LOCAL_PATH>/CohereLabs__aya-expanse-8b",
+    "--model-id",
+    "aya-expanse-8b",
+    "--runtime-manifest",
+    "process/consumption/deployment/aya-expanse-8b-runtime-manifest.json",
+    "--seed",
+    "20260811"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_hf_generation.py",
+    "experiments/xlpt/run_transformers_generation.py",
+    "experiments/xlpt/inference_contract.py",
+    "process/consumption/frozen/english_execution_v1.json",
+    "process/consumption/frozen/english_execution_receipt_v1.json",
+    "process/consumption/frozen/english_b0_competence_scenarios_v1.jsonl"
+  ],
+  "spec": "process/consumption/deployment/ENGLISH_EXECUTION_MATH_SPEC.json",
+  "formula_ids": [
+    "english_temperature",
+    "english_nucleus",
+    "english_sample",
+    "english_substream",
+    "english_ar_recurrence",
+    "english_eos_stop",
+    "english_rate"
+  ],
+  "no_formula_reason": "Operator skip_formula on the new bjb1 worker. Decode contract is the reviewed inference_contract loop; model forward is Transformers eager bf16 for aya-expanse-8b. Not a PASS receipt and not a Rule-F admission cell."
+}

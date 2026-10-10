@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "deployment_root": "<LOCAL_PATH>/project41",
+  "launch_argv": [
+    "<LOCAL_PATH>/python",
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "--unit",
+    "sampler",
+    "--project",
+    "<LOCAL_PATH>/41-2026-09-05-aris-3",
+    "--output-json",
+    "process/logs/qwen-reference-{unit}-seed-{seed}.json",
+    "--seed",
+    "17091701",
+    "--device",
+    "cpu"
+  ],
+  "source_roots": [
+    "experiments/xlpt/run_qwen_reference_probe.py",
+    "experiments/xlpt/qwen3_reference.py",
+    "experiments/xlpt/test_qwen3_kernels.py",
+    "experiments/xlpt/test_qwen3_attention.py",
+    "experiments/xlpt/test_qwen3_autoregression.py",
+    "experiments/xlpt/test_qwen3_checkpoint_binding.py",
+    "experiments/xlpt/test_qwen3_sampler.py",
+    "experiments/xlpt/test_qwen_reference_probe.py"
+  ],
+  "spec": "process/consumption/deployment/QWEN_REFERENCE_MATH_SPEC.json",
+  "formula_ids": [
+    "qwen_temperature_softmax",
+    "qwen_nucleus",
+    "qwen_generate",
+    "qwen_greedy"
+  ],
+  "bindings": [
+    {
+      "formula_id": "qwen_temperature_softmax",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "nucleus_next_token"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_nucleus",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "nucleus_next_token"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_generate",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "generate"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract"
+      ]
+    },
+    {
+      "formula_id": "qwen_greedy",
+      "implementation": [
+        {
+          "file": "experiments/xlpt/qwen3_reference.py",
+          "symbol": "greedy_next_token"
+        }
+      ],
+      "test_ids": [
+        "sampler_contract"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "sampler_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen3_sampler.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen3_sampler.py"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "runner_contract",
+      "python_args": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "test_files": [
+        "experiments/xlpt/test_qwen_reference_probe.py"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "no_formula_reason": "The launched command executes the decoding law registered for this study - temperature 0.7 with top_p 0.95 - and the generation loop that applies it. The contract test computes the target distribution for a fixed logit row in plain Python, draws 4000 seeded samples and compares each kept token's empirical frequency against a four-standard-error band, checks that the truncated mass renormalizes to one, that a stop token ends the loop, and that unseeded stochastic decoding is refused. No rater score, scientific estimate or gate input is produced; the receipt is written with eligible_for_analysis false."
+}
