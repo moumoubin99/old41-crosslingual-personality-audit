@@ -58,4 +58,4 @@ Historical protocol documents are versioned records of what was planned at their
 
 ## Rights
 
-This snapshot does not assign a new license to the authors' materials. Third-party software fragments retain the upstream terms listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Third-party corpus acquisition and reuse remain subject to their original terms. No television script text is covered by an author-material license in this repository.
+Author-written software is licensed under **MIT**; author-created data and research materials are licensed under **CC BY 4.0**, to the extent the authors hold applicable rights. Third-party software and corpus-derived elements retain their original terms. [LICENSING.md](LICENSING.md) defines the exact scope, mixed-file exceptions and attribution; [LICENSE_MAP.json](LICENSE_MAP.json) classifies the snapshot files. Full license texts and third-party notices are included. The licensed publication snapshot is **v1.0.1**.

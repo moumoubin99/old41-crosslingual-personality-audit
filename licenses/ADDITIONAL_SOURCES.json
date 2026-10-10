@@ -1,0 +1,24 @@
+{
+  "MIT_source": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/MIT.txt",
+  "MIT_author_copyright": "2026 Jibin Zhang and Hui Gui",
+  "licenses": [
+    {
+      "path": "licenses/CC-BY-4.0.txt",
+      "official_source": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/CC-BY-4.0.txt",
+      "spdx_id": "CC-BY-4.0",
+      "sha256": "d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744"
+    },
+    {
+      "path": "licenses/safetensors-APACHE-2.0.txt",
+      "official_source": "https://raw.githubusercontent.com/huggingface/safetensors/v0.8.0/LICENSE",
+      "spdx_id": "Apache-2.0",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "licenses/flash-attention-BSD-3-Clause.txt",
+      "official_source": "https://raw.githubusercontent.com/vllm-project/flash-attention/ee4d25bd84e0cbc7e0b9b9685085fd5db2dcb62a/LICENSE",
+      "spdx_id": "BSD-3-Clause",
+      "sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73"
+    }
+  ]
+}
